@@ -12,35 +12,50 @@ class Login extends CI_Controller{
 		$this->load->view('dev/login');
 	}
 
+	/**
+	 * Login authentication
+	 * Fixed: Changed MD5 to bcrypt password hashing
+	 * Fixed: Removed password from session
+	 * Added: Session regeneration for security
+	 */
 	function aksi_login(){
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
-		
-		$where = array(
-			
-			'username' => $username,
-			'password' => md5($password)
-			);
-		$cek = $this->m_login->cek_login("admin",$where)->num_rows();
-		
-		
-		if($cek > 0){
-			$query = $this->m_login->cek_login("admin", $where)->row();
-                
-                $id = $query->id;
-			$data_session = array(
-				'id' => $id,
-				'nama' => $username,
-				'password' => $password,
-				'status' => "login"
+		$username = $this->input->post('username', TRUE); // XSS clean
+		$password = $this->input->post('password'); // Don't XSS clean passwords
+
+		// Get user by username only
+		$user = $this->m_login->get_by_username($username);
+
+		if($user){
+			// Verify password using bcrypt
+			if(password_verify($password, $user->password)){
+				// Regenerate session ID to prevent fixation
+				$this->session->sess_regenerate(TRUE);
+
+				$data_session = array(
+					'id' => $user->id,
+					'nama' => $user->username,
+					'status' => "login",
+					'login_time' => time()
 				);
 
-			$this->session->set_userdata($data_session);
+				$this->session->set_userdata($data_session);
 
-			redirect(base_url("index.php/admin"));
+				// Log successful login
+				log_message('info', 'User ' . $username . ' logged in successfully');
 
+				redirect(base_url("index.php/admin"));
+			}else{
+				// Log failed login attempt
+				log_message('warning', 'Failed login attempt for username: ' . $username);
+
+				$this->session->set_flashdata('error', 'Username atau password salah!');
+				redirect(base_url("index.php/login"));
+			}
 		}else{
-			echo "Username dan password salah !";
+			// Log failed login - user not found
+			log_message('warning', 'Login attempt for non-existent user: ' . $username);
+
+			$this->session->set_flashdata('error', 'Username atau password salah!');
 			redirect(base_url("index.php/login"));
 		}
 	}
