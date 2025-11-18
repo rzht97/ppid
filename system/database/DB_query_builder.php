@@ -2001,7 +2001,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 
 		if ( ! is_array($key))
 		{
-			// @todo error
+			return $this->display_error('db_invalid_batch_data');
 		}
 
 		is_bool($escape) OR $escape = $this->_protect_identifiers;
