@@ -17,16 +17,25 @@ class Dip extends CI_Controller
     }
 
 
-     
+    /**
+	 * Daftar DIP berdasarkan SKPD user
+	 * Fixed: SQL injection vulnerability
+	 */
     public function index()
     {
 		$data['nama_user'] = $this->session->userdata("nama");
         $data['id'] = $this->session->userdata("id");
 		$id = $this->session->userdata("id");
 		$data['status'] = $this->session->userdata("status");
+
 		if ($id != '0'){
-			$data["dokumen"] = $this->db->query("SELECT * FROM dokumen WHERE id_skpd = '$id'")->result();
-		
+			// Fixed: Gunakan query builder yang aman
+			$data["dokumen"] = $this->db
+			    ->select('id_dokumen, judul, kategori, tanggal, image, deskripsi, id_skpd')
+			    ->where('id_skpd', $id)
+			    ->order_by('tanggal', 'DESC')
+			    ->get('dokumen')
+			    ->result();
 		}else{
 			$data["dokumen"] = $this->dokumen_model->getAll();
 		}

@@ -18,11 +18,26 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	/**
+	 * Homepage dengan statistik permohonan
+	 * Menggunakan query builder untuk keamanan
+	 */
 	public function index()
 	{
-		$data['ditolak'] = $this->db->query("SELECT count(status) as total FROM permohonan WHERE status = 'Ditolak'")->result();
-		$data['jml'] = $this->db->query("SELECT count(status) as total FROM permohonan")->result();
-		$data['selesai'] = $this->db->query("SELECT count(status) as total FROM permohonan WHERE status = 'Selesai'")->result();
+		// Optimized: Gabung jadi 1 query dengan agregasi
+		$stats = $this->db->select('
+			COUNT(*) as total,
+			SUM(CASE WHEN status = "Ditolak" THEN 1 ELSE 0 END) as ditolak,
+			SUM(CASE WHEN status = "Selesai" THEN 1 ELSE 0 END) as selesai
+		')
+		->from('permohonan')
+		->get()
+		->row();
+
+		$data['ditolak'] = array((object)array('total' => $stats->ditolak));
+		$data['jml'] = array((object)array('total' => $stats->total));
+		$data['selesai'] = array((object)array('total' => $stats->selesai));
+
         // load view admin/overview.php
         $this->load->view("dev/index2", $data);
 	}

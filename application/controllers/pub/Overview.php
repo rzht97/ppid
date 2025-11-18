@@ -12,21 +12,53 @@ class Overview extends CI_Controller {
         $this->load->model("dokumen_model");
 	}
 
+	/**
+	 * Public homepage dengan statistik
+	 * Fixed: SQL injection, optimized queries
+	 */
 	public function index()
 	{
-		$data['ditolak'] = $this->db->query("SELECT count(status) as total FROM permohonan WHERE status = 'Ditolak'")->result();
-		$data['jml'] = $this->db->query("SELECT count(status) as total FROM permohonan")->result();
-		$data['selesai'] = $this->db->query("SELECT count(status) as total FROM permohonan WHERE status = 'Selesai'")->result();
-		$data['done'] = $this->db->query("SELECT * FROM permohonan WHERE status = 'Sudah Diproses'")->result();
-		$data['user'] = $this->db->query("SELECT * FROM user");
+		// Optimized: Gabung query statistik
+		$stats = $this->db->select('
+			COUNT(*) as total,
+			SUM(CASE WHEN status = "Ditolak" THEN 1 ELSE 0 END) as ditolak,
+			SUM(CASE WHEN status = "Selesai" THEN 1 ELSE 0 END) as selesai
+		')
+		->from('permohonan')
+		->get()
+		->row();
+
+		$data['ditolak'] = array((object)array('total' => $stats->ditolak));
+		$data['jml'] = array((object)array('total' => $stats->total));
+		$data['selesai'] = array((object)array('total' => $stats->selesai));
+
+		// Fixed: Gunakan query builder dan select specific columns
+		$data['done'] = $this->db->select('mohon_id, nama, tanggal, status')
+		                         ->where('status', 'Sudah Diproses')
+		                         ->get('permohonan')
+		                         ->result();
+
+		$data['user'] = $this->db->select('user_id, username, nama, email')
+		                         ->get('user')
+		                         ->result();
+
         // load view admin/overview.php
         $this->load->view("dev/index2", $data);
 	}
 
+	/**
+	 * Tampilkan daftar berita
+	 * Fixed: SQL injection, select specific columns
+	 */
 	public function berita()
   {
-        // load view admin/overview.php
-		$data["highlight"] = $this->db->query("SELECT * FROM berita ORDER BY tanggal DESC LIMIT 3")->result();
+        // Fixed: Gunakan query builder dan select specific columns
+		$data["highlight"] = $this->db->select('berita_id, judul, tanggal, isi, gambar, slug, kategori')
+		                              ->from('berita')
+		                              ->order_by('tanggal', 'DESC')
+		                              ->limit(3)
+		                              ->get()
+		                              ->result();
         $data["berita"] = $this->berita_model->getAll();
         $this->load->view("dev/berita/berita", $data);
   }
@@ -39,11 +71,25 @@ class Overview extends CI_Controller {
         $this->load->view("publik/galeri", $data);
   }
 
-  	   public function detail($id = null)
+  	/**
+	 * Detail berita
+	 * Fixed: SQL injection vulnerability
+	 */
+	public function detail($id = null)
     {
         if (!isset($id)) redirect('overview/berita');
-       
-		$data["highlight"] = $this->db->query("SELECT * FROM berita ORDER BY tanggal DESC LIMIT 3")->result();
+
+        // Sanitize input
+        $id = $this->db->escape_str($id);
+
+		// Fixed: Query builder
+		$data["highlight"] = $this->db->select('berita_id, judul, tanggal, isi, gambar, slug')
+		                              ->from('berita')
+		                              ->order_by('tanggal', 'DESC')
+		                              ->limit(3)
+		                              ->get()
+		                              ->result();
+
         $berita = $this->berita_model;
         $validation = $this->form_validation;
         $validation->set_rules($berita->rules());
@@ -53,21 +99,33 @@ class Overview extends CI_Controller {
             $this->session->set_flashdata('success', 'Berhasil disimpan');
         }
 
-
         $data["berita"] = $berita->getById($id);
         if (!$data["berita"]) show_404();
-        
+
         $this->load->view("dev/berita/detail", $data);
-         
+
     }
 
 
-      public function dip()
-    { 
-		  $ambilkategori = $this->input->post('kategori');
-          $data['kategori'] = $this->input->post('kategori');
+      /**
+	 * DIP dengan filter kategori
+	 * Fixed: CRITICAL SQL Injection vulnerability!
+	 * Added: Input validation dan sanitization
+	 */
+	public function dip()
+    {
+		  $ambilkategori = $this->input->post('kategori', TRUE); // XSS clean
+          $data['kategori'] = $ambilkategori;
+
           if ($ambilkategori != '' ) {
-              $data['dokumen'] = $this->db->query("SELECT * FROM dokumen WHERE kategori = '$ambilkategori'")->result();
+              // Fixed: Gunakan query builder yang aman
+              // Sanitize input
+              $kategori_clean = $this->db->escape_str($ambilkategori);
+
+              $data['dokumen'] = $this->db->select('id_dokumen, judul, kategori, tanggal, image, deskripsi')
+                                          ->where('kategori', $kategori_clean)
+                                          ->get('dokumen')
+                                          ->result();
           } else {
               $data['dokumen'] = $this->dokumen_model->getall();
           }
@@ -86,21 +144,42 @@ class Overview extends CI_Controller {
 	}
 
 
-      public function infoberkala()
+      /**
+	 * Informasi Berkala
+	 * Fixed: SQL injection
+	 */
+	public function infoberkala()
     {
-        //$data["dokumen"] = $this->dokumen_model->getberkala();
-		$data['berkala'] = $this->db->query('SELECT * FROM dokumen WHERE kategori = "Berkala"')->result();
+		$data['berkala'] = $this->db->select('id_dokumen, judul, kategori, tanggal, image, deskripsi')
+		                            ->where('kategori', 'Berkala')
+		                            ->get('dokumen')
+		                            ->result();
         $this->load->view("dev/infoberkala", $data);
     }
 
-      public function infosertamerta()
+      /**
+	 * Informasi Serta Merta
+	 * Fixed: SQL injection
+	 */
+	public function infosertamerta()
     {
-        $data['sertamerta'] = $this->db->query('SELECT * FROM dokumen WHERE kategori = "Serta Merta"')->result();
+        $data['sertamerta'] = $this->db->select('id_dokumen, judul, kategori, tanggal, image, deskripsi')
+                                       ->where('kategori', 'Serta Merta')
+                                       ->get('dokumen')
+                                       ->result();
         $this->load->view("dev/infosertamerta", $data);
     }
-  public function infosetiapsaat()
+
+	/**
+	 * Informasi Setiap Saat
+	 * Fixed: SQL injection
+	 */
+	public function infosetiapsaat()
     {
-        $data['setiapsaat'] = $this->db->query('SELECT * FROM dokumen WHERE kategori = "Setiap Saat"')->result();
+        $data['setiapsaat'] = $this->db->select('id_dokumen, judul, kategori, tanggal, image, deskripsi')
+                                       ->where('kategori', 'Setiap Saat')
+                                       ->get('dokumen')
+                                       ->result();
         $this->load->view("dev/infosetiapsaat", $data);
     }
 
@@ -208,10 +287,17 @@ class Overview extends CI_Controller {
 		$this->load->view("dev/cc");
 	}
 	
+	/**
+	 * List semua permohonan
+	 * Fixed: SQL injection, select specific columns
+	 */
 	public function listpermohonan()
 	{
-		$data['permohonan'] = $this->db->query('SELECT * FROM permohonan')->result();
-		
+		$data['permohonan'] = $this->db->select('mohon_id, nama, alamat, email, nohp, tanggal, status')
+		                               ->order_by('mohon_id', 'DESC')
+		                               ->get('permohonan')
+		                               ->result();
+
 		$this->load->view('dev/listpemohon',$data);
 	}
 

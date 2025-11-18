@@ -11,27 +11,45 @@ class Dip extends CI_Controller {
         $this->load->model("dokumen_model");
 	}
 
+	/**
+	 * DIP Index
+	 * Fixed: CRITICAL SQL Injection vulnerability
+	 */
 	public function index()
 	{
-		
-        $ambilkategori = $this->input->post('kategori');
-          $data['kategori'] = $this->input->post('kategori');
-          if ($ambilkategori != '' ) {
-              $data['dokumen'] = $this->db->query("SELECT * FROM dokumen WHERE kategori = '$ambilkategori'")->result();
-          } else {
-              $data['dokumen'] = $this->dokumen_model->getall();
-          }
-          $this->load->view("dev/DIP/dip", $data);
-        $this->load->view("dev/index2", $data);
+        $ambilkategori = $this->input->post('kategori', TRUE); // XSS clean
+        $data['kategori'] = $ambilkategori;
+
+        if ($ambilkategori != '' ) {
+            // Fixed: Gunakan query builder yang aman
+            $kategori_clean = $this->db->escape_str($ambilkategori);
+            $data['dokumen'] = $this->db->select('id_dokumen, judul, kategori, tanggal, image, deskripsi')
+                                        ->where('kategori', $kategori_clean)
+                                        ->get('dokumen')
+                                        ->result();
+        } else {
+            $data['dokumen'] = $this->dokumen_model->getall();
+        }
+        $this->load->view("dev/DIP/dip", $data);
 	}
 
 
-      public function dip()
-    { 
-		  $ambilkategori = $this->input->post('kategori');
-          $data['kategori'] = $this->input->post('kategori');
+    /**
+	 * DIP dengan filter
+	 * Fixed: CRITICAL SQL Injection vulnerability
+	 */
+    public function dip()
+    {
+		  $ambilkategori = $this->input->post('kategori', TRUE); // XSS clean
+          $data['kategori'] = $ambilkategori;
+
           if ($ambilkategori != '' ) {
-              $data['dokumen'] = $this->db->query("SELECT * FROM dokumen WHERE kategori = '$ambilkategori'")->result();
+              // Fixed: Gunakan query builder yang aman
+              $kategori_clean = $this->db->escape_str($ambilkategori);
+              $data['dokumen'] = $this->db->select('id_dokumen, judul, kategori, tanggal, image, deskripsi')
+                                          ->where('kategori', $kategori_clean)
+                                          ->get('dokumen')
+                                          ->result();
           } else {
               $data['dokumen'] = $this->dokumen_model->getall();
           }

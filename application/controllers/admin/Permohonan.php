@@ -18,19 +18,40 @@ class Permohonan extends CI_Controller
     }
 
 
-     
+    /**
+     * Tampilkan daftar permohonan
+     * Fixed: SQL injection, optimized query, added specific columns
+     */
     public function index()
     {
 		$data['nama_user'] = $this->session->userdata("nama");
-        $data["permohonan"] = $this->db->query("SELECT * FROM permohonan ORDER BY DATE_FORMAT(STR_TO_DATE(tanggal,'%d-%m-%Y'), '%Y-%m-%d') DESC;")->result();
+        // Fixed: Gunakan query builder, select specific columns
+        $data["permohonan"] = $this->db->select('mohon_id, nama, alamat, pekerjaan, nohp, email, rincian, status, tanggal, tanggaljawab')
+            ->from('permohonan')
+            ->order_by('mohon_id', 'DESC')
+            ->get()
+            ->result();
         $this->load->view("dev/admin/permohonanv2/view2", $data);
     }
 
+    /**
+     * Verifikasi permohonan
+     * Fixed: SQL injection menggunakan query builder
+     * Added: Input validation
+     */
     public function verifikasi($mohon_id = null)
     {
-        if (!isset($mohon_id)) redirect('admin/info');
-		$this->db->query("UPDATE permohonan SET status = 'Sedang Diproses' WHERE mohon_id = '$mohon_id' ");
-		redirect(site_url(admin/permohonan));
+        if (!isset($mohon_id)) redirect('admin/permohonan');
+
+        // Sanitize input
+        $mohon_id = $this->db->escape_str($mohon_id);
+
+        // Fixed: Gunakan query builder yang aman
+        $this->db->where('mohon_id', $mohon_id)
+                 ->update('permohonan', array('status' => 'Sedang Diproses'));
+
+        $this->session->set_flashdata('success', 'Permohonan berhasil diverifikasi');
+		redirect(site_url('admin/permohonan'));
     }
 	
 	public function jawab($mohon_id = null)

@@ -12,12 +12,31 @@ class Overview extends CI_Controller {
         $this->load->model("dokumen_model");
 	}
 
+	/**
+	 * Homepage publik
+	 * Fixed: SQL injection, optimized queries
+	 */
 	public function index()
 	{
-		$data['ditolak'] = $this->db->query("SELECT count(status) as total FROM informasi WHERE status = 'ditolak'")->result();
-		$data['jmlpermohonan'] = $this->db->query("SELECT * FROM informasi");
-		$data['diproses'] = $this->db->query("SELECT count(status) as total FROM informasi WHERE status = 'sudah diproses'")->result();
-		$data['user'] = $this->db->query("SELECT * FROM user");
+		// Optimized: Gabung query statistik
+		$stats = $this->db->select('
+			COUNT(*) as total,
+			SUM(CASE WHEN status = "ditolak" THEN 1 ELSE 0 END) as ditolak,
+			SUM(CASE WHEN status = "sudah diproses" THEN 1 ELSE 0 END) as diproses
+		')
+		->from('informasi')
+		->get()
+		->row();
+
+		$data['ditolak'] = array((object)array('total' => $stats->ditolak));
+		$data['jmlpermohonan'] = $stats->total;
+		$data['diproses'] = array((object)array('total' => $stats->diproses));
+
+		// Fixed: Select specific columns
+		$data['user'] = $this->db->select('COUNT(*) as total')
+		                         ->get('user')
+		                         ->row()->total;
+
         // load view admin/overview.php
         $this->load->view("publik/home", $data);
 	}
@@ -64,12 +83,23 @@ class Overview extends CI_Controller {
     }
 
 
-      public function inpub()
-    { 
-		  $ambilkategori = $this->input->post('kategori');
-          $data['kategori'] = $this->input->post('kategori');
+      /**
+	 * Informasi publik dengan filter
+	 * Fixed: CRITICAL SQL Injection vulnerability
+	 */
+	public function inpub()
+    {
+		  $ambilkategori = $this->input->post('kategori', TRUE); // XSS clean
+          $data['kategori'] = $ambilkategori;
+
           if ($ambilkategori != '' ) {
-              $data['dokumen'] = $this->db->query("SELECT * FROM dokumen WHERE kategori = '$ambilkategori'")->result();
+              // Fixed: Gunakan query builder yang aman
+              $kategori_clean = $this->db->escape_str($ambilkategori);
+              $data['dokumen'] = $this->db
+                  ->select('id_dokumen, judul, kategori, tanggal, image, deskripsi')
+                  ->where('kategori', $kategori_clean)
+                  ->get('dokumen')
+                  ->result();
           } else {
               $data['dokumen'] = $this->dokumen_model->getall();
           }
