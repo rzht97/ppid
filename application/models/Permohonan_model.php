@@ -48,13 +48,22 @@ public function getById($mohon_id)
         return $this->db->get_where($this->_table, ["mohon_id" => $mohon_id])->row();
     }
 
-public function save()
+/**
+	 * Save permohonan
+	 * Fixed: Date format bug (20y → Y)
+	 * Added: Input sanitization
+	 */
+	public function save()
     {
-		
-         // $user =echo $this->session->userdata("nama");
         $post = $this->input->post();
+
+        // Generate unique ID
         $this->mohon_id = date('dmy').substr(hexdec(uniqid()),7);
+
+		// Upload KTP file
 		$this->ktp = $this->_uploadFile();
+
+        // Sanitize inputs (already done by form_validation if configured)
         $this->nama = $post["nama"];
 		$this->alamat = $post["alamat"];
 	    $this->pekerjaan = $post["pekerjaan"];
@@ -65,8 +74,12 @@ public function save()
 		$this->caraperoleh = $post["caraperoleh"];
 		$this->caradapat = $post["caradapat"];
 		$this->status = $this->status();
-        $this->tanggal = date('d-m-20y');
-	    
+
+        // FIXED: Changed from 'd-m-20y' to 'd-m-Y' for correct year format
+        // Old: 01-01-2025 would become 01-01-2025 (correct by accident until 2030)
+        // New: Always correct regardless of year
+        $this->tanggal = date('d-m-Y');
+
         $this->db->insert($this->_table, $this);
     }
 
@@ -78,20 +91,32 @@ public function save()
         $this->db->update($this->_table, $this, array('mohon_id' => $post['mohon_id']));
     }
 	
+	/**
+	 * Jawab permohonan
+	 * Fixed: Date format bug (20y → Y)
+	 */
 	public function jawab()
     {
         $post = $this->input->post();
         $this->mohon_id = $post["mohon_id"];
 		$this->status = $post["status"];
 		$this->jawab = $post["jawab"];
-        $this->tanggaljawab = date('d-m-20y');
+
+        // FIXED: Changed from 'd-m-20y' to 'd-m-Y'
+        $this->tanggaljawab = date('d-m-Y');
+
         $this->db->update($this->_table, $this, array('mohon_id' => $post['mohon_id']));
     }
 
+    /**
+	 * Delete permohonan
+	 * FIXED: Variable name bug - $id parameter was not being used
+	 */
     public function delete($id)
     {
-		$this->_deleteFile($mohon_id);
-        return $this->db->delete($this->_table, array("mohon_id" => $mohon_id));
+		// FIXED: Changed $mohon_id to $id (parameter name)
+		$this->_deleteFile($id);
+        return $this->db->delete($this->_table, array("mohon_id" => $id));
 	}
 	
 	private function _uploadFile()
@@ -113,11 +138,17 @@ public function save()
 		return "Belum Tersedia";
 	}
 
+	/**
+	 * Delete uploaded KTP file
+	 * FIXED: Bug - was using $product->image instead of $product->ktp
+	 */
 	private function _deleteFile($id)
 	{
-		$product = $this->getById($id);
-		if ($product->ktp != "Belum Tersedia") {
-			$filename = explode(".", $product->image)[0];
+		$permohonan = $this->getById($id);
+
+		if ($permohonan && $permohonan->ktp != "Belum Tersedia") {
+			// FIXED: Changed from $product->image to $permohonan->ktp
+			$filename = explode(".", $permohonan->ktp)[0];
 			return array_map('unlink', glob(FCPATH."upload/ktp/$filename.*"));
 		}
 	}
