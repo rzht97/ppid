@@ -10,7 +10,7 @@ class Informasi extends CI_Controller
         
         parent::__construct();
          if($this->session->userdata('status') != "loginuser"){
-      redirect(base_url("index.php/publik/login"));
+      redirect(base_url("index.php/pub/login"));
     }
         $this->load->helper('url');
         $this->load->model("informasi_model");
