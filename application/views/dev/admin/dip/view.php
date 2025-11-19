@@ -69,45 +69,61 @@
 							</div>
 							<br>
                             <div class="table-responsive">
-                                <table id="myTable" class="table table-striped table-bordered">
+                                <table id="myTable" class="table table-striped table-bordered table-hover">
                                     <thead class="bg-light">
 										<tr>
-											<th width="50" class="text-center">No</th>
-											<th width="250">Ringkasan Isi Informasi</th>
-											<th width="120" class="text-center">Tanggal</th>
-											<th width="150">Jenis Informasi</th>
+											<th width="40" class="text-center">No</th>
+											<th>Ringkasan Isi Informasi</th>
+											<th width="100" class="text-center">Tanggal</th>
+											<th width="180">Kategori</th>
 											<th width="150">Bentuk Informasi</th>
-											<th width="120" class="text-center">Jangka Waktu</th>
-											<th width="100" class="text-center">Dokumen</th>
-											<th width="180" class="text-center">Aksi</th>
+											<th width="150" class="text-center">Jangka Waktu Penyimpanan</th>
+											<th width="90" class="text-center">Dokumen</th>
+											<th width="160" class="text-center">Aksi</th>
 										</tr>
 									</thead>
                                     <tbody>
 									<?php $no = 1; ?>
 									<?php foreach ($dokumen as $dok_kec): ?>
 									<tr>
-										<td class="text-center"><?php echo $no++; ?></td>
-										<td><strong><?php echo $dok_kec->judul ?></strong></td>
-										<td class="text-center"><?php echo $dok_kec->tanggal ?></td>
-										<td><?php echo $dok_kec->kategori ?></td>
-										<td><?php echo $dok_kec->bentukinfo?></td>
-										<td class="text-center"><?php echo $dok_kec->jangkawaktu?></td>
-										<td class="text-center">
+										<td class="text-center" style="vertical-align: middle;"><?php echo $no++; ?></td>
+										<td style="vertical-align: middle;">
+											<strong><?php echo $dok_kec->judul ?></strong>
+										</td>
+										<td class="text-center" style="vertical-align: middle;">
+											<small><?php echo $dok_kec->tanggal ?></small>
+										</td>
+										<td style="vertical-align: middle;">
+											<span class="label label-primary" style="font-size: 11px; padding: 5px 10px;">
+												<?php echo $dok_kec->kategori ?>
+											</span>
+										</td>
+										<td style="vertical-align: middle;">
+											<small><?php echo $dok_kec->bentukinfo?></small>
+										</td>
+										<td class="text-center" style="vertical-align: middle;">
+											<small><?php echo $dok_kec->jangkawaktu?></small>
+										</td>
+										<td class="text-center" style="vertical-align: middle;">
 											<?php if ($dok_kec->image != "Belum Tersedia") { ?>
-												<a href="<?php echo base_url().'index.php/admin/dip/download/'.$dok_kec->id; ?>" class="btn btn-success btn-sm" title="Download Dokumen">
-													<i class="fa fa-download"></i>
+												<a href="<?php echo base_url().'index.php/admin/dip/download/'.$dok_kec->id; ?>" class="btn btn-success btn-xs" title="Download Dokumen">
+													<i class="fa fa-download"></i> Download
 												</a>
 											<?php } else { ?>
-												<span class="text-muted"><i><?php echo $dok_kec->sumberdata; ?></i></span>
+												<span class="label label-default" style="font-size: 10px;">
+													<?php echo $dok_kec->sumberdata; ?>
+												</span>
 											<?php } ?>
 										</td>
-										<td class="text-center">
-											<a href="<?php echo site_url('admin/dip/edit/' . $dok_kec->id) ?>" class="btn btn-warning btn-sm" title="Edit Informasi">
-												<i class="fa fa-edit"></i> Edit
-											</a>
-											<a onclick="deleteConfirm('<?php echo site_url('admin/dip/delete/'.$dok_kec->id) ?>')" href="#!" class="btn btn-danger btn-sm" title="Hapus Informasi">
-												<i class="fa fa-trash-o"></i> Hapus
-											</a>
+										<td class="text-center" style="vertical-align: middle;">
+											<div class="btn-group" role="group">
+												<a href="<?php echo site_url('admin/dip/edit/' . $dok_kec->id) ?>" class="btn btn-warning btn-xs" title="Edit Informasi">
+													<i class="fa fa-edit"></i> Edit
+												</a>
+												<a onclick="deleteConfirm('<?php echo site_url('admin/dip/delete/'.$dok_kec->id) ?>')" href="#!" class="btn btn-danger btn-xs" title="Hapus Informasi">
+													<i class="fa fa-trash-o"></i> Hapus
+												</a>
+											</div>
 										</td>
 									</tr>
 									<?php endforeach; ?>
