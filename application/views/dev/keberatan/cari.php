@@ -103,104 +103,124 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="white-box">
-                            <h1 class="box-title m-b-0">Form Pengajuan Keberatan Atas Informasi</h1>
-                            <p class="text-muted m-b-30 font-13"></p>
+                        <div class="white-box" style="padding: 30px;">
+                            <h1 class="box-title m-b-0" style="font-size: 28px; margin-bottom: 10px;">
+                                <i class="fa fa-exclamation-circle text-warning"></i> Form Pengajuan Keberatan Atas Informasi
+                            </h1>
+                            <p class="text-muted m-b-30 font-13">Silakan lengkapi form di bawah ini untuk mengajukan keberatan atas permohonan informasi Anda.</p>
+
                             <?php if($caritoken): ?>
                                 <?php foreach($caritoken as $data): ?>
-                                    <form data-toogle="validator" class="form-horizontal">
-                                        <div class="form-body">
-											<h3 class="box-title">A. Informasi Pengajuan Keberatan</h3>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Nomor e-tiket:</label>
-                                                        <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->mohon_id ?> </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-												<div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Tujuan Penggunaan Informasi :</label>
-                                                        <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->tujuan ?> </p>
-                                                        </div>
-                                                    </div>
+
+                                    <!-- Informasi Permohonan -->
+                                    <div style="background-color: #f9f9f9; padding: 25px; border-radius: 8px; margin-bottom: 30px; border-left: 4px solid #ffc107;">
+                                        <h3 style="margin-top: 0; color: #333; font-size: 20px; margin-bottom: 20px;">
+                                            <i class="fa fa-info-circle"></i> Informasi Permohonan
+                                        </h3>
+                                        <div class="row">
+                                            <div class="col-md-6" style="margin-bottom: 15px;">
+                                                <label style="font-weight: 600; color: #666; margin-bottom: 5px; display: block;">Nomor e-Tiket:</label>
+                                                <div style="padding: 10px 15px; background-color: white; border-radius: 4px; border: 1px solid #e3e3e3;">
+                                                    <strong style="color: #2c3e50; font-size: 16px;"><?php echo $data->mohon_id ?></strong>
                                                 </div>
                                             </div>
-                                            
-                                            
-                                            <h3 class="box-title">Identitas Pemohon</h3>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Nama :</label>
-                                                        <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->nama ?> </p>
-                                                        </div>
-                                                    </div>
+                                            <div class="col-md-6" style="margin-bottom: 15px;">
+                                                <label style="font-weight: 600; color: #666; margin-bottom: 5px; display: block;">Status Permohonan:</label>
+                                                <div style="padding: 10px 15px; background-color: white; border-radius: 4px; border: 1px solid #e3e3e3;">
+                                                    <span class="label label-info"><?php echo $data->status ?></span>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Alamat :</label>
-                                                        <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->alamat ?> </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Pekerjaan :</label>
-                                                        <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->pekerjaan ?> </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-												<div class = "col-md-6">
-                                            		<div class="form-group">
-                                                		<label class="control-label">No. Telepon :</label>
-                                                		<div class="col-md-9">
-                                                           	<p class="form-control-static"> <?php echo $data->nohp ?> </p>
-                                                       	</div>
-                                            		</div>
-												</div>
-											</div>
+                                            </div>
                                         </div>
-                                    </form>
-									<form  action="<?= base_url()?>index.php/keberatan/save" method="post" >
-								<div class="form-group">
-                                    <div class="col-md-12">
-                                        <input type="hidden" class="form-control" <?php echo form_error('mohon_id') ? 'is-invalid' : '' ?> name = "mohon_id" value = "<?php echo $data->mohon_id?>" placeholder="mohon_id" required>
+
+                                        <hr style="margin: 20px 0; border-color: #e0e0e0;">
+
+                                        <h4 style="color: #555; font-size: 16px; margin-bottom: 15px;">Identitas Pemohon</h4>
+                                        <div class="row">
+                                            <div class="col-md-6" style="margin-bottom: 10px;">
+                                                <label style="font-weight: 600; color: #666; margin-bottom: 5px; display: block; font-size: 13px;">Nama:</label>
+                                                <p style="margin: 0; color: #333;"><?php echo $data->nama ?></p>
+                                            </div>
+                                            <div class="col-md-6" style="margin-bottom: 10px;">
+                                                <label style="font-weight: 600; color: #666; margin-bottom: 5px; display: block; font-size: 13px;">Pekerjaan:</label>
+                                                <p style="margin: 0; color: #333;"><?php echo $data->pekerjaan ?></p>
+                                            </div>
+                                            <div class="col-md-6" style="margin-bottom: 10px;">
+                                                <label style="font-weight: 600; color: #666; margin-bottom: 5px; display: block; font-size: 13px;">No. Telepon:</label>
+                                                <p style="margin: 0; color: #333;"><?php echo $data->nohp ?></p>
+                                            </div>
+                                            <div class="col-md-6" style="margin-bottom: 10px;">
+                                                <label style="font-weight: 600; color: #666; margin-bottom: 5px; display: block; font-size: 13px;">Email:</label>
+                                                <p style="margin: 0; color: #333;"><?php echo $data->email ?></p>
+                                            </div>
+                                            <div class="col-md-12" style="margin-bottom: 10px;">
+                                                <label style="font-weight: 600; color: #666; margin-bottom: 5px; display: block; font-size: 13px;">Alamat:</label>
+                                                <p style="margin: 0; color: #333;"><?php echo $data->alamat ?></p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label style="font-weight: 600; color: #666; margin-bottom: 5px; display: block; font-size: 13px;">Tujuan Penggunaan Informasi:</label>
+                                                <p style="margin: 0; color: #333;"><?php echo $data->tujuan ?></p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-12">Alasan Pengajuan Keberatan</label>
-                                    <div class="col-sm-12">
-                                        <select class="form-control" <?php echo form_error('alasan') ? 'is-invalid' : '' ?> name = "alasan">
-                                            <option value = "a. Permohonan Informasi Publik Ditolak">a. Permohonan Informasi Publik Ditolak</option>
-                                            <option value = "b. Informasi Berkala Tidak Disediakan">b. Informasi Berkala Tidak Disediakan</option>
-                                            <option value = "c. Permohonan Informasi Tidak Ditanggapi">c. Permohonan Informasi Tidak Ditanggapi</option>
-                                            <option value = "d. Permohonan Informasi Ditanggapi Sebagaimana Diminta">d. Permohonan Informasi Ditanggapi Sebagaimana Diminta</option>
-                                            <option value = "e. Permintaan Informasi Tidak Dipenuhi">e. Permintaan Informasi Tidak Dipenuhi</option>
-											<option value = "f. Biaya yang Dikenakan Tidak Wajar">f. Biaya yang Dikenakan Tidak Wajar</option>
-											<option value = "g. Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan">g. Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan</option>
-                                        </select>
+
+                                    <!-- Form Keberatan -->
+                                    <div style="background-color: #fff; padding: 25px; border-radius: 8px; border: 2px solid #e8e8e8;">
+                                        <h3 style="margin-top: 0; color: #333; font-size: 20px; margin-bottom: 20px;">
+                                            <i class="fa fa-edit"></i> Form Keberatan
+                                        </h3>
+
+                                        <form action="<?= base_url()?>index.php/keberatan/save" method="post">
+                                            <input type="hidden" name="mohon_id" value="<?php echo $data->mohon_id?>" required>
+
+                                            <div class="form-group" style="margin-bottom: 25px;">
+                                                <label style="font-weight: 600; color: #333; margin-bottom: 10px; display: block; font-size: 15px;">
+                                                    Alasan Pengajuan Keberatan <span class="text-danger">*</span>
+                                                </label>
+                                                <select class="form-control" name="alasan" required style="padding: 12px; font-size: 14px; border-radius: 4px; border: 1px solid #ddd;">
+                                                    <option value="">-- Pilih Alasan Keberatan --</option>
+                                                    <option value="a. Permohonan Informasi Publik Ditolak">a. Permohonan Informasi Publik Ditolak</option>
+                                                    <option value="b. Informasi Berkala Tidak Disediakan">b. Informasi Berkala Tidak Disediakan</option>
+                                                    <option value="c. Permohonan Informasi Tidak Ditanggapi">c. Permohonan Informasi Tidak Ditanggapi</option>
+                                                    <option value="d. Permohonan Informasi Tidak Ditanggapi Sebagaimana Diminta">d. Permohonan Informasi Tidak Ditanggapi Sebagaimana Diminta</option>
+                                                    <option value="e. Permintaan Informasi Tidak Dipenuhi">e. Permintaan Informasi Tidak Dipenuhi</option>
+                                                    <option value="f. Biaya yang Dikenakan Tidak Wajar">f. Biaya yang Dikenakan Tidak Wajar</option>
+                                                    <option value="g. Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan">g. Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan</option>
+                                                </select>
+                                                <span class="help-block" style="margin-top: 5px;"><small>Pilih alasan yang sesuai dengan kondisi permohonan Anda</small></span>
+                                            </div>
+
+                                            <div class="form-group" style="margin-bottom: 25px;">
+                                                <label style="font-weight: 600; color: #333; margin-bottom: 10px; display: block; font-size: 15px;">
+                                                    Kronologi/Uraian Keberatan <span class="text-danger">*</span>
+                                                </label>
+                                                <textarea class="form-control" name="kronologi" rows="6" required
+                                                    placeholder="Jelaskan secara detail kronologi atau uraian keberatan Anda. Sertakan informasi relevan seperti tanggal, waktu, dan kejadian yang terjadi."
+                                                    style="padding: 12px; font-size: 14px; border-radius: 4px; border: 1px solid #ddd;"></textarea>
+                                                <span class="help-block" style="margin-top: 5px;"><small>Jelaskan kronologi atau uraian keberatan Anda sejelas mungkin</small></span>
+                                            </div>
+
+                                            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e3e3e3; text-align: center;">
+                                                <button type="submit" class="btn btn-success btn-lg" style="padding: 12px 40px; margin-right: 10px;">
+                                                    <i class="fa fa-check"></i> Kirim Keberatan
+                                                </button>
+                                                <a href="<?php echo site_url('pub/permohonan/caripermohonan'); ?>" class="btn btn-default btn-lg" style="padding: 12px 40px;">
+                                                    <i class="fa fa-times"></i> Batal
+                                                </a>
+                                            </div>
+                                        </form>
                                     </div>
-                                </div>
-								<div class="form-group">
-                                    <label class="col-md-12">Kronologi : </label>
-                                    <div class="col-md-12">
-                                        <textarea class="form-control" <?php echo form_error('kronologi') ? 'is-invalid' : '' ?> name = "kronologi" rows="5" required></textarea>
-                                    </div>
-                                </div>
-                                <br>
-                                <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit 1</button>
-                                <button type="submit" class="btn btn-inverse waves-effect waves-light">Cancel</button>
-                            </form>
+
                                 <?php endforeach; ?>
+                            <?php else: ?>
+                                <div class="alert alert-warning" style="margin-top: 20px; padding: 20px;">
+                                    <i class="fa fa-exclamation-triangle"></i> <strong>Data Tidak Ditemukan!</strong><br>
+                                    <span style="margin-top: 5px; display: inline-block;">Mohon maaf, data permohonan tidak ditemukan. Silakan kembali ke halaman pencarian permohonan.</span>
+                                    <div style="margin-top: 15px;">
+                                        <a href="<?php echo site_url('pub/permohonan/caripermohonan'); ?>" class="btn btn-primary">
+                                            <i class="fa fa-search"></i> Cari Permohonan
+                                        </a>
+                                    </div>
+                                </div>
 							<?php endif; ?>
                         </div>
                     </div>
