@@ -283,9 +283,18 @@
                                             <a href="<?php echo site_url('pub/cekstatus'); ?>" class="btn btn-default btn-lg" style="padding: 12px 30px; margin-right: 10px;">
                                                 <i class="fa fa-search"></i> Cari Lagi
                                             </a>
-                                            <a href="<?php echo site_url('keberatan/index/'.$data->mohon_id); ?>" class="btn btn-warning btn-lg" style="padding: 12px 30px;">
-                                                <i class="fa fa-exclamation-circle"></i> Ajukan Keberatan
-                                            </a>
+
+                                            <?php if (!$data->has_keberatan): ?>
+                                                <!-- Tombol Ajukan Keberatan - hanya muncul jika belum ada keberatan -->
+                                                <a href="<?php echo site_url('keberatan/index/'.$data->mohon_id); ?>" class="btn btn-warning btn-lg" style="padding: 12px 30px;">
+                                                    <i class="fa fa-exclamation-circle"></i> Ajukan Keberatan
+                                                </a>
+                                            <?php else: ?>
+                                                <!-- Info jika keberatan sudah diajukan -->
+                                                <div class="alert alert-info" style="margin-top: 20px; padding: 15px; display: inline-block;">
+                                                    <i class="fa fa-info-circle"></i> Permohonan ini sudah memiliki keberatan yang diajukan.
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
                                     <?php endforeach; ?>
                                 <?php endif; ?>

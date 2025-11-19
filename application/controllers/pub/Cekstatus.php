@@ -32,9 +32,17 @@ class Cekstatus extends CI_Controller {
                 ->result();
 
             if ($permohonan_result) {
-                // Add type indicator
+                // Add type indicator and check if permohonan has keberatan
                 foreach ($permohonan_result as $item) {
                     $item->search_type = 'permohonan';
+
+                    // Check if this permohonan already has keberatan
+                    $keberatan_check = $this->db
+                        ->where('mohon_id', $item->mohon_id)
+                        ->get('keberatan')
+                        ->row();
+
+                    $item->has_keberatan = ($keberatan_check !== null);
                 }
                 $data['caritoken'] = $permohonan_result;
             }
