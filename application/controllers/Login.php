@@ -86,6 +86,22 @@ class Login extends CI_Controller{
 	function aksi_login_debug(){
 		echo "<h2>DEBUG LOGIN PROCESS</h2><pre>";
 
+		// DEBUG: Check request info
+		echo "=== REQUEST INFO ===\n";
+		echo "REQUEST_METHOD: " . $_SERVER['REQUEST_METHOD'] . "\n";
+		echo "CONTENT_TYPE: " . ($_SERVER['CONTENT_TYPE'] ?? 'NOT SET') . "\n";
+		echo "CONTENT_LENGTH: " . ($_SERVER['CONTENT_LENGTH'] ?? '0') . "\n";
+		echo "QUERY_STRING: " . ($_SERVER['QUERY_STRING'] ?? 'empty') . "\n";
+		echo "REQUEST_URI: " . $_SERVER['REQUEST_URI'] . "\n";
+		echo "\n";
+
+		// DEBUG: Raw php://input
+		echo "=== php://input ===\n";
+		$raw_input = file_get_contents('php://input');
+		echo "Length: " . strlen($raw_input) . "\n";
+		echo "Content: " . $raw_input . "\n";
+		echo "\n";
+
 		// Step 1: Get POST data
 		echo "STEP 1: Get POST Data\n";
 		echo str_repeat("=", 80) . "\n";
@@ -96,6 +112,10 @@ class Login extends CI_Controller{
 
 		echo "Raw \$_POST array:\n";
 		print_r($_POST);
+		echo "\n";
+
+		echo "Raw \$_GET array:\n";
+		print_r($_GET);
 		echo "\n";
 
 		echo "Username received: [$username]\n";
