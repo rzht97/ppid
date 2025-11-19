@@ -101,14 +101,14 @@ public function getById($mohon_id)
 	 * Save permohonan
 	 * Fixed: Date format bug (20y → Y)
 	 * Added: Input sanitization and error handling
-	 * Updated: mohon_id now uses date + auto increment (resets daily)
+	 * Updated: mohon_id now uses P prefix + date + auto increment (resets daily)
 	 */
 	public function save()
     {
         $post = $this->input->post();
 
-        // Generate ID with format: DDMMYY + auto increment (001, 002, ...)
-        // Example: 191125001, 191125002, 191125003...
+        // Generate ID with format: P + DDMMYY + auto increment (001, 002, ...)
+        // Example: P191125001, P191125002, P191125003...
         // Resets to 001 every new day
         $this->mohon_id = $this->_generateMohonId();
 
@@ -315,17 +315,18 @@ public function getById($mohon_id)
 	}
 
 	/**
-	 * Generate mohon_id with format: DDMMYY + auto increment
+	 * Generate mohon_id with format: P + DDMMYY + auto increment
 	 * Auto increment starts from 001 and resets daily
-	 * Example: 191125001, 191125002, ... (resets to 201125001 next day)
+	 * Example: P191125001, P191125002, ... (resets to P201125001 next day)
+	 * Prefix P = Permohonan (to differentiate from Keberatan which uses K)
 	 */
 	private function _generateMohonId()
 	{
-		$today_prefix = date('dmy'); // Format: DDMMYY (e.g., 191125)
+		$today_prefix = 'P' . date('dmy'); // Format: P + DDMMYY (e.g., P191125)
 
 		// Get the last mohon_id for today
 		$this->db->select('mohon_id');
-		$this->db->like('mohon_id', $today_prefix, 'after'); // mohon_id starts with today's date
+		$this->db->like('mohon_id', $today_prefix, 'after'); // mohon_id starts with today's prefix
 		$this->db->order_by('mohon_id', 'DESC');
 		$this->db->limit(1);
 		$query = $this->db->get($this->_table);
@@ -341,8 +342,8 @@ public function getById($mohon_id)
 			$new_increment = 1;
 		}
 
-		// Format: DDMMYY + increment padded to 3 digits
-		// Example: 191125 + 001 = 191125001
+		// Format: P + DDMMYY + increment padded to 3 digits
+		// Example: P + 191125 + 001 = P191125001
 		return $today_prefix . str_pad($new_increment, 3, '0', STR_PAD_LEFT);
 	}
 

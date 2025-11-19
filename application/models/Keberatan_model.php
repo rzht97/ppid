@@ -44,8 +44,8 @@ public function save()
     {
         $post = $this->input->post();
 
-        // Generate ID with format: DDMMYY + auto increment (001, 002, ...)
-        // Example: 191125001, 191125002, 191125003...
+        // Generate ID with format: K + DDMMYY + auto increment (001, 002, ...)
+        // Example: K191125001, K191125002, K191125003...
         // Resets to 001 every new day
         $this->id_keberatan = $this->_generateIdKeberatan();
 
@@ -85,17 +85,18 @@ public function save()
 	}
 
 	/**
-	 * Generate id_keberatan with format: DDMMYY + auto increment
+	 * Generate id_keberatan with format: K + DDMMYY + auto increment
 	 * Auto increment starts from 001 and resets daily
-	 * Example: 191125001, 191125002, ... (resets to 201125001 next day)
+	 * Example: K191125001, K191125002, ... (resets to K201125001 next day)
+	 * Prefix K = Keberatan (to differentiate from Permohonan which uses P)
 	 */
 	private function _generateIdKeberatan()
 	{
-		$today_prefix = date('dmy'); // Format: DDMMYY (e.g., 191125)
+		$today_prefix = 'K' . date('dmy'); // Format: K + DDMMYY (e.g., K191125)
 
 		// Get the last id_keberatan for today
 		$this->db->select('id_keberatan');
-		$this->db->like('id_keberatan', $today_prefix, 'after'); // id_keberatan starts with today's date
+		$this->db->like('id_keberatan', $today_prefix, 'after'); // id_keberatan starts with today's prefix
 		$this->db->order_by('id_keberatan', 'DESC');
 		$this->db->limit(1);
 		$query = $this->db->get($this->_table);
@@ -111,8 +112,8 @@ public function save()
 			$new_increment = 1;
 		}
 
-		// Format: DDMMYY + increment padded to 3 digits
-		// Example: 191125 + 001 = 191125001
+		// Format: K + DDMMYY + increment padded to 3 digits
+		// Example: K + 191125 + 001 = K191125001
 		return $today_prefix . str_pad($new_increment, 3, '0', STR_PAD_LEFT);
 	}
 }
