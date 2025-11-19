@@ -104,22 +104,8 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h1 class="box-title m-b-0">From Pengajuan Keberatan Atas Informasi</h1>
+                            <h1 class="box-title m-b-0">Form Pengajuan Keberatan Atas Informasi</h1>
                             <p class="text-muted m-b-30 font-13"></p>
-                            <form method = "POST">
-								<div class = "row">
-                            		<div class="col-md-4">
-										<div class="form-group">
-											<label class="control-label">e-Tiket</label>
-											<input type="text" id="" name="token" placeholder="Masukkan e-Tiket" class="form-control" placeholder="" value="">
-										</div>
-									</div>
-									<div class = "col-md-4 text-center">
-										<br>
-                            			<button type="submit" class="btn btn-primary btn-outline m-t-5" name="type" value="filter"><i class="ti-search"></i> Cari</button>
-									</div>
-								</div>
-                            </form>
                             <?php if($caritoken): ?>
                                 <?php foreach($caritoken as $data): ?>
                                     <form data-toogle="validator" class="form-horizontal">
