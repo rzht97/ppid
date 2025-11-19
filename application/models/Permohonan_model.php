@@ -147,14 +147,27 @@ public function getById($mohon_id)
             'jawab' => NULL
         );
 
+        // CRITICAL FIX: Start explicit transaction to ensure commit
+        $this->db->trans_start();
+
         // Insert with data array instead of $this
         $result = $this->db->insert($this->_table, $data);
+
+        // Complete transaction (auto commit if successful, rollback if failed)
+        $this->db->trans_complete();
 
         // Log the actual SQL query
         log_message('debug', 'SQL Query: ' . $this->db->last_query());
         log_message('debug', 'Insert result: ' . ($result ? 'TRUE' : 'FALSE'));
+        log_message('debug', 'Transaction status: ' . ($this->db->trans_status() ? 'SUCCESS' : 'FAILED'));
         log_message('debug', 'Affected rows: ' . $this->db->affected_rows());
         log_message('debug', 'Insert ID: ' . $this->db->insert_id());
+
+        // Check transaction status
+        if($this->db->trans_status() === FALSE){
+            log_message('error', 'Transaction failed - data rolled back');
+            throw new Exception('Gagal menyimpan data ke database: Transaction failed');
+        }
 
         if(!$result){
             // Log database error
