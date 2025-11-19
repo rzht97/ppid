@@ -50,7 +50,7 @@ class Check_users extends CI_Controller {
         $query = $this->db->query("SELECT username FROM admin ORDER BY username");
         ?>
 
-        <form method="POST" action="<?php echo base_url('index.php/login/aksi_login_debug'); ?>">
+        <form method="POST" action="<?php echo base_url('login/aksi_login_debug'); ?>">
             <label>Username:</label><br>
             <select name="username" required style="padding: 5px; font-size: 14px;">
                 <?php foreach ($query->result() as $row): ?>
@@ -72,7 +72,7 @@ class Check_users extends CI_Controller {
 
         <hr>
         <p><strong>Atau test dengan form login asli:</strong></p>
-        <a href="<?php echo base_url('index.php/login'); ?>" target="_blank">Buka Form Login</a>
+        <a href="<?php echo base_url('login'); ?>" target="_blank">Buka Form Login</a>
         <?php
     }
 }

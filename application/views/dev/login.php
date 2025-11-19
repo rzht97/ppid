@@ -30,7 +30,7 @@
     <section id="wrapper" class="login-register">
         <div class="login-box">
             <div class="white-box">
-                <form class="form-horizontal form-material" action="<?php echo base_url('index.php/login/aksi_login'); ?>" method="post">
+                <form class="form-horizontal form-material" action="<?php echo base_url('login/aksi_login'); ?>" method="post">
                     <h3 class="box-title m-b-20">Login Admin PPID Kab. Sumedang</h3>
 
                     <div class="form-group ">
