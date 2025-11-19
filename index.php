@@ -66,22 +66,26 @@
 switch (ENVIRONMENT)
 {
 	case 'development':
-		// PHP 8.1+: Show errors but exclude deprecations that cause headers sent
-		// Deprecation warnings from CodeIgniter 3 + PHP 8.1 compatibility issues
+		// SECURITY: Don't display errors even in development (prevents information leakage)
+		// Errors are logged to files for debugging
 		error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
-		ini_set('display_errors', 1);
-		ini_set('display_startup_errors', 1);
+		ini_set('display_errors', 0);
+		ini_set('display_startup_errors', 0);
 		ini_set('log_errors', 1);
+		// Error log location (application/logs directory)
+		ini_set('error_log', APPPATH . 'logs/php_errors.log');
 	break;
 
 	case 'testing':
 	case 'production':
-		// PHP 8.1+: Hide errors but log them
+		// SECURITY: Hide all errors from display, only log them
 		ini_set('display_errors', 0);
 		ini_set('display_startup_errors', 0);
 		// Exclude deprecated warnings in production for PHP 8.1 compatibility
 		error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_WARNING & ~E_USER_DEPRECATED);
 		ini_set('log_errors', 1);
+		// Error log location (application/logs directory)
+		ini_set('error_log', APPPATH . 'logs/php_errors.log');
 	break;
 
 	default:

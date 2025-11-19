@@ -18,8 +18,25 @@ class Login extends CI_Controller{
 	 * Fixed: Removed password from session
 	 * Added: Session regeneration for security
 	 * Added: Auto-migration from MD5 to bcrypt on successful login
+	 * Added: Rate limiting to prevent brute force attacks
 	 */
 	function aksi_login(){
+		// RATE LIMITING: Check if user is blocked due to too many failed attempts
+		$blocked_until = $this->session->userdata('login_blocked_until');
+		if($blocked_until && time() < $blocked_until){
+			$remaining = ceil(($blocked_until - time()) / 60);
+			$this->session->set_flashdata('error', 'Terlalu banyak percobaan login gagal. Coba lagi dalam ' . $remaining . ' menit.');
+			log_message('warning', 'Blocked login attempt - still in timeout period');
+			redirect(base_url("login"));
+			return;
+		}
+
+		// Clear block if timeout has passed
+		if($blocked_until && time() >= $blocked_until){
+			$this->session->unset_userdata('login_blocked_until');
+			$this->session->unset_userdata('login_attempts');
+		}
+
 		// TEMPORARY FIX: Bypass CI input class and use raw $_POST
 		// CI input->post() is returning NULL, but $_POST works in pure PHP
 		$username = isset($_POST['username']) ? trim(strip_tags($_POST['username'])) : '';
@@ -48,6 +65,10 @@ class Login extends CI_Controller{
 			}
 
 			if($password_valid){
+				// RATE LIMITING: Reset failed attempts on successful login
+				$this->session->unset_userdata('login_attempts');
+				$this->session->unset_userdata('login_blocked_until');
+
 				// Regenerate session ID to prevent fixation
 				$this->session->sess_regenerate(TRUE);
 
@@ -65,19 +86,42 @@ class Login extends CI_Controller{
 
 				redirect(base_url("admin"));
 			}else{
-				// Log failed login attempt
-				log_message('warning', 'Failed login attempt for username: ' . $username);
-
-				$this->session->set_flashdata('error', 'Username atau password salah!');
-				redirect(base_url("login"));
+				// RATE LIMITING: Increment failed attempts
+				$this->increment_failed_attempts($username);
 			}
 		}else{
-			// Log failed login - user not found
-			log_message('warning', 'Login attempt for non-existent user: ' . $username);
-
-			$this->session->set_flashdata('error', 'Username atau password salah!');
-			redirect(base_url("login"));
+			// RATE LIMITING: Increment failed attempts for non-existent user
+			$this->increment_failed_attempts($username);
 		}
+	}
+
+	/**
+	 * Rate limiting helper: Increment failed login attempts
+	 * Block user after 5 failed attempts for 15 minutes
+	 */
+	private function increment_failed_attempts($username){
+		$attempts = $this->session->userdata('login_attempts') ?: 0;
+		$attempts++;
+
+		$this->session->set_userdata('login_attempts', $attempts);
+
+		// Log failed login attempt
+		log_message('warning', 'Failed login attempt #' . $attempts . ' for username: ' . $username);
+
+		// Block after 5 attempts
+		if($attempts >= 5){
+			$block_until = time() + (15 * 60); // Block for 15 minutes
+			$this->session->set_userdata('login_blocked_until', $block_until);
+
+			log_message('warning', 'User blocked after ' . $attempts . ' failed attempts. Blocked until: ' . date('Y-m-d H:i:s', $block_until));
+
+			$this->session->set_flashdata('error', 'Terlalu banyak percobaan login gagal. Akun diblokir selama 15 menit untuk keamanan.');
+		}else{
+			$remaining = 5 - $attempts;
+			$this->session->set_flashdata('error', 'Username atau password salah! (' . $remaining . ' percobaan tersisa)');
+		}
+
+		redirect(base_url("login"));
 	}
 
 	function logout(){
