@@ -167,21 +167,20 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4"><strong>Cara Memperoleh</strong></label>
-                                                <div class="col-md-8">
-                                                    <p class="form-control-static"><?php echo $permohonan->caraperoleh ?></p>
-                                                </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12"><strong>Cara Memperoleh Informasi</strong></label>
+                                        <div class="col-md-12">
+                                            <div class="well well-sm">
+                                                <?php echo $permohonan->caraperoleh ?>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4"><strong>Cara Mendapat</strong></label>
-                                                <div class="col-md-8">
-                                                    <p class="form-control-static"><?php echo $permohonan->caradapat ?></p>
-                                                </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12"><strong>Cara Mendapatkan Salinan Informasi</strong></label>
+                                        <div class="col-md-12">
+                                            <div class="well well-sm">
+                                                <?php echo $permohonan->caradapat ?>
                                             </div>
                                         </div>
                                     </div>
