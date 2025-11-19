@@ -56,7 +56,11 @@ class Overview extends CI_Controller {
 		                              ->limit(3)
 		                              ->get()
 		                              ->result();
-        $data["berita"] = $this->berita_model->getAll();
+        $data["berita"] = $this->db->select('berita_id, judul, tanggal, isi, gambar, slug, kategori')
+                                     ->from('berita')
+                                     ->order_by('tanggal', 'DESC')
+                                     ->get()
+                                     ->result();
         $this->load->view("dev/berita/berita", $data);
   }
 
@@ -64,7 +68,11 @@ class Overview extends CI_Controller {
     public function galeri()
   {
         // load view admin/overview.php
-        $data["berita"] = $this->berita_model->getAll();
+        $data["berita"] = $this->db->select('berita_id, judul, tanggal, isi, gambar, slug, kategori')
+                                     ->from('berita')
+                                     ->order_by('tanggal', 'DESC')
+                                     ->get()
+                                     ->result();
         $this->load->view("publik/galeri", $data);
   }
 
@@ -87,16 +95,12 @@ class Overview extends CI_Controller {
 		                              ->get()
 		                              ->result();
 
-        $berita = $this->berita_model;
-        $validation = $this->form_validation;
-        $validation->set_rules($berita->rules());
-
-        if ($validation->run()) {
-            $berita->update();
-            $this->session->set_flashdata('success', 'Berhasil disimpan');
-        }
-
-        $data["berita"] = $berita->getById($id);
+        // Get berita by ID using query builder
+        $data["berita"] = $this->db->select('berita_id, judul, tanggal, isi, gambar, slug, kategori')
+                                   ->from('berita')
+                                   ->where('berita_id', $id)
+                                   ->get()
+                                   ->row();
         if (!$data["berita"]) show_404();
 
         $this->load->view("dev/berita/detail", $data);
