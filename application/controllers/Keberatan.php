@@ -16,10 +16,18 @@ class Keberatan extends CI_Controller {
 	 * Cari permohonan untuk keberatan
 	 * Fixed: CRITICAL SQL Injection vulnerability
 	 * Fixed: Initialize caritoken to empty array when no POST data
+	 * Updated: Accept mohon_id from URI segment to auto-load permohonan data
 	 */
-	public function index($id_keberatan = null)
+	public function index($mohon_id = null)
 	{
-		$token = $this->input->post('token', TRUE); // XSS clean
+		// Get token from POST or URI segment
+		$token = $this->input->post('token', TRUE); // XSS clean from POST
+
+		// If mohon_id passed via URI, use it as token
+		if (!empty($mohon_id)) {
+			$token = $mohon_id;
+		}
+
 		$validation = $this->form_validation;
 		$permohonan = $this->Permohonan_model;
 
