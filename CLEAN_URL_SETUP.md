@@ -19,6 +19,10 @@ File `.htaccess` sudah dibuat dengan konfigurasi mod_rewrite:
 ```apache
 RewriteEngine On
 
+# Redirect index.php to clean URL (301 permanent redirect)
+RewriteCond %{THE_REQUEST} /index\.php [NC]
+RewriteRule ^(.*)index\.php(.*)$ /$1$2 [R=301,L]
+
 # Remove index.php from URL
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -26,9 +30,13 @@ RewriteRule ^(.*)$ index.php/$1 [L]
 ```
 
 **Penjelasan:**
-- Jika file tidak ada (`!-f`) dan direktori tidak ada (`!-d`)
-- Redirect semua request ke `index.php/...`
-- CodeIgniter akan handle routing sisanya
+- **Rule 1**: Jika user akses URL dengan `index.php`, auto redirect 301 ke clean URL
+  - Example: `/ppidC/index.php` → `/ppidC/`
+  - Example: `/ppidC/index.php/pub/cekstatus` → `/ppidC/pub/cekstatus`
+- **Rule 2**: Jika file tidak ada (`!-f`) dan direktori tidak ada (`!-d`)
+  - Internal rewrite semua request ke `index.php/...`
+  - CodeIgniter akan handle routing sisanya
+- **Redirect 301**: Permanent redirect, SEO friendly
 
 ### 2. CodeIgniter Config (`application/config/config.php`)
 Setting `index_page` sudah dikosongkan:
@@ -101,17 +109,28 @@ Masih di file `httpd.conf`, cari section `<Directory>` untuk direktori htdocs:
 
 ## ✅ Testing Clean URL
 
-### 1. Test URL Lama (Harus Tetap Bekerja)
-```
-http://localhost:8080/ppidC/index.php/pub/cekstatus
-```
+### 1. Test Redirect index.php (Auto Redirect ke Clean URL)
+Akses URL dengan `index.php`, harusnya otomatis redirect:
 
-### 2. Test Clean URL (Tanpa index.php)
-```
+```bash
+# Test 1: Homepage dengan index.php
+http://localhost:8080/ppidC/index.php
+# ↓ Auto redirect 301 ke ↓
+http://localhost:8080/ppidC/
+
+# Test 2: Path dengan index.php
+http://localhost:8080/ppidC/index.php/pub/cekstatus
+# ↓ Auto redirect 301 ke ↓
 http://localhost:8080/ppidC/pub/cekstatus
 ```
 
-### 3. Test URL Lainnya
+**Cara verify redirect:**
+- Buka Developer Tools (F12) → Network tab
+- Akses URL dengan `index.php`
+- Lihat status code: **301 Moved Permanently**
+- Check `Location` header: URL clean tanpa `index.php`
+
+### 2. Test Clean URL (Direct Access)
 ```bash
 # Homepage
 http://localhost:8080/ppidC/
@@ -127,6 +146,17 @@ http://localhost:8080/ppidC/keberatan/detail/K191125001
 
 # Admin
 http://localhost:8080/ppidC/admin
+```
+
+### 3. Test URL dengan Query String
+```bash
+# Dengan parameter GET
+http://localhost:8080/ppidC/pub/cekstatus?id=123
+
+# Old URL dengan parameter
+http://localhost:8080/ppidC/index.php/pub/cekstatus?id=123
+# ↓ Redirect ke ↓
+http://localhost:8080/ppidC/pub/cekstatus?id=123
 ```
 
 ---

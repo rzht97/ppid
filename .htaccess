@@ -4,6 +4,12 @@ RewriteEngine On
 # RewriteCond %{HTTPS} off
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# Redirect index.php to clean URL (301 permanent redirect)
+# Example: /ppidC/index.php -> /ppidC/
+# Example: /ppidC/index.php/pub/cekstatus -> /ppidC/pub/cekstatus
+RewriteCond %{THE_REQUEST} /index\.php [NC]
+RewriteRule ^(.*)index\.php(.*)$ /$1$2 [R=301,L]
+
 # Remove index.php from URL
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
