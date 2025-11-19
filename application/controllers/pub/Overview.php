@@ -151,7 +151,7 @@ class Overview extends CI_Controller {
 	 */
 	public function infoberkala()
     {
-		$data['berkala'] = $this->db->select('id_dokumen, judul, kategori, tanggal, image, deskripsi')
+		$data['berkala'] = $this->db->select('id_dokumen as id, judul, kategori, tanggal, image, deskripsi, pejabat, pjinformasi, bentukinfo, jangkawaktu, sumberdata')
 		                            ->where('kategori', 'Berkala')
 		                            ->get('dokumen')
 		                            ->result();
@@ -164,7 +164,7 @@ class Overview extends CI_Controller {
 	 */
 	public function infosertamerta()
     {
-        $data['sertamerta'] = $this->db->select('id_dokumen, judul, kategori, tanggal, image, deskripsi')
+        $data['sertamerta'] = $this->db->select('id_dokumen as id, judul, kategori, tanggal, image, deskripsi, pejabat, pjinformasi, bentukinfo, jangkawaktu, sumberdata')
                                        ->where('kategori', 'Serta Merta')
                                        ->get('dokumen')
                                        ->result();
@@ -177,7 +177,7 @@ class Overview extends CI_Controller {
 	 */
 	public function infosetiapsaat()
     {
-        $data['setiapsaat'] = $this->db->select('id_dokumen, judul, kategori, tanggal, image, deskripsi')
+        $data['setiapsaat'] = $this->db->select('id_dokumen as id, judul, kategori, tanggal, image, deskripsi, pejabat, pjinformasi, bentukinfo, jangkawaktu, sumberdata')
                                        ->where('kategori', 'Setiap Saat')
                                        ->get('dokumen')
                                        ->result();
