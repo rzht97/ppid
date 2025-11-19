@@ -279,6 +279,143 @@
                                             </div>
                                         </div>
 
+                                        <!-- Data Keberatan (jika ada) -->
+                                        <?php if ($data->has_keberatan && isset($data->keberatan_data)): ?>
+                                            <?php $keberatan = $data->keberatan_data; ?>
+
+                                            <hr style="margin: 40px 0; border-top: 2px solid #e3e3e3;">
+
+                                            <div class="alert alert-info" style="margin-bottom: 25px; padding: 15px;">
+                                                <i class="fa fa-info-circle"></i> <strong>Permohonan ini memiliki keberatan yang telah diajukan</strong>
+                                            </div>
+
+                                            <!-- Info Keberatan -->
+                                            <div class="panel panel-default" style="margin-bottom: 20px;">
+                                                <div class="panel-heading" style="background-color: #f5f5f5; padding: 15px;">
+                                                    <h4 class="panel-title" style="margin: 0;">
+                                                        <i class="fa fa-exclamation-circle"></i> Informasi Keberatan
+                                                    </h4>
+                                                </div>
+                                                <div class="panel-body" style="padding: 25px;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group" style="margin-bottom: 15px;">
+                                                                <label style="margin-bottom: 5px;"><strong>ID Keberatan</strong></label>
+                                                                <p class="form-control-static" style="margin: 0;">
+                                                                    <span class="label label-warning" style="font-size: 14px; padding: 8px 15px;">
+                                                                        <?php echo $keberatan->id_keberatan ?>
+                                                                    </span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group" style="margin-bottom: 0;">
+                                                                <label style="margin-bottom: 5px;"><strong>Tanggal Keberatan Diajukan</strong></label>
+                                                                <p class="form-control-static" style="margin: 0;"><?php echo $keberatan->tanggal ?></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Detail Keberatan -->
+                                            <div class="panel panel-warning" style="margin-bottom: 20px;">
+                                                <div class="panel-heading" style="padding: 15px;">
+                                                    <h4 class="panel-title" style="margin: 0;">
+                                                        <i class="fa fa-file-text"></i> Detail Keberatan
+                                                    </h4>
+                                                </div>
+                                                <div class="panel-body" style="padding: 25px;">
+                                                    <div class="form-group" style="margin-bottom: 25px;">
+                                                        <label style="margin-bottom: 10px; font-size: 15px; color: #333;"><strong>Alasan Keberatan</strong></label>
+                                                        <div style="background-color: #fff3cd; padding: 20px; border: 2px solid #ffeaa7; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                                            <p style="white-space: pre-wrap; margin: 0; line-height: 1.8; font-size: 14px; color: #856404;">
+                                                                <?php echo $keberatan->alasan ?>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" style="margin-bottom: 0;">
+                                                        <label style="margin-bottom: 10px; font-size: 15px; color: #333;"><strong>Kronologi / Kasus Posisi</strong></label>
+                                                        <div style="background-color: #ffffff; padding: 20px; border: 2px solid #e8e8e8; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                                            <p style="white-space: pre-wrap; margin: 0; line-height: 1.8; font-size: 14px; color: #555;">
+                                                                <?php echo $keberatan->kronologi ?>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Status dan Hasil Keberatan -->
+                                            <div class="panel panel-success" style="margin-bottom: 25px;">
+                                                <div class="panel-heading" style="padding: 15px;">
+                                                    <h4 class="panel-title" style="margin: 0;">
+                                                        <i class="fa fa-check-circle"></i> Status dan Hasil Keberatan
+                                                    </h4>
+                                                </div>
+                                                <div class="panel-body" style="padding: 25px;">
+                                                    <div class="form-group" style="margin-bottom: 20px;">
+                                                        <label style="margin-bottom: 10px;"><strong>Status Keberatan</strong></label>
+                                                        <div>
+                                                            <?php if ($keberatan->status == 'Menunggu Verifikasi'): ?>
+                                                                <span class="label label-warning" style="font-size: 14px; padding: 10px 18px;">
+                                                                    <i class="fa fa-clock-o"></i> Menunggu Verifikasi
+                                                                </span>
+                                                            <?php elseif ($keberatan->status == 'Sedang Diproses'): ?>
+                                                                <span class="label label-info" style="font-size: 14px; padding: 10px 18px;">
+                                                                    <i class="fa fa-spinner fa-spin"></i> Sedang Diproses
+                                                                </span>
+                                                            <?php elseif ($keberatan->status == 'Diterima'): ?>
+                                                                <span class="label label-success" style="font-size: 14px; padding: 10px 18px;">
+                                                                    <i class="fa fa-check"></i> Diterima
+                                                                </span>
+                                                            <?php elseif ($keberatan->status == 'Ditolak'): ?>
+                                                                <span class="label label-danger" style="font-size: 14px; padding: 10px 18px;">
+                                                                    <i class="fa fa-times"></i> Ditolak
+                                                                </span>
+                                                            <?php else: ?>
+                                                                <span class="label label-default" style="font-size: 14px; padding: 10px 18px;">
+                                                                    <?php echo $keberatan->status ?>
+                                                                </span>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    </div>
+
+                                                    <?php if (!empty($keberatan->tanggapan)): ?>
+                                                    <div class="form-group" style="margin-bottom: 20px;">
+                                                        <label style="margin-bottom: 10px; font-size: 15px; color: #333;"><strong>Tanggapan PPID</strong></label>
+                                                        <div style="background-color: #e8f4f8; padding: 20px; border: 2px solid #b8dce8; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                                            <p style="white-space: pre-wrap; margin: 0; line-height: 1.8; font-size: 14px; color: #31708f;">
+                                                                <?php echo $keberatan->tanggapan ?>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <?php endif; ?>
+
+                                                    <?php if (!empty($keberatan->putusan)): ?>
+                                                    <div class="form-group" style="margin-bottom: 0;">
+                                                        <label style="margin-bottom: 10px; font-size: 15px; color: #333;"><strong>Putusan Keberatan</strong></label>
+                                                        <div style="background-color: #d4edda; padding: 20px; border: 2px solid #c3e6cb; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                                            <p style="white-space: pre-wrap; margin: 0; line-height: 1.8; font-size: 14px; color: #155724;">
+                                                                <?php echo $keberatan->putusan ?>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <?php endif; ?>
+
+                                                    <?php if (empty($keberatan->tanggapan) && empty($keberatan->putusan)): ?>
+                                                    <div class="form-group" style="margin-bottom: 0;">
+                                                        <label style="margin-bottom: 10px; font-size: 15px; color: #333;"><strong>Tanggapan/Putusan</strong></label>
+                                                        <div style="background-color: #f9f9f9; padding: 20px; border: 2px dashed #ddd; border-radius: 6px;">
+                                                            <p class="text-muted" style="margin: 0; font-style: italic; text-align: center; font-size: 14px;">
+                                                                <i class="fa fa-clock-o"></i> Belum ada tanggapan atau putusan. Keberatan masih dalam proses.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+
                                         <div class="text-center" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e3e3e3;">
                                             <a href="<?php echo site_url('pub/cekstatus'); ?>" class="btn btn-default btn-lg" style="padding: 12px 30px; margin-right: 10px;">
                                                 <i class="fa fa-search"></i> Cari Lagi
@@ -290,10 +427,10 @@
                                                     <i class="fa fa-exclamation-circle"></i> Ajukan Keberatan
                                                 </a>
                                             <?php else: ?>
-                                                <!-- Info jika keberatan sudah diajukan -->
-                                                <div class="alert alert-info" style="margin-top: 20px; padding: 15px; display: inline-block;">
-                                                    <i class="fa fa-info-circle"></i> Permohonan ini sudah memiliki keberatan yang diajukan.
-                                                </div>
+                                                <!-- Tombol lihat detail lengkap keberatan -->
+                                                <a href="<?php echo site_url('keberatan/detail/'.$data->keberatan_data->id_keberatan); ?>" class="btn btn-info btn-lg" style="padding: 12px 30px;">
+                                                    <i class="fa fa-eye"></i> Lihat Detail Lengkap
+                                                </a>
                                             <?php endif; ?>
                                         </div>
                                     <?php endforeach; ?>

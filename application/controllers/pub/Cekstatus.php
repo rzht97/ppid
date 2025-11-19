@@ -41,6 +41,15 @@ class Cekstatus extends CI_Controller {
                         ->row();
 
                     $item->has_keberatan = ($keberatan_check !== null);
+
+                    // If has keberatan, get the keberatan data
+                    if ($item->has_keberatan) {
+                        $item->keberatan_data = $this->db
+                            ->select('id_keberatan, mohon_id, alasan, kronologi, tanggal, status, tanggapan, putusan')
+                            ->where('mohon_id', $item->mohon_id)
+                            ->get('keberatan')
+                            ->row();
+                    }
                 }
                 $data['caritoken'] = $permohonan_result;
             }
