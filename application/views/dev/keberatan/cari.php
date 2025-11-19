@@ -120,8 +120,8 @@
 									</div>
 								</div>
                             </form>
-                            <?php if($caritoken):?>
-                                <?php foreach($caritoken as $data)?>
+                            <?php if($caritoken): ?>
+                                <?php foreach($caritoken as $data): ?>
                                     <form data-toogle="validator" class="form-horizontal">
                                         <div class="form-body">
 											<h3 class="box-title">A. Informasi Pengajuan Keberatan</h3>
@@ -214,7 +214,8 @@
                                 <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit 1</button>
                                 <button type="submit" class="btn btn-inverse waves-effect waves-light">Cancel</button>
                             </form>
-							<?php endif?>
+                                <?php endforeach; ?>
+							<?php endif; ?>
                         </div>
                     </div>
 
