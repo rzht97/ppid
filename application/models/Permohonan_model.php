@@ -101,22 +101,16 @@ public function getById($mohon_id)
 	 * Save permohonan
 	 * Fixed: Date format bug (20y → Y)
 	 * Added: Input sanitization and error handling
+	 * Updated: mohon_id now uses date + auto increment (resets daily)
 	 */
 	public function save()
     {
         $post = $this->input->post();
 
-        // Generate unique ID - EXACTLY 11 characters to match database column
-        // Format: DDMMYY + 5 random digits = 11 chars total
-        // Example: 19112512345
-        $this->mohon_id = date('dmy') . substr(str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT), 0, 5);
-
-        // Ensure uniqueness - retry if duplicate exists
-        $retry_count = 0;
-        while($this->db->get_where($this->_table, ['mohon_id' => $this->mohon_id])->num_rows() > 0 && $retry_count < 5){
-            $this->mohon_id = date('dmy') . substr(str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT), 0, 5);
-            $retry_count++;
-        }
+        // Generate ID with format: DDMMYY + auto increment (001, 002, ...)
+        // Example: 191125001, 191125002, 191125003...
+        // Resets to 001 every new day
+        $this->mohon_id = $this->_generateMohonId();
 
 		// Upload KTP file
 		$this->ktp = $this->_uploadFile();
@@ -318,6 +312,38 @@ public function getById($mohon_id)
 	private function status()
 	{
 			return "Menunggu Verifikasi";
+	}
+
+	/**
+	 * Generate mohon_id with format: DDMMYY + auto increment
+	 * Auto increment starts from 001 and resets daily
+	 * Example: 191125001, 191125002, ... (resets to 201125001 next day)
+	 */
+	private function _generateMohonId()
+	{
+		$today_prefix = date('dmy'); // Format: DDMMYY (e.g., 191125)
+
+		// Get the last mohon_id for today
+		$this->db->select('mohon_id');
+		$this->db->like('mohon_id', $today_prefix, 'after'); // mohon_id starts with today's date
+		$this->db->order_by('mohon_id', 'DESC');
+		$this->db->limit(1);
+		$query = $this->db->get($this->_table);
+
+		if ($query->num_rows() > 0) {
+			// Found existing record for today
+			$last_mohon_id = $query->row()->mohon_id;
+			// Extract the increment part (last 3 digits)
+			$last_increment = intval(substr($last_mohon_id, -3));
+			$new_increment = $last_increment + 1;
+		} else {
+			// No records for today, start with 001
+			$new_increment = 1;
+		}
+
+		// Format: DDMMYY + increment padded to 3 digits
+		// Example: 191125 + 001 = 191125001
+		return $today_prefix . str_pad($new_increment, 3, '0', STR_PAD_LEFT);
 	}
 
     public function download($id){
