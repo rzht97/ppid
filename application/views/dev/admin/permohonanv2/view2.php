@@ -92,14 +92,18 @@
 
                                             <td width="250">
                                                 <?php if ($data->status == "Menunggu Verifikasi") : ?>
-                                                    <a href='<?php echo site_url('admin/permohonan/verifikasi/' . $data->mohon_id) ?>'><button type="button" class="fcbtn btn btn-info btn-outline btn-1b" style="width:100px">Verifikasi </button></a>
+                                                    <a href='<?php echo site_url('admin/permohonan/verifikasi/' . $data->mohon_id) ?>' class="fcbtn btn btn-info btn-outline btn-1b" style="width:100px">
+                                                        <i class="fa fa-check-circle"></i> Verifikasi
+                                                    </a>
                                                 <?php elseif ($data->status == "Sedang Diproses") : ?>
-                                                    <!--<button class="fcbtn btn btn-warning btn-outline btn-1b" data-toggle="modal" data-target="#modalproses" onClick="detail(<?php echo $data->mohon_id ?>)" style="width:100px">Proses</button>-->
-												<a href="<?php echo site_url('admin/permohonan/edit/' . $data->mohon_id) ?>" class="fcbtn btn btn-outline btn-warning btn-1b"><i class="fa fa-edit"></i> Edit</a>
+                                                    <a href="<?php echo site_url('admin/permohonan/edit/' . $data->mohon_id) ?>" class="fcbtn btn btn-outline btn-warning btn-1b" style="width:100px">
+                                                        <i class="fa fa-edit"></i> Edit
+                                                    </a>
 
-                                                <?php else : ?>
-                                                    <button class="fcbtn btn btn-success btn-outline btn-1b" data-toggle="modal" data-target="#exampleModal1" style="width:100px">Lihat</button>
-												<a href="<?php echo site_url('admin/permohonan/detail/' . $data->mohon_id) ?>" class="fcbtn btn btn-success btn-outline btn-1b" style="width:100px"> Selesai</a>
+                                                <?php elseif ($data->status == "Selesai" || $data->status == "Ditolak") : ?>
+                                                    <a href="<?php echo site_url('admin/permohonan/detail/' . $data->mohon_id) ?>" class="fcbtn btn btn-success btn-outline btn-1b" style="width:100px">
+                                                        <i class="fa fa-eye"></i> Lihat
+                                                    </a>
                                                 <?php endif ?>
                                                 <div class="modal fade" id="modalproses" role="dialog">
                                                     <div class="modal-dialog" role="document">
