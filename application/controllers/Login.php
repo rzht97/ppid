@@ -14,9 +14,10 @@ class Login extends CI_Controller{
 
 	/**
 	 * Login authentication
-	 * Fixed: Changed MD5 to bcrypt password hashing
+	 * Fixed: Support both bcrypt and MD5 passwords for migration
 	 * Fixed: Removed password from session
 	 * Added: Session regeneration for security
+	 * Added: Auto-migration from MD5 to bcrypt on successful login
 	 */
 	function aksi_login(){
 		$username = $this->input->post('username', TRUE); // XSS clean
@@ -26,8 +27,22 @@ class Login extends CI_Controller{
 		$user = $this->m_login->get_by_username($username);
 
 		if($user){
-			// Verify password using bcrypt
+			$password_valid = false;
+
+			// Try bcrypt verification first (new format)
 			if(password_verify($password, $user->password)){
+				$password_valid = true;
+			}
+			// Fallback to MD5 for old passwords
+			elseif($user->password === md5($password)){
+				$password_valid = true;
+
+				// Auto-migrate MD5 password to bcrypt
+				$this->m_login->migrate_password($username, $password);
+				log_message('info', 'Password migrated from MD5 to bcrypt for user: ' . $username);
+			}
+
+			if($password_valid){
 				// Regenerate session ID to prevent fixation
 				$this->session->sess_regenerate(TRUE);
 
