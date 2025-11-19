@@ -280,8 +280,11 @@
                                         </div>
 
                                         <div class="text-center" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e3e3e3;">
-                                            <a href="<?php echo site_url('pub/permohonan/caripermohonan'); ?>" class="btn btn-default btn-lg" style="padding: 12px 30px;">
+                                            <a href="<?php echo site_url('pub/permohonan/caripermohonan'); ?>" class="btn btn-default btn-lg" style="padding: 12px 30px; margin-right: 10px;">
                                                 <i class="fa fa-search"></i> Cari Permohonan Lain
+                                            </a>
+                                            <a href="<?php echo site_url('keberatan'); ?>" class="btn btn-warning btn-lg" style="padding: 12px 30px;">
+                                                <i class="fa fa-exclamation-circle"></i> Ajukan Keberatan
                                             </a>
                                         </div>
                                     <?php endforeach; ?>
