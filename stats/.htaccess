@@ -1,7 +1,0 @@
-AuthName "ppid.sumedangkab.go.id statistics"
-AuthType Basic
-AuthUserFile /home/sumedangkab/domains/ppid.sumedangkab.go.id/.stats-htpasswd
-require valid-user
-<Files .stats-htpasswd>
-deny from all
-</Files>
