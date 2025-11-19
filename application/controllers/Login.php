@@ -75,6 +75,111 @@ class Login extends CI_Controller{
 		}
 	}
 
+	/**
+	 * Debug version of aksi_login - shows detailed output
+	 */
+	function aksi_login_debug(){
+		echo "<h2>DEBUG LOGIN PROCESS</h2><pre>";
+
+		// Step 1: Get POST data
+		echo "STEP 1: Get POST Data\n";
+		echo str_repeat("=", 80) . "\n";
+		$username = $this->input->post('username', TRUE);
+		$password = $this->input->post('password');
+		echo "Username received: [$username]\n";
+		echo "Username length: " . strlen($username ?? '') . "\n";
+		echo "Password received: [" . str_repeat('*', strlen($password ?? '')) . "]\n";
+		echo "Password length: " . strlen($password ?? '') . "\n";
+		echo "Raw POST data:\n";
+		print_r($_POST);
+		echo "\n";
+
+		if(empty($username) || empty($password)){
+			echo "❌ FAILED: Username or password is empty!\n";
+			echo "</pre>";
+			return;
+		}
+
+		// Step 2: Query database
+		echo "\nSTEP 2: Query Database\n";
+		echo str_repeat("=", 80) . "\n";
+		$user = $this->m_login->get_by_username($username);
+
+		if(!$user){
+			echo "❌ FAILED: User not found in database\n";
+			echo "Username searched: [$username]\n";
+			echo "</pre>";
+			return;
+		}
+
+		echo "✅ User found!\n";
+		echo "User ID: $user->id\n";
+		echo "Username: $user->username\n";
+		echo "Password hash: " . substr($user->password, 0, 60) . "...\n";
+		echo "\n";
+
+		// Step 3: Verify password
+		echo "\nSTEP 3: Verify Password\n";
+		echo str_repeat("=", 80) . "\n";
+
+		$bcrypt_match = password_verify($password, $user->password);
+		echo "Bcrypt verify result: " . ($bcrypt_match ? '✅ MATCH' : '❌ NO MATCH') . "\n";
+
+		$md5_hash = md5($password);
+		$md5_match = ($user->password === $md5_hash);
+		echo "MD5 verify result: " . ($md5_match ? '✅ MATCH' : '❌ NO MATCH') . "\n";
+		echo "\n";
+
+		$password_valid = $bcrypt_match || $md5_match;
+
+		if(!$password_valid){
+			echo "❌ FAILED: Password verification failed\n";
+			echo "</pre>";
+			return;
+		}
+
+		// Step 4: Session regeneration
+		echo "\nSTEP 4: Session Regeneration\n";
+		echo str_repeat("=", 80) . "\n";
+		echo "Old session ID: " . session_id() . "\n";
+		$this->session->sess_regenerate(TRUE);
+		echo "New session ID: " . session_id() . "\n";
+		echo "✅ Session regenerated\n\n";
+
+		// Step 5: Set session data
+		echo "\nSTEP 5: Set Session Data\n";
+		echo str_repeat("=", 80) . "\n";
+		$data_session = array(
+			'id' => $user->id,
+			'nama' => $user->username,
+			'status' => "login",
+			'login_time' => time()
+		);
+
+		echo "Data to be stored in session:\n";
+		print_r($data_session);
+
+		$this->session->set_userdata($data_session);
+		echo "✅ Session data set\n\n";
+
+		// Step 6: Verify session was saved
+		echo "\nSTEP 6: Verify Session Data\n";
+		echo str_repeat("=", 80) . "\n";
+		echo "Current session data:\n";
+		print_r($this->session->userdata());
+
+		$status = $this->session->userdata('status');
+		if($status == 'login'){
+			echo "\n✅✅✅ LOGIN SUCCESSFUL! ✅✅✅\n";
+			echo "\nRedirect to: " . base_url("index.php/admin") . "\n";
+			echo "\n<a href='" . base_url("index.php/admin") . "'>Click here to go to Admin</a>\n";
+		}else{
+			echo "\n❌ FAILED: Session status not set to 'login'\n";
+		}
+
+		echo "</pre>";
+	}
+
 	function logout(){
 		$this->session->sess_destroy();
 		redirect(base_url('index.php/login'));

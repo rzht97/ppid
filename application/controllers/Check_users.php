@@ -42,9 +42,10 @@ class Check_users extends CI_Controller {
         echo str_repeat("=", 80) . "\n";
         echo "</pre>";
 
-        // Form test login
+        // Form test login dengan DEBUG
         echo "<h3>Test Login (Copy Username Exact)</h3>";
-        echo "<form method='post' action='" . base_url('index.php/login/aksi_login') . "'>";
+        echo "<p><strong>Form ini akan menampilkan detail setiap step login</strong></p>";
+        echo "<form method='post' action='" . base_url('index.php/login/aksi_login_debug') . "'>";
         echo "<select name='username'>";
 
         $query = $this->db->query("SELECT username FROM admin ORDER BY username");
@@ -54,7 +55,11 @@ class Check_users extends CI_Controller {
 
         echo "</select><br><br>";
         echo "Password: <input type='text' name='password' value='@Sumedang123#'><br><br>";
-        echo "<button type='submit'>Login</button>";
+        echo "<button type='submit'>Test Login (DEBUG MODE)</button>";
         echo "</form>";
+
+        echo "<hr>";
+        echo "<p><strong>Atau test dengan form login asli:</strong></p>";
+        echo "<a href='" . base_url('index.php/login') . "' target='_blank'>Buka Form Login</a>";
     }
 }
