@@ -63,20 +63,25 @@ class Keberatan extends CI_Controller {
 	/**
 	 * Detail keberatan
 	 * Fixed: SQL injection, gunakan query builder dengan JOIN
+	 * Fixed: Add WHERE clause and use row() for single record
 	 */
 	public function detail($id_keberatan = null)
     {
        $permohonan = $this->Permohonan_model;
 	   $keberatan = $this->Keberatan_model;
 
-	   // Fixed: Gunakan query builder dengan JOIN yang aman
+	   // Fixed: Gunakan query builder dengan JOIN yang aman dan WHERE clause
        $data["keberatan"] = $this->db
-           ->select('keberatan.id_keberatan, keberatan.mohon_id, keberatan.alasan, keberatan.kronologi, keberatan.tanggal,
-                     permohonan.nama, permohonan.alamat, permohonan.nohp, permohonan.pekerjaan')
+           ->select('keberatan.id_keberatan, keberatan.mohon_id, keberatan.alasan, keberatan.kronologi, keberatan.tanggal, keberatan.caraperoleh,
+                     permohonan.nama, permohonan.alamat, permohonan.nohp, permohonan.pekerjaan, permohonan.email, permohonan.status')
            ->from('keberatan')
            ->join('permohonan', 'permohonan.mohon_id = keberatan.mohon_id', 'inner')
+           ->where('keberatan.id_keberatan', $id_keberatan)
            ->get()
-           ->result();
+           ->row();
+
+       // Also pass permohonan separately for status display
+       $data["permohonan"] = $data["keberatan"];
 
        $this->load->view("dev/keberatan/detail", $data);
     }
