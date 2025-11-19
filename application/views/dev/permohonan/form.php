@@ -247,12 +247,25 @@
                                         <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                                             <div class="form-control" data-trigger="fileinput"> <i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
                                             <span class="input-group-addon btn btn-default btn-file"> <span class="fileinput-new">Pilih File</span> <span class="fileinput-exists">Ganti</span>
-                                            <input class="form-control-file <?php echo form_error('ktp') ? 'is-invalid' : '' ?>" type="file" name="ktp" required>
-                                            </span> <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Hapus</a></div>
+                                            <input class="form-control-file <?php echo form_error('ktp') ? 'is-invalid' : '' ?>" type="file" name="ktp" id="ktpInput" accept="image/jpeg,image/jpg,image/png,application/pdf" required>
+                                            </span> <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput" onclick="clearKtpPreview()">Hapus</a></div>
                                         <?php if(form_error('ktp')): ?>
                                             <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('ktp'); ?></div>
                                         <?php endif; ?>
                                         <span class="help-block" style="margin-top: 5px;"><small>Upload foto KTP dalam format JPG, PNG, atau PDF (Maksimal 2MB)</small></span>
+
+                                        <!-- Preview Container -->
+                                        <div id="ktpPreviewContainer" style="margin-top: 15px; display: none;">
+                                            <div style="background-color: #f9f9f9; padding: 15px; border: 2px solid #e8e8e8; border-radius: 6px; text-align: center;">
+                                                <label style="margin-bottom: 10px; display: block;"><strong>Preview KTP:</strong></label>
+                                                <img id="ktpPreview" src="" alt="Preview KTP" style="max-width: 100%; max-height: 400px; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                                <div id="pdfPreview" style="display: none;">
+                                                    <i class="fa fa-file-pdf-o" style="font-size: 60px; color: #d9534f;"></i>
+                                                    <p style="margin-top: 10px; font-weight: bold;" id="pdfFileName"></p>
+                                                    <p class="text-muted" style="margin: 5px 0;">File PDF telah dipilih</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -374,7 +387,72 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
     <!--Style Switcher -->
     <script src="<?= base_url() ?>inverse/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
 	<?php $this->load->view('dev/admin/partials/js.php')?>
-	
+
+	<!-- KTP Preview Script -->
+	<script>
+		// Function to handle KTP file upload preview
+		document.getElementById('ktpInput').addEventListener('change', function(e) {
+			const file = e.target.files[0];
+			const previewContainer = document.getElementById('ktpPreviewContainer');
+			const imagePreview = document.getElementById('ktpPreview');
+			const pdfPreview = document.getElementById('pdfPreview');
+			const pdfFileName = document.getElementById('pdfFileName');
+
+			if (file) {
+				// Validate file size (2MB = 2097152 bytes)
+				if (file.size > 2097152) {
+					alert('Ukuran file terlalu besar! Maksimal 2MB.');
+					e.target.value = '';
+					previewContainer.style.display = 'none';
+					return;
+				}
+
+				const fileType = file.type;
+				const fileName = file.name;
+
+				// Show preview container
+				previewContainer.style.display = 'block';
+
+				// Check if file is an image
+				if (fileType.match('image.*')) {
+					const reader = new FileReader();
+
+					reader.onload = function(e) {
+						imagePreview.src = e.target.result;
+						imagePreview.style.display = 'block';
+						pdfPreview.style.display = 'none';
+					};
+
+					reader.readAsDataURL(file);
+				}
+				// Check if file is PDF
+				else if (fileType === 'application/pdf') {
+					imagePreview.style.display = 'none';
+					pdfPreview.style.display = 'block';
+					pdfFileName.textContent = fileName;
+				}
+				else {
+					alert('Format file tidak didukung! Gunakan JPG, PNG, atau PDF.');
+					e.target.value = '';
+					previewContainer.style.display = 'none';
+				}
+			} else {
+				previewContainer.style.display = 'none';
+			}
+		});
+
+		// Function to clear preview when "Hapus" button is clicked
+		function clearKtpPreview() {
+			const previewContainer = document.getElementById('ktpPreviewContainer');
+			const imagePreview = document.getElementById('ktpPreview');
+
+			previewContainer.style.display = 'none';
+			imagePreview.src = '';
+
+			return true;
+		}
+	</script>
+
 </body>
 
 
