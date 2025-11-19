@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Tambah Informasi - Admin PPID Kab. Sumedang</title>
+	<title>Edit Informasi Publik - Admin PPID Kab. Sumedang</title>
     <?php $this->load->view('dev/admin/partials/head.php')?>
 </head>
 
@@ -34,13 +34,13 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Tambah Dokumen</h4>
+                        <h4 class="page-title">Edit Informasi Publik</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">DIP</a></li>
-                            <li class="active">Tambah</li>
+                            <li><a href="<?php echo site_url('admin/dip') ?>">Daftar Informasi</a></li>
+                            <li class="active">Edit</li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -49,88 +49,145 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title m-b-0">Tambah Informasi</h3>
-                            <form class="form-horizontal" action="<?php base_url("admin/dokumen/edit") ?>" method="post" enctype="multipart/form-data">
+                            <h3 class="box-title m-b-0">Edit Informasi Publik</h3>
+                            <br>
+
+                            <?php if($this->session->flashdata('success')): ?>
+                                <div class="alert alert-success alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <i class="fa fa-check-circle"></i> <?php echo $this->session->flashdata('success'); ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if($this->session->flashdata('error')): ?>
+                                <div class="alert alert-danger alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <i class="fa fa-times-circle"></i> <?php echo $this->session->flashdata('error'); ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if(validation_errors()): ?>
+                                <div class="alert alert-warning alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <i class="fa fa-exclamation-triangle"></i> <strong>Perhatian!</strong> Mohon perbaiki kesalahan berikut:
+                                    <?php echo validation_errors('<div>- ', '</div>'); ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <form class="form-horizontal" action="<?php echo site_url('admin/dip/edit/'.$dokumen->id) ?>" method="post" enctype="multipart/form-data">
 								<input type="hidden" name="id" value="<?php echo $dokumen->id ?>" />
-								
+
                                 <div class="form-group">
-                                    <label class="col-md-12">Deskripsi Isi Informasi</label>
+                                    <label class="col-md-12"><strong>Ringkasan Isi Informasi <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control <?php echo form_error('judul') ? 'is-invalid' : '' ?>" name = "judul" value="<?php echo $dokumen->judul ?>">
+                                        <input type="text" class="form-control <?php echo form_error('judul') ? 'is-invalid' : '' ?>" name="judul" placeholder="Masukkan ringkasan isi informasi" value="<?php echo set_value('judul', $dokumen->judul); ?>" required>
+                                        <?php if(form_error('judul')): ?>
+                                            <div class="text-danger"><?php echo form_error('judul'); ?></div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-								
+
                                 <div class="form-group">
-                                    <label class="col-sm-12">Kategori</label>
+                                    <label class="col-sm-12"><strong>Kategori <span class="text-danger">*</span></strong></label>
                                     <div class="col-sm-12">
-                                        <select class="form-control <?php echo form_error('kategori') ? 'is-invalid' : '' ?>" name="kategori" value="<?php echo $dokumen->kategori ?>">
-                                            <option value="">---pilih---</option>
-                                    		<option value="Berkala">Berkala</option>
-                                   			<option value="Setiap Saat">Setiap Saat</option>
-                                    		<option value="Serta Merta">Serta Merta</option>
+                                        <select class="form-control <?php echo form_error('kategori') ? 'is-invalid' : '' ?>" name="kategori" required>
+                                            <option value="">-- Pilih Kategori --</option>
+                                    		<option value="Berkala" <?php echo set_select('kategori', 'Berkala', $dokumen->kategori == 'Berkala'); ?>>Berkala</option>
+                                   			<option value="Setiap Saat" <?php echo set_select('kategori', 'Setiap Saat', $dokumen->kategori == 'Setiap Saat'); ?>>Setiap Saat</option>
+                                    		<option value="Serta Merta" <?php echo set_select('kategori', 'Serta Merta', $dokumen->kategori == 'Serta Merta'); ?>>Serta Merta</option>
                                         </select>
+                                        <?php if(form_error('kategori')): ?>
+                                            <div class="text-danger"><?php echo form_error('kategori'); ?></div>
+                                        <?php endif; ?>
                                     </div>
-									<div class="invalid-feedback">
-                                    	<?php echo form_error('kategori') ?>
-                                	</div>
                                 </div>
-								
+
 								<div class="form-group">
-                                    <label class="col-sm-12">Bentuk Informasi Yang Tersedia</label>
+                                    <label class="col-sm-12"><strong>Bentuk Informasi Yang Tersedia <span class="text-danger">*</span></strong></label>
                                     <div class="col-sm-12">
-                                        <select class="form-control <?php echo form_error('bentukinfo') ? 'is-invalid' : '' ?>" name="bentukinfo" value="<?php echo $dokumen->bentukinfo ?>">
-                                            <option value="">---pilih---</option>
-                                    		<option value="Hard Copy">Hardcopy</option>
-                                   			<option value="Soft Copy">Softcopy</option>
-                                    		<option value="Hard & Soft Copy">Hard & Soft Copy</option>
-											<option value="Sosial Media">Sosial Media</option>
-											<option value="Website">Website</option>
+                                        <select class="form-control <?php echo form_error('bentukinfo') ? 'is-invalid' : '' ?>" name="bentukinfo" required>
+                                            <option value="">-- Pilih Bentuk Informasi --</option>
+                                    		<option value="Hard Copy" <?php echo set_select('bentukinfo', 'Hard Copy', $dokumen->bentukinfo == 'Hard Copy'); ?>>Hardcopy</option>
+                                   			<option value="Soft Copy" <?php echo set_select('bentukinfo', 'Soft Copy', $dokumen->bentukinfo == 'Soft Copy'); ?>>Softcopy</option>
+                                    		<option value="Hard & Soft Copy" <?php echo set_select('bentukinfo', 'Hard & Soft Copy', $dokumen->bentukinfo == 'Hard & Soft Copy'); ?>>Hard & Soft Copy</option>
+											<option value="Sosial Media" <?php echo set_select('bentukinfo', 'Sosial Media', $dokumen->bentukinfo == 'Sosial Media'); ?>>Sosial Media</option>
+											<option value="Website" <?php echo set_select('bentukinfo', 'Website', $dokumen->bentukinfo == 'Website'); ?>>Website</option>
                                         </select>
+                                        <?php if(form_error('bentukinfo')): ?>
+                                            <div class="text-danger"><?php echo form_error('bentukinfo'); ?></div>
+                                        <?php endif; ?>
                                     </div>
-									<div class="invalid-feedback">
-                                    	<?php echo form_error('bentukinfo') ?>
-                                	</div>
                                 </div>
-								
+
 								<div class="form-group">
-                                    <label class="col-sm-12">Jangka Waktu Penyimpanan</label>
+                                    <label class="col-sm-12"><strong>Jangka Waktu Penyimpanan <span class="text-danger">*</span></strong></label>
                                     <div class="col-sm-12">
                                         <select class="form-control <?php echo form_error('jangkawaktu') ? 'is-invalid' : '' ?>" name="jangkawaktu" required>
-                                            <option value="">---pilih---</option>
-                                    		<option value="1 Tahun">1 Tahun</option>
-                                    		<option value="5 Tahun">5 Tahun</option>
-                                    		<option value="Selama Berlaku">Selama Berlaku</option>
+                                            <option value="">-- Pilih Jangka Waktu --</option>
+                                    		<option value="1 Tahun" <?php echo set_select('jangkawaktu', '1 Tahun', $dokumen->jangkawaktu == '1 Tahun'); ?>>1 Tahun</option>
+                                    		<option value="5 Tahun" <?php echo set_select('jangkawaktu', '5 Tahun', $dokumen->jangkawaktu == '5 Tahun'); ?>>5 Tahun</option>
+                                    		<option value="Selama Berlaku" <?php echo set_select('jangkawaktu', 'Selama Berlaku', $dokumen->jangkawaktu == 'Selama Berlaku'); ?>>Selama Berlaku</option>
                                         </select>
+                                        <?php if(form_error('jangkawaktu')): ?>
+                                            <div class="text-danger"><?php echo form_error('jangkawaktu'); ?></div>
+                                        <?php endif; ?>
                                     </div>
-									<div class="invalid-feedback">
-                                    	<?php echo form_error('bentukinfo') ?>
-                                	</div>
                                 </div>
-								
+
                                 <div class="form-group">
-                                    <label class="col-sm-12">Sumber Dokumen</label>
+                                    <label class="col-sm-12"><strong>Upload Dokumen</strong></label>
                                     <div class="col-sm-12">
+                                        <?php if($dokumen->image != "Belum Tersedia"): ?>
+                                            <div class="alert alert-info">
+                                                <i class="fa fa-file"></i> Dokumen saat ini: <strong><?php echo $dokumen->image ?></strong>
+                                                <a href="<?php echo base_url().'index.php/admin/dip/download/'.$dokumen->id; ?>" class="btn btn-xs btn-success pull-right">
+                                                    <i class="fa fa-download"></i> Download
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
                                         <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                            <div class="form-control" data-trigger="fileinput"> <i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
-                                            <span class="input-group-addon btn btn-default btn-file"> <span class="fileinput-new">Select file</span> <span class="fileinput-exists">Change</span>
-                                            <input class="form-control-file <?php echo form_error('image') ? 'is-invalid' : '' ?>" type="file" name="image">
-                                            </span> <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a> </div>
+                                            <div class="form-control" data-trigger="fileinput">
+                                                <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                                <span class="fileinput-filename"></span>
+                                            </div>
+                                            <span class="input-group-addon btn btn-default btn-file">
+                                                <span class="fileinput-new">Pilih File</span>
+                                                <span class="fileinput-exists">Ganti</span>
+                                                <input class="form-control-file <?php echo form_error('image') ? 'is-invalid' : '' ?>" type="file" name="image">
+                                            </span>
+                                            <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Hapus</a>
+                                        </div>
+                                        <?php if(form_error('image')): ?>
+                                            <div class="text-danger"><?php echo form_error('image'); ?></div>
+                                        <?php endif; ?>
+                                        <span class="help-block"><small>Upload file dokumen baru dalam format PDF, DOC, atau DOCX (Maksimal 5MB). Kosongkan jika tidak ingin mengubah dokumen.</small></span>
                                     </div>
-									<div class="invalid-feedback">
-                                    	<?php echo form_error('image') ?>
-                                	</div>
-									<span class="help-block"><small>A block of help text that breaks onto a new line and may extend beyond one line.</small></span>
                                 </div>
-								
+
 								<div class="form-group">
-                                	<input class="form-control <?php echo form_error('sumberdata') ? 'is-invalid' : '' ?>" type="text" name="sumberdata" placeholder="sumber Dokumen" />
-                                	<div class="invalid-feedback">
-                                    	<?php echo form_error('sumberdata') ?>
-                                	</div>
+                                    <label class="col-sm-12"><strong>Sumber Data / Keterangan</strong></label>
+                                    <div class="col-sm-12">
+                                        <input class="form-control <?php echo form_error('sumberdata') ? 'is-invalid' : '' ?>" type="text" name="sumberdata" placeholder="Contoh: Website Resmi, Media Sosial, dll" value="<?php echo set_value('sumberdata', $dokumen->sumberdata); ?>" />
+                                        <?php if(form_error('sumberdata')): ?>
+                                            <div class="text-danger"><?php echo form_error('sumberdata'); ?></div>
+                                        <?php endif; ?>
+                                        <span class="help-block"><small>Isi field ini jika dokumen tidak di-upload (tersedia di media lain)</small></span>
+                                    </div>
                             	</div>
-								
-								<button type="submit" name ="btn" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
-                                <button type="submit" class="btn btn-inverse waves-effect waves-light">Cancel</button>
+
+                                <hr>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button type="submit" name="btn" class="btn btn-success waves-effect waves-light">
+                                                <i class="fa fa-save"></i> Perbarui Informasi
+                                            </button>
+                                            <a href="<?php echo site_url('admin/dip') ?>" class="btn btn-default waves-effect waves-light">
+                                                <i class="fa fa-times"></i> Batal
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
