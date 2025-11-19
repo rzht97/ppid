@@ -65,7 +65,7 @@ class Permohonan extends CI_Controller
         if ($validation->run()) {
             $permohonan->update();
             $this->session->set_flashdata('success', 'Berhasil disimpan');
-			redirect(site_url(admin/permohonan));
+			redirect(site_url('admin/permohonan'));
         }
         $data['nama_user'] = $this->session->userdata("nama");
         $data["permohonan"] = $permohonan->getById($mohon_id);
