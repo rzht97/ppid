@@ -283,12 +283,27 @@
 
 								<div class="form-group" style="margin-bottom: 25px;">
                                     <div class="col-sm-12">
-                                        <div class="checkbox" style="margin-top: 0;">
-                                            <label style="font-weight: normal; cursor: pointer; display: inline-block;">
-                                                <input type="checkbox" id="terms" name="terms" data-error="Anda harus menyetujui syarat dan ketentuan" required style="margin-right: 5px; cursor: pointer;">
-                                                <span>Saya telah membaca dan menyetujui <a href="#" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" onclick="event.stopPropagation(); return true;"><strong>Hak-hak Pemohon Informasi</strong></a></span>
-                                            </label>
-                                            <div class="help-block with-errors"></div>
+                                        <!-- Hidden checkbox for form validation -->
+                                        <input type="checkbox" id="terms" name="terms" required style="display: none;">
+
+                                        <!-- Agreement button and status -->
+                                        <div id="agreementSection">
+                                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#exampleModal" style="width: 100%; padding: 15px; margin-bottom: 10px;">
+                                                <i class="fa fa-file-text-o"></i> Baca Hak-hak Pemohon Informasi
+                                            </button>
+
+                                            <div id="agreementStatus" style="display: none; padding: 15px; background-color: #d4edda; border: 2px solid #c3e6cb; border-radius: 6px; text-align: center;">
+                                                <i class="fa fa-check-circle" style="color: #28a745; font-size: 24px;"></i>
+                                                <p style="margin: 10px 0 0 0; color: #155724; font-weight: bold;">
+                                                    Anda telah menyetujui Hak-hak Pemohon Informasi
+                                                </p>
+                                            </div>
+
+                                            <div id="agreementWarning" style="padding: 10px; background-color: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; text-align: center;">
+                                                <small style="color: #856404;">
+                                                    <i class="fa fa-exclamation-triangle"></i> Anda harus membaca dan menyetujui Hak-hak Pemohon Informasi untuk melanjutkan
+                                                </small>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -331,8 +346,13 @@ Berdasarkan Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publ
 mengajukan keberatan kepada komisi Informasi dalam jangka waktu14 (empatbelas) hari kerja sejak
 diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
+                                        <div class="modal-footer" style="text-align: center;">
+                                            <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">
+                                                <i class="fa fa-times"></i> Batal
+                                            </button>
+                                            <button type="button" class="btn btn-success btn-lg waves-effect" onclick="agreeToTerms()" style="padding: 12px 40px;">
+                                                <i class="fa fa-check"></i> Saya Setuju
+                                            </button>
                                         </div>
                                     </div>
                                     <!-- /.modal-content -->
@@ -489,6 +509,26 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 		document.getElementById('ktpFileName').addEventListener('click', function() {
 			document.getElementById('ktpInput').click();
 		});
+	</script>
+
+	<!-- Terms Agreement Script -->
+	<script>
+		function agreeToTerms() {
+			// Check the hidden checkbox
+			document.getElementById('terms').checked = true;
+
+			// Hide the modal
+			$('#exampleModal').modal('hide');
+
+			// Show success status
+			document.getElementById('agreementStatus').style.display = 'block';
+
+			// Hide warning
+			document.getElementById('agreementWarning').style.display = 'none';
+
+			// Optional: Scroll to the status message
+			document.getElementById('agreementStatus').scrollIntoView({ behavior: 'smooth', block: 'center' });
+		}
 	</script>
 
 </body>
