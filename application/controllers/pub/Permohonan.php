@@ -116,20 +116,54 @@ class Permohonan extends CI_Controller {
     }
 
 	/**
-	 * Cari permohonan berdasarkan token/ID
-	 * Fixed: SQL injection vulnerability (already fixed)
-	 * Added: Specific column selection
+	 * Cari permohonan ATAU keberatan berdasarkan token/ID
+	 * Updated: Search di kedua tabel (permohonan DAN keberatan)
+	 * Added: Type indicator untuk membedakan hasil
 	 */
 	public function caripermohonan()
 	{
     	$token = $this->input->post('token', TRUE); // XSS clean
 
-    	// Fixed: Query builder dengan select spesifik
-    	$data['caritoken'] = $this->db
-    	    ->select('mohon_id, nama, alamat, nohp, email, rincian, tujuan, tanggal, status, jawab, tanggaljawab')
-        	->where('mohon_id', $token)
-        	->get('permohonan')
-        	->result();
+		// Initialize empty results
+		$data['caritoken'] = array();
+		$data['carikeberatan'] = array();
+
+		if (!empty($token)) {
+			// Search di tabel PERMOHONAN
+			$permohonan_result = $this->db
+				->select('mohon_id, nama, alamat, nohp, email, rincian, tujuan, tanggal, status, jawab, tanggaljawab')
+				->where('mohon_id', $token)
+				->get('permohonan')
+				->result();
+
+			if ($permohonan_result) {
+				// Add type indicator
+				foreach ($permohonan_result as $item) {
+					$item->search_type = 'permohonan';
+				}
+				$data['caritoken'] = $permohonan_result;
+			}
+
+			// Search di tabel KEBERATAN
+			$keberatan_result = $this->db
+				->select('keberatan.id_keberatan, keberatan.mohon_id, keberatan.alasan, keberatan.kronologi,
+						  keberatan.tanggal, keberatan.status, keberatan.tanggapan, keberatan.putusan,
+						  permohonan.nama, permohonan.alamat, permohonan.nohp, permohonan.email')
+				->from('keberatan')
+				->join('permohonan', 'permohonan.mohon_id = keberatan.mohon_id', 'left')
+				->where('keberatan.id_keberatan', $token)
+				->or_where('keberatan.mohon_id', $token)
+				->get()
+				->result();
+
+			if ($keberatan_result) {
+				// Add type indicator
+				foreach ($keberatan_result as $item) {
+					$item->search_type = 'keberatan';
+				}
+				$data['carikeberatan'] = $keberatan_result;
+			}
+		}
 
     	$this->load->view("dev/permohonan/cari", $data);
 	}
