@@ -111,27 +111,42 @@ public function getById($mohon_id)
         $max_retries = 10;
         $retry_count = 0;
         $unique_id_found = false;
+        $use_fallback = false;
 
         while (!$unique_id_found && $retry_count < $max_retries) {
             // Generate ID with format: P + DDMMYY + auto increment (001, 002, ...)
-            $this->mohon_id = $this->_generateMohonId();
+            // After 5 retries, add random component for development/high-load scenarios
+            if ($retry_count >= 5) {
+                $use_fallback = true;
+                $this->mohon_id = $this->_generateMohonIdWithFallback();
+            } else {
+                $this->mohon_id = $this->_generateMohonId();
+            }
 
             // Check if ID already exists
             $existing = $this->db->get_where($this->_table, ['mohon_id' => $this->mohon_id])->num_rows();
 
             if ($existing == 0) {
                 $unique_id_found = true;
-                log_message('debug', 'Unique mohon_id generated: ' . $this->mohon_id);
+                log_message('debug', 'Unique mohon_id generated: ' . $this->mohon_id . ($use_fallback ? ' (using fallback)' : ''));
             } else {
                 $retry_count++;
                 log_message('debug', 'Duplicate mohon_id detected: ' . $this->mohon_id . ', retry #' . $retry_count);
-                // Small delay to reduce race condition probability
-                usleep(10000); // 10ms delay
+                // Increase delay with each retry (exponential backoff)
+                usleep(10000 * $retry_count); // 10ms, 20ms, 30ms, etc.
             }
         }
 
         if (!$unique_id_found) {
-            throw new Exception('Gagal generate mohon_id unik setelah ' . $max_retries . ' percobaan. Silakan coba lagi.');
+            // Last resort: generate with microsecond timestamp
+            $this->mohon_id = $this->_generateMohonIdWithTimestamp();
+            $existing = $this->db->get_where($this->_table, ['mohon_id' => $this->mohon_id])->num_rows();
+
+            if ($existing > 0) {
+                throw new Exception('Gagal generate mohon_id unik setelah ' . $max_retries . ' percobaan. Silakan coba lagi dalam beberapa detik.');
+            }
+
+            log_message('info', 'Used timestamp fallback for mohon_id: ' . $this->mohon_id);
         }
 
 		// Upload KTP file
@@ -354,6 +369,47 @@ public function getById($mohon_id)
 		// Format: P + DDMMYY + increment padded to 3 digits
 		// Example: P + 191125 + 001 = P191125001
 		return $today_prefix . str_pad($new_increment, 3, '0', STR_PAD_LEFT);
+	}
+
+	/**
+	 * Generate mohon_id with random component (fallback for high contention)
+	 * Format: P + DDMMYY + (count + random 2 digits)
+	 * Example: P191125523 (where 523 = count 5 + random 23)
+	 */
+	private function _generateMohonIdWithFallback()
+	{
+		$today_prefix = 'P' . date('dmy');
+
+		// Get count of records for today
+		$this->db->like('mohon_id', $today_prefix, 'after');
+		$count = $this->db->count_all_results($this->_table);
+
+		// Add random 2 digits to reduce collision in development
+		$random_suffix = str_pad(mt_rand(0, 99), 2, '0', STR_PAD_LEFT);
+
+		// Increment count to get next number
+		$increment = $count + 1;
+
+		// Format: P + DDMMYY + (single digit count) + (2 random digits)
+		// Example: P191125123 where 1=count, 23=random
+		return $today_prefix . substr($increment, -1) . $random_suffix;
+	}
+
+	/**
+	 * Generate mohon_id with microsecond timestamp (last resort)
+	 * Format: P + DDMMYY + (last 3 digits of microtime)
+	 * Example: P191125847 (where 847 from microsecond timestamp)
+	 */
+	private function _generateMohonIdWithTimestamp()
+	{
+		$today_prefix = 'P' . date('dmy');
+
+		// Get microsecond component
+		list($usec, $sec) = explode(" ", microtime());
+		$usec_3digit = substr(str_replace('0.', '', $usec), 0, 3);
+
+		// Format: P + DDMMYY + last 3 digits of microsecond
+		return $today_prefix . $usec_3digit;
 	}
 
     public function download($id){
