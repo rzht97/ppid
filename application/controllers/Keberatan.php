@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Keberatan extends CI_Controller {
     public function __construct()
@@ -14,6 +15,7 @@ class Keberatan extends CI_Controller {
 	/**
 	 * Cari permohonan untuk keberatan
 	 * Fixed: CRITICAL SQL Injection vulnerability
+	 * Fixed: Initialize caritoken to empty array when no POST data
 	 */
 	public function index($id_keberatan = null)
 	{
@@ -21,12 +23,18 @@ class Keberatan extends CI_Controller {
 		$validation = $this->form_validation;
 		$permohonan = $this->Permohonan_model;
 
-		// Fixed: Gunakan query builder
-		$data['caritoken'] = $this->db
-		    ->select('mohon_id, nama, alamat, nohp, email, pekerjaan, rincian, tujuan, tanggal, status')
-		    ->where('mohon_id', $token)
-		    ->get('permohonan')
-		    ->result();
+		// Initialize as empty array
+		$data['caritoken'] = array();
+
+		// Only query if token is provided
+		if (!empty($token)) {
+			// Fixed: Gunakan query builder
+			$data['caritoken'] = $this->db
+			    ->select('mohon_id, nama, alamat, nohp, email, pekerjaan, rincian, tujuan, tanggal, status')
+			    ->where('mohon_id', $token)
+			    ->get('permohonan')
+			    ->result();
+		}
 
 		$this->load->view("dev/keberatan/cari",$data);
 	}
