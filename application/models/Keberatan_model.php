@@ -44,10 +44,32 @@ public function save()
     {
         $post = $this->input->post();
 
-        // Generate ID with format: K + DDMMYY + auto increment (001, 002, ...)
-        // Example: K191125001, K191125002, K191125003...
-        // Resets to 001 every new day
-        $this->id_keberatan = $this->_generateIdKeberatan();
+        // Generate unique id_keberatan with retry mechanism for race conditions
+        $max_retries = 10;
+        $retry_count = 0;
+        $unique_id_found = false;
+
+        while (!$unique_id_found && $retry_count < $max_retries) {
+            // Generate ID with format: K + DDMMYY + auto increment (001, 002, ...)
+            $this->id_keberatan = $this->_generateIdKeberatan();
+
+            // Check if ID already exists
+            $existing = $this->db->get_where($this->_table, ['id_keberatan' => $this->id_keberatan])->num_rows();
+
+            if ($existing == 0) {
+                $unique_id_found = true;
+                log_message('debug', 'Unique id_keberatan generated: ' . $this->id_keberatan);
+            } else {
+                $retry_count++;
+                log_message('debug', 'Duplicate id_keberatan detected: ' . $this->id_keberatan . ', retry #' . $retry_count);
+                // Small delay to reduce race condition probability
+                usleep(10000); // 10ms delay
+            }
+        }
+
+        if (!$unique_id_found) {
+            throw new Exception('Gagal generate id_keberatan unik setelah ' . $max_retries . ' percobaan. Silakan coba lagi.');
+        }
 
         $this->mohon_id = $post["mohon_id"];
 		$this->kronologi = $post["kronologi"];
