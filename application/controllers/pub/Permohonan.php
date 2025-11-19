@@ -16,6 +16,7 @@ class Permohonan extends CI_Controller {
 	/**
 	 * Form permohonan informasi
 	 * Includes: Telegram notification integration
+	 * Updated: Better error handling and debugging
 	 */
 	public function permohonan()
     {
@@ -24,26 +25,67 @@ class Permohonan extends CI_Controller {
         $validation->set_rules($permohonan->rules());
 
         if ($validation->run()) {
-            $permohonan->save();
-            $this->session->set_flashdata('success', 'Permohonan berhasil disimpan');
+            try {
+                // Save permohonan
+                $permohonan->save();
 
-			// Load helper telegram
-        	$this->load->helper('telegram');
+                // Get the inserted ID
+                $mohon_id = $permohonan->mohon_id;
 
-			// Kirim notifikasi Telegram
-        	$nama = $this->input->post('nama', TRUE);
-			$pekerjaan = $this->input->post('pekerjaan', TRUE);
-			$nohp = $this->input->post('nohp', TRUE);
-			$rincian = $this->input->post('rincian', TRUE);
-			$tujuan = $this->input->post('tujuan', TRUE);
-			$id = substr($permohonan->mohon_id, 0, 11);
-			$pesan = "NOTIFIKASI\nAda Permohonan Informasi dari
-			\nNama: {$nama} \nPekerjaan: {$pekerjaan}\nNo HP: {$nohp} \nPermohonan Informasi: {$rincian} \nTujuan: {$tujuan} \n\nMohon cek dan segera proses!";
-			send_telegram($pesan);
+                // Set success message
+                $this->session->set_flashdata('success', 'Permohonan berhasil disimpan dengan ID: ' . $mohon_id);
 
-			redirect(base_url("index.php/pub/permohonan/detail/".substr($permohonan->mohon_id,0,11)));
+                // Load helper telegram (if exists)
+                if(file_exists(APPPATH.'helpers/telegram_helper.php')){
+                    $this->load->helper('telegram');
+
+                    // Kirim notifikasi Telegram
+                    $nama = $this->input->post('nama', TRUE);
+                    $pekerjaan = $this->input->post('pekerjaan', TRUE);
+                    $nohp = $this->input->post('nohp', TRUE);
+                    $rincian = $this->input->post('rincian', TRUE);
+                    $tujuan = $this->input->post('tujuan', TRUE);
+
+                    $pesan = "NOTIFIKASI\nAda Permohonan Informasi Baru\n\n";
+                    $pesan .= "ID: {$mohon_id}\n";
+                    $pesan .= "Nama: {$nama}\n";
+                    $pesan .= "Pekerjaan: {$pekerjaan}\n";
+                    $pesan .= "No HP: {$nohp}\n";
+                    $pesan .= "Rincian: {$rincian}\n";
+                    $pesan .= "Tujuan: {$tujuan}\n\n";
+                    $pesan .= "Mohon cek dan segera proses!";
+
+                    // Send telegram (suppress errors)
+                    @send_telegram($pesan);
+                }
+
+                // Redirect to detail page
+                redirect(base_url("index.php/pub/permohonan/detail/".substr($mohon_id, 0, 11)));
+
+            } catch(Exception $e) {
+                // Log error
+                log_message('error', 'Failed to save permohonan: ' . $e->getMessage());
+
+                // Set error message
+                $this->session->set_flashdata('error', 'Gagal menyimpan permohonan. Silakan coba lagi.');
+
+                // Reload form with data
+                $data['form_data'] = $this->input->post();
+                $this->load->view("dev/permohonan/form", $data);
+                return;
+            }
+        } else {
+            // Validation failed - show errors
+            $this->session->set_flashdata('error', 'Mohon lengkapi semua field yang wajib diisi.');
+
+            // Pass validation errors to view
+            $data['validation_errors'] = $this->form_validation->error_array();
+            $data['form_data'] = $this->input->post();
+            $this->load->view("dev/permohonan/form", $data);
+            return;
         }
 
+        // Default: load empty form
         $this->load->view("dev/permohonan/form");
     }
 

@@ -22,17 +22,49 @@ class Permohonan_model extends CI_Model
 	public $status = "Sedang Diproses";
 	 
 
+    /**
+     * Validation rules untuk form permohonan
+     * Updated: Tambahkan semua required fields
+     */
     public function rules()
     {
         return [
-
             ['field' => 'nama',
-            'label' => 'nama',
-            'rules' => 'required'],
+             'label' => 'Nama',
+             'rules' => 'required|min_length[3]|max_length[100]'],
 
-            
+            ['field' => 'alamat',
+             'label' => 'Alamat',
+             'rules' => 'required|min_length[5]'],
+
+            ['field' => 'pekerjaan',
+             'label' => 'Pekerjaan',
+             'rules' => 'required'],
+
+            ['field' => 'nohp',
+             'label' => 'No HP',
+             'rules' => 'required|numeric|min_length[10]|max_length[15]'],
+
+            ['field' => 'email',
+             'label' => 'Email',
+             'rules' => 'required|valid_email'],
+
+            ['field' => 'rincian',
+             'label' => 'Rincian Informasi',
+             'rules' => 'required|min_length[10]'],
+
+            ['field' => 'tujuan',
+             'label' => 'Tujuan',
+             'rules' => 'required'],
+
+            ['field' => 'caraperoleh',
+             'label' => 'Cara Memperoleh Informasi',
+             'rules' => 'required'],
+
+            ['field' => 'caradapat',
+             'label' => 'Cara Mendapatkan Salinan',
+             'rules' => 'required'],
         ];
-
     }
 
 
