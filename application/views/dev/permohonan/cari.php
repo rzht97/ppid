@@ -104,105 +104,188 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h1 class="box-title m-b-0">status Permohonan Informasi</h1>
-                            <p class="text-muted m-b-30 font-13"></p>
-                            <form method = "POST">
-								<div class = "row">
-                            		<div class="col-md-4">
-										<div class="form-group">
-											<label class="control-label">Token</label>
-											<input type="text" id="" name="token" placeholder="Masukkan token" class="form-control" placeholder="" value="">
-										</div>
-									</div>
-									<div class = "col-md-4 text-center">
-										<br>
-                            			<button type="submit" class="btn btn-primary btn-outline m-t-5" name="type" value="filter"><i class="ti-search"></i> Cari</button>
-									</div>
-								</div>
-                            </form>
-                            <?php if($caritoken):?>
-                                <?php foreach($caritoken as $data)?>
-                                    <form data-toogle="validator" class="form-horizontal">
-                                        <div class="form-body">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Tanggal Permohonan:</label>
-                                                        <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->tanggal ?> </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-												<div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Permohonan Selesai:</label>
-                                                        <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->tanggaljawab ?> </p>
-                                                        </div>
-                                                    </div>
+                            <h3 class="box-title m-b-0">Status Permohonan Informasi</h3>
+                            <p class="text-muted m-b-30">Masukkan token/ID permohonan Anda untuk melihat status</p>
+
+                            <!-- Form Pencarian -->
+                            <div class="panel panel-default">
+                                <div class="panel-body" style="background-color: #f9f9f9; padding: 20px;">
+                                    <form method="POST">
+                                        <div class="row">
+                                            <div class="col-md-8 col-md-offset-2">
+                                                <div class="form-group">
+                                                    <label class="control-label"><strong>Token / ID Permohonan</strong></label>
+                                                    <input type="text" name="token" placeholder="Masukkan token/ID permohonan Anda" class="form-control input-lg" value="<?php echo $this->input->post('token'); ?>" required>
+                                                    <span class="help-block"><small>Token dikirimkan ke email Anda saat mengajukan permohonan</small></span>
                                                 </div>
                                             </div>
-                                            
-                                            
-                                            <h3 class="box-title">Permohonan</h3>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Rincian Informasi :</label>
-                                                        <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->rincian ?> </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Tujuan Penggunaan Informasi :</label>
-                                                        <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->tujuan ?> </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Cara Memperoleh Informasi :</label>
-                                                        <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->caraperoleh ?> </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Cara Mendapatkan Salinan Informasi :</label>
-                                                        <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->caradapat ?> </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Status :</label>
-                                                <div class="col-md-3">
-                                                    <?php if ($data->status == 'Menunggu Verifikasi') : ?>
-                                                        <button class="btn btn-block btn-warning disabled"><?php echo $data->status ?> </button>
-                                                    <?php elseif ($data->status == 'Sedang Diproses') : ?>
-                                                        <button class="btn btn-block btn-info disabled"><?php echo $data->status ?> </button>
-                                                    <?php else : ?>
-                                                        <button class="btn btn-block btn-success disabled"><?php echo $data->status ?></button>
-                                                    <?php endif ?>
-                                                </div>
-                                            </div>
-											<div class="form-group">
-                                                  <label class="control-label">Jawaban :</label>
-                                                  <div class="col-md-9">
-                                                       <p class="form-control-static"> <?php echo $data->jawab ?> </p>
-                                                  </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <button type="submit" class="btn btn-primary btn-lg" name="type" value="filter">
+                                                    <i class="fa fa-search"></i> Cari Permohonan
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
-							<?php endif?>
+                                </div>
+                            </div>
+
+                            <!-- Hasil Pencarian -->
+                            <?php if($this->input->post('token')): ?>
+                                <?php if($caritoken && count($caritoken) > 0): ?>
+                                    <?php foreach($caritoken as $data): ?>
+                                        <br>
+                                        <div class="alert alert-success">
+                                            <i class="fa fa-check-circle"></i> <strong>Permohonan Ditemukan!</strong>
+                                        </div>
+
+                                        <!-- Info Waktu -->
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" style="background-color: #f5f5f5;">
+                                                <h4 class="panel-title" style="margin: 0;">
+                                                    <i class="fa fa-calendar"></i> Informasi Waktu
+                                                </h4>
+                                            </div>
+                                            <div class="panel-body" style="padding: 20px;">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><strong>Tanggal Permohonan</strong></label>
+                                                            <p class="form-control-static"><?php echo $data->tanggal ?></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><strong>Tanggal Selesai</strong></label>
+                                                            <p class="form-control-static">
+                                                                <?php echo !empty($data->tanggaljawab) ? $data->tanggaljawab : '-'; ?>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Data Pemohon -->
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title" style="margin: 0;">
+                                                    <i class="fa fa-user"></i> Data Pemohon
+                                                </h4>
+                                            </div>
+                                            <div class="panel-body" style="padding: 20px;">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><strong>Nama</strong></label>
+                                                            <p class="form-control-static"><?php echo $data->nama ?></p>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><strong>Email</strong></label>
+                                                            <p class="form-control-static"><?php echo $data->email ?></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><strong>Alamat</strong></label>
+                                                            <p class="form-control-static"><?php echo $data->alamat ?></p>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><strong>No. HP</strong></label>
+                                                            <p class="form-control-static"><?php echo $data->nohp ?></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Detail Permohonan -->
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title" style="margin: 0;">
+                                                    <i class="fa fa-file-text"></i> Detail Permohonan
+                                                </h4>
+                                            </div>
+                                            <div class="panel-body" style="padding: 20px;">
+                                                <div class="form-group">
+                                                    <label><strong>Rincian Informasi yang Dibutuhkan</strong></label>
+                                                    <p class="form-control-static" style="white-space: pre-wrap; background-color: #f9f9f9; padding: 10px; border: 1px solid #e3e3e3; border-radius: 4px;">
+                                                        <?php echo $data->rincian ?>
+                                                    </p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><strong>Tujuan Penggunaan Informasi</strong></label>
+                                                    <p class="form-control-static" style="white-space: pre-wrap; background-color: #f9f9f9; padding: 10px; border: 1px solid #e3e3e3; border-radius: 4px;">
+                                                        <?php echo $data->tujuan ?>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Status dan Hasil -->
+                                        <div class="panel panel-success">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title" style="margin: 0;">
+                                                    <i class="fa fa-check-circle"></i> Status dan Hasil Pemrosesan
+                                                </h4>
+                                            </div>
+                                            <div class="panel-body" style="padding: 20px;">
+                                                <div class="form-group">
+                                                    <label><strong>Status Permohonan</strong></label>
+                                                    <div>
+                                                        <?php if ($data->status == 'Menunggu Verifikasi'): ?>
+                                                            <span class="label label-warning" style="font-size: 14px; padding: 8px 15px;">
+                                                                <i class="fa fa-clock-o"></i> Menunggu Verifikasi
+                                                            </span>
+                                                        <?php elseif ($data->status == 'Sedang Diproses'): ?>
+                                                            <span class="label label-info" style="font-size: 14px; padding: 8px 15px;">
+                                                                <i class="fa fa-spinner fa-spin"></i> Sedang Diproses
+                                                            </span>
+                                                        <?php elseif ($data->status == 'Selesai'): ?>
+                                                            <span class="label label-success" style="font-size: 14px; padding: 8px 15px;">
+                                                                <i class="fa fa-check"></i> Selesai
+                                                            </span>
+                                                        <?php else: ?>
+                                                            <span class="label label-default" style="font-size: 14px; padding: 8px 15px;">
+                                                                <?php echo $data->status ?>
+                                                            </span>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+
+                                                <?php if (!empty($data->jawab)): ?>
+                                                <div class="form-group">
+                                                    <label><strong>Jawaban/Hasil Pemrosesan</strong></label>
+                                                    <div class="alert alert-info" style="margin-top: 10px;">
+                                                        <p style="white-space: pre-wrap; margin: 0;">
+                                                            <?php echo $data->jawab ?>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <?php else: ?>
+                                                <div class="form-group">
+                                                    <label><strong>Jawaban/Hasil Pemrosesan</strong></label>
+                                                    <p class="text-muted"><em>Belum ada jawaban. Permohonan masih dalam proses.</em></p>
+                                                </div>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-center" style="margin-top: 30px;">
+                                            <a href="<?php echo site_url('pub/permohonan/caripermohonan'); ?>" class="btn btn-default">
+                                                <i class="fa fa-search"></i> Cari Permohonan Lain
+                                            </a>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <br>
+                                    <div class="alert alert-warning">
+                                        <i class="fa fa-exclamation-triangle"></i> <strong>Data Tidak Ditemukan!</strong><br>
+                                        Token/ID permohonan yang Anda masukkan tidak ditemukan dalam sistem. Pastikan Anda memasukkan token dengan benar.
+                                    </div>
+                                <?php endif; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
 
