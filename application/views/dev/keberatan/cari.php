@@ -203,7 +203,7 @@
                                                 <button type="submit" class="btn btn-success btn-lg" style="padding: 12px 40px; margin-right: 10px;">
                                                     <i class="fa fa-check"></i> Kirim Keberatan
                                                 </button>
-                                                <a href="<?php echo site_url('pub/permohonan/caripermohonan'); ?>" class="btn btn-default btn-lg" style="padding: 12px 40px;">
+                                                <a href="<?php echo site_url('pub/cekstatus'); ?>" class="btn btn-default btn-lg" style="padding: 12px 40px;">
                                                     <i class="fa fa-times"></i> Batal
                                                 </a>
                                             </div>
@@ -214,9 +214,9 @@
                             <?php else: ?>
                                 <div class="alert alert-warning" style="margin-top: 20px; padding: 20px;">
                                     <i class="fa fa-exclamation-triangle"></i> <strong>Data Tidak Ditemukan!</strong><br>
-                                    <span style="margin-top: 5px; display: inline-block;">Mohon maaf, data permohonan tidak ditemukan. Silakan kembali ke halaman pencarian permohonan.</span>
+                                    <span style="margin-top: 5px; display: inline-block;">Mohon maaf, data permohonan tidak ditemukan. Silakan kembali ke halaman pencarian.</span>
                                     <div style="margin-top: 15px;">
-                                        <a href="<?php echo site_url('pub/permohonan/caripermohonan'); ?>" class="btn btn-primary">
+                                        <a href="<?php echo site_url('pub/cekstatus'); ?>" class="btn btn-primary">
                                             <i class="fa fa-search"></i> Cari Permohonan
                                         </a>
                                     </div>

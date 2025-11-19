@@ -70,7 +70,7 @@
                                     </ul>
                                 </li>
 								<li>
-                                    <a target = "blank_" href="<?php echo site_url('pub/permohonan/caripermohonan')?>">Cek Status</a>
+                                    <a target = "blank_" href="<?php echo site_url('pub/cekstatus')?>">Cek Status</a>
 
                                 </li>
 								<li>

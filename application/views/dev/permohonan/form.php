@@ -315,7 +315,7 @@
                                             <button type="submit" class="btn btn-success btn-lg waves-effect waves-light" style="padding: 12px 40px;">
                                                 <i class="fa fa-paper-plane"></i> Kirim Permohonan
                                             </button>
-                                            <a href="<?php echo site_url('pub/permohonan/caripermohonan'); ?>" class="btn btn-default btn-lg waves-effect waves-light" style="padding: 12px 30px;">
+                                            <a href="<?php echo site_url('pub/cekstatus'); ?>" class="btn btn-default btn-lg waves-effect waves-light" style="padding: 12px 30px;">
                                                 <i class="fa fa-times"></i> Batal
                                             </a>
                                         </div>
