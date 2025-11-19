@@ -104,23 +104,23 @@
                                         <p class="form-control-static" style="white-space: pre-wrap;"><?php echo $keberatan->alasan ?></p>
                                     </div>
                                     <div class="form-group">
-                                        <label><strong>Kasus Posisi</strong></label>
-                                        <p class="form-control-static" style="white-space: pre-wrap;"><?php echo $keberatan->kasus_posisi ?></p>
+                                        <label><strong>Kronologi / Kasus Posisi</strong></label>
+                                        <p class="form-control-static" style="white-space: pre-wrap;"><?php echo $keberatan->kronologi ?></p>
                                     </div>
                                     <div class="form-group">
                                         <label><strong>Status</strong></label>
                                         <div>
-                                            <?php if ($keberatan->status == 'Belum Diverifikasi'): ?>
+                                            <?php if ($keberatan->status == 'Menunggu Verifikasi' || $keberatan->status == 'Belum Diverifikasi'): ?>
                                                 <span class="label label-warning" style="font-size: 13px; padding: 8px 12px;">
-                                                    Belum Diverifikasi
+                                                    <?php echo $keberatan->status ?>
                                                 </span>
                                             <?php elseif ($keberatan->status == 'Sedang Diproses'): ?>
                                                 <span class="label label-info" style="font-size: 13px; padding: 8px 12px;">
                                                     Sedang Diproses
                                                 </span>
-                                            <?php elseif ($keberatan->status == 'Diterima'): ?>
+                                            <?php elseif ($keberatan->status == 'Diterima' || $keberatan->status == 'Selesai'): ?>
                                                 <span class="label label-success" style="font-size: 13px; padding: 8px 12px;">
-                                                    Diterima
+                                                    <?php echo $keberatan->status ?>
                                                 </span>
                                             <?php elseif ($keberatan->status == 'Ditolak'): ?>
                                                 <span class="label label-danger" style="font-size: 13px; padding: 8px 12px;">
@@ -168,7 +168,7 @@
                                     <i class="fa fa-arrow-left"></i> Kembali
                                 </a>
 
-                                <?php if ($keberatan->status == 'Belum Diverifikasi'): ?>
+                                <?php if ($keberatan->status == 'Menunggu Verifikasi' || $keberatan->status == 'Belum Diverifikasi'): ?>
                                     <a href="<?php echo site_url('admin/keberatan/verifikasi/' . $keberatan->id_keberatan) ?>" class="btn btn-warning waves-effect waves-light" onclick="return confirm('Verifikasi keberatan ini?')">
                                         <i class="fa fa-check"></i> Verifikasi
                                     </a>
@@ -179,6 +179,10 @@
                                         <i class="fa fa-gavel"></i> Proses
                                     </a>
                                 <?php endif; ?>
+
+                                <a href="<?php echo site_url('admin/keberatan/delete/' . $keberatan->id_keberatan) ?>" class="btn btn-danger waves-effect waves-light" onclick="return confirm('Yakin ingin menghapus keberatan ini?')">
+                                    <i class="fa fa-trash"></i> Hapus
+                                </a>
                             </div>
                         </div>
                     </div>

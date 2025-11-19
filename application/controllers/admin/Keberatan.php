@@ -24,10 +24,12 @@ class Keberatan extends CI_Controller
         $data['nama_user'] = $this->session->userdata("nama");
 
         // Get all keberatan with related permohonan data using JOIN
-        $this->db->select('keberatan.*, permohonan.nama, permohonan.email, permohonan.nohp');
+        $this->db->select('keberatan.id_keberatan, keberatan.mohon_id, keberatan.alasan, keberatan.kronologi,
+                           keberatan.tanggal, keberatan.status, keberatan.created_at,
+                           permohonan.nama, permohonan.email, permohonan.nohp, permohonan.pekerjaan');
         $this->db->from('keberatan');
         $this->db->join('permohonan', 'keberatan.mohon_id = permohonan.mohon_id', 'left');
-        $this->db->order_by('keberatan.id_keberatan', 'DESC');
+        $this->db->order_by('keberatan.created_at', 'DESC');
         $data["keberatan"] = $this->db->get()->result();
 
         $this->load->view("dev/admin/keberatan/view", $data);
@@ -39,8 +41,12 @@ class Keberatan extends CI_Controller
 
         $data['nama_user'] = $this->session->userdata("nama");
 
-        // Get keberatan with permohonan data
-        $this->db->select('keberatan.*, permohonan.*');
+        // Get keberatan with permohonan data - use specific fields to avoid conflicts
+        $this->db->select('keberatan.id_keberatan, keberatan.mohon_id, keberatan.alasan, keberatan.kronologi,
+                           keberatan.tanggal, keberatan.tanggapan, keberatan.putusan, keberatan.status,
+                           keberatan.created_at, keberatan.updated_at,
+                           permohonan.nama, permohonan.email, permohonan.nohp, permohonan.alamat,
+                           permohonan.pekerjaan, permohonan.status as status_permohonan');
         $this->db->from('keberatan');
         $this->db->join('permohonan', 'keberatan.mohon_id = permohonan.mohon_id', 'left');
         $this->db->where('keberatan.id_keberatan', $id);
@@ -83,8 +89,7 @@ class Keberatan extends CI_Controller
             $data = array(
                 'status' => $post['status'],
                 'tanggapan' => $post['tanggapan'],
-                'putusan' => $post['putusan'],
-                'tanggal' => date('d-m-Y')
+                'putusan' => $post['putusan']
             );
 
             $result = $this->db->where('id_keberatan', $id)->update('keberatan', $data);
@@ -98,8 +103,12 @@ class Keberatan extends CI_Controller
             redirect(site_url('admin/keberatan'));
         }
 
-        // Get keberatan data
-        $this->db->select('keberatan.*, permohonan.*');
+        // Get keberatan data - use specific fields to avoid conflicts
+        $this->db->select('keberatan.id_keberatan, keberatan.mohon_id, keberatan.alasan, keberatan.kronologi,
+                           keberatan.tanggal, keberatan.tanggapan, keberatan.putusan, keberatan.status,
+                           keberatan.created_at, keberatan.updated_at,
+                           permohonan.nama, permohonan.email, permohonan.nohp, permohonan.alamat,
+                           permohonan.pekerjaan, permohonan.status as status_permohonan');
         $this->db->from('keberatan');
         $this->db->join('permohonan', 'keberatan.mohon_id = permohonan.mohon_id', 'left');
         $this->db->where('keberatan.id_keberatan', $id);
