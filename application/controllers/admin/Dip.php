@@ -51,8 +51,14 @@ class Dip extends CI_Controller
         $validation->set_rules($dokumen->rules());
 
         if ($validation->run()) {
-            $dokumen->save();
-            $this->session->set_flashdata('success', 'Berhasil disimpan');
+            $result = $dokumen->save();
+
+            if($result) {
+                $this->session->set_flashdata('success', 'Informasi berhasil ditambahkan');
+                redirect(site_url('admin/dip'));
+            } else {
+                $this->session->set_flashdata('error', 'Gagal menyimpan informasi');
+            }
         }
 
         $this->load->view("dev/admin/dip/add", $data);
@@ -62,29 +68,42 @@ class Dip extends CI_Controller
     {
          if (!isset($id)) redirect('admin/dip');
 
-       
+
          $dokumen = $this->dokumen_model;
          $validation = $this->form_validation;
          $validation->set_rules($dokumen->rules());
 
          if ($validation->run()) {
-             $dokumen->update();
-             $this->session->set_flashdata('success', 'Berhasil disimpan');
+             $result = $dokumen->update();
+
+             if($result) {
+                 $this->session->set_flashdata('success', 'Informasi berhasil diperbarui');
+             } else {
+                 $this->session->set_flashdata('error', 'Gagal memperbarui informasi');
+             }
+
+             // Redirect to list page after successful update
+             redirect(site_url('admin/dip'));
          }
+
          $data['nama_user'] = $this->session->userdata("nama");
          $data["dokumen"] = $dokumen->getById($id);
          if (!$data["dokumen"]) show_404();
-       
+
          $this->load->view("dev/admin/dip/edit", $data);
     }
 
     public function delete($id=null)
     {
         if (!isset($id)) show_404();
-        
+
         if ($this->dokumen_model->delete($id)) {
-            redirect(site_url('admin/dokumen'));
+            $this->session->set_flashdata('success', 'Informasi berhasil dihapus');
+        } else {
+            $this->session->set_flashdata('error', 'Gagal menghapus informasi');
         }
+
+        redirect(site_url('admin/dip'));
     }
 
 
