@@ -99,139 +99,188 @@
         <!--Page Header End-->
 
         <!--Form Permhononan-->
-        <section class="message-box">
+        <section class="message-box" style="padding: 60px 0;">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="white-box">
-                            <h3 class="box-title m-b-0">Formulir Permohonan Informasi Publik</h3>
-                            <p class="text-muted m-b-30 font-13"></p>
+                        <div class="white-box" style="padding: 30px;">
+                            <h3 class="box-title" style="margin-top: 0; margin-bottom: 10px;">Formulir Permohonan Informasi Publik</h3>
+                            <p class="text-muted" style="margin-bottom: 30px;">Lengkapi semua field yang bertanda (<span class="text-danger">*</span>) dengan benar</p>
 
                             <?php if($this->session->flashdata('success')): ?>
-                                <div class="alert alert-success alert-dismissible">
+                                <div class="alert alert-success alert-dismissible" style="padding: 15px; margin-bottom: 20px;">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <h4><i class="icon fa fa-check"></i> Sukses!</h4>
-                                    <?php echo $this->session->flashdata('success'); ?>
+                                    <i class="fa fa-check-circle"></i> <strong>Berhasil!</strong><br>
+                                    <span style="margin-top: 5px; display: inline-block;"><?php echo $this->session->flashdata('success'); ?></span>
                                 </div>
                             <?php endif; ?>
 
                             <?php if($this->session->flashdata('error')): ?>
-                                <div class="alert alert-danger alert-dismissible">
+                                <div class="alert alert-danger alert-dismissible" style="padding: 15px; margin-bottom: 20px;">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
-                                    <?php echo $this->session->flashdata('error'); ?>
+                                    <i class="fa fa-times-circle"></i> <strong>Error!</strong><br>
+                                    <span style="margin-top: 5px; display: inline-block;"><?php echo $this->session->flashdata('error'); ?></span>
                                 </div>
                             <?php endif; ?>
 
                             <?php if(isset($error_message)): ?>
-                                <div class="alert alert-danger alert-dismissible">
+                                <div class="alert alert-danger alert-dismissible" style="padding: 15px; margin-bottom: 20px;">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
-                                    <?php echo $error_message; ?>
+                                    <i class="fa fa-times-circle"></i> <strong>Error!</strong><br>
+                                    <span style="margin-top: 5px; display: inline-block;"><?php echo $error_message; ?></span>
                                 </div>
                             <?php endif; ?>
 
                             <?php if(validation_errors()): ?>
-                                <div class="alert alert-warning alert-dismissible">
+                                <div class="alert alert-warning alert-dismissible" style="padding: 15px; margin-bottom: 20px;">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <h4><i class="icon fa fa-warning"></i> Validation Error!</h4>
-                                    <?php echo validation_errors(); ?>
+                                    <i class="fa fa-exclamation-triangle"></i> <strong>Perhatian!</strong> Mohon perbaiki kesalahan berikut:
+                                    <?php echo validation_errors('<div style="margin-top: 5px;">- ', '</div>'); ?>
                                 </div>
                             <?php endif; ?>
 
-                            <form  data-toogle = "validator" class="form-horizontal" action="<?php echo base_url('index.php/pub/permohonan/permohonan') ?>" method="post" enctype="multipart/form-data">
-                                <div class="form-group">
-                                    <label class="col-md-12">Nama</label>
+                            <form data-toogle="validator" class="form-horizontal" action="<?php echo base_url('index.php/pub/permohonan/permohonan') ?>" method="post" enctype="multipart/form-data">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label class="col-md-12" style="margin-bottom: 8px;"><strong>Nama Lengkap <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" <?php echo form_error('nama') ? 'is-invalid' : '' ?> name = "nama" placeholder="Nama" value="<?php echo set_value('nama'); ?>" required>
-										<div class="help-block with-errors"><?php echo form_error('nama'); ?></div>
+                                        <input type="text" class="form-control <?php echo form_error('nama') ? 'is-invalid' : '' ?>" name="nama" placeholder="Masukkan nama lengkap Anda" value="<?php echo set_value('nama'); ?>" required>
+										<?php if(form_error('nama')): ?>
+                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('nama'); ?></div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-12">Pekerjaan</label>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label class="col-md-12" style="margin-bottom: 8px;"><strong>Pekerjaan <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" <?php echo form_error('pekerjaan') ? 'is-invalid' : '' ?> name = "pekerjaan" placeholder="Pekerjaan" value="<?php echo set_value('pekerjaan'); ?>" required>
-                                        <div class="help-block with-errors"><?php echo form_error('pekerjaan'); ?></div>
+                                        <input type="text" class="form-control <?php echo form_error('pekerjaan') ? 'is-invalid' : '' ?>" name="pekerjaan" placeholder="Masukkan pekerjaan Anda" value="<?php echo set_value('pekerjaan'); ?>" required>
+                                        <?php if(form_error('pekerjaan')): ?>
+                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('pekerjaan'); ?></div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-12">Alamat</label>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label class="col-md-12" style="margin-bottom: 8px;"><strong>Alamat <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" <?php echo form_error('alamat') ? 'is-invalid' : '' ?> name = "alamat" placeholder="Alamat" value="<?php echo set_value('alamat'); ?>" required>
-                                        <div class="help-block with-errors"><?php echo form_error('alamat'); ?></div>
+                                        <input type="text" class="form-control <?php echo form_error('alamat') ? 'is-invalid' : '' ?>" name="alamat" placeholder="Masukkan alamat lengkap Anda" value="<?php echo set_value('alamat'); ?>" required>
+                                        <?php if(form_error('alamat')): ?>
+                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('alamat'); ?></div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-12">Nomor Telepon</label>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label class="col-md-12" style="margin-bottom: 8px;"><strong>Nomor Telepon <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" <?php echo form_error('nohp') ? 'is-invalid' : '' ?> name = "nohp" placeholder="No Telepon" value="<?php echo set_value('nohp'); ?>" required>
-                                        <div class="help-block with-errors"><?php echo form_error('nohp'); ?></div>
+                                        <input type="text" class="form-control <?php echo form_error('nohp') ? 'is-invalid' : '' ?>" name="nohp" placeholder="Masukkan nomor telepon Anda" value="<?php echo set_value('nohp'); ?>" required>
+                                        <?php if(form_error('nohp')): ?>
+                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('nohp'); ?></div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-12">email</label>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label class="col-md-12" style="margin-bottom: 8px;"><strong>Email <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">
-                                        <input type="email" id="email" <?php echo form_error('email') ? 'is-invalid' : '' ?> name = "email"  class="form-control"  placeholder="Email" value="<?php echo set_value('email'); ?>" required>
-                                        <div class="help-block with-errors"><?php echo form_error('email'); ?></div>
+                                        <input type="email" id="email" class="form-control <?php echo form_error('email') ? 'is-invalid' : '' ?>" name="email" placeholder="Masukkan alamat email Anda" value="<?php echo set_value('email'); ?>" required>
+                                        <?php if(form_error('email')): ?>
+                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('email'); ?></div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-12">Rincian Informasi</label>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label class="col-md-12" style="margin-bottom: 8px;"><strong>Rincian Informasi yang Dibutuhkan <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">
-                                        <textarea class="form-control" <?php echo form_error('rincian') ? 'is-invalid' : '' ?> name = "rincian" rows="5" required><?php echo set_value('rincian'); ?></textarea>
-                                        <div class="help-block with-errors"><?php echo form_error('rincian'); ?></div>
+                                        <textarea class="form-control <?php echo form_error('rincian') ? 'is-invalid' : '' ?>" name="rincian" rows="5" placeholder="Jelaskan secara rinci informasi yang Anda butuhkan" required><?php echo set_value('rincian'); ?></textarea>
+                                        <?php if(form_error('rincian')): ?>
+                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('rincian'); ?></div>
+                                        <?php endif; ?>
+                                        <span class="help-block" style="margin-top: 5px;"><small>Jelaskan informasi yang Anda butuhkan sejelas mungkin</small></span>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-12">Tujuan Penggunaan Informasi</label>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label class="col-md-12" style="margin-bottom: 8px;"><strong>Tujuan Penggunaan Informasi <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">
-                                        <textarea class="form-control" <?php echo form_error('tujuan') ? 'is-invalid' : '' ?> name = "tujuan" rows="5" required><?php echo set_value('tujuan'); ?></textarea>
-                                        <div class="help-block with-errors"><?php echo form_error('tujuan'); ?></div>
+                                        <textarea class="form-control <?php echo form_error('tujuan') ? 'is-invalid' : '' ?>" name="tujuan" rows="5" placeholder="Jelaskan tujuan penggunaan informasi yang diminta" required><?php echo set_value('tujuan'); ?></textarea>
+                                        <?php if(form_error('tujuan')): ?>
+                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('tujuan'); ?></div>
+                                        <?php endif; ?>
+                                        <span class="help-block" style="margin-top: 5px;"><small>Jelaskan untuk apa informasi tersebut akan digunakan</small></span>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-12">Cara Memperoleh Informasi</label>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label class="col-sm-12" style="margin-bottom: 8px;"><strong>Cara Memperoleh Informasi <span class="text-danger">*</span></strong></label>
                                     <div class="col-sm-12">
-                                        <select class="form-control" <?php echo form_error('caraperoleh') ? 'is-invalid' : '' ?> name = "caraperoleh">
-											<option value = "Mendapat Salinan informasi (hardcopy/softcopy)" >Mendapat Salinan informasi (hardcopy/softcopy)</option>
-                                            <option value = "Melihat/membaca/mendengarkan/mecatat">Melihat/membaca/ mendengarkan/mecatat</option>
-                                            
+                                        <select class="form-control <?php echo form_error('caraperoleh') ? 'is-invalid' : '' ?>" name="caraperoleh" required>
+											<option value="Mendapat Salinan informasi (hardcopy/softcopy)">Mendapat Salinan Informasi (Hardcopy/Softcopy)</option>
+                                            <option value="Melihat/membaca/mendengarkan/mecatat">Melihat/Membaca/Mendengarkan/Mencatat</option>
                                         </select>
+                                        <?php if(form_error('caraperoleh')): ?>
+                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('caraperoleh'); ?></div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-12">Cara Mendapat Salinan Informasi</label>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label class="col-sm-12" style="margin-bottom: 8px;"><strong>Cara Mendapat Salinan Informasi <span class="text-danger">*</span></strong></label>
                                     <div class="col-sm-12">
-                                        <select class="form-control" <?php echo form_error('caradapat') ? 'is-invalid' : '' ?> name = "caradapat">
-                                            <option value = "Mengambil Langsung">Mengambil Langsung</option>
-                                            <option value = "Kurir">Kurir</option>
-                                            <option value = "Pos">Pos</option>
-                                            <option value = "faksimil">faksimil</option>
-                                            <option value = "E-mail">E-mail</option>
+                                        <select class="form-control <?php echo form_error('caradapat') ? 'is-invalid' : '' ?>" name="caradapat" required>
+                                            <option value="Mengambil Langsung">Mengambil Langsung</option>
+                                            <option value="Kurir">Kurir</option>
+                                            <option value="Pos">Pos</option>
+                                            <option value="Faksimil">Faksimil</option>
+                                            <option value="E-mail">E-mail</option>
                                         </select>
+                                        <?php if(form_error('caradapat')): ?>
+                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('caradapat'); ?></div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-12">Upload Foto KTP</label>
+
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label class="col-sm-12" style="margin-bottom: 8px;"><strong>Upload Foto KTP <span class="text-danger">*</span></strong></label>
                                     <div class="col-sm-12">
                                         <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                                             <div class="form-control" data-trigger="fileinput"> <i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
-                                            <span class="input-group-addon btn btn-default btn-file"> <span class="fileinput-new">Select file</span> <span class="fileinput-exists">Change</span>
+                                            <span class="input-group-addon btn btn-default btn-file"> <span class="fileinput-new">Pilih File</span> <span class="fileinput-exists">Ganti</span>
                                             <input class="form-control-file <?php echo form_error('ktp') ? 'is-invalid' : '' ?>" type="file" name="ktp" required>
-                                            </span> <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a></div>
+                                            </span> <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Hapus</a></div>
+                                        <?php if(form_error('ktp')): ?>
+                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('ktp'); ?></div>
+                                        <?php endif; ?>
+                                        <span class="help-block" style="margin-top: 5px;"><small>Upload foto KTP dalam format JPG, PNG, atau PDF (Maksimal 2MB)</small></span>
                                     </div>
                                 </div>
-								<div class="form-group">
-                                    <div class="checkbox">
-                                        <input type="checkbox" id="terms" data-error="Before you wreck yourself" required>
-                                        <label for="terms" > <a href ='#' data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Hak-hak Pemohon Informasi</a> </label>
-                                        <div class="help-block with-errors"></div>
+
+								<div class="form-group" style="margin-bottom: 25px;">
+                                    <div class="col-sm-12">
+                                        <div class="checkbox" style="margin-top: 0;">
+                                            <label style="font-weight: normal;">
+                                                <input type="checkbox" id="terms" data-error="Anda harus menyetujui syarat dan ketentuan" required>
+                                                Saya telah membaca dan menyetujui <a href="#" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><strong>Hak-hak Pemohon Informasi</strong></a>
+                                            </label>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
                                     </div>
                                 </div>
-								
-                                <br>
-                                <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
-                                <button type="submit" class="btn btn-inverse waves-effect waves-light">Cancel</button>
+
+                                <hr style="margin: 30px 0;">
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-success btn-lg waves-effect waves-light" style="padding: 12px 40px;">
+                                                <i class="fa fa-paper-plane"></i> Kirim Permohonan
+                                            </button>
+                                            <a href="<?php echo site_url('pub/permohonan/caripermohonan'); ?>" class="btn btn-default btn-lg waves-effect waves-light" style="padding: 12px 30px;">
+                                                <i class="fa fa-times"></i> Batal
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
 							<div id = "exampleModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
                                 <div class="modal-dialog modal-lg">
