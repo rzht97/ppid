@@ -462,7 +462,7 @@ $config['global_xss_filtering'] = FALSE;
 | 'csrf_regenerate' = Regenerate token on every submission
 | 'csrf_exclude_uris' = Array of URIs which ignore CSRF checks
 */
-$config['csrf_protection'] = TRUE;  // ENABLED for security
+$config['csrf_protection'] = FALSE;  // TEMPORARILY DISABLED for debugging login issue
 $config['csrf_token_name'] = 'ppid_csrf_token';
 $config['csrf_cookie_name'] = 'ppid_csrf_cookie';
 $config['csrf_expire'] = 7200;  // 2 hours
