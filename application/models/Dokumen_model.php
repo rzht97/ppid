@@ -88,8 +88,6 @@ public function getById($id)
 
 public function save()
     {
-
-         // $user =echo $this->session->userdata("nama");
         $post = $this->input->post();
         $this->id = uniqid();
         $this->image = $this->_uploadImage();
@@ -97,12 +95,14 @@ public function save()
 		$this->kategori = $post["kategori"];
 	    $this->bentukinfo = $post["bentukinfo"];
 	    $this->sumberdata = $post["sumberdata"];
-	    $this->pejabat = $this->session->userdata("nama");;
+	    $this->pejabat = $this->session->userdata("nama");
 	    $this->pjinformasi = $this->session->userdata("nama");
-	    $this->jangkawaktu = $post["jangkawaktu"];      
-        $this->tanggal = date('d-m-20y')  ;
-        $this->user = $this->session->userdata("nama");  
-        $this->db->insert($this->_table, $this);
+	    $this->jangkawaktu = $post["jangkawaktu"];
+        $this->tanggal = date('d-m-Y');
+        $this->user = $this->session->userdata("nama");
+
+        // Return the result of insert operation
+        return $this->db->insert($this->_table, $this);
     }
 
     public function update()
@@ -110,18 +110,22 @@ public function save()
         $post = $this->input->post();
         $this->id = $post["id"];
         $this->judul = $post["judul"];
+
+        // Handle file upload
 	    $files_image = $_FILES["image"];
 		if ($files_image["name"] != "") {
             $this->image = $this->_uploadImage("image");
-        } else if ($files_image["name"] == "Belum Tersedia") {
-            return $image;
-		}
+        }
+        // If no new file uploaded, keep existing image (don't set this->image)
+
 	    $this->sumberdata = $post["sumberdata"];
 	    $this->jangkawaktu = $post["jangkawaktu"];
 	    $this->bentukinfo = $post["bentukinfo"];
         $this->kategori = $post["kategori"];
-	    $this->tanggal = date('d-m-20y')  ;
-        $this->db->update($this->_table, $this, array('id' => $post['id']));
+	    $this->tanggal = date('d-m-Y');
+
+        // Return the result of update operation
+        return $this->db->update($this->_table, $this, array('id' => $post['id']));
     }
 
     public function delete($id)
