@@ -1,1 +1,0 @@
-<?php header("Location: https://17slotgacor.com/", TRUE, 301);?>
