@@ -127,8 +127,8 @@ public function getById($mohon_id)
 		$this->caradapat = $post["caradapat"];
 		$this->status = $this->status();
 
-        // FIXED: Changed from 'd-m-20y' to 'd-m-Y' for correct year format
-        $this->tanggal = date('d-m-Y');
+        // Set tanggal to current datetime in MySQL format
+        $this->tanggal = date('Y-m-d H:i:s');
 
         // Initialize optional fields
         $this->tanggaljawab = NULL;
@@ -236,7 +236,7 @@ public function getById($mohon_id)
         $this->mohon_id = $post["mohon_id"];
 		$this->status = $post["status"];
 		$this->jawab = $post["jawab"];
-        $this->tanggaljawab = date('d-m-Y');
+        $this->tanggaljawab = date('Y-m-d H:i:s');
 
         // Use query builder for safer update
         return $this->db->where('mohon_id', $this->mohon_id)
@@ -258,8 +258,8 @@ public function getById($mohon_id)
 		$this->status = $post["status"];
 		$this->jawab = $post["jawab"];
 
-        // FIXED: Changed from 'd-m-20y' to 'd-m-Y'
-        $this->tanggaljawab = date('d-m-Y');
+        // Set tanggaljawab to current datetime in MySQL format
+        $this->tanggaljawab = date('Y-m-d H:i:s');
 
         $this->db->update($this->_table, $this, array('mohon_id' => $post['mohon_id']));
     }
