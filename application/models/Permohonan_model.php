@@ -107,10 +107,32 @@ public function getById($mohon_id)
     {
         $post = $this->input->post();
 
-        // Generate ID with format: P + DDMMYY + auto increment (001, 002, ...)
-        // Example: P191125001, P191125002, P191125003...
-        // Resets to 001 every new day
-        $this->mohon_id = $this->_generateMohonId();
+        // Generate unique mohon_id with retry mechanism for race conditions
+        $max_retries = 10;
+        $retry_count = 0;
+        $unique_id_found = false;
+
+        while (!$unique_id_found && $retry_count < $max_retries) {
+            // Generate ID with format: P + DDMMYY + auto increment (001, 002, ...)
+            $this->mohon_id = $this->_generateMohonId();
+
+            // Check if ID already exists
+            $existing = $this->db->get_where($this->_table, ['mohon_id' => $this->mohon_id])->num_rows();
+
+            if ($existing == 0) {
+                $unique_id_found = true;
+                log_message('debug', 'Unique mohon_id generated: ' . $this->mohon_id);
+            } else {
+                $retry_count++;
+                log_message('debug', 'Duplicate mohon_id detected: ' . $this->mohon_id . ', retry #' . $retry_count);
+                // Small delay to reduce race condition probability
+                usleep(10000); // 10ms delay
+            }
+        }
+
+        if (!$unique_id_found) {
+            throw new Exception('Gagal generate mohon_id unik setelah ' . $max_retries . ' percobaan. Silakan coba lagi.');
+        }
 
 		// Upload KTP file
 		$this->ktp = $this->_uploadFile();
@@ -167,20 +189,7 @@ public function getById($mohon_id)
             'jawab' => NULL
         );
 
-        // Log prepared data with exact lengths
-        log_message('debug', 'mohon_id length: ' . strlen($this->mohon_id));
-        log_message('debug', 'Full insert data: ' . json_encode($data));
-
-        // Check for existing ID before insert
-        $existing = $this->db->get_where($this->_table, ['mohon_id' => $this->mohon_id])->num_rows();
-        log_message('debug', 'Existing records with this ID: ' . $existing);
-
-        if($existing > 0){
-            throw new Exception('Duplicate mohon_id detected: ' . $this->mohon_id);
-        }
-
-        // ALTERNATIVE: Direct insert WITHOUT transaction to debug
-        // Insert with data array instead of $this
+        // Insert with data array
         $result = $this->db->insert($this->_table, $data);
 
         // Get immediate results BEFORE any other operation
