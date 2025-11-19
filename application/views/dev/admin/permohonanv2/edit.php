@@ -65,85 +65,46 @@
                                     <h4 class="m-t-30 m-b-20"><i class="fa fa-user"></i> Data Pemohon</h4>
                                     <hr class="m-t-0 m-b-30">
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4"><strong>Nama</strong></label>
-                                                <div class="col-md-8">
-                                                    <p class="form-control-static"><?php echo $permohonan->nama ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4"><strong>Pekerjaan</strong></label>
-                                                <div class="col-md-8">
-                                                    <p class="form-control-static"><?php echo $permohonan->pekerjaan ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4"><strong>Alamat</strong></label>
-                                                <div class="col-md-8">
-                                                    <p class="form-control-static"><?php echo $permohonan->alamat ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4"><strong>No HP</strong></label>
-                                                <div class="col-md-8">
-                                                    <p class="form-control-static"><?php echo $permohonan->nohp ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4"><strong>Email</strong></label>
-                                                <div class="col-md-8">
-                                                    <p class="form-control-static"><?php echo $permohonan->email ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4"><strong>Tanggal</strong></label>
-                                                <div class="col-md-8">
-                                                    <p class="form-control-static"><?php echo $permohonan->tanggal ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-2"><strong>KTP</strong></label>
-                                                <div class="col-md-10">
-                                                    <?php if($permohonan->ktp != "Belum Tersedia"): ?>
-                                                        <div class="row">
-                                                            <div class="col-md-3">
-                                                                <img src="<?php echo base_url("upload/ktp/").$permohonan->ktp ?>" class="img-responsive img-thumbnail" style="max-height: 200px;">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="20%" class="active"><strong>Nama</strong></td>
+                                                    <td width="30%"><?php echo $permohonan->nama ?></td>
+                                                    <td width="20%" class="active"><strong>Pekerjaan</strong></td>
+                                                    <td width="30%"><?php echo $permohonan->pekerjaan ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="active"><strong>Alamat</strong></td>
+                                                    <td><?php echo $permohonan->alamat ?></td>
+                                                    <td class="active"><strong>No HP</strong></td>
+                                                    <td><?php echo $permohonan->nohp ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="active"><strong>Email</strong></td>
+                                                    <td><?php echo $permohonan->email ?></td>
+                                                    <td class="active"><strong>Tanggal Permohonan</strong></td>
+                                                    <td><?php echo $permohonan->tanggal ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="active"><strong>KTP</strong></td>
+                                                    <td colspan="3">
+                                                        <?php if($permohonan->ktp != "Belum Tersedia"): ?>
+                                                            <div class="m-t-10 m-b-10">
+                                                                <img src="<?php echo base_url("upload/ktp/").$permohonan->ktp ?>" class="img-thumbnail" style="max-height: 150px; max-width: 250px;">
+                                                                <div class="m-t-10">
+                                                                    <a href="<?php echo base_url("upload/ktp/").$permohonan->ktp ?>" target="_blank" class="btn btn-info btn-sm">
+                                                                        <i class="fa fa-search-plus"></i> Lihat Fullsize
+                                                                    </a>
+                                                                </div>
                                                             </div>
-                                                            <div class="col-md-3">
-                                                                <a href="<?php echo base_url("upload/ktp/").$permohonan->ktp ?>" target="_blank" class="btn btn-info btn-sm">
-                                                                    <i class="fa fa-search-plus"></i> Lihat Fullsize
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    <?php else: ?>
-                                                        <p class="form-control-static text-muted"><i>Belum tersedia</i></p>
-                                                    <?php endif; ?>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                        <?php else: ?>
+                                                            <span class="text-muted"><i>Belum tersedia</i></span>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
 
                                     <h4 class="m-t-40 m-b-20"><i class="fa fa-file-text"></i> Detail Permohonan</h4>
