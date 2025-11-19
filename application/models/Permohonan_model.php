@@ -156,39 +156,52 @@ public function getById($mohon_id)
             'jawab' => NULL
         );
 
-        // CRITICAL FIX: Start explicit transaction to ensure commit
-        $this->db->trans_start();
+        // Log prepared data with exact lengths
+        log_message('debug', 'mohon_id length: ' . strlen($this->mohon_id));
+        log_message('debug', 'Full insert data: ' . json_encode($data));
 
+        // Check for existing ID before insert
+        $existing = $this->db->get_where($this->_table, ['mohon_id' => $this->mohon_id])->num_rows();
+        log_message('debug', 'Existing records with this ID: ' . $existing);
+
+        if($existing > 0){
+            throw new Exception('Duplicate mohon_id detected: ' . $this->mohon_id);
+        }
+
+        // ALTERNATIVE: Direct insert WITHOUT transaction to debug
         // Insert with data array instead of $this
         $result = $this->db->insert($this->_table, $data);
 
-        // Complete transaction (auto commit if successful, rollback if failed)
-        $this->db->trans_complete();
+        // Get immediate results BEFORE any other operation
+        $affected = $this->db->affected_rows();
+        $last_query = $this->db->last_query();
+        $db_error = $this->db->error();
 
-        // Log the actual SQL query
-        log_message('debug', 'SQL Query: ' . $this->db->last_query());
+        // Log the actual SQL query and results
+        log_message('debug', 'SQL Query: ' . $last_query);
         log_message('debug', 'Insert result: ' . ($result ? 'TRUE' : 'FALSE'));
-        log_message('debug', 'Transaction status: ' . ($this->db->trans_status() ? 'SUCCESS' : 'FAILED'));
-        log_message('debug', 'Affected rows: ' . $this->db->affected_rows());
-        log_message('debug', 'Insert ID: ' . $this->db->insert_id());
-
-        // Check transaction status
-        if($this->db->trans_status() === FALSE){
-            log_message('error', 'Transaction failed - data rolled back');
-            throw new Exception('Gagal menyimpan data ke database: Transaction failed');
-        }
+        log_message('debug', 'Affected rows (immediate): ' . $affected);
+        log_message('debug', 'DB Error code: ' . $db_error['code']);
+        log_message('debug', 'DB Error message: ' . $db_error['message']);
 
         if(!$result){
-            // Log database error
-            $db_error = $this->db->error();
-            log_message('error', 'Database insert failed: ' . json_encode($db_error));
+            log_message('error', 'Database insert returned FALSE: ' . json_encode($db_error));
             throw new Exception('Gagal menyimpan data ke database: ' . $db_error['message']);
         }
 
-        // Check if any rows were actually inserted
-        if($this->db->affected_rows() == 0){
+        // Check affected rows IMMEDIATELY after insert
+        if($affected == 0){
             log_message('error', 'Insert returned TRUE but affected_rows = 0');
-            throw new Exception('Data tidak berhasil disimpan (affected_rows = 0)');
+            log_message('error', 'This might indicate: duplicate key, trigger rollback, or constraint violation');
+
+            // Try to query the record to see if it exists despite affected_rows=0
+            $verify_insert = $this->db->get_where($this->_table, ['mohon_id' => $this->mohon_id])->row();
+            if($verify_insert){
+                log_message('debug', 'STRANGE: affected_rows=0 but data exists! Probably duplicate key.');
+                // Data exists, continue anyway
+            } else {
+                throw new Exception('Data tidak berhasil disimpan (affected_rows = 0, no duplicate found)');
+            }
         }
 
         return $result;
