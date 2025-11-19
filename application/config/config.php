@@ -462,12 +462,12 @@ $config['global_xss_filtering'] = FALSE;
 | 'csrf_regenerate' = Regenerate token on every submission
 | 'csrf_exclude_uris' = Array of URIs which ignore CSRF checks
 */
-$config['csrf_protection'] = TRUE;  // ENABLED for security
+$config['csrf_protection'] = FALSE;  // DISABLED - CI3 + PHP 8.1 compatibility issues
 $config['csrf_token_name'] = 'ppid_csrf_token';
 $config['csrf_cookie_name'] = 'ppid_csrf_cookie';
 $config['csrf_expire'] = 7200;  // 2 hours
 $config['csrf_regenerate'] = TRUE;  // Regenerate on each request for better security
-$config['csrf_exclude_uris'] = array('login/aksi_login');  // Exclude login because we use raw $_POST
+$config['csrf_exclude_uris'] = array();  // Not needed when disabled
 
 /*
 |--------------------------------------------------------------------------
