@@ -244,11 +244,23 @@
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label class="col-sm-12" style="margin-bottom: 8px;"><strong>Upload Foto KTP <span class="text-danger">*</span></strong></label>
                                     <div class="col-sm-12">
-                                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                            <div class="form-control" data-trigger="fileinput"> <i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
-                                            <span class="input-group-addon btn btn-default btn-file"> <span class="fileinput-new">Pilih File</span> <span class="fileinput-exists">Ganti</span>
-                                            <input class="form-control-file <?php echo form_error('ktp') ? 'is-invalid' : '' ?>" type="file" name="ktp" id="ktpInput" accept="image/jpeg,image/jpg,image/png,application/pdf" required>
-                                            </span> <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput" onclick="clearKtpPreview()">Hapus</a></div>
+                                        <!-- Custom File Upload -->
+                                        <div style="margin-bottom: 10px;">
+                                            <div style="position: relative; display: inline-block; width: 100%;">
+                                                <input type="file" name="ktp" id="ktpInput" accept="image/jpeg,image/jpg,image/png,application/pdf" required style="display: none;">
+                                                <div class="input-group" style="width: 100%;">
+                                                    <input type="text" id="ktpFileName" class="form-control" placeholder="Belum ada file yang dipilih" readonly style="background-color: #fff; cursor: pointer;">
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-primary" onclick="document.getElementById('ktpInput').click();" style="height: 34px;">
+                                                            <i class="fa fa-folder-open"></i> Pilih File
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <button type="button" id="clearKtpBtn" class="btn btn-danger btn-sm" onclick="clearKtpFile()" style="margin-top: 8px; display: none;">
+                                                <i class="fa fa-times"></i> Hapus File
+                                            </button>
+                                        </div>
                                         <?php if(form_error('ktp')): ?>
                                             <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('ktp'); ?></div>
                                         <?php endif; ?>
@@ -393,6 +405,8 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 		// Function to handle KTP file upload preview
 		document.getElementById('ktpInput').addEventListener('change', function(e) {
 			const file = e.target.files[0];
+			const fileNameDisplay = document.getElementById('ktpFileName');
+			const clearBtn = document.getElementById('clearKtpBtn');
 			const previewContainer = document.getElementById('ktpPreviewContainer');
 			const imagePreview = document.getElementById('ktpPreview');
 			const pdfPreview = document.getElementById('pdfPreview');
@@ -403,12 +417,18 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 				if (file.size > 2097152) {
 					alert('Ukuran file terlalu besar! Maksimal 2MB.');
 					e.target.value = '';
+					fileNameDisplay.value = '';
+					clearBtn.style.display = 'none';
 					previewContainer.style.display = 'none';
 					return;
 				}
 
 				const fileType = file.type;
 				const fileName = file.name;
+
+				// Display file name
+				fileNameDisplay.value = fileName;
+				clearBtn.style.display = 'inline-block';
 
 				// Show preview container
 				previewContainer.style.display = 'block';
@@ -434,23 +454,41 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 				else {
 					alert('Format file tidak didukung! Gunakan JPG, PNG, atau PDF.');
 					e.target.value = '';
+					fileNameDisplay.value = '';
+					clearBtn.style.display = 'none';
 					previewContainer.style.display = 'none';
 				}
 			} else {
+				fileNameDisplay.value = '';
+				clearBtn.style.display = 'none';
 				previewContainer.style.display = 'none';
 			}
 		});
 
-		// Function to clear preview when "Hapus" button is clicked
-		function clearKtpPreview() {
+		// Function to clear file when "Hapus File" button is clicked
+		function clearKtpFile() {
+			const fileInput = document.getElementById('ktpInput');
+			const fileNameDisplay = document.getElementById('ktpFileName');
+			const clearBtn = document.getElementById('clearKtpBtn');
 			const previewContainer = document.getElementById('ktpPreviewContainer');
 			const imagePreview = document.getElementById('ktpPreview');
 
+			// Clear file input
+			fileInput.value = '';
+			fileNameDisplay.value = '';
+			clearBtn.style.display = 'none';
+
+			// Clear preview
 			previewContainer.style.display = 'none';
 			imagePreview.src = '';
 
-			return true;
+			return false;
 		}
+
+		// Make the text input clickable to trigger file selection
+		document.getElementById('ktpFileName').addEventListener('click', function() {
+			document.getElementById('ktpInput').click();
+		});
 	</script>
 
 </body>
