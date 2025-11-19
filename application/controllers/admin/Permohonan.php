@@ -80,8 +80,14 @@ class Permohonan extends CI_Controller
         $validation->set_rules($permohonan->rules());
 
         if ($validation->run()) {
-            $permohonan->save();
-            $this->session->set_flashdata('success', 'Berhasil disimpan');
+            $result = $permohonan->save();
+
+            if($result) {
+                $this->session->set_flashdata('success', 'Permohonan berhasil ditambahkan');
+                redirect(site_url('admin/permohonan'));
+            } else {
+                $this->session->set_flashdata('error', 'Gagal menyimpan data permohonan');
+            }
         }
 
         $this->load->view("dev/admin/permohonanv2/add", $data);

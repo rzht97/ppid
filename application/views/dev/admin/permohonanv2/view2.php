@@ -50,6 +50,21 @@
                     <div class="white-box">
                         <h3 class="box-title m-b-0">Daftar Permohonan Informasi</h3>
                         <br>
+
+                        <?php if($this->session->flashdata('success')): ?>
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <i class="fa fa-check-circle"></i> <?php echo $this->session->flashdata('success'); ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if($this->session->flashdata('error')): ?>
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <i class="fa fa-times-circle"></i> <?php echo $this->session->flashdata('error'); ?>
+                            </div>
+                        <?php endif; ?>
+
                         <div class="card-header">
                             <a href="<?php echo site_url('admin/permohonan/add') ?>" class="fcbtn btn btn-outline btn-success btn-1b"><i class="fa fa-plus"></i> Add New</a>
                         </div>
