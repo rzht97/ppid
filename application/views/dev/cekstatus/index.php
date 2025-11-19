@@ -426,11 +426,6 @@
                                                 <a href="<?php echo site_url('keberatan/index/'.$data->mohon_id); ?>" class="btn btn-warning btn-lg" style="padding: 12px 30px;">
                                                     <i class="fa fa-exclamation-circle"></i> Ajukan Keberatan
                                                 </a>
-                                            <?php else: ?>
-                                                <!-- Tombol lihat detail lengkap keberatan -->
-                                                <a href="<?php echo site_url('keberatan/detail/'.$data->keberatan_data->id_keberatan); ?>" class="btn btn-info btn-lg" style="padding: 12px 30px;">
-                                                    <i class="fa fa-eye"></i> Lihat Detail Lengkap
-                                                </a>
                                             <?php endif; ?>
                                         </div>
                                     <?php endforeach; ?>
