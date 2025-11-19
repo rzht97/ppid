@@ -207,17 +207,21 @@
                                                 </h4>
                                             </div>
                                             <div class="panel-body" style="padding: 25px;">
-                                                <div class="form-group" style="margin-bottom: 20px;">
-                                                    <label style="margin-bottom: 8px;"><strong>Rincian Informasi yang Dibutuhkan</strong></label>
-                                                    <p class="form-control-static" style="white-space: pre-wrap; background-color: #f9f9f9; padding: 15px; border: 1px solid #e3e3e3; border-radius: 4px; margin: 0;">
-                                                        <?php echo $data->rincian ?>
-                                                    </p>
+                                                <div class="form-group" style="margin-bottom: 25px;">
+                                                    <label style="margin-bottom: 10px; font-size: 15px; color: #333;"><strong>Rincian Informasi yang Dibutuhkan</strong></label>
+                                                    <div style="background-color: #ffffff; padding: 20px; border: 2px solid #e8e8e8; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                                        <p style="white-space: pre-wrap; margin: 0; line-height: 1.8; font-size: 14px; color: #555;">
+                                                            <?php echo $data->rincian ?>
+                                                        </p>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group" style="margin-bottom: 0;">
-                                                    <label style="margin-bottom: 8px;"><strong>Tujuan Penggunaan Informasi</strong></label>
-                                                    <p class="form-control-static" style="white-space: pre-wrap; background-color: #f9f9f9; padding: 15px; border: 1px solid #e3e3e3; border-radius: 4px; margin: 0;">
-                                                        <?php echo $data->tujuan ?>
-                                                    </p>
+                                                    <label style="margin-bottom: 10px; font-size: 15px; color: #333;"><strong>Tujuan Penggunaan Informasi</strong></label>
+                                                    <div style="background-color: #ffffff; padding: 20px; border: 2px solid #e8e8e8; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                                        <p style="white-space: pre-wrap; margin: 0; line-height: 1.8; font-size: 14px; color: #555;">
+                                                            <?php echo $data->tujuan ?>
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -255,17 +259,21 @@
 
                                                 <?php if (!empty($data->jawab)): ?>
                                                 <div class="form-group" style="margin-bottom: 0;">
-                                                    <label style="margin-bottom: 10px;"><strong>Jawaban/Hasil Pemrosesan</strong></label>
-                                                    <div class="alert alert-info" style="margin: 0; padding: 15px;">
-                                                        <p style="white-space: pre-wrap; margin: 0;">
+                                                    <label style="margin-bottom: 10px; font-size: 15px; color: #333;"><strong>Jawaban/Hasil Pemrosesan</strong></label>
+                                                    <div style="background-color: #e8f4f8; padding: 20px; border: 2px solid #b8dce8; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                                        <p style="white-space: pre-wrap; margin: 0; line-height: 1.8; font-size: 14px; color: #31708f;">
                                                             <?php echo $data->jawab ?>
                                                         </p>
                                                     </div>
                                                 </div>
                                                 <?php else: ?>
                                                 <div class="form-group" style="margin-bottom: 0;">
-                                                    <label style="margin-bottom: 8px;"><strong>Jawaban/Hasil Pemrosesan</strong></label>
-                                                    <p class="text-muted" style="margin: 0;"><em>Belum ada jawaban. Permohonan masih dalam proses.</em></p>
+                                                    <label style="margin-bottom: 10px; font-size: 15px; color: #333;"><strong>Jawaban/Hasil Pemrosesan</strong></label>
+                                                    <div style="background-color: #f9f9f9; padding: 20px; border: 2px dashed #ddd; border-radius: 6px;">
+                                                        <p class="text-muted" style="margin: 0; font-style: italic; text-align: center; font-size: 14px;">
+                                                            <i class="fa fa-clock-o"></i> Belum ada jawaban. Permohonan masih dalam proses.
+                                                        </p>
+                                                    </div>
                                                 </div>
                                                 <?php endif; ?>
                                             </div>
