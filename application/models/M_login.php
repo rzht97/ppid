@@ -2,7 +2,7 @@
 
 class M_login extends CI_Model{
 
-    private $_table = "user"; // Fixed: Changed from 'admin' to 'user'
+    private $_table = "admin";
 
     public $id;
     public $username;
