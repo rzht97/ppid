@@ -89,8 +89,17 @@ public function getById($mohon_id)
     {
         $post = $this->input->post();
 
-        // Generate unique ID
-        $this->mohon_id = date('dmy').substr(hexdec(uniqid()),7);
+        // Generate unique ID - EXACTLY 11 characters to match database column
+        // Format: DDMMYY + 5 random digits = 11 chars total
+        // Example: 19112512345
+        $this->mohon_id = date('dmy') . substr(str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT), 0, 5);
+
+        // Ensure uniqueness - retry if duplicate exists
+        $retry_count = 0;
+        while($this->db->get_where($this->_table, ['mohon_id' => $this->mohon_id])->num_rows() > 0 && $retry_count < 5){
+            $this->mohon_id = date('dmy') . substr(str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT), 0, 5);
+            $retry_count++;
+        }
 
 		// Upload KTP file
 		$this->ktp = $this->_uploadFile();
