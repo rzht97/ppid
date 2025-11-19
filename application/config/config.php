@@ -467,7 +467,7 @@ $config['csrf_token_name'] = 'ppid_csrf_token';
 $config['csrf_cookie_name'] = 'ppid_csrf_cookie';
 $config['csrf_expire'] = 7200;  // 2 hours
 $config['csrf_regenerate'] = TRUE;  // Regenerate on each request for better security
-$config['csrf_exclude_uris'] = array();  // Add API endpoints here if needed
+$config['csrf_exclude_uris'] = array('login/aksi_login');  // Exclude login because we use raw $_POST
 
 /*
 |--------------------------------------------------------------------------
