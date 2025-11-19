@@ -284,9 +284,9 @@
 								<div class="form-group" style="margin-bottom: 25px;">
                                     <div class="col-sm-12">
                                         <div class="checkbox" style="margin-top: 0;">
-                                            <label style="font-weight: normal;">
-                                                <input type="checkbox" id="terms" data-error="Anda harus menyetujui syarat dan ketentuan" required>
-                                                Saya telah membaca dan menyetujui <a href="#" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><strong>Hak-hak Pemohon Informasi</strong></a>
+                                            <label style="font-weight: normal; cursor: pointer; display: inline-block;">
+                                                <input type="checkbox" id="terms" name="terms" data-error="Anda harus menyetujui syarat dan ketentuan" required style="margin-right: 5px; cursor: pointer;">
+                                                <span>Saya telah membaca dan menyetujui <a href="#" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" onclick="event.stopPropagation(); return true;"><strong>Hak-hak Pemohon Informasi</strong></a></span>
                                             </label>
                                             <div class="help-block with-errors"></div>
                                         </div>
