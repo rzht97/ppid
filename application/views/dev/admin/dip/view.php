@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Tambah Informasi - Admin PPID Kab. Sumedang</title>
+	<title>Daftar Informasi Publik - Admin PPID Kab. Sumedang</title>
     <?php $this->load->view('dev/admin/partials/head.php')?>
 </head>
 
@@ -34,13 +34,12 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Tambah Dokumen</h4>
+                        <h4 class="page-title">Daftar Informasi Publik</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">DIP</a></li>
-                            <li class="active">Tambah</li>
+                            <li class="active">Daftar Informasi</li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -50,56 +49,68 @@
                         <div class="white-box">
                             <h3 class="box-title m-b-0">Daftar Informasi Publik</h3>
 							<br>
+
+							<?php if($this->session->flashdata('success')): ?>
+								<div class="alert alert-success alert-dismissible">
+									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+									<i class="fa fa-check-circle"></i> <?php echo $this->session->flashdata('success'); ?>
+								</div>
+							<?php endif; ?>
+
+							<?php if($this->session->flashdata('error')): ?>
+								<div class="alert alert-danger alert-dismissible">
+									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+									<i class="fa fa-times-circle"></i> <?php echo $this->session->flashdata('error'); ?>
+								</div>
+							<?php endif; ?>
+
 							<div class="card-header">
-								<a href="<?php echo site_url('admin/dokumen/add') ?>" class="fcbtn btn btn-outline btn-success btn-1b"><i class="fa fa-plus"></i> Add New</a>
+								<a href="<?php echo site_url('admin/dip/add') ?>" class="fcbtn btn btn-outline btn-success btn-1b"><i class="fa fa-plus"></i> Tambah Informasi</a>
 							</div>
 							<br>
                             <div class="table-responsive">
-                                <table id="myTable" class="table table-striped">
-                                    <thead>
+                                <table id="myTable" class="table table-striped table-bordered">
+                                    <thead class="bg-light">
 										<tr>
-											<th>Ringkasan Isi Informasi</th>
-											<th>Waktu Pembuatan/Penerbitan Informasi</th>
-											<th>Jenis Informasi</th>
-											<th>Bentuk Informasi Yang Tersedia</th>
-											<th>Jangka Waktu Penyimpanan</th>
-											<th>Dokumen</th>
-											<th>Action</th>
+											<th width="50" class="text-center">No</th>
+											<th width="250">Ringkasan Isi Informasi</th>
+											<th width="120" class="text-center">Tanggal</th>
+											<th width="150">Jenis Informasi</th>
+											<th width="150">Bentuk Informasi</th>
+											<th width="120" class="text-center">Jangka Waktu</th>
+											<th width="100" class="text-center">Dokumen</th>
+											<th width="180" class="text-center">Aksi</th>
 										</tr>
 									</thead>
                                     <tbody>
+									<?php $no = 1; ?>
 									<?php foreach ($dokumen as $dok_kec): ?>
 									<tr>
-										<td>
-											<?php echo $dok_kec->judul ?>
-										</td>
-										<td>
-											<?php echo $dok_kec->tanggal ?>
-										</td>
-										<td>
-											<?php echo $dok_kec->kategori ?>
-										</td>
-										<td>
-											<?php echo $dok_kec->bentukinfo?>
-										</td>
-										<td>
-											<?php echo $dok_kec->jangkawaktu?>
-										</td>
-										<td>
+										<td class="text-center"><?php echo $no++; ?></td>
+										<td><strong><?php echo $dok_kec->judul ?></strong></td>
+										<td class="text-center"><?php echo $dok_kec->tanggal ?></td>
+										<td><?php echo $dok_kec->kategori ?></td>
+										<td><?php echo $dok_kec->bentukinfo?></td>
+										<td class="text-center"><?php echo $dok_kec->jangkawaktu?></td>
+										<td class="text-center">
 											<?php if ($dok_kec->image != "Belum Tersedia") { ?>
-                                                                <a href="<?php echo base_url().'index.php/admin/dokumen/download/'.$dok_kec->id; ?>" class="fcbtn btn btn-outline btn-success btn-1b"><span class="fa fa-download">download</span></a>
-                                                            <?php } else {
-                                                                echo $dok_kec->sumberdata;
-                                                            } ?>
+												<a href="<?php echo base_url().'index.php/admin/dip/download/'.$dok_kec->id; ?>" class="btn btn-success btn-sm" title="Download Dokumen">
+													<i class="fa fa-download"></i>
+												</a>
+											<?php } else { ?>
+												<span class="text-muted"><i><?php echo $dok_kec->sumberdata; ?></i></span>
+											<?php } ?>
 										</td>
-										<td>
-											<a href="<?php echo site_url('admin/dokumen/edit/' . $dok_kec->id) ?>" class="fcbtn btn btn-outline btn-warning btn-1b"><i class="fa fa-edit"></i> Edit</a>
-											<a onclick="deleteConfirm('<?php echo site_url('admin/dokumen/delete/'.$dok_kec->id) ?>')"
-											 href="#!" class="fcbtn btn btn-outline btn-danger btn-1b"><i class="fa fa-trash-o"></i> Hapus</a>
+										<td class="text-center">
+											<a href="<?php echo site_url('admin/dip/edit/' . $dok_kec->id) ?>" class="btn btn-warning btn-sm" title="Edit Informasi">
+												<i class="fa fa-edit"></i> Edit
+											</a>
+											<a onclick="deleteConfirm('<?php echo site_url('admin/dip/delete/'.$dok_kec->id) ?>')" href="#!" class="btn btn-danger btn-sm" title="Hapus Informasi">
+												<i class="fa fa-trash-o"></i> Hapus
+											</a>
 										</td>
 									</tr>
 									<?php endforeach; ?>
-
 								</tbody>
                                 </table>
                             </div>
