@@ -8,7 +8,7 @@ class Keberatan extends CI_Controller {
 
 		$this->load->model("Permohonan_model");
 		$this->load->model("Keberatan_model");
-		$this->load->model("user_model");
+		// Removed: user_model does not exist
         $this->load->library('form_validation');
 	}
 
