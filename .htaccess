@@ -8,8 +8,8 @@ RewriteBase /ppidC/
 # Redirect index.php to clean URL (301 permanent redirect)
 # Example: /ppidC/index.php -> /ppidC/
 # Example: /ppidC/index.php/pub/cekstatus -> /ppidC/pub/cekstatus
-RewriteCond %{THE_REQUEST} \s/+(.*)index\.php(/[^\s?]*)?\s [NC]
-RewriteRule ^ /%1%2 [R=301,L,NE]
+RewriteCond %{THE_REQUEST} \s(/[^\s]*?)/?index\.php(/[^\s?]*)?\s [NC]
+RewriteRule ^ %1%2 [R=301,L,NE]
 
 # Remove index.php from URL
 RewriteCond %{REQUEST_FILENAME} !-f
