@@ -1,8 +1,8 @@
 <?php 
 
-class M_login extends CI_Model{	
+class M_login extends CI_Model{
 
-    private $_table = "admin";
+    private $_table = "user"; // Fixed: Changed from 'admin' to 'user'
 
     public $id;
     public $username;
