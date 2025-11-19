@@ -66,10 +66,12 @@
 switch (ENVIRONMENT)
 {
 	case 'development':
-		// PHP 8.1+: Show all errors including deprecations for development
-		error_reporting(E_ALL);
+		// PHP 8.1+: Show errors but exclude deprecations that cause headers sent
+		// Deprecation warnings from CodeIgniter 3 + PHP 8.1 compatibility issues
+		error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
 		ini_set('display_errors', 1);
 		ini_set('display_startup_errors', 1);
+		ini_set('log_errors', 1);
 	break;
 
 	case 'testing':
@@ -321,7 +323,3 @@ date_default_timezone_set('Asia/Jakarta');
  * And away we go...
  */
 require_once BASEPATH.'core/CodeIgniter.php';
-
-   error_reporting(E_ALL);
-   ini_set('display_errors', 1);
-   
