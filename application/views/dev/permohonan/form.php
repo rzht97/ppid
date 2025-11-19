@@ -140,6 +140,9 @@
                             <?php endif; ?>
 
                             <form data-toogle="validator" class="form-horizontal" action="<?php echo base_url('pub/permohonan/permohonan') ?>" method="post" enctype="multipart/form-data">
+                                <!-- CSRF Protection -->
+                                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label class="col-md-12" style="margin-bottom: 8px;"><strong>Nama Lengkap <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">

@@ -33,6 +33,9 @@
                 <form class="form-horizontal form-material" action="<?php echo base_url('login/aksi_login'); ?>" method="post">
                     <h3 class="box-title m-b-20">Login Admin PPID Kab. Sumedang</h3>
 
+                    <!-- CSRF Protection -->
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                     <div class="form-group ">
                         <div class="col-xs-12">
                             <input class="form-control" type="text" id="inputEmail" required="required" placeholder="Username" name="username">
