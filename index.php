@@ -66,11 +66,10 @@
 switch (ENVIRONMENT)
 {
 	case 'development':
-		// SECURITY: Don't display errors even in development (prevents information leakage)
-		// Errors are logged to files for debugging
+		// TEMPORARY: Enable error display for debugging HTTP 500
 		error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
-		ini_set('display_errors', 0);
-		ini_set('display_startup_errors', 0);
+		ini_set('display_errors', 1);
+		ini_set('display_startup_errors', 1);
 		ini_set('log_errors', 1);
 		// Error log location (application/logs directory)
 		ini_set('error_log', APPPATH . 'logs/php_errors.log');
