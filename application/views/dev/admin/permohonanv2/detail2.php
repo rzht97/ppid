@@ -2,15 +2,11 @@
 <html lang="en">
 
 <head>
-    <title>Tambah Informasi - Admin PPID Kab. Sumedang</title>
+    <title>Detail Permohonan - Admin PPID Kab. Sumedang</title>
     <?php $this->load->view('dev/admin/partials/head.php') ?>
 </head>
 
 <body class="fix-sidebar">
-    <!-- Preloader -->
-    <!--<div class="preloader">
-        <div class="cssload-speeding-wheel"></div>
-    </div>-->
     <div id="wrapper">
         <!-- Top Navigation -->
         <nav class="navbar navbar-default navbar-static-top m-b-0">
@@ -21,9 +17,6 @@
                 </ul>
                 <ul class="nav navbar-top-links navbar-right pull-right"></ul>
             </div>
-            <!-- /.navbar-header -->
-            <!-- /.navbar-top-links -->
-            <!-- /.navbar-static-side -->
         </nav>
         <!-- End Top Navigation -->
         <!-- Left navbar-header -->
@@ -34,138 +27,175 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Tambah Dokumen</h4>
+                        <h4 class="page-title">Detail Permohonan Informasi</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">DIP</a></li>
-                            <li class="active">Tambah</li>
+                            <li><a href="<?php echo site_url('admin/dashboard') ?>">Dashboard</a></li>
+                            <li><a href="<?php echo site_url('admin/permohonan') ?>">Permohonan</a></li>
+                            <li class="active">Detail</li>
                         </ol>
                     </div>
-                    <!-- /.col-lg-12 -->
                 </div>
                 <!-- .row -->
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title m-b-0">Proses Permohonan Informasi</h3>
-                            <form class="form-horizontal" action="<?php base_url("admin/permohonan/edit") ?>" method="post" enctype="multipart/form-data">
-                                <input type="hidden" name="mohon_id" value="<?php echo $permohonan->mohon_id ?>" />
-                                <div class="form-body">
-                                    <hr class="m-t-0 m-b-40">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3">Nama</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"> <?php echo $permohonan->nama ?> </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--/span-->
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3">Pekerjaan</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"> <?php echo $permohonan->pekerjaan ?> </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--/span-->
-                                    </div>
-                                    <!--/row-->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3">Alamat</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"> <?php echo $permohonan->alamat ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--/span-->
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3">No HP</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"> <?php echo $permohonan->nohp ?> </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--/span-->
-                                    </div>
-                                    <!--/row-->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3">e-mail</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"> <?php echo $permohonan->email ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--/span-->
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3">KTP</label>
-                                                <div class="col-md-9">
-                                                    <div class="col-md-4"> 
-														<img src=<?php echo base_url("upload/ktp/").$permohonan->ktp ?> class="img-responsive thumbnail m-r-15"> 
-													</div>
-													<!--<div id="image-popup">
-                                                        <a href=<?php echo base_url("upload/ktp/").$permohonan->ktp ?> data-effect="mfp-zoom-in"><img src=<?php echo base_url("upload/ktp/").$permohonan->ktp ?> class="img-responsive" />
-                                                            <br/>Zoom</a>
-                                                    </div>-->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--/span-->
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-12">Rincian Informasi</label>
-                                    <div class="col-md-9">
-                                        <p class="form-control-static"> <?php echo $permohonan->rincian ?></p>
-                                    </div>
-                                </div>
+                            <h3 class="box-title m-b-0">Detail Permohonan Informasi</h3>
+                            <p class="text-muted m-b-20">ID Permohonan: <strong><?php echo $permohonan->mohon_id ?></strong></p>
 
-                                <div class="form-group">
-                                    <label class="col-sm-12">Tujuan Penggunaan Informasi</label>
-                                    <div class="col-md-9">
-                                        <p class="form-control-static"> <?php echo $permohonan->tujuan ?></p>
-                                    </div>
-                                </div>
+                            <!-- Data Pemohon -->
+                            <h4 class="m-t-30 m-b-20"><i class="fa fa-user"></i> Data Pemohon</h4>
+                            <hr class="m-t-0 m-b-30">
 
-                                <div class="form-group">
-                                    <label class="col-sm-12">Memperoleh Informasi</label>
-                                    <div class="col-md-9">
-                                        <p class="form-control-static"> <?php echo $permohonan->caraperoleh ?></p>
-                                    </div>
-                                </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td width="20%" class="active"><strong>Nama</strong></td>
+                                            <td width="30%"><?php echo $permohonan->nama ?></td>
+                                            <td width="20%" class="active"><strong>Pekerjaan</strong></td>
+                                            <td width="30%"><?php echo $permohonan->pekerjaan ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="active"><strong>Alamat</strong></td>
+                                            <td><?php echo $permohonan->alamat ?></td>
+                                            <td class="active"><strong>No HP</strong></td>
+                                            <td><?php echo $permohonan->nohp ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="active"><strong>Email</strong></td>
+                                            <td><?php echo $permohonan->email ?></td>
+                                            <td class="active"><strong>Tanggal Permohonan</strong></td>
+                                            <td><?php echo $permohonan->tanggal ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="active"><strong>KTP</strong></td>
+                                            <td colspan="3">
+                                                <?php if($permohonan->ktp != "Belum Tersedia"): ?>
+                                                    <div class="m-t-10 m-b-10">
+                                                        <img src="<?php echo base_url("upload/ktp/").$permohonan->ktp ?>" class="img-thumbnail" style="max-height: 150px; max-width: 250px;">
+                                                        <div class="m-t-10">
+                                                            <a href="<?php echo base_url("upload/ktp/").$permohonan->ktp ?>" target="_blank" class="btn btn-info btn-sm">
+                                                                <i class="fa fa-search-plus"></i> Lihat Fullsize
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                <?php else: ?>
+                                                    <span class="text-muted"><i>Belum tersedia</i></span>
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
-                                <div class="form-group">
-                                    <label class="col-sm-12">Cara Mendapatkan Informasi</label>
-                                    <div class="col-md-9">
-                                        <p class="form-control-static"> <?php echo $permohonan->caradapat ?></p>
-                                    </div>
-                                </div>
-								
-								<div class="form-group">
-                                    <label class="col-sm-12">Status</label>
-                                    <div class="col-md-9">
-                                        <p class="form-control-static"> <?php echo $permohonan->status ?></p>
-                                    </div>
-                                </div>
+                            <!-- Detail Permohonan -->
+                            <h4 class="m-t-40 m-b-20"><i class="fa fa-file-text"></i> Detail Permohonan</h4>
+                            <hr class="m-t-0 m-b-30">
 
-                                <div class="form-group">
-                                    <label class="col-sm-12">Cara Mendapatkan Informasi</label>
-                                    <div class="col-md-9">
-                                        <p class="form-control-static"> <?php echo $permohonan->jawab ?></p>
+                            <div class="form-group">
+                                <label class="col-md-12"><strong>Rincian Informasi yang Dibutuhkan</strong></label>
+                                <div class="col-md-12">
+                                    <div class="well well-sm">
+                                        <?php echo nl2br($permohonan->rincian) ?>
                                     </div>
                                 </div>
-                                
-                            </form>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-12"><strong>Tujuan Penggunaan Informasi</strong></label>
+                                <div class="col-md-12">
+                                    <div class="well well-sm">
+                                        <?php echo nl2br($permohonan->tujuan) ?>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-12"><strong>Cara Memperoleh Informasi</strong></label>
+                                <div class="col-md-12">
+                                    <div class="well well-sm">
+                                        <?php echo $permohonan->caraperoleh ?>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-12"><strong>Cara Mendapatkan Salinan Informasi</strong></label>
+                                <div class="col-md-12">
+                                    <div class="well well-sm">
+                                        <?php echo $permohonan->caradapat ?>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Hasil Proses Permohonan -->
+                            <h4 class="m-t-40 m-b-20"><i class="fa fa-check-circle"></i> Hasil Proses Permohonan</h4>
+                            <hr class="m-t-0 m-b-30">
+
+                            <div class="form-group">
+                                <label class="col-md-12"><strong>Status Permohonan</strong></label>
+                                <div class="col-md-12">
+                                    <?php if($permohonan->status == "Selesai"): ?>
+                                        <span class="label label-success" style="font-size: 14px; padding: 8px 12px;">
+                                            <i class="fa fa-check-circle"></i> <?php echo $permohonan->status ?>
+                                        </span>
+                                    <?php elseif($permohonan->status == "Ditolak"): ?>
+                                        <span class="label label-danger" style="font-size: 14px; padding: 8px 12px;">
+                                            <i class="fa fa-times-circle"></i> <?php echo $permohonan->status ?>
+                                        </span>
+                                    <?php elseif($permohonan->status == "Sedang Diproses"): ?>
+                                        <span class="label label-warning" style="font-size: 14px; padding: 8px 12px;">
+                                            <i class="fa fa-spinner"></i> <?php echo $permohonan->status ?>
+                                        </span>
+                                    <?php else: ?>
+                                        <span class="label label-info" style="font-size: 14px; padding: 8px 12px;">
+                                            <i class="fa fa-clock-o"></i> <?php echo $permohonan->status ?>
+                                        </span>
+                                    <?php endif; ?>
+                                    <?php if($permohonan->tanggaljawab): ?>
+                                        <span class="text-muted m-l-10">Diproses pada: <strong><?php echo $permohonan->tanggaljawab ?></strong></span>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+
+                            <?php if($permohonan->jawab): ?>
+                            <div class="form-group">
+                                <label class="col-md-12"><strong>Jawaban/Keterangan</strong></label>
+                                <div class="col-md-12">
+                                    <div class="well well-sm" style="background-color: #f9f9f9;">
+                                        <?php echo nl2br($permohonan->jawab) ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php else: ?>
+                            <div class="form-group">
+                                <label class="col-md-12"><strong>Jawaban/Keterangan</strong></label>
+                                <div class="col-md-12">
+                                    <div class="alert alert-info">
+                                        <i class="fa fa-info-circle"></i> Permohonan belum diproses atau dijawab
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endif; ?>
+
+                            <!-- Action Buttons -->
+                            <hr>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a href="<?php echo site_url('admin/permohonan') ?>" class="btn btn-default waves-effect waves-light">
+                                            <i class="fa fa-arrow-left"></i> Kembali ke Daftar
+                                        </a>
+                                        <?php if($permohonan->status == "Sedang Diproses"): ?>
+                                        <a href="<?php echo site_url('admin/permohonan/edit/' . $permohonan->mohon_id) ?>" class="btn btn-warning waves-effect waves-light">
+                                            <i class="fa fa-edit"></i> Edit & Proses
+                                        </a>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
