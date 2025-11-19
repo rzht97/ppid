@@ -170,16 +170,16 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-12"><strong>Cara Memperoleh Informasi</strong></label>
-                                                <div class="col-md-12">
+                                                <label class="control-label col-md-4"><strong>Cara Memperoleh</strong></label>
+                                                <div class="col-md-8">
                                                     <p class="form-control-static"><?php echo $permohonan->caraperoleh ?></p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-12"><strong>Cara Mendapatkan Salinan</strong></label>
-                                                <div class="col-md-12">
+                                                <label class="control-label col-md-4"><strong>Cara Mendapat</strong></label>
+                                                <div class="col-md-8">
                                                     <p class="form-control-static"><?php echo $permohonan->caradapat ?></p>
                                                 </div>
                                             </div>
