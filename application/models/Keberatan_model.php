@@ -43,7 +43,12 @@ public function getById($id_keberatan)
 public function save()
     {
         $post = $this->input->post();
-        $this->id_keberatan = date('dmy').substr(hexdec(uniqid()),7);
+
+        // Generate ID with format: DDMMYY + auto increment (001, 002, ...)
+        // Example: 191125001, 191125002, 191125003...
+        // Resets to 001 every new day
+        $this->id_keberatan = $this->_generateIdKeberatan();
+
         $this->mohon_id = $post["mohon_id"];
 		$this->kronologi = $post["kronologi"];
 		$this->alasan = $post["alasan"];
@@ -51,7 +56,7 @@ public function save()
 		$this->tanggapan = "";
 		$this->tanggal = "";
 		$this->putusan = "";
-	    
+
         $this->db->insert($this->_table, $this);
     }
 
@@ -77,5 +82,37 @@ public function save()
     {
 		$this->_deleteFile($mohon_id);
         return $this->db->delete($this->_table, array("mohon_id" => $mohon_id));
+	}
+
+	/**
+	 * Generate id_keberatan with format: DDMMYY + auto increment
+	 * Auto increment starts from 001 and resets daily
+	 * Example: 191125001, 191125002, ... (resets to 201125001 next day)
+	 */
+	private function _generateIdKeberatan()
+	{
+		$today_prefix = date('dmy'); // Format: DDMMYY (e.g., 191125)
+
+		// Get the last id_keberatan for today
+		$this->db->select('id_keberatan');
+		$this->db->like('id_keberatan', $today_prefix, 'after'); // id_keberatan starts with today's date
+		$this->db->order_by('id_keberatan', 'DESC');
+		$this->db->limit(1);
+		$query = $this->db->get($this->_table);
+
+		if ($query->num_rows() > 0) {
+			// Found existing record for today
+			$last_id = $query->row()->id_keberatan;
+			// Extract the increment part (last 3 digits)
+			$last_increment = intval(substr($last_id, -3));
+			$new_increment = $last_increment + 1;
+		} else {
+			// No records for today, start with 001
+			$new_increment = 1;
+		}
+
+		// Format: DDMMYY + increment padded to 3 digits
+		// Example: 191125 + 001 = 191125001
+		return $today_prefix . str_pad($new_increment, 3, '0', STR_PAD_LEFT);
 	}
 }
