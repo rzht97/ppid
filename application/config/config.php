@@ -501,8 +501,11 @@ $config['compress_output'] = FALSE;
 | reference, or convert it to the configured one timezone. See the 'date
 | helper' page of the user guide for information regarding date handling.
 |
+| Set to 'Asia/Jakarta' for WIB (Waktu Indonesia Barat / UTC+7)
+| Note: date_default_timezone_set() is already configured in index.php
+|
 */
-$config['time_reference'] = 'local';
+$config['time_reference'] = 'Asia/Jakarta';
 
 /*
 |--------------------------------------------------------------------------

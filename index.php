@@ -90,6 +90,16 @@ switch (ENVIRONMENT)
 
 /*
  *---------------------------------------------------------------
+ * TIMEZONE CONFIGURATION
+ *---------------------------------------------------------------
+ *
+ * Set default timezone to Asia/Jakarta (WIB - UTC+7)
+ * This ensures all datetime operations use Indonesian Western Time
+ */
+date_default_timezone_set('Asia/Jakarta');
+
+/*
+ *---------------------------------------------------------------
  * SYSTEM DIRECTORY NAME
  *---------------------------------------------------------------
  *
