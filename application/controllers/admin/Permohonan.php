@@ -25,8 +25,8 @@ class Permohonan extends CI_Controller
     public function index()
     {
 		$data['nama_user'] = $this->session->userdata("nama");
-        // Fixed: Gunakan query builder, select specific columns
-        $data["permohonan"] = $this->db->select('mohon_id, nama, alamat, pekerjaan, nohp, email, rincian, status, tanggal, tanggaljawab')
+        // Fixed: Gunakan query builder, select specific columns (including ktp)
+        $data["permohonan"] = $this->db->select('mohon_id, nama, alamat, pekerjaan, nohp, email, rincian, ktp, status, tanggal, tanggaljawab')
             ->from('permohonan')
             ->order_by('mohon_id', 'DESC')
             ->get()
