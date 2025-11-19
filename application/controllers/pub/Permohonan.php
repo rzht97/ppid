@@ -32,8 +32,19 @@ class Permohonan extends CI_Controller {
                 // Get the inserted ID
                 $mohon_id = $permohonan->mohon_id;
 
+                // VERIFY: Check if data really exists in database
+                $verify = $this->db->get_where('permohonan', ['mohon_id' => $mohon_id])->row();
+
+                if(!$verify){
+                    log_message('error', 'CRITICAL: Insert succeeded but data not found! ID: ' . $mohon_id);
+                    throw new Exception('Data tidak ditemukan setelah insert! Mohon hubungi administrator.');
+                }
+
+                log_message('debug', 'VERIFICATION SUCCESS: Data found in database with ID: ' . $mohon_id);
+                log_message('debug', 'Verified data: ' . json_encode($verify));
+
                 // Set success message
-                $this->session->set_flashdata('success', 'Permohonan berhasil disimpan dengan ID: ' . $mohon_id);
+                $this->session->set_flashdata('success', 'Permohonan berhasil disimpan dengan ID: ' . $mohon_id . ' | Database: ' . $this->db->database);
 
                 // Load helper telegram (if exists)
                 if(file_exists(APPPATH.'helpers/telegram_helper.php')){
