@@ -517,10 +517,14 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 			// Check the hidden checkbox
 			document.getElementById('terms').checked = true;
 
-			// Close the modal immediately
+			// Force close the modal using multiple methods for compatibility
 			$('#exampleModal').modal('hide');
+			$('#exampleModal').removeClass('in');
+			$('.modal-backdrop').remove();
+			$('body').removeClass('modal-open');
+			$('body').css('padding-right', '');
 
-			// Wait for modal to close, then show success status
+			// Wait a moment, then show success status
 			setTimeout(function() {
 				// Show success status
 				document.getElementById('agreementStatus').style.display = 'block';
@@ -530,15 +534,8 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 
 				// Scroll to the status message
 				document.getElementById('agreementStatus').scrollIntoView({ behavior: 'smooth', block: 'center' });
-			}, 300); // Wait for modal close animation
+			}, 400);
 		}
-
-		// Alternative: Also close modal when clicking anywhere outside
-		$(document).ready(function() {
-			$('#exampleModal').on('hidden.bs.modal', function () {
-				// This ensures cleanup after modal is fully closed
-			});
-		});
 	</script>
 
 </body>
