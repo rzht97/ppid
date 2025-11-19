@@ -66,26 +66,23 @@ class Permohonan extends CI_Controller {
                 // Log error
                 log_message('error', 'Failed to save permohonan: ' . $e->getMessage());
 
-                // Set error message
-                $this->session->set_flashdata('error', 'Gagal menyimpan permohonan. Silakan coba lagi.');
-
-                // Reload form with data
-                $data['form_data'] = $this->input->post();
+                // Set error message directly (not flashdata, because we're not redirecting)
+                $data['error_message'] = 'Gagal menyimpan permohonan: ' . $e->getMessage();
                 $this->load->view("dev/permohonan/form", $data);
                 return;
             }
         } else {
-            // Validation failed - show errors
-            $this->session->set_flashdata('error', 'Mohon lengkapi semua field yang wajib diisi.');
-
-            // Pass validation errors to view
-            $data['validation_errors'] = $this->form_validation->error_array();
-            $data['form_data'] = $this->input->post();
+            // Validation failed - show form with errors
+            // Don't use flashdata here since we're loading view directly, not redirecting
+            $data = array();
+            if(validation_errors()){
+                $data['error_message'] = 'Mohon lengkapi semua field yang wajib diisi dengan benar.';
+            }
             $this->load->view("dev/permohonan/form", $data);
             return;
         }
 
-        // Default: load empty form
+        // Default: load empty form (first time page is accessed)
         $this->load->view("dev/permohonan/form");
     }
 

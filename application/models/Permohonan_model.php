@@ -83,7 +83,7 @@ public function getById($mohon_id)
 /**
 	 * Save permohonan
 	 * Fixed: Date format bug (20y → Y)
-	 * Added: Input sanitization
+	 * Added: Input sanitization and error handling
 	 */
 	public function save()
     {
@@ -112,7 +112,16 @@ public function getById($mohon_id)
         // New: Always correct regardless of year
         $this->tanggal = date('d-m-Y');
 
-        $this->db->insert($this->_table, $this);
+        // Insert with error checking
+        $result = $this->db->insert($this->_table, $this);
+
+        if(!$result){
+            // Log database error
+            log_message('error', 'Database insert failed: ' . $this->db->error()['message']);
+            throw new Exception('Gagal menyimpan data ke database: ' . $this->db->error()['message']);
+        }
+
+        return $result;
     }
 
     public function verifikasi()

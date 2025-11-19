@@ -106,48 +106,87 @@
                         <div class="white-box">
                             <h3 class="box-title m-b-0">Formulir Permohonan Informasi Publik</h3>
                             <p class="text-muted m-b-30 font-13"></p>
-                            <form  data-toogle = "validator" class="form-horizontal" action="<?php base_url('pub/permohonan/permohonan') ?>" method="post" enctype="multipart/form-data">
+
+                            <?php if($this->session->flashdata('success')): ?>
+                                <div class="alert alert-success alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <h4><i class="icon fa fa-check"></i> Sukses!</h4>
+                                    <?php echo $this->session->flashdata('success'); ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if($this->session->flashdata('error')): ?>
+                                <div class="alert alert-danger alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                                    <?php echo $this->session->flashdata('error'); ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if(isset($error_message)): ?>
+                                <div class="alert alert-danger alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                                    <?php echo $error_message; ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if(validation_errors()): ?>
+                                <div class="alert alert-warning alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <h4><i class="icon fa fa-warning"></i> Validation Error!</h4>
+                                    <?php echo validation_errors(); ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <form  data-toogle = "validator" class="form-horizontal" action="<?php echo base_url('index.php/pub/permohonan/permohonan') ?>" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label class="col-md-12">Nama</label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" <?php echo form_error('nama') ? 'is-invalid' : '' ?> name = "nama" placeholder="Nama" required>
-										<div class="help-block with-errors"></div>
+                                        <input type="text" class="form-control" <?php echo form_error('nama') ? 'is-invalid' : '' ?> name = "nama" placeholder="Nama" value="<?php echo set_value('nama'); ?>" required>
+										<div class="help-block with-errors"><?php echo form_error('nama'); ?></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">Pekerjaan</label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" <?php echo form_error('pekerjaan') ? 'is-invalid' : '' ?> name = "pekerjaan" placeholder="Pekerjaan" required>
+                                        <input type="text" class="form-control" <?php echo form_error('pekerjaan') ? 'is-invalid' : '' ?> name = "pekerjaan" placeholder="Pekerjaan" value="<?php echo set_value('pekerjaan'); ?>" required>
+                                        <div class="help-block with-errors"><?php echo form_error('pekerjaan'); ?></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">Alamat</label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" <?php echo form_error('alamat') ? 'is-invalid' : '' ?> name = "alamat" placeholder="Alamat" required>
+                                        <input type="text" class="form-control" <?php echo form_error('alamat') ? 'is-invalid' : '' ?> name = "alamat" placeholder="Alamat" value="<?php echo set_value('alamat'); ?>" required>
+                                        <div class="help-block with-errors"><?php echo form_error('alamat'); ?></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">Nomor Telepon</label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" <?php echo form_error('nohp') ? 'is-invalid' : '' ?> name = "nohp" placeholder="No Telepon" required>
+                                        <input type="text" class="form-control" <?php echo form_error('nohp') ? 'is-invalid' : '' ?> name = "nohp" placeholder="No Telepon" value="<?php echo set_value('nohp'); ?>" required>
+                                        <div class="help-block with-errors"><?php echo form_error('nohp'); ?></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">email</label>
                                     <div class="col-md-12">
-                                        <input type="email" id="email" <?php echo form_error('email') ? 'is-invalid' : '' ?> name = "email"  class="form-control"  placeholder="Email" required>
+                                        <input type="email" id="email" <?php echo form_error('email') ? 'is-invalid' : '' ?> name = "email"  class="form-control"  placeholder="Email" value="<?php echo set_value('email'); ?>" required>
+                                        <div class="help-block with-errors"><?php echo form_error('email'); ?></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">Rincian Informasi</label>
                                     <div class="col-md-12">
-                                        <textarea class="form-control" <?php echo form_error('rincian') ? 'is-invalid' : '' ?> name = "rincian" rows="5" required></textarea>
+                                        <textarea class="form-control" <?php echo form_error('rincian') ? 'is-invalid' : '' ?> name = "rincian" rows="5" required><?php echo set_value('rincian'); ?></textarea>
+                                        <div class="help-block with-errors"><?php echo form_error('rincian'); ?></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">Tujuan Penggunaan Informasi</label>
                                     <div class="col-md-12">
-                                        <textarea class="form-control" <?php echo form_error('tujuan') ? 'is-invalid' : '' ?> name = "tujuan" rows="5" required></textarea>
+                                        <textarea class="form-control" <?php echo form_error('tujuan') ? 'is-invalid' : '' ?> name = "tujuan" rows="5" required><?php echo set_value('tujuan'); ?></textarea>
+                                        <div class="help-block with-errors"><?php echo form_error('tujuan'); ?></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
