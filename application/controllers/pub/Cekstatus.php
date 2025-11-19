@@ -11,9 +11,8 @@ class Cekstatus extends CI_Controller {
     }
 
     /**
-     * Cek status permohonan ATAU keberatan berdasarkan ID
-     * Search di kedua tabel (permohonan DAN keberatan)
-     * Type indicator untuk membedakan hasil
+     * Cek status permohonan berdasarkan ID
+     * Search hanya di tabel permohonan
      */
     public function index()
     {
@@ -21,7 +20,6 @@ class Cekstatus extends CI_Controller {
 
         // Initialize empty results
         $data['caritoken'] = array();
-        $data['carikeberatan'] = array();
 
         if (!empty($token)) {
             // Search di tabel PERMOHONAN
@@ -45,26 +43,6 @@ class Cekstatus extends CI_Controller {
                     $item->has_keberatan = ($keberatan_check !== null);
                 }
                 $data['caritoken'] = $permohonan_result;
-            }
-
-            // Search di tabel KEBERATAN
-            $keberatan_result = $this->db
-                ->select('keberatan.id_keberatan, keberatan.mohon_id, keberatan.alasan, keberatan.kronologi,
-                          keberatan.tanggal, keberatan.status, keberatan.tanggapan, keberatan.putusan,
-                          permohonan.nama, permohonan.alamat, permohonan.nohp, permohonan.email')
-                ->from('keberatan')
-                ->join('permohonan', 'permohonan.mohon_id = keberatan.mohon_id', 'left')
-                ->where('keberatan.id_keberatan', $token)
-                ->or_where('keberatan.mohon_id', $token)
-                ->get()
-                ->result();
-
-            if ($keberatan_result) {
-                // Add type indicator
-                foreach ($keberatan_result as $item) {
-                    $item->search_type = 'keberatan';
-                }
-                $data['carikeberatan'] = $keberatan_result;
             }
         }
 
