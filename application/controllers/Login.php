@@ -20,8 +20,13 @@ class Login extends CI_Controller{
 	 * Added: Auto-migration from MD5 to bcrypt on successful login
 	 */
 	function aksi_login(){
-		$username = $this->input->post('username', TRUE); // XSS clean
-		$password = $this->input->post('password'); // Don't XSS clean passwords
+		// TEMPORARY FIX: Bypass CI input class and use raw $_POST
+		// CI input->post() is returning NULL, but $_POST works in pure PHP
+		$username = isset($_POST['username']) ? trim(strip_tags($_POST['username'])) : '';
+		$password = isset($_POST['password']) ? $_POST['password'] : '';  // Don't strip password
+
+		// Log for debugging
+		log_message('debug', 'Login attempt - Username: ' . $username . ', POST count: ' . count($_POST));
 
 		// Get user by username only
 		$user = $this->m_login->get_by_username($username);
@@ -84,14 +89,19 @@ class Login extends CI_Controller{
 		// Step 1: Get POST data
 		echo "STEP 1: Get POST Data\n";
 		echo str_repeat("=", 80) . "\n";
-		$username = $this->input->post('username', TRUE);
-		$password = $this->input->post('password');
-		echo "Username received: [$username]\n";
-		echo "Username length: " . strlen($username ?? '') . "\n";
-		echo "Password received: [" . str_repeat('*', strlen($password ?? '')) . "]\n";
-		echo "Password length: " . strlen($password ?? '') . "\n";
-		echo "Raw POST data:\n";
+
+		// Use raw $_POST instead of CI input class
+		$username = isset($_POST['username']) ? trim($_POST['username']) : '';
+		$password = isset($_POST['password']) ? $_POST['password'] : '';
+
+		echo "Raw \$_POST array:\n";
 		print_r($_POST);
+		echo "\n";
+
+		echo "Username received: [$username]\n";
+		echo "Username length: " . strlen($username) . "\n";
+		echo "Password received: [" . str_repeat('*', strlen($password)) . "]\n";
+		echo "Password length: " . strlen($password) . "\n";
 		echo "\n";
 
 		if(empty($username) || empty($password)){
