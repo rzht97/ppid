@@ -53,9 +53,8 @@ public function save()
 		$this->kronologi = $post["kronologi"];
 		$this->alasan = $post["alasan"];
 		$this->status = "Menunggu Verifikasi";
-		$this->tanggapan = "";
-		$this->tanggal = "";
-		$this->putusan = "";
+		$this->tanggal = date('Y-m-d H:i:s'); // Current datetime
+		// tanggapan and putusan will be NULL by default (set when answered)
 
         $this->db->insert($this->_table, $this);
     }
