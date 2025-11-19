@@ -80,7 +80,7 @@
                                 <div class="form-group">
                                     <label class="col-md-12"><strong>Ringkasan Isi Informasi <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control <?php echo form_error('judul') ? 'is-invalid' : '' ?>" name="judul" placeholder="Masukkan ringkasan isi informasi" value="<?php echo set_value('judul', $dokumen->judul); ?>" required>
+                                        <input type="text" class="form-control <?php echo form_error('judul') ? 'is-invalid' : '' ?>" name="judul" placeholder="Masukkan ringkasan isi informasi" value="<?php echo set_value('judul', $dokumen->judul); ?>">
                                         <?php if(form_error('judul')): ?>
                                             <div class="text-danger"><?php echo form_error('judul'); ?></div>
                                         <?php endif; ?>
@@ -90,7 +90,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-12"><strong>Kategori <span class="text-danger">*</span></strong></label>
                                     <div class="col-sm-12">
-                                        <select class="form-control <?php echo form_error('kategori') ? 'is-invalid' : '' ?>" name="kategori" required>
+                                        <select class="form-control <?php echo form_error('kategori') ? 'is-invalid' : '' ?>" name="kategori">
                                             <option value="">-- Pilih Kategori --</option>
                                     		<option value="Berkala" <?php echo set_select('kategori', 'Berkala', $dokumen->kategori == 'Berkala'); ?>>Berkala</option>
                                    			<option value="Setiap Saat" <?php echo set_select('kategori', 'Setiap Saat', $dokumen->kategori == 'Setiap Saat'); ?>>Setiap Saat</option>
@@ -103,9 +103,9 @@
                                 </div>
 
 								<div class="form-group">
-                                    <label class="col-sm-12"><strong>Bentuk Informasi Yang Tersedia <span class="text-danger">*</span></strong></label>
+                                    <label class="col-sm-12"><strong>Bentuk Informasi Yang Tersedia</strong></label>
                                     <div class="col-sm-12">
-                                        <select class="form-control <?php echo form_error('bentukinfo') ? 'is-invalid' : '' ?>" name="bentukinfo" required>
+                                        <select class="form-control <?php echo form_error('bentukinfo') ? 'is-invalid' : '' ?>" name="bentukinfo">
                                             <option value="">-- Pilih Bentuk Informasi --</option>
                                     		<option value="Hard Copy" <?php echo set_select('bentukinfo', 'Hard Copy', $dokumen->bentukinfo == 'Hard Copy'); ?>>Hardcopy</option>
                                    			<option value="Soft Copy" <?php echo set_select('bentukinfo', 'Soft Copy', $dokumen->bentukinfo == 'Soft Copy'); ?>>Softcopy</option>
@@ -120,9 +120,9 @@
                                 </div>
 
 								<div class="form-group">
-                                    <label class="col-sm-12"><strong>Jangka Waktu Penyimpanan <span class="text-danger">*</span></strong></label>
+                                    <label class="col-sm-12"><strong>Jangka Waktu Penyimpanan</strong></label>
                                     <div class="col-sm-12">
-                                        <select class="form-control <?php echo form_error('jangkawaktu') ? 'is-invalid' : '' ?>" name="jangkawaktu" required>
+                                        <select class="form-control <?php echo form_error('jangkawaktu') ? 'is-invalid' : '' ?>" name="jangkawaktu">
                                             <option value="">-- Pilih Jangka Waktu --</option>
                                     		<option value="1 Tahun" <?php echo set_select('jangkawaktu', '1 Tahun', $dokumen->jangkawaktu == '1 Tahun'); ?>>1 Tahun</option>
                                     		<option value="5 Tahun" <?php echo set_select('jangkawaktu', '5 Tahun', $dokumen->jangkawaktu == '5 Tahun'); ?>>5 Tahun</option>
