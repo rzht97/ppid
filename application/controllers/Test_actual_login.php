@@ -11,6 +11,10 @@ class Test_actual_login extends CI_Controller {
     public function index() {
         echo "<h2>Test Actual Login Process</h2>";
         echo "<form method='post' action='" . base_url('index.php/test_actual_login/do_login') . "'>";
+
+        // IMPORTANT: Add CSRF token field (required when csrf_protection is enabled)
+        echo "<input type='hidden' name='" . $this->security->get_csrf_token_name() . "' value='" . $this->security->get_csrf_hash() . "'>";
+
         echo "Username: <input type='text' name='username' value='PPIDUtama'><br><br>";
         echo "Password: <input type='password' name='password' value='@Sumedang123#'><br><br>";
         echo "<button type='submit'>Test Login</button>";
