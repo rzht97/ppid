@@ -18,8 +18,8 @@
  * Uncomment dan sesuaikan dengan environment lokal Anda:
  */
 
-// XAMPP Windows (folder ppidC)
-// define('BASE_URL', 'http://localhost/ppidC/');
+// XAMPP Windows (folder ppidC) - Port 8080
+define('BASE_URL', 'http://localhost:8080/ppidC/');
 
 // XAMPP Windows (folder ppid)
 // define('BASE_URL', 'http://localhost/ppid/');
