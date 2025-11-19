@@ -70,78 +70,72 @@
                         </div>
                         <br>
                         <div class="table-responsive">
-                            <table id="myTable" class="table table-striped">
-                                <thead>
+                            <table id="myTable" class="table table-striped table-bordered">
+                                <thead class="bg-light">
                                     <tr>
-                                        <th>tanggal</th>
-                                        <th>nama</th>
-                                        <th>pekerjaan</th>
-                                        <th>kontak</th>
-                                        <th>KTP</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th width="50" class="text-center">No</th>
+                                        <th width="100">Tanggal</th>
+                                        <th>Nama Pemohon</th>
+                                        <th width="150">Pekerjaan</th>
+                                        <th width="180">Kontak</th>
+                                        <th width="130" class="text-center">No. KTP</th>
+                                        <th width="150" class="text-center">Status</th>
+                                        <th width="120" class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $no = 1; ?>
                                     <?php foreach ($permohonan as $data) : ?>
                                         <tr>
-                                            <td width="150">
-                                                <?php echo $data->tanggal ?>
-                                            </td>
+                                            <td class="text-center"><?php echo $no++; ?></td>
+                                            <td><?php echo $data->tanggal ?></td>
+                                            <td><strong><?php echo $data->nama ?></strong></td>
+                                            <td><?php echo $data->pekerjaan ?></td>
                                             <td>
-                                                <?php echo $data->nama ?>
+                                                <small>
+                                                    <i class="fa fa-phone"></i> <?php echo $data->nohp ?><br>
+                                                    <i class="fa fa-envelope"></i> <?php echo $data->email ?>
+                                                </small>
                                             </td>
-                                            <td>
-                                                <?php echo $data->pekerjaan ?>
+                                            <td class="text-center"><?php echo $data->ktp ?></td>
+                                            <td class="text-center">
+                                                <?php if($data->status == "Menunggu Verifikasi"): ?>
+                                                    <span class="label label-warning">
+                                                        <i class="fa fa-clock-o"></i> <?php echo $data->status ?>
+                                                    </span>
+                                                <?php elseif($data->status == "Sedang Diproses"): ?>
+                                                    <span class="label label-info">
+                                                        <i class="fa fa-spinner"></i> <?php echo $data->status ?>
+                                                    </span>
+                                                <?php elseif($data->status == "Selesai"): ?>
+                                                    <span class="label label-success">
+                                                        <i class="fa fa-check-circle"></i> <?php echo $data->status ?>
+                                                    </span>
+                                                <?php elseif($data->status == "Ditolak"): ?>
+                                                    <span class="label label-danger">
+                                                        <i class="fa fa-times-circle"></i> <?php echo $data->status ?>
+                                                    </span>
+                                                <?php else: ?>
+                                                    <span class="label label-default"><?php echo $data->status ?></span>
+                                                <?php endif; ?>
                                             </td>
-                                            <td>
-                                                <?php echo $data->nohp ?> /
-                                                <?php echo $data->email ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $data->ktp ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $data->status ?>
-                                            </td>
-
-                                            <td width="250">
+                                            <td class="text-center">
                                                 <?php if ($data->status == "Menunggu Verifikasi") : ?>
-                                                    <a href='<?php echo site_url('admin/permohonan/verifikasi/' . $data->mohon_id) ?>' class="fcbtn btn btn-info btn-outline btn-1b" style="width:100px">
+                                                    <a href='<?php echo site_url('admin/permohonan/verifikasi/' . $data->mohon_id) ?>' class="btn btn-info btn-sm" title="Verifikasi Permohonan">
                                                         <i class="fa fa-check-circle"></i> Verifikasi
                                                     </a>
                                                 <?php elseif ($data->status == "Sedang Diproses") : ?>
-                                                    <a href="<?php echo site_url('admin/permohonan/edit/' . $data->mohon_id) ?>" class="fcbtn btn btn-outline btn-warning btn-1b" style="width:100px">
+                                                    <a href="<?php echo site_url('admin/permohonan/edit/' . $data->mohon_id) ?>" class="btn btn-warning btn-sm" title="Edit Permohonan">
                                                         <i class="fa fa-edit"></i> Edit
                                                     </a>
-
                                                 <?php elseif ($data->status == "Selesai" || $data->status == "Ditolak") : ?>
-                                                    <a href="<?php echo site_url('admin/permohonan/detail/' . $data->mohon_id) ?>" class="fcbtn btn btn-success btn-outline btn-1b" style="width:100px">
+                                                    <a href="<?php echo site_url('admin/permohonan/detail/' . $data->mohon_id) ?>" class="btn btn-success btn-sm" title="Lihat Detail">
                                                         <i class="fa fa-eye"></i> Lihat
                                                     </a>
                                                 <?php endif ?>
-                                                <div class="modal fade" id="modalproses" role="dialog">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                <h4 class="modal-title">Detail
-                                                                    Permohonan</h4>
-                                                            </div>
-                                                            <div class="modal-body" id="data_detail">
-                                                                ....
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
-
                                 </tbody>
                             </table>
                         </div>
@@ -162,20 +156,6 @@
     function deleteConfirm(url) {
         $('#btn-delete').attr('href', url);
         $('#deleteModal').modal();
-    }
-</script>
-
-<script>
-    function detail(mohon_id) {
-		alert(mohon_id);
-        $.ajax({
-            url: "<?= base_url('admin/permohonan/detail') ?>",
-            type: "POST",
-            data: {nama:nama},
-            success: function(getreturn) {
-                $('#data_detail').html(getreturn);
-            }
-        })
     }
 </script>
 
