@@ -45,21 +45,34 @@ class Check_users extends CI_Controller {
         // Form test login dengan DEBUG
         echo "<h3>Test Login (Copy Username Exact)</h3>";
         echo "<p><strong>Form ini akan menampilkan detail setiap step login</strong></p>";
-        echo "<form method='post' action='" . base_url('index.php/login/aksi_login_debug') . "'>";
-        echo "<select name='username'>";
 
+        // Get all usernames for dropdown
         $query = $this->db->query("SELECT username FROM admin ORDER BY username");
-        foreach ($query->result() as $row) {
-            echo "<option value='" . htmlspecialchars($row->username) . "'>" . htmlspecialchars($row->username) . "</option>";
-        }
+        ?>
 
-        echo "</select><br><br>";
-        echo "Password: <input type='text' name='password' value='@Sumedang123#'><br><br>";
-        echo "<button type='submit'>Test Login (DEBUG MODE)</button>";
-        echo "</form>";
+        <form method="POST" action="<?php echo base_url('index.php/login/aksi_login_debug'); ?>">
+            <label>Username:</label><br>
+            <select name="username" required style="padding: 5px; font-size: 14px;">
+                <?php foreach ($query->result() as $row): ?>
+                    <option value="<?php echo htmlspecialchars($row->username); ?>">
+                        <?php echo htmlspecialchars($row->username); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+            <br><br>
 
-        echo "<hr>";
-        echo "<p><strong>Atau test dengan form login asli:</strong></p>";
-        echo "<a href='" . base_url('index.php/login') . "' target='_blank'>Buka Form Login</a>";
+            <label>Password:</label><br>
+            <input type="text" name="password" value="@Sumedang123#" style="padding: 5px; font-size: 14px;" required>
+            <br><br>
+
+            <button type="submit" style="padding: 10px 20px; font-size: 14px; background: #007bff; color: white; border: none; cursor: pointer;">
+                Test Login (DEBUG MODE)
+            </button>
+        </form>
+
+        <hr>
+        <p><strong>Atau test dengan form login asli:</strong></p>
+        <a href="<?php echo base_url('index.php/login'); ?>" target="_blank">Buka Form Login</a>
+        <?php
     }
 }
