@@ -113,8 +113,8 @@ class Permohonan extends CI_Controller
                  $this->session->set_flashdata('error', 'Gagal menyimpan perubahan');
              }
 
-             // IMPORTANT: Redirect after update to show flashdata message
-             redirect(site_url('admin/permohonan/edit/'.$id));
+             // Redirect to list page after successful update
+             redirect(site_url('admin/permohonan'));
          }
 
          $data['nama_user'] = $this->session->userdata("nama");
