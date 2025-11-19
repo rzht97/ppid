@@ -108,17 +108,65 @@ public function getById($mohon_id)
 		$this->status = $this->status();
 
         // FIXED: Changed from 'd-m-20y' to 'd-m-Y' for correct year format
-        // Old: 01-01-2025 would become 01-01-2025 (correct by accident until 2030)
-        // New: Always correct regardless of year
         $this->tanggal = date('d-m-Y');
 
-        // Insert with error checking
-        $result = $this->db->insert($this->_table, $this);
+        // Initialize optional fields
+        $this->tanggaljawab = NULL;
+        $this->jawab = NULL;
+
+        // DEBUG: Log data before insert
+        log_message('debug', 'Attempting to insert permohonan with ID: ' . $this->mohon_id);
+        log_message('debug', 'Data: ' . json_encode(array(
+            'mohon_id' => $this->mohon_id,
+            'nama' => $this->nama,
+            'alamat' => $this->alamat,
+            'pekerjaan' => $this->pekerjaan,
+            'nohp' => $this->nohp,
+            'email' => $this->email,
+            'ktp' => $this->ktp,
+            'status' => $this->status,
+            'tanggal' => $this->tanggal
+        )));
+
+        // Prepare data array explicitly to avoid CI_Model magic properties issue
+        $data = array(
+            'mohon_id' => $this->mohon_id,
+            'ktp' => $this->ktp,
+            'nama' => $this->nama,
+            'alamat' => $this->alamat,
+            'pekerjaan' => $this->pekerjaan,
+            'nohp' => $this->nohp,
+            'email' => $this->email,
+            'rincian' => $this->rincian,
+            'tujuan' => $this->tujuan,
+            'caraperoleh' => $this->caraperoleh,
+            'caradapat' => $this->caradapat,
+            'tanggal' => $this->tanggal,
+            'status' => $this->status,
+            'tanggaljawab' => NULL,
+            'jawab' => NULL
+        );
+
+        // Insert with data array instead of $this
+        $result = $this->db->insert($this->_table, $data);
+
+        // Log the actual SQL query
+        log_message('debug', 'SQL Query: ' . $this->db->last_query());
+        log_message('debug', 'Insert result: ' . ($result ? 'TRUE' : 'FALSE'));
+        log_message('debug', 'Affected rows: ' . $this->db->affected_rows());
+        log_message('debug', 'Insert ID: ' . $this->db->insert_id());
 
         if(!$result){
             // Log database error
-            log_message('error', 'Database insert failed: ' . $this->db->error()['message']);
-            throw new Exception('Gagal menyimpan data ke database: ' . $this->db->error()['message']);
+            $db_error = $this->db->error();
+            log_message('error', 'Database insert failed: ' . json_encode($db_error));
+            throw new Exception('Gagal menyimpan data ke database: ' . $db_error['message']);
+        }
+
+        // Check if any rows were actually inserted
+        if($this->db->affected_rows() == 0){
+            log_message('error', 'Insert returned TRUE but affected_rows = 0');
+            throw new Exception('Data tidak berhasil disimpan (affected_rows = 0)');
         }
 
         return $result;
