@@ -178,14 +178,51 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label">HARI/TANGGAL TANGGAPAN ATAS KEBERATAN AKAN DIBERIKAN :</label>
+                                                <label class="control-label">Tanggal Keberatan Diajukan:</label>
                                                 <div class="col-md-9">
-                                                    <p class="form-control-static"> <?php echo $keberatan->caraperoleh ?> </p>
+                                                    <p class="form-control-static"> <?php echo date('d-m-Y H:i', strtotime($keberatan->tanggal)) ?> </p>
                                                 </div>
                                             </div>
                                         </div>
-                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Status Keberatan:</label>
+                                                <div class="col-md-9">
+                                                    <?php if ($keberatan->status_keberatan == 'Menunggu Verifikasi') : ?>
+                                                        <button class="btn btn-block btn-warning disabled"><?php echo $keberatan->status_keberatan ?> </button>
+                                                    <?php elseif ($keberatan->status_keberatan == 'Sedang Diproses') : ?>
+                                                        <button class="btn btn-block btn-info disabled"><?php echo $keberatan->status_keberatan ?> </button>
+                                                    <?php else : ?>
+                                                        <button class="btn btn-block btn-success disabled"><?php echo $keberatan->status_keberatan ?> </button>
+                                                    <?php endif ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <?php if (!empty($keberatan->tanggapan)) : ?>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Tanggapan PPID:</label>
+                                                <div class="col-md-12">
+                                                    <p class="form-control-static"> <?php echo $keberatan->tanggapan ?> </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php endif; ?>
+                                    <?php if (!empty($keberatan->putusan)) : ?>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Putusan:</label>
+                                                <div class="col-md-12">
+                                                    <p class="form-control-static"> <?php echo $keberatan->putusan ?> </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php endif; ?>
                                     <div class="form-group">
                                         <label class="control-label">Status :</label>
                                         <div class="col-md-3">

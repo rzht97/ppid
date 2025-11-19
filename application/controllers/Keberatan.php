@@ -72,7 +72,7 @@ class Keberatan extends CI_Controller {
 
 	   // Fixed: Gunakan query builder dengan JOIN yang aman dan WHERE clause
        $data["keberatan"] = $this->db
-           ->select('keberatan.id_keberatan, keberatan.mohon_id, keberatan.alasan, keberatan.kronologi, keberatan.tanggal, keberatan.caraperoleh,
+           ->select('keberatan.id_keberatan, keberatan.mohon_id, keberatan.alasan, keberatan.kronologi, keberatan.tanggal, keberatan.tanggapan, keberatan.putusan, keberatan.status as status_keberatan,
                      permohonan.nama, permohonan.alamat, permohonan.nohp, permohonan.pekerjaan, permohonan.email, permohonan.status')
            ->from('keberatan')
            ->join('permohonan', 'permohonan.mohon_id = keberatan.mohon_id', 'inner')
