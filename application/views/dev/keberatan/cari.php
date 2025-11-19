@@ -169,7 +169,7 @@
                                             <i class="fa fa-edit"></i> Form Keberatan
                                         </h3>
 
-                                        <form action="<?= base_url()?>index.php/keberatan/save" method="post">
+                                        <form action="<?= base_url()?>keberatan/save" method="post">
                                             <input type="hidden" name="mohon_id" value="<?php echo $data->mohon_id?>" required>
 
                                             <div class="form-group" style="margin-bottom: 25px;">

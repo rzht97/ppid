@@ -66,7 +66,7 @@
                                 </div>
                             <?php endif; ?>
 
-                            <form class="form-horizontal" action="<?php echo base_url("index.php/admin/permohonan/add") ?>" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal" action="<?php echo base_url("admin/permohonan/add") ?>" method="post" enctype="multipart/form-data">
                                 <div class="form-body">
                                     <!-- Data Pemohon -->
                                     <h4 class="m-t-30 m-b-20"><i class="fa fa-user"></i> Data Pemohon</h4>

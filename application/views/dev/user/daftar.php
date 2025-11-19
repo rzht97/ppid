@@ -22,7 +22,7 @@
                 <?php echo $this->session->flashdata('success'); ?>
               </div>
             <?php endif; ?>
-            <form action="<?php echo base_url('index.php/pub/login/add') ?>" method="post" enctype="multipart/form-data">
+            <form action="<?php echo base_url('pub/login/add') ?>" method="post" enctype="multipart/form-data">
               <h3 class="box-title m-b-20">Daftar Pengguna</h3>
 
               <div class="form-group ">

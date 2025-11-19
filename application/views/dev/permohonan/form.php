@@ -139,7 +139,7 @@
                                 </div>
                             <?php endif; ?>
 
-                            <form data-toogle="validator" class="form-horizontal" action="<?php echo base_url('index.php/pub/permohonan/permohonan') ?>" method="post" enctype="multipart/form-data">
+                            <form data-toogle="validator" class="form-horizontal" action="<?php echo base_url('pub/permohonan/permohonan') ?>" method="post" enctype="multipart/form-data">
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label class="col-md-12" style="margin-bottom: 8px;"><strong>Nama Lengkap <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">

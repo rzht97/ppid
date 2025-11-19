@@ -32,7 +32,7 @@
 <section id="wrapper" class="login-register">
   <div class="login-box">
     <div class="white-box">
-      <form action="<?php echo base_url('index.php/pub/login/aksi_login'); ?>" method="post" class="form-horizontal form-material" >
+      <form action="<?php echo base_url('pub/login/aksi_login'); ?>" method="post" class="form-horizontal form-material" >
         <h3 class="box-title m-b-20">Sign In</h3>
 		  
         <div class="form-group ">

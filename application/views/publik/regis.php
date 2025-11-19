@@ -32,7 +32,7 @@
 					
 					<div class="card-body">
 
-						<form action="<?php echo base_url('index.php/publik/login/add') ?>" method="post" enctype="multipart/form-data" >
+						<form action="<?php echo base_url('publik/login/add') ?>" method="post" enctype="multipart/form-data" >
 							<div class="row">
 							 <div class="col-lg-6 mb-5 mb-lg-0">
 							 <div class="blog_left_sidebar">

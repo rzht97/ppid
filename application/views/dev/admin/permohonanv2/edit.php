@@ -58,7 +58,7 @@
                                 </div>
                             <?php endif; ?>
 
-                            <form class="form-horizontal" action="<?php echo base_url("index.php/admin/permohonan/edit/".$permohonan->mohon_id) ?>" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal" action="<?php echo base_url("admin/permohonan/edit/".$permohonan->mohon_id) ?>" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="mohon_id" value="<?php echo $permohonan->mohon_id ?>" />
 
                                 <div class="form-body">
