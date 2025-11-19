@@ -72,7 +72,7 @@ switch (ENVIRONMENT)
 		ini_set('display_startup_errors', 1);
 		ini_set('log_errors', 1);
 		// Error log location (application/logs directory)
-		ini_set('error_log', APPPATH . 'logs/php_errors.log');
+		ini_set('error_log', __DIR__ . '/application/logs/php_errors.log');
 	break;
 
 	case 'testing':
@@ -84,7 +84,7 @@ switch (ENVIRONMENT)
 		error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_WARNING & ~E_USER_DEPRECATED);
 		ini_set('log_errors', 1);
 		// Error log location (application/logs directory)
-		ini_set('error_log', APPPATH . 'logs/php_errors.log');
+		ini_set('error_log', __DIR__ . '/application/logs/php_errors.log');
 	break;
 
 	default:
