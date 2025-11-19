@@ -91,19 +91,30 @@ class Permohonan extends CI_Controller
     {
          if (!isset($id)) redirect('admin/permohonan');
 
-       
+
          $permohonan = $this->permohonan_model;
          $validation = $this->form_validation;
-         $validation->set_rules($permohonan->rules());
+
+         // Use edit_rules() instead of rules() - only validates status and jawab
+         $validation->set_rules($permohonan->edit_rules());
 
          if ($validation->run()) {
-             $permohonan->update();
-             $this->session->set_flashdata('success', 'Berhasil disimpan');
+             $result = $permohonan->update();
+
+             if($result) {
+                 $this->session->set_flashdata('success', 'Permohonan berhasil diproses dan disimpan');
+             } else {
+                 $this->session->set_flashdata('error', 'Gagal menyimpan perubahan');
+             }
+
+             // IMPORTANT: Redirect after update to show flashdata message
+             redirect(site_url('admin/permohonan/edit/'.$id));
          }
+
          $data['nama_user'] = $this->session->userdata("nama");
          $data["permohonan"] = $permohonan->getById($id);
          if (!$data["permohonan"]) show_404();
-       
+
          $this->load->view("dev/admin/permohonanv2/edit", $data);
     }
 	

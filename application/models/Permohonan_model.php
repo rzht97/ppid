@@ -67,6 +67,23 @@ class Permohonan_model extends CI_Model
         ];
     }
 
+    /**
+     * Validation rules untuk edit permohonan
+     * Only validates status and jawab fields
+     */
+    public function edit_rules()
+    {
+        return [
+            ['field' => 'status',
+             'label' => 'Status Permohonan',
+             'rules' => 'required|in_list[Selesai,Ditolak]'],
+
+            ['field' => 'jawab',
+             'label' => 'Jawaban/Keterangan',
+             'rules' => 'required|min_length[10]'],
+        ];
+    }
+
 
     public function getAll()
     {
@@ -215,6 +232,27 @@ public function getById($mohon_id)
         $this->db->update($this->_table, $this, array('mohon_id' => $post['mohon_id']));
     }
 	
+	/**
+	 * Update permohonan (for edit page)
+	 * Updates status and jawaban fields
+	 */
+	public function update()
+    {
+        $post = $this->input->post();
+        $this->mohon_id = $post["mohon_id"];
+		$this->status = $post["status"];
+		$this->jawab = $post["jawab"];
+        $this->tanggaljawab = date('d-m-Y');
+
+        // Use query builder for safer update
+        return $this->db->where('mohon_id', $this->mohon_id)
+                        ->update($this->_table, array(
+                            'status' => $this->status,
+                            'jawab' => $this->jawab,
+                            'tanggaljawab' => $this->tanggaljawab
+                        ));
+    }
+
 	/**
 	 * Jawab permohonan
 	 * Fixed: Date format bug (20y → Y)
