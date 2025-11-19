@@ -113,8 +113,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label><strong>Kasus Posisi</strong></label>
-                                                <p class="form-control-static" style="white-space: pre-wrap; background-color: #f9f9f9; padding: 10px; border: 1px solid #e3e3e3; border-radius: 4px;"><?php echo $keberatan->kasus_posisi ?></p>
+                                                <label><strong>Kronologi / Kasus Posisi</strong></label>
+                                                <p class="form-control-static" style="white-space: pre-wrap; background-color: #f9f9f9; padding: 10px; border: 1px solid #e3e3e3; border-radius: 4px;"><?php echo $keberatan->kronologi ?></p>
                                             </div>
                                         </div>
                                     </div>
