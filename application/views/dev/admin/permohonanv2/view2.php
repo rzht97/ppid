@@ -92,8 +92,7 @@
 
                                             <td width="250">
                                                 <?php if ($data->status == "Menunggu Verifikasi") : ?>
-                                                    <a href='<?php echo site_url('
-                                                admin/permohonan/verifikasi/' . $data->mohon_id) ?>'><button type="button" class="fcbtn btn btn-info btn-outline btn-1b" style="width:100px">Verifikasi </button></a>
+                                                    <a href='<?php echo site_url('admin/permohonan/verifikasi/' . $data->mohon_id) ?>'><button type="button" class="fcbtn btn btn-info btn-outline btn-1b" style="width:100px">Verifikasi </button></a>
                                                 <?php elseif ($data->status == "Sedang Diproses") : ?>
                                                     <!--<button class="fcbtn btn btn-warning btn-outline btn-1b" data-toggle="modal" data-target="#modalproses" onClick="detail(<?php echo $data->mohon_id ?>)" style="width:100px">Proses</button>-->
 												<a href="<?php echo site_url('admin/permohonan/edit/' . $data->mohon_id) ?>" class="fcbtn btn btn-outline btn-warning btn-1b"><i class="fa fa-edit"></i> Edit</a>
