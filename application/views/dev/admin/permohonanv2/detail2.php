@@ -137,26 +137,30 @@
                             <div class="form-group">
                                 <label class="col-md-12"><strong>Status Permohonan</strong></label>
                                 <div class="col-md-12">
-                                    <?php if($permohonan->status == "Selesai"): ?>
-                                        <span class="label label-success" style="font-size: 14px; padding: 8px 12px;">
-                                            <i class="fa fa-check-circle"></i> <?php echo $permohonan->status ?>
-                                        </span>
-                                    <?php elseif($permohonan->status == "Ditolak"): ?>
-                                        <span class="label label-danger" style="font-size: 14px; padding: 8px 12px;">
-                                            <i class="fa fa-times-circle"></i> <?php echo $permohonan->status ?>
-                                        </span>
-                                    <?php elseif($permohonan->status == "Sedang Diproses"): ?>
-                                        <span class="label label-warning" style="font-size: 14px; padding: 8px 12px;">
-                                            <i class="fa fa-spinner"></i> <?php echo $permohonan->status ?>
-                                        </span>
-                                    <?php else: ?>
-                                        <span class="label label-info" style="font-size: 14px; padding: 8px 12px;">
-                                            <i class="fa fa-clock-o"></i> <?php echo $permohonan->status ?>
-                                        </span>
-                                    <?php endif; ?>
-                                    <?php if($permohonan->tanggaljawab): ?>
-                                        <span class="text-muted m-l-10">Diproses pada: <strong><?php echo $permohonan->tanggaljawab ?></strong></span>
-                                    <?php endif; ?>
+                                    <div class="p-t-10 p-b-10">
+                                        <?php if($permohonan->status == "Selesai"): ?>
+                                            <span class="label label-success" style="font-size: 14px; padding: 10px 15px;">
+                                                <i class="fa fa-check-circle"></i> <?php echo $permohonan->status ?>
+                                            </span>
+                                        <?php elseif($permohonan->status == "Ditolak"): ?>
+                                            <span class="label label-danger" style="font-size: 14px; padding: 10px 15px;">
+                                                <i class="fa fa-times-circle"></i> <?php echo $permohonan->status ?>
+                                            </span>
+                                        <?php elseif($permohonan->status == "Sedang Diproses"): ?>
+                                            <span class="label label-warning" style="font-size: 14px; padding: 10px 15px;">
+                                                <i class="fa fa-spinner"></i> <?php echo $permohonan->status ?>
+                                            </span>
+                                        <?php else: ?>
+                                            <span class="label label-info" style="font-size: 14px; padding: 10px 15px;">
+                                                <i class="fa fa-clock-o"></i> <?php echo $permohonan->status ?>
+                                            </span>
+                                        <?php endif; ?>
+                                        <?php if($permohonan->tanggaljawab): ?>
+                                            <span class="text-muted m-l-15" style="display: inline-block; margin-top: 5px;">
+                                                <i class="fa fa-calendar"></i> Diproses pada: <strong><?php echo $permohonan->tanggaljawab ?></strong>
+                                            </span>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
 
@@ -164,7 +168,7 @@
                             <div class="form-group">
                                 <label class="col-md-12"><strong>Jawaban/Keterangan</strong></label>
                                 <div class="col-md-12">
-                                    <div class="well well-sm" style="background-color: #f9f9f9;">
+                                    <div class="well well-sm" style="background-color: #f9f9f9; padding: 15px;">
                                         <?php echo nl2br($permohonan->jawab) ?>
                                     </div>
                                 </div>
@@ -173,7 +177,7 @@
                             <div class="form-group">
                                 <label class="col-md-12"><strong>Jawaban/Keterangan</strong></label>
                                 <div class="col-md-12">
-                                    <div class="alert alert-info">
+                                    <div class="alert alert-info" style="padding: 15px;">
                                         <i class="fa fa-info-circle"></i> Permohonan belum diproses atau dijawab
                                     </div>
                                 </div>
