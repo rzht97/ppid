@@ -68,6 +68,7 @@ class Keberatan extends CI_Controller
         $this->db->update('keberatan', array('status' => 'Sedang Diproses'));
 
         $this->session->set_flashdata('success', 'Keberatan berhasil diverifikasi');
+        $this->session->set_flashdata('success_target', 'admin/keberatan'); // Mark target page
         redirect(site_url('admin/keberatan'));
     }
 
@@ -96,8 +97,10 @@ class Keberatan extends CI_Controller
 
             if($result) {
                 $this->session->set_flashdata('success', 'Keberatan berhasil diproses');
+                $this->session->set_flashdata('success_target', 'admin/keberatan'); // Mark target page
             } else {
                 $this->session->set_flashdata('error', 'Gagal memproses keberatan');
+                $this->session->set_flashdata('error_target', 'admin/keberatan'); // Mark target page
             }
 
             redirect(site_url('admin/keberatan'));

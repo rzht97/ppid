@@ -51,18 +51,27 @@
 							<br>
 
 							<?php
-								// Consume flashdata once - this properly marks it for deletion
+								// Read flashdata and target page
 								$success_msg = $this->session->flashdata('success');
+								$success_target = $this->session->flashdata('success_target');
 								$error_msg = $this->session->flashdata('error');
+								$error_target = $this->session->flashdata('error_target');
+
+								// Get current page URI
+								$current_uri = uri_string();
+
+								// Only show alert if no target specified OR target matches current page
+								$show_success = $success_msg && (!$success_target || $success_target === $current_uri);
+								$show_error = $error_msg && (!$error_target || $error_target === $current_uri);
 							?>
-							<?php if($success_msg): ?>
+							<?php if($show_success): ?>
 								<div class="alert alert-success alert-dismissible auto-close-alert">
 									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 									<i class="fa fa-check-circle"></i> <?php echo $success_msg; ?>
 								</div>
 							<?php endif; ?>
 
-							<?php if($error_msg): ?>
+							<?php if($show_error): ?>
 								<div class="alert alert-danger alert-dismissible auto-close-alert">
 									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 									<i class="fa fa-times-circle"></i> <?php echo $error_msg; ?>
