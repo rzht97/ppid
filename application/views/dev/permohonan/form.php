@@ -538,6 +538,216 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 		}
 	</script>
 
+	<!-- Real-time Validation Script -->
+	<script>
+	$(document).ready(function() {
+		// Real-time validation functions
+		const validators = {
+			nama: function(value) {
+				if (!value || value.trim().length === 0) {
+					return 'Nama wajib diisi';
+				}
+				if (value.length < 3) {
+					return 'Nama minimal 3 karakter';
+				}
+				if (value.length > 100) {
+					return 'Nama maksimal 100 karakter';
+				}
+				return null;
+			},
+
+			alamat: function(value) {
+				if (!value || value.trim().length === 0) {
+					return 'Alamat wajib diisi';
+				}
+				if (value.length < 5) {
+					return 'Alamat minimal 5 karakter';
+				}
+				return null;
+			},
+
+			pekerjaan: function(value) {
+				if (!value || value.trim().length === 0) {
+					return 'Pekerjaan wajib diisi';
+				}
+				return null;
+			},
+
+			nohp: function(value) {
+				if (!value || value.trim().length === 0) {
+					return 'Nomor telepon wajib diisi';
+				}
+				if (!/^\d+$/.test(value)) {
+					return 'Nomor telepon hanya boleh berisi angka';
+				}
+				if (value.length < 10) {
+					return 'Nomor telepon minimal 10 digit';
+				}
+				if (value.length > 15) {
+					return 'Nomor telepon maksimal 15 digit';
+				}
+				return null;
+			},
+
+			email: function(value) {
+				if (!value || value.trim().length === 0) {
+					return 'Email wajib diisi';
+				}
+				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+				if (!emailRegex.test(value)) {
+					return 'Format email tidak valid';
+				}
+				return null;
+			},
+
+			rincian: function(value) {
+				if (!value || value.trim().length === 0) {
+					return 'Rincian informasi wajib diisi';
+				}
+				if (value.length < 10) {
+					return 'Rincian informasi minimal 10 karakter';
+				}
+				return null;
+			},
+
+			tujuan: function(value) {
+				if (!value || value.trim().length === 0) {
+					return 'Tujuan penggunaan informasi wajib diisi';
+				}
+				return null;
+			},
+
+			ktp: function(fileInput) {
+				if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
+					return 'File KTP wajib diupload';
+				}
+				return null;
+			},
+
+			terms: function(checkbox) {
+				if (!checkbox || !checkbox.checked) {
+					return 'Anda harus menyetujui Hak-hak Pemohon Informasi';
+				}
+				return null;
+			}
+		};
+
+		// Function to show error message
+		function showError(fieldName, errorMessage) {
+			const field = $('[name="' + fieldName + '"]');
+			const parent = field.closest('.form-group');
+
+			// Remove existing error
+			parent.find('.validation-error').remove();
+			field.removeClass('is-invalid').addClass('is-invalid');
+
+			// Add new error message
+			if (errorMessage) {
+				const errorDiv = $('<div class="text-danger validation-error" style="margin-top: 5px;"></div>').text(errorMessage);
+				field.closest('.col-md-12, .col-sm-12').append(errorDiv);
+			}
+		}
+
+		// Function to clear error message
+		function clearError(fieldName) {
+			const field = $('[name="' + fieldName + '"]');
+			const parent = field.closest('.form-group');
+
+			parent.find('.validation-error').remove();
+			field.removeClass('is-invalid');
+		}
+
+		// Function to validate a field
+		function validateField(fieldName) {
+			const field = $('[name="' + fieldName + '"]');
+			let value;
+
+			if (fieldName === 'ktp') {
+				value = field[0];
+			} else if (fieldName === 'terms') {
+				value = field[0];
+			} else {
+				value = field.val();
+			}
+
+			if (validators[fieldName]) {
+				const error = validators[fieldName](value);
+				if (error) {
+					showError(fieldName, error);
+					return false;
+				} else {
+					clearError(fieldName);
+					return true;
+				}
+			}
+			return true;
+		}
+
+		// Attach blur event listeners for text inputs
+		$('input[name="nama"], input[name="alamat"], input[name="pekerjaan"], input[name="nohp"], input[name="email"]').on('blur', function() {
+			validateField($(this).attr('name'));
+		});
+
+		// Attach blur event listeners for textareas
+		$('textarea[name="rincian"], textarea[name="tujuan"]').on('blur', function() {
+			validateField($(this).attr('name'));
+		});
+
+		// Attach change event for file input
+		$('input[name="ktp"]').on('change', function() {
+			validateField('ktp');
+		});
+
+		// Real-time input validation (while typing)
+		$('input[name="nama"], input[name="alamat"], input[name="pekerjaan"], input[name="nohp"], input[name="email"]').on('input', function() {
+			const fieldName = $(this).attr('name');
+			// Clear error immediately when user starts typing
+			clearError(fieldName);
+		});
+
+		$('textarea[name="rincian"], textarea[name="tujuan"]').on('input', function() {
+			const fieldName = $(this).attr('name');
+			clearError(fieldName);
+		});
+
+		// Validate all fields before form submission
+		$('form').on('submit', function(e) {
+			let isValid = true;
+
+			// Validate all fields
+			const fieldsToValidate = ['nama', 'alamat', 'pekerjaan', 'nohp', 'email', 'rincian', 'tujuan', 'ktp', 'terms'];
+
+			fieldsToValidate.forEach(function(fieldName) {
+				if (!validateField(fieldName)) {
+					isValid = false;
+				}
+			});
+
+			if (!isValid) {
+				e.preventDefault();
+
+				// Scroll to first error
+				const firstError = $('.validation-error').first();
+				if (firstError.length) {
+					$('html, body').animate({
+						scrollTop: firstError.offset().top - 100
+					}, 500);
+				}
+
+				// Show alert
+				alert('Mohon perbaiki kesalahan pada form sebelum mengirim permohonan.');
+			}
+		});
+
+		// Auto-validate terms when checkbox is checked
+		$('input[name="terms"]').on('change', function() {
+			if ($(this).is(':checked')) {
+				clearError('terms');
+			}
+		});
+	});
+	</script>
+
 </body>
 
 
