@@ -44,7 +44,7 @@ class Permohonan extends CI_Controller {
                 log_message('debug', 'Verified data: ' . json_encode($verify));
 
                 // Set success message
-                $this->session->set_flashdata('success', 'Permohonan berhasil disimpan dengan ID: ' . $mohon_id . ' | Database: ' . $this->db->database);
+                $this->session->set_flashdata('success', 'Permohonan Anda berhasil dikirim! Nomor permohonan: <strong>' . $mohon_id . '</strong>. Silakan catat nomor ini untuk melacak status permohonan Anda.');
 
                 // Load helper telegram (if exists)
                 if(file_exists(APPPATH.'helpers/telegram_helper.php')){
