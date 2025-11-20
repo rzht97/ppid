@@ -57,31 +57,36 @@
     <style>
         /* Form Container */
         .form-container {
-            padding: 60px 0;
+            padding: 40px 0;
         }
         .form-container .white-box {
-            padding: 30px;
+            padding: 25px;
+            max-width: 900px;
+            margin: 0 auto;
         }
         .form-container .box-title {
             margin-top: 0;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 22px;
         }
         .form-container .text-muted {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+            font-size: 14px;
         }
 
         /* Form Groups and Labels */
         .form-horizontal .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .form-horizontal .form-group label {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            font-size: 14px;
         }
 
         /* Alerts */
         .form-container .alert {
-            padding: 15px;
-            margin-bottom: 20px;
+            padding: 12px;
+            margin-bottom: 15px;
         }
         .form-container .alert span {
             margin-top: 5px;
@@ -94,37 +99,50 @@
         /* Error Messages and Help Text */
         .form-group .text-danger {
             margin-top: 5px;
+            font-size: 13px;
         }
         .form-group .help-block {
             margin-top: 5px;
         }
+        .form-group .help-block small {
+            font-size: 12px;
+        }
+
+        /* Form Controls */
+        .form-control {
+            font-size: 14px;
+        }
+        textarea.form-control {
+            padding: 10px 12px;
+        }
 
         /* File Upload Custom Styles */
         .custom-file-upload {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         .file-clear-btn {
-            margin-top: 8px;
+            margin-top: 6px;
             display: none;
         }
         #ktpPreviewContainer {
-            margin-top: 15px;
+            margin-top: 12px;
             display: none;
         }
         #ktpPreviewContainer > div {
             background-color: #f9f9f9;
-            padding: 15px;
+            padding: 12px;
             border: 2px solid #e8e8e8;
             border-radius: 6px;
             text-align: center;
         }
         #ktpPreviewContainer label {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: block;
+            font-size: 14px;
         }
         #ktpPreview {
             max-width: 100%;
-            max-height: 400px;
+            max-height: 300px;
             border: 1px solid #ddd;
             border-radius: 4px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -133,26 +151,29 @@
             display: none;
         }
         #pdfPreview i {
-            font-size: 60px;
+            font-size: 50px;
             color: #d9534f;
         }
         #pdfPreview p:first-of-type {
-            margin-top: 10px;
+            margin-top: 8px;
             font-weight: bold;
+            font-size: 14px;
         }
         #pdfPreview p:last-of-type {
             margin: 5px 0;
+            font-size: 13px;
         }
 
         /* Agreement Section */
         #agreementSection .btn-info {
             width: 100%;
-            padding: 15px;
-            margin-bottom: 10px;
+            padding: 12px;
+            margin-bottom: 8px;
+            font-size: 14px;
         }
         #agreementStatus {
             display: none;
-            padding: 15px;
+            padding: 12px;
             background-color: #d4edda;
             border: 2px solid #c3e6cb;
             border-radius: 6px;
@@ -160,15 +181,16 @@
         }
         #agreementStatus i {
             color: #28a745;
-            font-size: 24px;
+            font-size: 20px;
         }
         #agreementStatus p {
-            margin: 10px 0 0 0;
+            margin: 8px 0 0 0;
             color: #155724;
             font-weight: bold;
+            font-size: 14px;
         }
         #agreementWarning {
-            padding: 10px;
+            padding: 8px;
             background-color: #fff3cd;
             border: 1px solid #ffc107;
             border-radius: 4px;
@@ -176,31 +198,55 @@
         }
         #agreementWarning small {
             color: #856404;
+            font-size: 12px;
         }
 
         /* Form Actions */
         .form-actions {
-            margin-top: 30px;
+            margin-top: 20px;
         }
         .form-actions .btn {
-            padding: 12px 40px;
+            padding: 10px 35px;
+            font-size: 14px;
         }
         .form-actions .btn-default {
-            padding: 12px 30px;
+            padding: 10px 30px;
         }
 
         /* Modal */
         .modal-body {
             line-height: 1.6;
+            font-size: 14px;
+        }
+        .modal-body h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .modal-body p {
+            font-size: 13px;
+            margin-bottom: 10px;
         }
         .modal-footer {
             text-align: center;
+        }
+        .modal-footer .btn {
+            font-size: 14px;
         }
 
         /* Honeypot */
         .honeypot-field {
             position: absolute;
             left: -5000px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-container .white-box {
+                padding: 20px 15px;
+            }
+            .form-container {
+                padding: 30px 0;
+            }
         }
     </style>
 </head>
