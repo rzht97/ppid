@@ -116,8 +116,7 @@ public function save()
 
     public function delete($id)
     {
-		$this->_deleteFile($mohon_id);
-        return $this->db->delete($this->_table, array("mohon_id" => $mohon_id));
+        return $this->db->delete($this->_table, array("id_keberatan" => $id));
 	}
 
 	/**
