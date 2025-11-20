@@ -51,6 +51,7 @@ class Permohonan extends CI_Controller
                  ->update('permohonan', array('status' => 'Sedang Diproses'));
 
         $this->session->set_flashdata('success', 'Permohonan berhasil diverifikasi');
+        $this->session->set_flashdata('success_target', 'admin/permohonan');
 		redirect(site_url('admin/permohonan'));
     }
 	
@@ -65,6 +66,7 @@ class Permohonan extends CI_Controller
         if ($validation->run()) {
             $permohonan->update();
             $this->session->set_flashdata('success', 'Berhasil disimpan');
+            $this->session->set_flashdata('success_target', 'admin/permohonan');
 			redirect(site_url('admin/permohonan'));
         }
         $data['nama_user'] = $this->session->userdata("nama");
@@ -84,9 +86,11 @@ class Permohonan extends CI_Controller
 
             if($result) {
                 $this->session->set_flashdata('success', 'Permohonan berhasil ditambahkan');
+                $this->session->set_flashdata('success_target', 'admin/permohonan');
                 redirect(site_url('admin/permohonan'));
             } else {
                 $this->session->set_flashdata('error', 'Gagal menyimpan data permohonan');
+                $this->session->set_flashdata('error_target', 'admin/permohonan');
             }
         }
 
@@ -109,8 +113,10 @@ class Permohonan extends CI_Controller
 
              if($result) {
                  $this->session->set_flashdata('success', 'Permohonan berhasil diproses dan disimpan');
+                 $this->session->set_flashdata('success_target', 'admin/permohonan');
              } else {
                  $this->session->set_flashdata('error', 'Gagal menyimpan perubahan');
+                 $this->session->set_flashdata('error_target', 'admin/permohonan');
              }
 
              // Redirect to list page after successful update

@@ -55,9 +55,11 @@ class Dip extends CI_Controller
 
             if($result) {
                 $this->session->set_flashdata('success', 'Informasi berhasil ditambahkan');
+                $this->session->set_flashdata('success_target', 'admin/dip');
                 redirect(site_url('admin/dip'));
             } else {
                 $this->session->set_flashdata('error', 'Gagal menyimpan informasi');
+                $this->session->set_flashdata('error_target', 'admin/dip');
             }
         }
 
@@ -78,8 +80,10 @@ class Dip extends CI_Controller
 
              if($result) {
                  $this->session->set_flashdata('success', 'Informasi berhasil diperbarui');
+                 $this->session->set_flashdata('success_target', 'admin/dip');
              } else {
                  $this->session->set_flashdata('error', 'Gagal memperbarui informasi');
+                 $this->session->set_flashdata('error_target', 'admin/dip');
              }
 
              // Redirect to list page after successful update
@@ -99,8 +103,10 @@ class Dip extends CI_Controller
 
         if ($this->dokumen_model->delete($id)) {
             $this->session->set_flashdata('success', 'Informasi berhasil dihapus');
+            $this->session->set_flashdata('success_target', 'admin/dip');
         } else {
             $this->session->set_flashdata('error', 'Gagal menghapus informasi');
+            $this->session->set_flashdata('error_target', 'admin/dip');
         }
 
         redirect(site_url('admin/dip'));
