@@ -350,7 +350,7 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
                                             <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">
                                                 <i class="fa fa-times"></i> Batal
                                             </button>
-                                            <button type="button" class="btn btn-success btn-lg waves-effect" onclick="agreeToTerms()" style="padding: 12px 40px;">
+                                            <button type="button" class="btn btn-success waves-effect" onclick="agreeToTerms()">
                                                 <i class="fa fa-check"></i> Saya Setuju
                                             </button>
                                         </div>
