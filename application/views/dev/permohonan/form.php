@@ -216,6 +216,7 @@
                                     <label class="col-sm-12" style="margin-bottom: 8px;"><strong>Cara Memperoleh Informasi <span class="text-danger">*</span></strong></label>
                                     <div class="col-sm-12">
                                         <select class="form-control <?php echo form_error('caraperoleh') ? 'is-invalid' : '' ?>" name="caraperoleh" required>
+											<option value="" selected disabled></option>
 											<option value="Mendapat Salinan informasi (hardcopy/softcopy)">Mendapat Salinan Informasi (Hardcopy/Softcopy)</option>
                                             <option value="Melihat/membaca/mendengarkan/mecatat">Melihat/Membaca/Mendengarkan/Mencatat</option>
                                         </select>
@@ -229,6 +230,7 @@
                                     <label class="col-sm-12" style="margin-bottom: 8px;"><strong>Cara Mendapat Salinan Informasi <span class="text-danger">*</span></strong></label>
                                     <div class="col-sm-12">
                                         <select class="form-control <?php echo form_error('caradapat') ? 'is-invalid' : '' ?>" name="caradapat" required>
+											<option value="" selected disabled></option>
                                             <option value="Mengambil Langsung">Mengambil Langsung</option>
                                             <option value="Kurir">Kurir</option>
                                             <option value="Pos">Pos</option>
