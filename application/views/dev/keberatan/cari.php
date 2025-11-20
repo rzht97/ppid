@@ -193,7 +193,7 @@
                                                 <label style="font-weight: 600; color: #34495e; margin-bottom: 12px; display: block; font-size: 15px;">
                                                     Kronologi/Uraian Keberatan <span class="text-danger">*</span>
                                                 </label>
-                                                <textarea class="form-control" name="kronologi" rows="7" required style="padding: 14px; font-size: 14px; border-radius: 5px; border: 1px solid #d1d5db; line-height: 1.6; resize: vertical;"></textarea>
+                                                <textarea class="form-control" name="kronologi" rows="7" required style="padding: 12px 14px; font-size: 14px; border-radius: 5px; border: 1px solid #d1d5db; line-height: 1.5; resize: vertical; vertical-align: top; font-family: inherit;"></textarea>
                                                 <span class="help-block" style="margin-top: 8px; color: #6b7280;"><small>Jelaskan kronologi atau uraian keberatan Anda sejelas mungkin (tanggal, waktu, dan kejadian yang terjadi)</small></span>
                                             </div>
 
