@@ -98,6 +98,7 @@
                                     <label class="col-sm-12">Cara Memperoleh Informasi</label>
                                     <div class="col-sm-12">
                                         <select class="form-control" <?php echo form_error('caraperoleh') ? 'is-invalid' : '' ?> name = "caraperoleh">
+											<option value="" Hidden></option>
 											<option value = "Mendapat Salinan informasi (hardcopy/softcopy)" >Mendapat Salinan informasi (hardcopy/softcopy)</option>
                                             <option value = "Melihat/membaca/mendengarkan/mecatat">Melihat/membaca/ mendengarkan/mecatat</option>
                                             
@@ -108,6 +109,7 @@
                                     <label class="col-sm-12">Cara Mendapat Salinan Informasi</label>
                                     <div class="col-sm-12">
                                         <select class="form-control" <?php echo form_error('caradapat') ? 'is-invalid' : '' ?> name = "caradapat">
+											<option value="" Hidden></option>
                                             <option value = "Mengambil Langsung">Mengambil Langsung</option>
                                             <option value = "Kurir">Kurir</option>
                                             <option value = "Pos">Pos</option>
