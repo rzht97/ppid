@@ -53,27 +53,27 @@
                             <br>
 
                             <?php
-                                // Consume flashdata once and store in variables
+                                // Consume flashdata once - this properly marks it for deletion
                                 $success_msg = $this->session->flashdata('success');
                                 $error_msg = $this->session->flashdata('error');
                                 $validation_errors = validation_errors();
                             ?>
                             <?php if($success_msg): ?>
-                                <div class="alert alert-success alert-dismissible auto-close-alert" data-alert-id="<?php echo md5($success_msg); ?>">
+                                <div class="alert alert-success alert-dismissible auto-close-alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                     <i class="fa fa-check-circle"></i> <?php echo $success_msg; ?>
                                 </div>
                             <?php endif; ?>
 
                             <?php if($error_msg): ?>
-                                <div class="alert alert-danger alert-dismissible auto-close-alert" data-alert-id="<?php echo md5($error_msg); ?>">
+                                <div class="alert alert-danger alert-dismissible auto-close-alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                     <i class="fa fa-times-circle"></i> <?php echo $error_msg; ?>
                                 </div>
                             <?php endif; ?>
 
                             <?php if($validation_errors): ?>
-                                <div class="alert alert-warning alert-dismissible auto-close-alert" data-alert-id="<?php echo md5($validation_errors); ?>">
+                                <div class="alert alert-warning alert-dismissible auto-close-alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                     <i class="fa fa-exclamation-triangle"></i> <strong>Perhatian!</strong> Mohon perbaiki kesalahan berikut:
                                     <?php echo $validation_errors; ?>
@@ -199,32 +199,13 @@
 </body>
 
 <script>
-    // Auto-close alerts after 5 seconds with sessionStorage tracking
+    // Auto-close alerts after 5 seconds
     $(document).ready(function() {
-        var alerts = $('.auto-close-alert');
-
-        // Check and remove alerts that have already been shown
-        alerts.each(function() {
-            var alertId = $(this).data('alert-id');
-            if (alertId) {
-                var shownKey = 'alert_shown_' + alertId;
-                if (sessionStorage.getItem(shownKey)) {
-                    // Alert already shown in this session, remove it
-                    $(this).remove();
-                } else {
-                    // Mark this alert as shown
-                    sessionStorage.setItem(shownKey, 'true');
-
-                    // Set auto-close timer
-                    var $alert = $(this);
-                    setTimeout(function() {
-                        $alert.fadeOut('slow', function() {
-                            $(this).alert('close');
-                        });
-                    }, 5000); // 5000ms = 5 seconds
-                }
-            }
-        });
+        setTimeout(function() {
+            $('.auto-close-alert').fadeOut('slow', function() {
+                $(this).alert('close');
+            });
+        }, 5000); // 5000ms = 5 seconds
     });
 </script>
 
