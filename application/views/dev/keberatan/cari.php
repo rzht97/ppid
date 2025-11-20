@@ -199,6 +199,12 @@
                                                 <span class="help-block" style="margin-top: 5px;"><small>Jelaskan kronologi atau uraian keberatan Anda sejelas mungkin</small></span>
                                             </div>
 
+                                            <!-- Honeypot field - Anti-bot protection (DO NOT REMOVE) -->
+                                            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                                                <label for="website_url">Leave this field blank</label>
+                                                <input type="text" name="website_url" id="website_url" value="" tabindex="-1" autocomplete="off">
+                                            </div>
+
                                             <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e3e3e3; text-align: center;">
                                                 <button type="submit" class="btn btn-success btn-lg" style="padding: 12px 40px; margin-right: 10px;">
                                                     <i class="fa fa-check"></i> Kirim Keberatan
