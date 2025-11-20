@@ -9,43 +9,62 @@
         outline: none !important;
         background-color: var(--thm-primary);
         color: #ffffff !important;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 700;
         text-transform: uppercase;
-        padding: 16px 32px;
-        border-radius: 8px;
+        padding: 14px 28px;
+        margin-left: 30px;
+        border-radius: 6px;
         transition: all 0.3s ease;
-        letter-spacing: 0.05em;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        letter-spacing: 0.03em;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
         text-decoration: none;
-        line-height: 1.5;
+        line-height: 1.4;
+        white-space: nowrap;
     }
 
     .btn-ajukan-permohonan:hover {
         background: var(--thm-base);
         color: var(--thm-primary) !important;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        transform: translateY(-1px);
+        box-shadow: 0 5px 14px rgba(0, 0, 0, 0.18);
         text-decoration: none;
     }
 
     .btn-ajukan-permohonan:active {
         transform: translateY(0);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Better spacing for the button container */
+    .main-menu-wrapper__search-box {
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
     }
 
     /* Responsive adjustments */
+    @media (max-width: 1200px) {
+        .btn-ajukan-permohonan {
+            padding: 12px 24px;
+            font-size: 12px;
+            margin-left: 20px;
+        }
+    }
+
     @media (max-width: 991px) {
         .btn-ajukan-permohonan {
-            padding: 14px 28px;
-            font-size: 13px;
+            padding: 10px 20px;
+            font-size: 11px;
+            margin-left: 15px;
         }
     }
 
     @media (max-width: 767px) {
         .btn-ajukan-permohonan {
-            padding: 12px 24px;
-            font-size: 12px;
+            padding: 10px 18px;
+            font-size: 11px;
+            margin-left: 10px;
         }
     }
 </style>
