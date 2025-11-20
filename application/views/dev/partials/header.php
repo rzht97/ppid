@@ -1,3 +1,55 @@
+<style>
+    /* Custom styling for Ajukan Permohonan button */
+    .btn-ajukan-permohonan {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        -webkit-appearance: none;
+        border: none;
+        outline: none !important;
+        background-color: var(--thm-primary);
+        color: #ffffff !important;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 16px 32px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        letter-spacing: 0.05em;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        text-decoration: none;
+        line-height: 1.5;
+    }
+
+    .btn-ajukan-permohonan:hover {
+        background: var(--thm-base);
+        color: var(--thm-primary) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+    }
+
+    .btn-ajukan-permohonan:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 991px) {
+        .btn-ajukan-permohonan {
+            padding: 14px 28px;
+            font-size: 13px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .btn-ajukan-permohonan {
+            padding: 12px 24px;
+            font-size: 12px;
+        }
+    }
+</style>
+
 <header class="main-header clearfix">
             <nav class="main-menu clearfix">
                 <div class="main-menu-wrapper clearfix">
@@ -82,7 +134,7 @@
                     </div>
                     <div class="main-menu-wrapper__right">
                         <div class="main-menu-wrapper__search-box">
-                            <a href="<?php echo site_url('pub/permohonan/permohonan')?>" class="thm-btn">Ajukan Permohonan</a>
+                            <a href="<?php echo site_url('pub/permohonan/permohonan')?>" class="btn-ajukan-permohonan">Ajukan Permohonan</a>
                         </div>
                         <!-- <div class="main-menu-wrapper__phone-contact">
                             <p>Need help? Talk to an expert</p>

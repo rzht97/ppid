@@ -12,9 +12,9 @@
             <!-- /.mobile-nav__container -->
 			
             <ul class="mobile-nav__contact list-unstyled">
-                
+
 				<li>
-               		<a href="<?php echo site_url('pub/permohonan/permohonan')?>" class="thm-btn">Ajukan Permohonan</a>
+               		<a href="<?php echo site_url('pub/permohonan/permohonan')?>" class="btn-ajukan-permohonan" style="display: block; text-align: center;">Ajukan Permohonan</a>
 				</li>
 				<li>
                     <i class="fa fa-envelope"></i>
