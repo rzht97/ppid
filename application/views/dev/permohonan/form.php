@@ -51,11 +51,158 @@
     <!-- toolbar css -->
     <link rel="stylesheet" href="<?= base_url() ?>newestassets/css/aivons-toolbar.css">
 
-	<!--button css-->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	
-	
 	<link href="<?= base_url()?>inverse/css/style.css" rel="stylesheet">
+
+    <!-- Custom Form Styles -->
+    <style>
+        /* Form Container */
+        .form-container {
+            padding: 60px 0;
+        }
+        .form-container .white-box {
+            padding: 30px;
+        }
+        .form-container .box-title {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .form-container .text-muted {
+            margin-bottom: 30px;
+        }
+
+        /* Form Groups and Labels */
+        .form-horizontal .form-group {
+            margin-bottom: 20px;
+        }
+        .form-horizontal .form-group label {
+            margin-bottom: 8px;
+        }
+
+        /* Alerts */
+        .form-container .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .form-container .alert span {
+            margin-top: 5px;
+            display: inline-block;
+        }
+        .form-container .alert div {
+            margin-top: 5px;
+        }
+
+        /* Error Messages and Help Text */
+        .form-group .text-danger {
+            margin-top: 5px;
+        }
+        .form-group .help-block {
+            margin-top: 5px;
+        }
+
+        /* File Upload Custom Styles */
+        .custom-file-upload {
+            margin-bottom: 10px;
+        }
+        .file-clear-btn {
+            margin-top: 8px;
+            display: none;
+        }
+        #ktpPreviewContainer {
+            margin-top: 15px;
+            display: none;
+        }
+        #ktpPreviewContainer > div {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 2px solid #e8e8e8;
+            border-radius: 6px;
+            text-align: center;
+        }
+        #ktpPreviewContainer label {
+            margin-bottom: 10px;
+            display: block;
+        }
+        #ktpPreview {
+            max-width: 100%;
+            max-height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        #pdfPreview {
+            display: none;
+        }
+        #pdfPreview i {
+            font-size: 60px;
+            color: #d9534f;
+        }
+        #pdfPreview p:first-of-type {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        #pdfPreview p:last-of-type {
+            margin: 5px 0;
+        }
+
+        /* Agreement Section */
+        #agreementSection .btn-info {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        #agreementStatus {
+            display: none;
+            padding: 15px;
+            background-color: #d4edda;
+            border: 2px solid #c3e6cb;
+            border-radius: 6px;
+            text-align: center;
+        }
+        #agreementStatus i {
+            color: #28a745;
+            font-size: 24px;
+        }
+        #agreementStatus p {
+            margin: 10px 0 0 0;
+            color: #155724;
+            font-weight: bold;
+        }
+        #agreementWarning {
+            padding: 10px;
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 4px;
+            text-align: center;
+        }
+        #agreementWarning small {
+            color: #856404;
+        }
+
+        /* Form Actions */
+        .form-actions {
+            margin-top: 30px;
+        }
+        .form-actions .btn {
+            padding: 12px 40px;
+        }
+        .form-actions .btn-default {
+            padding: 12px 30px;
+        }
+
+        /* Modal */
+        .modal-body {
+            line-height: 1.6;
+        }
+        .modal-footer {
+            text-align: center;
+        }
+
+        /* Honeypot */
+        .honeypot-field {
+            position: absolute;
+            left: -5000px;
+        }
+    </style>
 </head>
 
 <body>
@@ -99,108 +246,108 @@
         <!--Page Header End-->
 
         <!--Form Permhononan-->
-        <section class="message-box" style="padding: 60px 0;">
+        <section class="message-box form-container">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="white-box" style="padding: 30px;">
-                            <h3 class="box-title" style="margin-top: 0; margin-bottom: 10px;">Formulir Permohonan Informasi Publik</h3>
-                            <p class="text-muted" style="margin-bottom: 30px;">Lengkapi semua field yang bertanda (<span class="text-danger">*</span>) dengan benar</p>
+                        <div class="white-box">
+                            <h3 class="box-title">Formulir Permohonan Informasi Publik</h3>
+                            <p class="text-muted">Lengkapi semua field yang bertanda (<span class="text-danger">*</span>) dengan benar</p>
 
                             <?php if($this->session->flashdata('error')): ?>
-                                <div class="alert alert-danger alert-dismissible" style="padding: 15px; margin-bottom: 20px;">
+                                <div class="alert alert-danger alert-dismissible">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                     <i class="fa fa-times-circle"></i> <strong>Error!</strong><br>
-                                    <span style="margin-top: 5px; display: inline-block;"><?php echo $this->session->flashdata('error'); ?></span>
+                                    <span><?php echo $this->session->flashdata('error'); ?></span>
                                 </div>
                             <?php endif; ?>
 
                             <?php if(isset($error_message)): ?>
-                                <div class="alert alert-danger alert-dismissible" style="padding: 15px; margin-bottom: 20px;">
+                                <div class="alert alert-danger alert-dismissible">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                     <i class="fa fa-times-circle"></i> <strong>Error!</strong><br>
-                                    <span style="margin-top: 5px; display: inline-block;"><?php echo $error_message; ?></span>
+                                    <span><?php echo $error_message; ?></span>
                                 </div>
                             <?php endif; ?>
 
                             <?php if(validation_errors()): ?>
-                                <div class="alert alert-warning alert-dismissible" style="padding: 15px; margin-bottom: 20px;">
+                                <div class="alert alert-warning alert-dismissible">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                     <i class="fa fa-exclamation-triangle"></i> <strong>Perhatian!</strong> Mohon perbaiki kesalahan berikut:
-                                    <?php echo validation_errors('<div style="margin-top: 5px;">- ', '</div>'); ?>
+                                    <?php echo validation_errors('<div>- ', '</div>'); ?>
                                 </div>
                             <?php endif; ?>
 
                             <form data-toogle="validator" class="form-horizontal" action="<?php echo base_url('pub/permohonan/permohonan') ?>" method="post" enctype="multipart/form-data">
-                                <div class="form-group" style="margin-bottom: 20px;">
-                                    <label class="col-md-12" style="margin-bottom: 8px;"><strong>Nama Lengkap <span class="text-danger">*</span></strong></label>
+                                <div class="form-group">
+                                    <label class="col-md-12"><strong>Nama Lengkap <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control <?php echo form_error('nama') ? 'is-invalid' : '' ?>" name="nama" value="<?php echo set_value('nama'); ?>" required>
 										<?php if(form_error('nama')): ?>
-                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('nama'); ?></div>
+                                            <div class="text-danger"><?php echo form_error('nama'); ?></div>
                                         <?php endif; ?>
                                     </div>
                                 </div>
 
-                                <div class="form-group" style="margin-bottom: 20px;">
-                                    <label class="col-md-12" style="margin-bottom: 8px;"><strong>Pekerjaan <span class="text-danger">*</span></strong></label>
+                                <div class="form-group">
+                                    <label class="col-md-12"><strong>Pekerjaan <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control <?php echo form_error('pekerjaan') ? 'is-invalid' : '' ?>" name="pekerjaan" value="<?php echo set_value('pekerjaan'); ?>" required>
                                         <?php if(form_error('pekerjaan')): ?>
-                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('pekerjaan'); ?></div>
+                                            <div class="text-danger"><?php echo form_error('pekerjaan'); ?></div>
                                         <?php endif; ?>
                                     </div>
                                 </div>
 
-                                <div class="form-group" style="margin-bottom: 20px;">
-                                    <label class="col-md-12" style="margin-bottom: 8px;"><strong>Alamat <span class="text-danger">*</span></strong></label>
+                                <div class="form-group">
+                                    <label class="col-md-12"><strong>Alamat <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control <?php echo form_error('alamat') ? 'is-invalid' : '' ?>" name="alamat" value="<?php echo set_value('alamat'); ?>" required>
                                         <?php if(form_error('alamat')): ?>
-                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('alamat'); ?></div>
+                                            <div class="text-danger"><?php echo form_error('alamat'); ?></div>
                                         <?php endif; ?>
                                     </div>
                                 </div>
 
-                                <div class="form-group" style="margin-bottom: 20px;">
-                                    <label class="col-md-12" style="margin-bottom: 8px;"><strong>Nomor Telepon <span class="text-danger">*</span></strong></label>
+                                <div class="form-group">
+                                    <label class="col-md-12"><strong>Nomor Telepon <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">
                                         <input type="text" class="form-control <?php echo form_error('nohp') ? 'is-invalid' : '' ?>" name="nohp" value="<?php echo set_value('nohp'); ?>" required>
                                         <?php if(form_error('nohp')): ?>
-                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('nohp'); ?></div>
+                                            <div class="text-danger"><?php echo form_error('nohp'); ?></div>
                                         <?php endif; ?>
                                     </div>
                                 </div>
 
-                                <div class="form-group" style="margin-bottom: 20px;">
-                                    <label class="col-md-12" style="margin-bottom: 8px;"><strong>Email <span class="text-danger">*</span></strong></label>
+                                <div class="form-group">
+                                    <label class="col-md-12"><strong>Email <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">
                                         <input type="email" id="email" class="form-control <?php echo form_error('email') ? 'is-invalid' : '' ?>" name="email" value="<?php echo set_value('email'); ?>" required>
                                         <?php if(form_error('email')): ?>
-                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('email'); ?></div>
+                                            <div class="text-danger"><?php echo form_error('email'); ?></div>
                                         <?php endif; ?>
                                     </div>
                                 </div>
 
-                                <div class="form-group" style="margin-bottom: 20px;">
-                                    <label class="col-md-12" style="margin-bottom: 8px;"><strong>Rincian Informasi yang Dibutuhkan <span class="text-danger">*</span></strong></label>
+                                <div class="form-group">
+                                    <label class="col-md-12"><strong>Rincian Informasi yang Dibutuhkan <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">
                                         <textarea class="form-control <?php echo form_error('rincian') ? 'is-invalid' : '' ?>" name="rincian" rows="5" required><?php echo set_value('rincian'); ?></textarea>
                                         <?php if(form_error('rincian')): ?>
-                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('rincian'); ?></div>
+                                            <div class="text-danger"><?php echo form_error('rincian'); ?></div>
                                         <?php endif; ?>
-                                        <span class="help-block" style="margin-top: 5px;"><small>Jelaskan informasi yang Anda butuhkan sejelas mungkin</small></span>
+                                        <span class="help-block"><small>Jelaskan informasi yang Anda butuhkan sejelas mungkin</small></span>
                                     </div>
                                 </div>
 
-                                <div class="form-group" style="margin-bottom: 20px;">
-                                    <label class="col-md-12" style="margin-bottom: 8px;"><strong>Tujuan Penggunaan Informasi <span class="text-danger">*</span></strong></label>
+                                <div class="form-group">
+                                    <label class="col-md-12"><strong>Tujuan Penggunaan Informasi <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">
                                         <textarea class="form-control <?php echo form_error('tujuan') ? 'is-invalid' : '' ?>" name="tujuan" rows="5" required><?php echo set_value('tujuan'); ?></textarea>
                                         <?php if(form_error('tujuan')): ?>
-                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('tujuan'); ?></div>
+                                            <div class="text-danger"><?php echo form_error('tujuan'); ?></div>
                                         <?php endif; ?>
-                                        <span class="help-block" style="margin-top: 5px;"><small>Jelaskan untuk apa informasi tersebut akan digunakan</small></span>
+                                        <span class="help-block"><small>Jelaskan untuk apa informasi tersebut akan digunakan</small></span>
                                     </div>
                                 </div>
 
@@ -213,7 +360,7 @@
                                             <option value="Melihat/membaca/mendengarkan/mecatat">Melihat/Membaca/Mendengarkan/Mencatat</option>
                                         </select>
                                         <?php if(form_error('caraperoleh')): ?>
-                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('caraperoleh'); ?></div>
+                                            <div class="text-danger"><?php echo form_error('caraperoleh'); ?></div>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -230,16 +377,16 @@
                                             <option value="E-mail">E-mail</option>
                                         </select>
                                         <?php if(form_error('caradapat')): ?>
-                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('caradapat'); ?></div>
+                                            <div class="text-danger"><?php echo form_error('caradapat'); ?></div>
                                         <?php endif; ?>
                                     </div>
                                 </div>
 
-                                <div class="form-group" style="margin-bottom: 20px;">
-                                    <label class="col-sm-12" style="margin-bottom: 8px;"><strong>Upload Foto KTP <span class="text-danger">*</span></strong></label>
+                                <div class="form-group">
+                                    <label class="col-sm-12"><strong>Upload Foto KTP <span class="text-danger">*</span></strong></label>
                                     <div class="col-sm-12">
                                         <!-- Custom File Upload -->
-                                        <div style="margin-bottom: 10px;">
+                                        <div class="custom-file-upload">
                                             <div style="position: relative; display: inline-block; width: 100%;">
                                                 <input type="file" name="ktp" id="ktpInput" accept="image/jpeg,image/jpg,image/png,application/pdf" required style="display: none;">
                                                 <div class="input-group" style="width: 100%;">
@@ -251,50 +398,48 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <button type="button" id="clearKtpBtn" class="btn btn-danger btn-sm" onclick="clearKtpFile()" style="margin-top: 8px; display: none;">
+                                            <button type="button" id="clearKtpBtn" class="btn btn-danger btn-sm file-clear-btn" onclick="clearKtpFile()">
                                                 <i class="fa fa-times"></i> Hapus File
                                             </button>
                                         </div>
                                         <?php if(form_error('ktp')): ?>
-                                            <div class="text-danger" style="margin-top: 5px;"><?php echo form_error('ktp'); ?></div>
+                                            <div class="text-danger"><?php echo form_error('ktp'); ?></div>
                                         <?php endif; ?>
-                                        <span class="help-block" style="margin-top: 5px;"><small>Upload foto KTP dalam format JPG, PNG, atau PDF (Maksimal 2MB)</small></span>
+                                        <span class="help-block"><small>Upload foto KTP dalam format JPG, PNG, atau PDF (Maksimal 2MB)</small></span>
 
                                         <!-- Preview Container -->
-                                        <div id="ktpPreviewContainer" style="margin-top: 15px; display: none;">
-                                            <div style="background-color: #f9f9f9; padding: 15px; border: 2px solid #e8e8e8; border-radius: 6px; text-align: center;">
-                                                <label style="margin-bottom: 10px; display: block;"><strong>Preview KTP:</strong></label>
-                                                <img id="ktpPreview" src="" alt="Preview KTP" style="max-width: 100%; max-height: 400px; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                                                <div id="pdfPreview" style="display: none;">
-                                                    <i class="fa fa-file-pdf-o" style="font-size: 60px; color: #d9534f;"></i>
-                                                    <p style="margin-top: 10px; font-weight: bold;" id="pdfFileName"></p>
-                                                    <p class="text-muted" style="margin: 5px 0;">File PDF telah dipilih</p>
+                                        <div id="ktpPreviewContainer">
+                                            <div>
+                                                <label><strong>Preview KTP:</strong></label>
+                                                <img id="ktpPreview" src="" alt="Preview KTP">
+                                                <div id="pdfPreview">
+                                                    <i class="fa fa-file-pdf-o"></i>
+                                                    <p id="pdfFileName"></p>
+                                                    <p class="text-muted">File PDF telah dipilih</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-								<div class="form-group" style="margin-bottom: 25px;">
+								<div class="form-group">
                                     <div class="col-sm-12">
                                         <!-- Hidden checkbox for form validation -->
                                         <input type="checkbox" id="terms" name="terms" required style="display: none;">
 
                                         <!-- Agreement button and status -->
                                         <div id="agreementSection">
-                                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#exampleModal" style="width: 100%; padding: 15px; margin-bottom: 10px;">
+                                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#exampleModal">
                                                 <i class="fa fa-file-text-o"></i> Baca Hak-hak Pemohon Informasi
                                             </button>
 
-                                            <div id="agreementStatus" style="display: none; padding: 15px; background-color: #d4edda; border: 2px solid #c3e6cb; border-radius: 6px; text-align: center;">
-                                                <i class="fa fa-check-circle" style="color: #28a745; font-size: 24px;"></i>
-                                                <p style="margin: 10px 0 0 0; color: #155724; font-weight: bold;">
-                                                    Anda telah menyetujui Hak-hak Pemohon Informasi
-                                                </p>
+                                            <div id="agreementStatus">
+                                                <i class="fa fa-check-circle"></i>
+                                                <p>Anda telah menyetujui Hak-hak Pemohon Informasi</p>
                                             </div>
 
-                                            <div id="agreementWarning" style="padding: 10px; background-color: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; text-align: center;">
-                                                <small style="color: #856404;">
+                                            <div id="agreementWarning">
+                                                <small>
                                                     <i class="fa fa-exclamation-triangle"></i> Anda harus membaca dan menyetujui Hak-hak Pemohon Informasi untuk melanjutkan
                                                 </small>
                                             </div>
@@ -303,31 +448,31 @@
                                 </div>
 
                                 <!-- Honeypot field - Anti-bot protection (DO NOT REMOVE) -->
-                                <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                                <div class="honeypot-field" aria-hidden="true">
                                     <label for="website_url">Leave this field blank</label>
                                     <input type="text" name="website_url" id="website_url" value="" tabindex="-1" autocomplete="off">
                                 </div>
 
-                                <hr style="margin: 30px 0;">
+                                <hr>
                                 <div class="form-actions">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <button type="submit" class="btn btn-success btn-lg waves-effect waves-light" style="padding: 12px 40px;">
+                                            <button type="submit" class="btn btn-success btn-lg waves-effect waves-light">
                                                 <i class="fa fa-paper-plane"></i> Kirim Permohonan
                                             </button>
-                                            <a href="<?php echo site_url('pub/cekstatus'); ?>" class="btn btn-default btn-lg waves-effect waves-light" style="padding: 12px 30px;">
+                                            <a href="<?php echo site_url('pub/cekstatus'); ?>" class="btn btn-default btn-lg waves-effect waves-light">
                                                 <i class="fa fa-times"></i> Batal
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                             </form>
-							<div id = "exampleModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+							<div id="exampleModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                            
+
                                         </div>
                                         <div class="modal-body">
                                             <h4>Hak-Hak Pemohon Informasi
@@ -346,7 +491,7 @@ Berdasarkan Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publ
 mengajukan keberatan kepada komisi Informasi dalam jangka waktu14 (empatbelas) hari kerja sejak
 diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
                                         </div>
-                                        <div class="modal-footer" style="text-align: center;">
+                                        <div class="modal-footer">
                                             <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">
                                                 <i class="fa fa-times"></i> Batal
                                             </button>
