@@ -147,12 +147,44 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-12"><strong>Upload Foto KTP</strong></label>
+                                        <label class="col-md-12"><strong>Upload Foto KTP <span class="text-danger">*</span></strong></label>
                                         <div class="col-md-12">
-                                            <input type="file" class="form-control" name="ktp" accept="image/*,.pdf">
+                                            <!-- Custom File Upload -->
+                                            <div class="m-b-10">
+                                                <div style="position: relative; display: inline-block; width: 100%;">
+                                                    <input type="file" name="ktp" id="ktpInput" accept="image/jpeg,image/jpg,image/png,application/pdf" required style="display: none;">
+                                                    <div class="input-group" style="width: 100%;">
+                                                        <input type="text" id="ktpFileName" class="form-control" placeholder="Belum ada file yang dipilih" readonly style="background-color: #fff; cursor: pointer;">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-primary" onclick="document.getElementById('ktpInput').click();" style="height: 34px;">
+                                                                <i class="fa fa-folder-open"></i> Pilih File
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <button type="button" id="clearKtpBtn" class="btn btn-danger btn-sm" onclick="clearKtpFile()" style="margin-top: 8px; display: none;">
+                                                    <i class="fa fa-times"></i> Hapus File
+                                                </button>
+                                            </div>
+                                            <?php if(form_error('ktp')): ?>
+                                                <div class="text-danger"><?php echo form_error('ktp'); ?></div>
+                                            <?php endif; ?>
                                             <small class="text-muted">
-                                                <i class="fa fa-info-circle"></i> Format: JPG, PNG, PDF (Maksimal 20MB). Jika tidak diupload, status akan "Belum Tersedia"
+                                                <i class="fa fa-info-circle"></i> Format: JPG, PNG, PDF (Maksimal 2MB)
                                             </small>
+
+                                            <!-- Preview Container -->
+                                            <div id="ktpPreviewContainer" class="m-t-15" style="display: none;">
+                                                <div style="background-color: #f9f9f9; padding: 15px; border: 2px solid #e8e8e8; border-radius: 6px; text-align: center;">
+                                                    <label class="m-b-10" style="display: block;"><strong>Preview KTP:</strong></label>
+                                                    <img id="ktpPreview" src="" alt="Preview KTP" style="max-width: 100%; max-height: 400px; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                                    <div id="pdfPreview" style="display: none;">
+                                                        <i class="fa fa-file-pdf-o" style="font-size: 60px; color: #d9534f;"></i>
+                                                        <p class="m-t-10" style="font-weight: bold;" id="pdfFileName"></p>
+                                                        <p class="text-muted" style="margin: 5px 0;">File PDF telah dipilih</p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -167,6 +199,9 @@
                                             <?php if(form_error('rincian')): ?>
                                                 <div class="text-danger"><?php echo form_error('rincian'); ?></div>
                                             <?php endif; ?>
+                                            <small class="text-muted m-t-5" style="display: block;">
+                                                <i class="fa fa-info-circle"></i> Jelaskan informasi yang dibutuhkan sejelas mungkin
+                                            </small>
                                         </div>
                                     </div>
 
@@ -177,6 +212,9 @@
                                             <?php if(form_error('tujuan')): ?>
                                                 <div class="text-danger"><?php echo form_error('tujuan'); ?></div>
                                             <?php endif; ?>
+                                            <small class="text-muted m-t-5" style="display: block;">
+                                                <i class="fa fa-info-circle"></i> Jelaskan untuk apa informasi tersebut akan digunakan
+                                            </small>
                                         </div>
                                     </div>
 
@@ -249,6 +287,291 @@
             });
         }, 5000); // 5000ms = 5 seconds
     });
+</script>
+
+<!-- KTP Preview Script -->
+<script>
+    // Function to handle KTP file upload preview
+    document.getElementById('ktpInput').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const fileNameDisplay = document.getElementById('ktpFileName');
+        const clearBtn = document.getElementById('clearKtpBtn');
+        const previewContainer = document.getElementById('ktpPreviewContainer');
+        const imagePreview = document.getElementById('ktpPreview');
+        const pdfPreview = document.getElementById('pdfPreview');
+        const pdfFileName = document.getElementById('pdfFileName');
+
+        if (file) {
+            // Validate file size (2MB = 2097152 bytes)
+            if (file.size > 2097152) {
+                alert('Ukuran file terlalu besar! Maksimal 2MB.');
+                e.target.value = '';
+                fileNameDisplay.value = '';
+                clearBtn.style.display = 'none';
+                previewContainer.style.display = 'none';
+                return;
+            }
+
+            const fileType = file.type;
+            const fileName = file.name;
+
+            // Display file name
+            fileNameDisplay.value = fileName;
+            clearBtn.style.display = 'inline-block';
+
+            // Show preview container
+            previewContainer.style.display = 'block';
+
+            // Check if file is an image
+            if (fileType.match('image.*')) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                    pdfPreview.style.display = 'none';
+                };
+
+                reader.readAsDataURL(file);
+            }
+            // Check if file is PDF
+            else if (fileType === 'application/pdf') {
+                imagePreview.style.display = 'none';
+                pdfPreview.style.display = 'block';
+                pdfFileName.textContent = fileName;
+            }
+            else {
+                alert('Format file tidak didukung! Gunakan JPG, PNG, atau PDF.');
+                e.target.value = '';
+                fileNameDisplay.value = '';
+                clearBtn.style.display = 'none';
+                previewContainer.style.display = 'none';
+            }
+        } else {
+            fileNameDisplay.value = '';
+            clearBtn.style.display = 'none';
+            previewContainer.style.display = 'none';
+        }
+    });
+
+    // Function to clear file when "Hapus File" button is clicked
+    function clearKtpFile() {
+        const fileInput = document.getElementById('ktpInput');
+        const fileNameDisplay = document.getElementById('ktpFileName');
+        const clearBtn = document.getElementById('clearKtpBtn');
+        const previewContainer = document.getElementById('ktpPreviewContainer');
+        const imagePreview = document.getElementById('ktpPreview');
+
+        // Clear file input
+        fileInput.value = '';
+        fileNameDisplay.value = '';
+        clearBtn.style.display = 'none';
+
+        // Clear preview
+        previewContainer.style.display = 'none';
+        imagePreview.src = '';
+
+        return false;
+    }
+
+    // Make the text input clickable to trigger file selection
+    document.getElementById('ktpFileName').addEventListener('click', function() {
+        document.getElementById('ktpInput').click();
+    });
+</script>
+
+<!-- Real-time Validation Script -->
+<script>
+$(document).ready(function() {
+    // Real-time validation functions
+    const validators = {
+        nama: function(value) {
+            if (!value || value.trim().length === 0) {
+                return 'Nama wajib diisi';
+            }
+            if (value.length < 3) {
+                return 'Nama minimal 3 karakter';
+            }
+            if (value.length > 100) {
+                return 'Nama maksimal 100 karakter';
+            }
+            return null;
+        },
+
+        alamat: function(value) {
+            if (!value || value.trim().length === 0) {
+                return 'Alamat wajib diisi';
+            }
+            if (value.length < 5) {
+                return 'Alamat minimal 5 karakter';
+            }
+            return null;
+        },
+
+        pekerjaan: function(value) {
+            if (!value || value.trim().length === 0) {
+                return 'Pekerjaan wajib diisi';
+            }
+            return null;
+        },
+
+        nohp: function(value) {
+            if (!value || value.trim().length === 0) {
+                return 'Nomor HP wajib diisi';
+            }
+            if (!/^\d+$/.test(value)) {
+                return 'Nomor HP hanya boleh berisi angka';
+            }
+            if (value.length < 10) {
+                return 'Nomor HP minimal 10 digit';
+            }
+            if (value.length > 15) {
+                return 'Nomor HP maksimal 15 digit';
+            }
+            return null;
+        },
+
+        email: function(value) {
+            if (!value || value.trim().length === 0) {
+                return 'Email wajib diisi';
+            }
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(value)) {
+                return 'Format email tidak valid';
+            }
+            return null;
+        },
+
+        rincian: function(value) {
+            if (!value || value.trim().length === 0) {
+                return 'Rincian informasi wajib diisi';
+            }
+            if (value.length < 10) {
+                return 'Rincian informasi minimal 10 karakter';
+            }
+            return null;
+        },
+
+        tujuan: function(value) {
+            if (!value || value.trim().length === 0) {
+                return 'Tujuan penggunaan informasi wajib diisi';
+            }
+            return null;
+        },
+
+        ktp: function(fileInput) {
+            if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
+                return 'File KTP wajib diupload';
+            }
+            return null;
+        }
+    };
+
+    // Function to show error message
+    function showError(fieldName, errorMessage) {
+        const field = $('[name="' + fieldName + '"]');
+        const parent = field.closest('.form-group');
+
+        // Remove existing error
+        parent.find('.validation-error').remove();
+        field.removeClass('is-invalid').addClass('is-invalid');
+
+        // Add new error message
+        if (errorMessage) {
+            const errorDiv = $('<div class="text-danger validation-error" style="margin-top: 5px;"></div>').text(errorMessage);
+            field.closest('.col-md-12').append(errorDiv);
+        }
+    }
+
+    // Function to clear error message
+    function clearError(fieldName) {
+        const field = $('[name="' + fieldName + '"]');
+        const parent = field.closest('.form-group');
+
+        parent.find('.validation-error').remove();
+        field.removeClass('is-invalid');
+    }
+
+    // Function to validate a field
+    function validateField(fieldName) {
+        const field = $('[name="' + fieldName + '"]');
+        let value;
+
+        if (fieldName === 'ktp') {
+            value = field[0];
+        } else {
+            value = field.val();
+        }
+
+        if (validators[fieldName]) {
+            const error = validators[fieldName](value);
+            if (error) {
+                showError(fieldName, error);
+                return false;
+            } else {
+                clearError(fieldName);
+                return true;
+            }
+        }
+        return true;
+    }
+
+    // Attach blur event listeners for text inputs
+    $('input[name="nama"], input[name="alamat"], input[name="pekerjaan"], input[name="nohp"], input[name="email"]').on('blur', function() {
+        validateField($(this).attr('name'));
+    });
+
+    // Attach blur event listeners for textareas
+    $('textarea[name="rincian"], textarea[name="tujuan"]').on('blur', function() {
+        validateField($(this).attr('name'));
+    });
+
+    // Attach change event for file input
+    $('input[name="ktp"]').on('change', function() {
+        validateField('ktp');
+    });
+
+    // Real-time input validation (while typing)
+    $('input[name="nama"], input[name="alamat"], input[name="pekerjaan"], input[name="nohp"], input[name="email"]').on('input', function() {
+        const fieldName = $(this).attr('name');
+        // Clear error immediately when user starts typing
+        clearError(fieldName);
+    });
+
+    $('textarea[name="rincian"], textarea[name="tujuan"]').on('input', function() {
+        const fieldName = $(this).attr('name');
+        clearError(fieldName);
+    });
+
+    // Validate all fields before form submission
+    $('form').on('submit', function(e) {
+        let isValid = true;
+
+        // Validate all fields
+        const fieldsToValidate = ['nama', 'alamat', 'pekerjaan', 'nohp', 'email', 'rincian', 'tujuan', 'ktp'];
+
+        fieldsToValidate.forEach(function(fieldName) {
+            if (!validateField(fieldName)) {
+                isValid = false;
+            }
+        });
+
+        if (!isValid) {
+            e.preventDefault();
+
+            // Scroll to first error
+            const firstError = $('.validation-error').first();
+            if (firstError.length) {
+                $('html, body').animate({
+                    scrollTop: firstError.offset().top - 100
+                }, 500);
+            }
+
+            // Show alert
+            alert('Mohon perbaiki kesalahan pada form sebelum menyimpan permohonan.');
+        }
+    });
+});
 </script>
 
 </html>
