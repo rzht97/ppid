@@ -99,7 +99,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12"><strong>Nama <span class="text-danger">*</span></strong></label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control <?php echo form_error('nama') ? 'is-invalid' : '' ?>" name="nama" placeholder="Masukkan nama lengkap" value="<?php echo set_value('nama'); ?>" required>
+                                            <input type="text" class="form-control <?php echo form_error('nama') ? 'is-invalid' : '' ?>" name="nama" value="<?php echo set_value('nama'); ?>" required>
                                             <?php if(form_error('nama')): ?>
                                                 <div class="text-danger"><?php echo form_error('nama'); ?></div>
                                             <?php endif; ?>
@@ -109,7 +109,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12"><strong>Pekerjaan <span class="text-danger">*</span></strong></label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control <?php echo form_error('pekerjaan') ? 'is-invalid' : '' ?>" name="pekerjaan" placeholder="Masukkan pekerjaan" value="<?php echo set_value('pekerjaan'); ?>" required>
+                                            <input type="text" class="form-control <?php echo form_error('pekerjaan') ? 'is-invalid' : '' ?>" name="pekerjaan" value="<?php echo set_value('pekerjaan'); ?>" required>
                                             <?php if(form_error('pekerjaan')): ?>
                                                 <div class="text-danger"><?php echo form_error('pekerjaan'); ?></div>
                                             <?php endif; ?>
@@ -119,7 +119,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12"><strong>Alamat <span class="text-danger">*</span></strong></label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control <?php echo form_error('alamat') ? 'is-invalid' : '' ?>" name="alamat" placeholder="Masukkan alamat lengkap" value="<?php echo set_value('alamat'); ?>" required>
+                                            <input type="text" class="form-control <?php echo form_error('alamat') ? 'is-invalid' : '' ?>" name="alamat" value="<?php echo set_value('alamat'); ?>" required>
                                             <?php if(form_error('alamat')): ?>
                                                 <div class="text-danger"><?php echo form_error('alamat'); ?></div>
                                             <?php endif; ?>
@@ -129,7 +129,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12"><strong>Nomor HP <span class="text-danger">*</span></strong></label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control <?php echo form_error('nohp') ? 'is-invalid' : '' ?>" name="nohp" placeholder="Contoh: 08123456789" value="<?php echo set_value('nohp'); ?>" required>
+                                            <input type="text" class="form-control <?php echo form_error('nohp') ? 'is-invalid' : '' ?>" name="nohp" value="<?php echo set_value('nohp'); ?>" required>
                                             <?php if(form_error('nohp')): ?>
                                                 <div class="text-danger"><?php echo form_error('nohp'); ?></div>
                                             <?php endif; ?>
@@ -139,7 +139,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12"><strong>Email <span class="text-danger">*</span></strong></label>
                                         <div class="col-md-12">
-                                            <input type="email" class="form-control <?php echo form_error('email') ? 'is-invalid' : '' ?>" name="email" placeholder="Contoh: nama@email.com" value="<?php echo set_value('email'); ?>" required>
+                                            <input type="email" class="form-control <?php echo form_error('email') ? 'is-invalid' : '' ?>" name="email" value="<?php echo set_value('email'); ?>" required>
                                             <?php if(form_error('email')): ?>
                                                 <div class="text-danger"><?php echo form_error('email'); ?></div>
                                             <?php endif; ?>
@@ -163,7 +163,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12"><strong>Rincian Informasi yang Dibutuhkan <span class="text-danger">*</span></strong></label>
                                         <div class="col-md-12">
-                                            <textarea class="form-control <?php echo form_error('rincian') ? 'is-invalid' : '' ?>" name="rincian" rows="5" placeholder="Jelaskan secara rinci informasi yang dibutuhkan..." required><?php echo set_value('rincian'); ?></textarea>
+                                            <textarea class="form-control <?php echo form_error('rincian') ? 'is-invalid' : '' ?>" name="rincian" rows="5" required><?php echo set_value('rincian'); ?></textarea>
                                             <?php if(form_error('rincian')): ?>
                                                 <div class="text-danger"><?php echo form_error('rincian'); ?></div>
                                             <?php endif; ?>
@@ -173,7 +173,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12"><strong>Tujuan Penggunaan Informasi <span class="text-danger">*</span></strong></label>
                                         <div class="col-md-12">
-                                            <textarea class="form-control <?php echo form_error('tujuan') ? 'is-invalid' : '' ?>" name="tujuan" rows="5" placeholder="Jelaskan tujuan penggunaan informasi..." required><?php echo set_value('tujuan'); ?></textarea>
+                                            <textarea class="form-control <?php echo form_error('tujuan') ? 'is-invalid' : '' ?>" name="tujuan" rows="5" required><?php echo set_value('tujuan'); ?></textarea>
                                             <?php if(form_error('tujuan')): ?>
                                                 <div class="text-danger"><?php echo form_error('tujuan'); ?></div>
                                             <?php endif; ?>
