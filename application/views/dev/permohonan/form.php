@@ -513,13 +513,18 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 
 			// Force close the modal using multiple methods for compatibility
 			$('#exampleModal').modal('hide');
-			$('#exampleModal').removeClass('in');
-			$('.modal-backdrop').remove();
-			$('body').removeClass('modal-open');
-			$('body').css('padding-right', '');
 
-			// Wait a moment, then show success status
+			// Additional cleanup to ensure modal is fully closed
 			setTimeout(function() {
+				// Remove modal classes and attributes
+				$('#exampleModal').removeClass('show in').attr('aria-hidden', 'true').css('display', 'none');
+
+				// Remove all backdrop elements
+				$('.modal-backdrop').remove();
+
+				// Clean up body
+				$('body').removeClass('modal-open').css('padding-right', '').css('overflow', '');
+
 				// Show success status
 				document.getElementById('agreementStatus').style.display = 'block';
 
@@ -528,7 +533,7 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 
 				// Scroll to the status message
 				document.getElementById('agreementStatus').scrollIntoView({ behavior: 'smooth', block: 'center' });
-			}, 400);
+			}, 100);
 		}
 	</script>
 
