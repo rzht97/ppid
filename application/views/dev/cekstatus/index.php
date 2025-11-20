@@ -256,10 +256,8 @@
                                                 <?php if (!empty($data->jawab)): ?>
                                                 <div class="form-group" style="margin-bottom: 0;">
                                                     <label style="margin-bottom: 10px; font-size: 15px; color: #333;"><strong>Jawaban/Hasil Pemrosesan</strong></label>
-                                                    <div style="background-color: #e8f4f8; padding: 20px; border: 2px solid #b8dce8; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                                                        <p style="white-space: pre-wrap; margin: 0; line-height: 1.8; font-size: 14px; color: #31708f;">
-                                                            <?php echo $data->jawab ?>
-                                                        </p>
+                                                    <div style="background-color: #e8f4f8; padding: 12px 15px; border: 2px solid #b8dce8; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                                        <p style="white-space: pre-wrap; word-wrap: break-word; word-break: break-word; overflow-wrap: break-word; margin: 0; padding: 0; line-height: 1.8; font-size: 14px; color: #31708f; text-align: left; vertical-align: top;"><?php echo trim($data->jawab); ?></p>
                                                     </div>
                                                 </div>
                                                 <?php else: ?>
@@ -324,18 +322,14 @@
                                                 <div class="panel-body" style="padding: 25px;">
                                                     <div class="form-group" style="margin-bottom: 25px;">
                                                         <label style="margin-bottom: 10px; font-size: 15px; color: #333;"><strong>Alasan Keberatan</strong></label>
-                                                        <div style="background-color: #fff3cd; padding: 20px; border: 2px solid #ffeaa7; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                                                            <p style="white-space: pre-wrap; margin: 0; line-height: 1.8; font-size: 14px; color: #856404;">
-                                                                <?php echo $keberatan->alasan ?>
-                                                            </p>
+                                                        <div style="background-color: #fff3cd; padding: 12px 15px; border: 2px solid #ffeaa7; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                                            <p style="white-space: pre-wrap; word-wrap: break-word; word-break: break-word; overflow-wrap: break-word; margin: 0; padding: 0; line-height: 1.8; font-size: 14px; color: #856404; text-align: left; vertical-align: top;"><?php echo trim($keberatan->alasan); ?></p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group" style="margin-bottom: 0;">
                                                         <label style="margin-bottom: 10px; font-size: 15px; color: #333;"><strong>Kronologi / Kasus Posisi</strong></label>
-                                                        <div style="background-color: #ffffff; padding: 20px; border: 2px solid #e8e8e8; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                                                            <p style="white-space: pre-wrap; margin: 0; line-height: 1.8; font-size: 14px; color: #555;">
-                                                                <?php echo $keberatan->kronologi ?>
-                                                            </p>
+                                                        <div style="background-color: #ffffff; padding: 12px 15px; border: 2px solid #e8e8e8; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                                            <p style="white-space: pre-wrap; word-wrap: break-word; word-break: break-word; overflow-wrap: break-word; margin: 0; padding: 0; line-height: 1.8; font-size: 14px; color: #555; text-align: left; vertical-align: top;"><?php echo trim($keberatan->kronologi); ?></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -379,10 +373,8 @@
                                                     <?php if (!empty($keberatan->tanggapan)): ?>
                                                     <div class="form-group" style="margin-bottom: 20px;">
                                                         <label style="margin-bottom: 10px; font-size: 15px; color: #333;"><strong>Tanggapan PPID</strong></label>
-                                                        <div style="background-color: #e8f4f8; padding: 20px; border: 2px solid #b8dce8; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                                                            <p style="white-space: pre-wrap; margin: 0; line-height: 1.8; font-size: 14px; color: #31708f;">
-                                                                <?php echo $keberatan->tanggapan ?>
-                                                            </p>
+                                                        <div style="background-color: #e8f4f8; padding: 12px 15px; border: 2px solid #b8dce8; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                                            <p style="white-space: pre-wrap; word-wrap: break-word; word-break: break-word; overflow-wrap: break-word; margin: 0; padding: 0; line-height: 1.8; font-size: 14px; color: #31708f; text-align: left; vertical-align: top;"><?php echo trim($keberatan->tanggapan); ?></p>
                                                         </div>
                                                     </div>
                                                     <?php endif; ?>
@@ -390,10 +382,8 @@
                                                     <?php if (!empty($keberatan->putusan)): ?>
                                                     <div class="form-group" style="margin-bottom: 0;">
                                                         <label style="margin-bottom: 10px; font-size: 15px; color: #333;"><strong>Putusan Keberatan</strong></label>
-                                                        <div style="background-color: #d4edda; padding: 20px; border: 2px solid #c3e6cb; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                                                            <p style="white-space: pre-wrap; margin: 0; line-height: 1.8; font-size: 14px; color: #155724;">
-                                                                <?php echo $keberatan->putusan ?>
-                                                            </p>
+                                                        <div style="background-color: #d4edda; padding: 12px 15px; border: 2px solid #c3e6cb; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                                            <p style="white-space: pre-wrap; word-wrap: break-word; word-break: break-word; overflow-wrap: break-word; margin: 0; padding: 0; line-height: 1.8; font-size: 14px; color: #155724; text-align: left; vertical-align: top;"><?php echo trim($keberatan->putusan); ?></p>
                                                         </div>
                                                     </div>
                                                     <?php endif; ?>
