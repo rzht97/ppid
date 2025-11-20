@@ -53,21 +53,21 @@
                             <br>
 
                             <?php if($this->session->flashdata('success')): ?>
-                                <div class="alert alert-success alert-dismissible">
+                                <div class="alert alert-success alert-dismissible auto-close-alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                     <i class="fa fa-check-circle"></i> <?php echo $this->session->flashdata('success'); ?>
                                 </div>
                             <?php endif; ?>
 
                             <?php if($this->session->flashdata('error')): ?>
-                                <div class="alert alert-danger alert-dismissible">
+                                <div class="alert alert-danger alert-dismissible auto-close-alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                     <i class="fa fa-times-circle"></i> <?php echo $this->session->flashdata('error'); ?>
                                 </div>
                             <?php endif; ?>
 
                             <?php if(validation_errors()): ?>
-                                <div class="alert alert-warning alert-dismissible">
+                                <div class="alert alert-warning alert-dismissible auto-close-alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                     <i class="fa fa-exclamation-triangle"></i> <strong>Perhatian!</strong> Mohon perbaiki kesalahan berikut:
                                     <?php echo validation_errors('<div>- ', '</div>'); ?>
@@ -195,5 +195,16 @@
     <!-- /#wrapper -->
     <?php $this->load->view('dev/admin/partials/js.php')?>
 </body>
+
+<script>
+    // Auto-close alerts after 5 seconds
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('.auto-close-alert').fadeOut('slow', function() {
+                $(this).alert('close');
+            });
+        }, 5000); // 5000ms = 5 seconds
+    });
+</script>
 
 </html>
