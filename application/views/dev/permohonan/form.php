@@ -107,14 +107,6 @@
                             <h3 class="box-title" style="margin-top: 0; margin-bottom: 10px;">Formulir Permohonan Informasi Publik</h3>
                             <p class="text-muted" style="margin-bottom: 30px;">Lengkapi semua field yang bertanda (<span class="text-danger">*</span>) dengan benar</p>
 
-                            <?php if($this->session->flashdata('success')): ?>
-                                <div class="alert alert-success alert-dismissible" style="padding: 15px; margin-bottom: 20px;">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <i class="fa fa-check-circle"></i> <strong>Berhasil!</strong><br>
-                                    <span style="margin-top: 5px; display: inline-block;"><?php echo $this->session->flashdata('success'); ?></span>
-                                </div>
-                            <?php endif; ?>
-
                             <?php if($this->session->flashdata('error')): ?>
                                 <div class="alert alert-danger alert-dismissible" style="padding: 15px; margin-bottom: 20px;">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>

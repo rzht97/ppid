@@ -106,9 +106,19 @@
                         <div class="white-box">
                             <h3 class="box-title m-b-0">Formulir Permohonan Informasi Publik</h3>
                             <p class="text-muted m-b-30 font-13"></p>
+
+                            <?php if($this->session->flashdata('success')): ?>
+                                <div class="alert alert-success alert-dismissible" style="padding: 15px; margin-bottom: 20px;">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <i class="fa fa-check-circle"></i> <strong>Berhasil!</strong><br>
+                                    <span style="margin-top: 5px; display: inline-block;"><?php echo $this->session->flashdata('success'); ?></span>
+                                </div>
+                            <?php else: ?>
+                                <div class="alert alert-success"> Permohonan Telah dibuat. Harap simpan No Token untuk pengecekan status informasi yang dimohon </div>
+                            <?php endif; ?>
+
                             <form data-toogle="validator" class="form-horizontal">
                                 <div class="form-body">
-									<div class="alert alert-success"> Permohonan Telah dibuat. Harap simpan No Token untuk pengecekan status informasi yang dimohon </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
