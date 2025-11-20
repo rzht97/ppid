@@ -17,6 +17,7 @@ class Permohonan extends CI_Controller {
 	 * Form permohonan informasi
 	 * Includes: Telegram notification integration
 	 * Updated: Better error handling and debugging
+	 * Security: Anti-spam protection with session rate limiting, IP throttling, and honeypot
 	 */
 	public function permohonan()
     {
@@ -25,6 +26,72 @@ class Permohonan extends CI_Controller {
         $validation->set_rules($permohonan->rules());
 
         if ($validation->run()) {
+            // SECURITY CHECK #1: Honeypot - Detect bot submissions
+            $honeypot = $this->input->post('website_url', TRUE);
+            if (!empty($honeypot)) {
+                log_message('warning', 'Bot detected via honeypot from IP: ' . $this->input->ip_address());
+                $this->session->set_flashdata('error', 'Submission failed. Please try again later.');
+                redirect('pub/permohonan/permohonan');
+                return;
+            }
+
+            // SECURITY CHECK #2: Session-based Rate Limiting (Max 3 submissions per 10 minutes)
+            $session_key = '_permohonan_submit_count';
+            $session_time_key = '_permohonan_first_submit_time';
+            $submit_count = $this->session->userdata($session_key) ?: 0;
+            $first_submit_time = $this->session->userdata($session_time_key) ?: time();
+            $time_elapsed = time() - $first_submit_time;
+
+            // Reset counter if 10 minutes passed
+            if ($time_elapsed > 600) { // 600 seconds = 10 minutes
+                $submit_count = 0;
+                $first_submit_time = time();
+            }
+
+            // Check if limit exceeded
+            if ($submit_count >= 3) {
+                $wait_time = ceil((600 - $time_elapsed) / 60); // Minutes remaining
+                log_message('warning', 'Session rate limit exceeded from session: ' . session_id());
+                $this->session->set_flashdata('error', 'Anda telah mengirim terlalu banyak permohonan. Silakan tunggu ' . $wait_time . ' menit lagi.');
+                redirect('pub/permohonan/permohonan');
+                return;
+            }
+
+            // SECURITY CHECK #3: IP-based Throttling (Max 5 submissions per IP per hour)
+            $ip_address = $this->input->ip_address();
+            $ip_key = 'permohonan_ip_' . md5($ip_address);
+            $ip_data = $this->session->userdata($ip_key);
+
+            if ($ip_data) {
+                $ip_submit_count = $ip_data['count'];
+                $ip_first_time = $ip_data['first_time'];
+                $ip_time_elapsed = time() - $ip_first_time;
+
+                // Reset if 1 hour passed
+                if ($ip_time_elapsed > 3600) { // 3600 seconds = 1 hour
+                    $ip_submit_count = 0;
+                    $ip_first_time = time();
+                } elseif ($ip_submit_count >= 5) {
+                    $ip_wait_time = ceil((3600 - $ip_time_elapsed) / 60);
+                    log_message('warning', 'IP rate limit exceeded from IP: ' . $ip_address);
+                    $this->session->set_flashdata('error', 'Terlalu banyak permintaan dari IP Anda. Silakan tunggu ' . $ip_wait_time . ' menit lagi.');
+                    redirect('pub/permohonan/permohonan');
+                    return;
+                }
+            } else {
+                $ip_submit_count = 0;
+                $ip_first_time = time();
+            }
+
+            // Increment counters
+            $this->session->set_userdata($session_key, $submit_count + 1);
+            $this->session->set_userdata($session_time_key, $first_submit_time);
+            $this->session->set_userdata($ip_key, array(
+                'count' => $ip_submit_count + 1,
+                'first_time' => $ip_first_time
+            ));
+
+            // Proceed with normal submission
             try {
                 // Save permohonan
                 $permohonan->save();

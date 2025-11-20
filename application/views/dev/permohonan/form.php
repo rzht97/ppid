@@ -302,6 +302,12 @@
                                     </div>
                                 </div>
 
+                                <!-- Honeypot field - Anti-bot protection (DO NOT REMOVE) -->
+                                <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                                    <label for="website_url">Leave this field blank</label>
+                                    <input type="text" name="website_url" id="website_url" value="" tabindex="-1" autocomplete="off">
+                                </div>
+
                                 <hr style="margin: 30px 0;">
                                 <div class="form-actions">
                                     <div class="row">
