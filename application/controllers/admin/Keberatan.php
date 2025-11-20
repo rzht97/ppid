@@ -129,8 +129,10 @@ class Keberatan extends CI_Controller
 
         if ($this->Keberatan_model->delete($id)) {
             $this->session->set_flashdata('success', 'Keberatan berhasil dihapus');
+            $this->session->set_flashdata('success_target', 'admin/keberatan');
         } else {
             $this->session->set_flashdata('error', 'Gagal menghapus keberatan');
+            $this->session->set_flashdata('error_target', 'admin/keberatan');
         }
 
         redirect(site_url('admin/keberatan'));
