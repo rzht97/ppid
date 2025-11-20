@@ -53,16 +53,23 @@
 							<?php
 								$success_msg = $this->session->flashdata('success');
 								$error_msg = $this->session->flashdata('error');
+								// Mark that we've consumed the flashdata for this page
+								if ($success_msg) {
+									$this->session->set_userdata('_flashdata_shown_success', md5($success_msg));
+								}
+								if ($error_msg) {
+									$this->session->set_userdata('_flashdata_shown_error', md5($error_msg));
+								}
 							?>
 							<?php if($success_msg): ?>
-								<div class="alert alert-success alert-dismissible auto-close-alert" data-alert-id="<?php echo md5($success_msg . time()); ?>">
+								<div class="alert alert-success alert-dismissible auto-close-alert" data-alert-id="<?php echo md5($success_msg); ?>">
 									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 									<i class="fa fa-check-circle"></i> <?php echo $success_msg; ?>
 								</div>
 							<?php endif; ?>
 
 							<?php if($error_msg): ?>
-								<div class="alert alert-danger alert-dismissible auto-close-alert" data-alert-id="<?php echo md5($error_msg . time()); ?>">
+								<div class="alert alert-danger alert-dismissible auto-close-alert" data-alert-id="<?php echo md5($error_msg); ?>">
 									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 									<i class="fa fa-times-circle"></i> <?php echo $error_msg; ?>
 								</div>

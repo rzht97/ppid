@@ -51,17 +51,22 @@
                         <h3 class="box-title m-b-0">Daftar Permohonan Informasi</h3>
                         <br>
 
-                        <?php if($this->session->flashdata('success')): ?>
-                            <div class="alert alert-success alert-dismissible">
+                        <?php
+                            // Consume flashdata once and store in variables
+                            $success_msg = $this->session->flashdata('success');
+                            $error_msg = $this->session->flashdata('error');
+                        ?>
+                        <?php if($success_msg): ?>
+                            <div class="alert alert-success alert-dismissible auto-close-alert" data-alert-id="<?php echo md5($success_msg); ?>">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <i class="fa fa-check-circle"></i> <?php echo $this->session->flashdata('success'); ?>
+                                <i class="fa fa-check-circle"></i> <?php echo $success_msg; ?>
                             </div>
                         <?php endif; ?>
 
-                        <?php if($this->session->flashdata('error')): ?>
-                            <div class="alert alert-danger alert-dismissible">
+                        <?php if($error_msg): ?>
+                            <div class="alert alert-danger alert-dismissible auto-close-alert" data-alert-id="<?php echo md5($error_msg); ?>">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <i class="fa fa-times-circle"></i> <?php echo $this->session->flashdata('error'); ?>
+                                <i class="fa fa-times-circle"></i> <?php echo $error_msg; ?>
                             </div>
                         <?php endif; ?>
 
@@ -157,6 +162,34 @@
         $('#btn-delete').attr('href', url);
         $('#deleteModal').modal();
     }
+
+    // Auto-close alerts after 5 seconds with sessionStorage tracking
+    $(document).ready(function() {
+        var alerts = $('.auto-close-alert');
+
+        // Check and remove alerts that have already been shown
+        alerts.each(function() {
+            var alertId = $(this).data('alert-id');
+            if (alertId) {
+                var shownKey = 'alert_shown_' + alertId;
+                if (sessionStorage.getItem(shownKey)) {
+                    // Alert already shown in this session, remove it
+                    $(this).remove();
+                } else {
+                    // Mark this alert as shown
+                    sessionStorage.setItem(shownKey, 'true');
+
+                    // Set auto-close timer
+                    var $alert = $(this);
+                    setTimeout(function() {
+                        $alert.fadeOut('slow', function() {
+                            $(this).alert('close');
+                        });
+                    }, 5000); // 5000ms = 5 seconds
+                }
+            }
+        });
+    });
 </script>
 
 </html>

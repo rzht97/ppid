@@ -53,26 +53,27 @@
                             <br>
 
                             <?php
+                                // Consume flashdata once and store in variables
                                 $success_msg = $this->session->flashdata('success');
                                 $error_msg = $this->session->flashdata('error');
                                 $validation_errors = validation_errors();
                             ?>
                             <?php if($success_msg): ?>
-                                <div class="alert alert-success alert-dismissible auto-close-alert" data-alert-id="<?php echo md5($success_msg . time()); ?>">
+                                <div class="alert alert-success alert-dismissible auto-close-alert" data-alert-id="<?php echo md5($success_msg); ?>">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                     <i class="fa fa-check-circle"></i> <?php echo $success_msg; ?>
                                 </div>
                             <?php endif; ?>
 
                             <?php if($error_msg): ?>
-                                <div class="alert alert-danger alert-dismissible auto-close-alert" data-alert-id="<?php echo md5($error_msg . time()); ?>">
+                                <div class="alert alert-danger alert-dismissible auto-close-alert" data-alert-id="<?php echo md5($error_msg); ?>">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                     <i class="fa fa-times-circle"></i> <?php echo $error_msg; ?>
                                 </div>
                             <?php endif; ?>
 
                             <?php if($validation_errors): ?>
-                                <div class="alert alert-warning alert-dismissible auto-close-alert" data-alert-id="<?php echo md5($validation_errors . time()); ?>">
+                                <div class="alert alert-warning alert-dismissible auto-close-alert" data-alert-id="<?php echo md5($validation_errors); ?>">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                     <i class="fa fa-exclamation-triangle"></i> <strong>Perhatian!</strong> Mohon perbaiki kesalahan berikut:
                                     <?php echo $validation_errors; ?>
