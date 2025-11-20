@@ -164,19 +164,19 @@
                                     </div>
 
                                     <!-- Form Keberatan -->
-                                    <div style="background-color: #fff; padding: 25px; border-radius: 8px; border: 2px solid #e8e8e8;">
-                                        <h3 style="margin-top: 0; color: #333; font-size: 20px; margin-bottom: 20px;">
-                                            <i class="fa fa-edit"></i> Form Keberatan
+                                    <div style="background-color: #fff; padding: 35px; border-radius: 8px; border: 2px solid #e0e0e0; margin-top: 25px;">
+                                        <h3 style="margin-top: 0; color: #2c3e50; font-size: 22px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px solid #f0f0f0;">
+                                            <i class="fa fa-edit"></i> Form Pengajuan Keberatan
                                         </h3>
 
                                         <form action="<?= base_url()?>keberatan/save" method="post">
                                             <input type="hidden" name="mohon_id" value="<?php echo $data->mohon_id?>" required>
 
-                                            <div class="form-group" style="margin-bottom: 25px;">
-                                                <label style="font-weight: 600; color: #333; margin-bottom: 10px; display: block; font-size: 15px;">
+                                            <div class="form-group" style="margin-bottom: 30px;">
+                                                <label style="font-weight: 600; color: #34495e; margin-bottom: 12px; display: block; font-size: 15px;">
                                                     Alasan Pengajuan Keberatan <span class="text-danger">*</span>
                                                 </label>
-                                                <select class="form-control" name="alasan" required style="padding: 12px; font-size: 14px; border-radius: 4px; border: 1px solid #ddd;">
+                                                <select class="form-control" name="alasan" required style="padding: 14px 12px; font-size: 14px; border-radius: 5px; border: 1px solid #d1d5db; height: auto; line-height: 1.5;">
                                                     <option value="">-- Pilih Alasan Keberatan --</option>
                                                     <option value="a. Permohonan Informasi Publik Ditolak">a. Permohonan Informasi Publik Ditolak</option>
                                                     <option value="b. Informasi Berkala Tidak Disediakan">b. Informasi Berkala Tidak Disediakan</option>
@@ -186,17 +186,15 @@
                                                     <option value="f. Biaya yang Dikenakan Tidak Wajar">f. Biaya yang Dikenakan Tidak Wajar</option>
                                                     <option value="g. Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan">g. Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan</option>
                                                 </select>
-                                                <span class="help-block" style="margin-top: 5px;"><small>Pilih alasan yang sesuai dengan kondisi permohonan Anda</small></span>
+                                                <span class="help-block" style="margin-top: 8px; color: #6b7280;"><small>Pilih alasan yang sesuai dengan kondisi permohonan Anda</small></span>
                                             </div>
 
-                                            <div class="form-group" style="margin-bottom: 25px;">
-                                                <label style="font-weight: 600; color: #333; margin-bottom: 10px; display: block; font-size: 15px;">
+                                            <div class="form-group" style="margin-bottom: 30px;">
+                                                <label style="font-weight: 600; color: #34495e; margin-bottom: 12px; display: block; font-size: 15px;">
                                                     Kronologi/Uraian Keberatan <span class="text-danger">*</span>
                                                 </label>
-                                                <textarea class="form-control" name="kronologi" rows="6" required
-                                                    placeholder="Jelaskan secara detail kronologi atau uraian keberatan Anda. Sertakan informasi relevan seperti tanggal, waktu, dan kejadian yang terjadi."
-                                                    style="padding: 12px; font-size: 14px; border-radius: 4px; border: 1px solid #ddd;"></textarea>
-                                                <span class="help-block" style="margin-top: 5px;"><small>Jelaskan kronologi atau uraian keberatan Anda sejelas mungkin</small></span>
+                                                <textarea class="form-control" name="kronologi" rows="7" required style="padding: 14px; font-size: 14px; border-radius: 5px; border: 1px solid #d1d5db; line-height: 1.6; resize: vertical;"></textarea>
+                                                <span class="help-block" style="margin-top: 8px; color: #6b7280;"><small>Jelaskan kronologi atau uraian keberatan Anda sejelas mungkin (tanggal, waktu, dan kejadian yang terjadi)</small></span>
                                             </div>
 
                                             <!-- Honeypot field - Anti-bot protection (DO NOT REMOVE) -->
@@ -205,11 +203,11 @@
                                                 <input type="text" name="website_url" id="website_url" value="" tabindex="-1" autocomplete="off">
                                             </div>
 
-                                            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e3e3e3; text-align: center;">
-                                                <button type="submit" class="btn btn-success btn-lg" style="padding: 12px 40px; margin-right: 10px;">
-                                                    <i class="fa fa-check"></i> Kirim Keberatan
+                                            <div style="margin-top: 35px; padding-top: 25px; border-top: 2px solid #f0f0f0; text-align: center;">
+                                                <button type="submit" class="btn btn-success btn-lg" style="padding: 14px 45px; margin-right: 12px; font-size: 15px; font-weight: 500; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                                    <i class="fa fa-check-circle"></i> Kirim Keberatan
                                                 </button>
-                                                <a href="<?php echo site_url('pub/cekstatus'); ?>" class="btn btn-default btn-lg" style="padding: 12px 40px;">
+                                                <a href="<?php echo site_url('pub/cekstatus'); ?>" class="btn btn-default btn-lg" style="padding: 14px 45px; font-size: 15px; font-weight: 500; border-radius: 5px; background-color: #f8f9fa; border: 1px solid #d1d5db;">
                                                     <i class="fa fa-times"></i> Batal
                                                 </a>
                                             </div>
