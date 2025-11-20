@@ -209,18 +209,14 @@
                                             <div class="panel-body" style="padding: 25px;">
                                                 <div class="form-group" style="margin-bottom: 25px;">
                                                     <label style="margin-bottom: 10px; font-size: 15px; color: #333;"><strong>Rincian Informasi yang Dibutuhkan</strong></label>
-                                                    <div style="background-color: #ffffff; padding: 20px; border: 2px solid #e8e8e8; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                                                        <p style="white-space: pre-wrap; word-wrap: break-word; word-break: break-word; overflow-wrap: break-word; margin: 0; line-height: 1.8; font-size: 14px; color: #555;">
-                                                            <?php echo $data->rincian ?>
-                                                        </p>
+                                                    <div style="background-color: #ffffff; padding: 12px 15px; border: 2px solid #e8e8e8; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                                        <p style="white-space: pre-wrap; word-wrap: break-word; word-break: break-word; overflow-wrap: break-word; margin: 0; padding: 0; line-height: 1.8; font-size: 14px; color: #555; text-align: left; vertical-align: top;"><?php echo trim($data->rincian); ?></p>
                                                     </div>
                                                 </div>
                                                 <div class="form-group" style="margin-bottom: 0;">
                                                     <label style="margin-bottom: 10px; font-size: 15px; color: #333;"><strong>Tujuan Penggunaan Informasi</strong></label>
-                                                    <div style="background-color: #ffffff; padding: 20px; border: 2px solid #e8e8e8; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                                                        <p style="white-space: pre-wrap; word-wrap: break-word; word-break: break-word; overflow-wrap: break-word; margin: 0; line-height: 1.8; font-size: 14px; color: #555;">
-                                                            <?php echo $data->tujuan ?>
-                                                        </p>
+                                                    <div style="background-color: #ffffff; padding: 12px 15px; border: 2px solid #e8e8e8; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                                        <p style="white-space: pre-wrap; word-wrap: break-word; word-break: break-word; overflow-wrap: break-word; margin: 0; padding: 0; line-height: 1.8; font-size: 14px; color: #555; text-align: left; vertical-align: top;"><?php echo trim($data->tujuan); ?></p>
                                                     </div>
                                                 </div>
                                             </div>
