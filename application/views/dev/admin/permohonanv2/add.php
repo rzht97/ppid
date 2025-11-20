@@ -222,7 +222,7 @@
                                         <label class="col-md-12"><strong>Cara Memperoleh Informasi <span class="text-danger">*</span></strong></label>
                                         <div class="col-md-12">
                                             <select class="form-control <?php echo form_error('caraperoleh') ? 'is-invalid' : '' ?>" name="caraperoleh" required>
-                                                <option value="">-- Pilih Cara Memperoleh Informasi --</option>
+                                                <option value="" Hidden></option>
                                                 <option value="Mendapat Salinan informasi (hardcopy/softcopy)" <?php echo set_select('caraperoleh', 'Mendapat Salinan informasi (hardcopy/softcopy)'); ?>>Mendapat Salinan informasi (hardcopy/softcopy)</option>
                                                 <option value="Melihat/membaca/mendengarkan/mencatat" <?php echo set_select('caraperoleh', 'Melihat/membaca/mendengarkan/mencatat'); ?>>Melihat/membaca/mendengarkan/mencatat</option>
                                             </select>
@@ -236,7 +236,7 @@
                                         <label class="col-md-12"><strong>Cara Mendapatkan Salinan Informasi <span class="text-danger">*</span></strong></label>
                                         <div class="col-md-12">
                                             <select class="form-control <?php echo form_error('caradapat') ? 'is-invalid' : '' ?>" name="caradapat" required>
-                                                <option value="">-- Pilih Cara Mendapatkan Salinan --</option>
+                                                <option value="" Hidden></option>
                                                 <option value="Mengambil Langsung" <?php echo set_select('caradapat', 'Mengambil Langsung'); ?>>Mengambil Langsung</option>
                                                 <option value="Kurir" <?php echo set_select('caradapat', 'Kurir'); ?>>Kurir</option>
                                                 <option value="Pos" <?php echo set_select('caradapat', 'Pos'); ?>>Pos</option>
