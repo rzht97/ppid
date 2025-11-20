@@ -63,9 +63,18 @@
                                 // Get current page URI
                                 $current_uri = uri_string();
 
-                                // Only show alert if no target specified OR target matches current page
-                                $show_success = $success_msg && (!$success_target || $success_target === $current_uri);
-                                $show_error = $error_msg && (!$error_target || $error_target === $current_uri);
+                                // Check if alert already shown this session
+                                $alert_shown_key = '_alert_shown_' . md5($success_msg . $success_target);
+                                $already_shown = $this->session->userdata($alert_shown_key);
+
+                                // Only show alert if target matches current page AND not shown yet
+                                $show_success = $success_msg && $success_target && ($success_target === $current_uri) && !$already_shown;
+                                $show_error = $error_msg && $error_target && ($error_target === $current_uri);
+
+                                // Mark as shown if displaying
+                                if ($show_success) {
+                                    $this->session->set_userdata($alert_shown_key, true);
+                                }
                             ?>
                             <?php if($show_success): ?>
                                 <div class="alert alert-success alert-dismissible auto-close-alert">
