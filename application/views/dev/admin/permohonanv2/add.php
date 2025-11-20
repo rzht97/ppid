@@ -44,25 +44,40 @@
                             <h3 class="box-title m-b-0">Form Tambah Permohonan Informasi</h3>
                             <p class="text-muted m-b-20">Isi semua field yang diperlukan untuk menambah permohonan baru</p>
 
-                            <?php if($this->session->flashdata('success')): ?>
-                                <div class="alert alert-success alert-dismissible">
+                            <?php
+                                // Read flashdata and target page
+                                $success_msg = $this->session->flashdata('success');
+                                $success_target = $this->session->flashdata('success_target');
+                                $error_msg = $this->session->flashdata('error');
+                                $error_target = $this->session->flashdata('error_target');
+                                $validation_errors = validation_errors();
+
+                                // Get current page URI
+                                $current_uri = uri_string();
+
+                                // Only show alert if no target specified OR target matches current page
+                                $show_success = $success_msg && (!$success_target || $success_target === $current_uri);
+                                $show_error = $error_msg && (!$error_target || $error_target === $current_uri);
+                            ?>
+                            <?php if($show_success): ?>
+                                <div class="alert alert-success alert-dismissible auto-close-alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <?php echo $this->session->flashdata('success'); ?>
+                                    <?php echo $success_msg; ?>
                                 </div>
                             <?php endif; ?>
 
-                            <?php if($this->session->flashdata('error')): ?>
-                                <div class="alert alert-danger alert-dismissible">
+                            <?php if($show_error): ?>
+                                <div class="alert alert-danger alert-dismissible auto-close-alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <?php echo $this->session->flashdata('error'); ?>
+                                    <?php echo $error_msg; ?>
                                 </div>
                             <?php endif; ?>
 
-                            <?php if(validation_errors()): ?>
-                                <div class="alert alert-warning alert-dismissible">
+                            <?php if($validation_errors): ?>
+                                <div class="alert alert-warning alert-dismissible auto-close-alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                     <h4><i class="icon fa fa-warning"></i> Validation Error!</h4>
-                                    <?php echo validation_errors(); ?>
+                                    <?php echo $validation_errors; ?>
                                 </div>
                             <?php endif; ?>
 
@@ -215,5 +230,16 @@
     <!-- /#wrapper -->
     <?php $this->load->view('dev/admin/partials/js.php') ?>
 </body>
+
+<script>
+    // Auto-close alerts after 5 seconds
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('.auto-close-alert').fadeOut('slow', function() {
+                $(this).alert('close');
+            });
+        }, 5000); // 5000ms = 5 seconds
+    });
+</script>
 
 </html>
