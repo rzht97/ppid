@@ -1,6 +1,6 @@
 <?php
 
-class Permohonan extends CI_Controller {
+class PublicPermohonan extends CI_Controller {
     public function __construct()
     {
 		parent::__construct();
@@ -31,7 +31,7 @@ class Permohonan extends CI_Controller {
             if (!empty($honeypot)) {
                 log_message('warning', 'Bot detected via honeypot from IP: ' . $this->input->ip_address());
                 $this->session->set_flashdata('error', 'Submission failed. Please try again later.');
-                redirect('pub/permohonan/permohonan');
+                redirect('publicpermohonan/permohonan');
                 return;
             }
 
@@ -53,7 +53,7 @@ class Permohonan extends CI_Controller {
                 $wait_time = ceil((600 - $time_elapsed) / 60); // Minutes remaining
                 log_message('warning', 'Session rate limit exceeded from session: ' . session_id());
                 $this->session->set_flashdata('error', 'Anda telah mengirim terlalu banyak permohonan. Silakan tunggu ' . $wait_time . ' menit lagi.');
-                redirect('pub/permohonan/permohonan');
+                redirect('publicpermohonan/permohonan');
                 return;
             }
 
@@ -75,7 +75,7 @@ class Permohonan extends CI_Controller {
                     $ip_wait_time = ceil((3600 - $ip_time_elapsed) / 60);
                     log_message('warning', 'IP rate limit exceeded from IP: ' . $ip_address);
                     $this->session->set_flashdata('error', 'Terlalu banyak permintaan dari IP Anda. Silakan tunggu ' . $ip_wait_time . ' menit lagi.');
-                    redirect('pub/permohonan/permohonan');
+                    redirect('publicpermohonan/permohonan');
                     return;
                 }
             } else {
@@ -138,7 +138,7 @@ class Permohonan extends CI_Controller {
                 }
 
                 // Redirect to detail page
-                redirect(base_url("index.php/pub/permohonan/detail/".substr($mohon_id, 0, 11)));
+                redirect(base_url("index.php/publicpermohonan/detail/".substr($mohon_id, 0, 11)));
 
             } catch(Exception $e) {
                 // Log error
@@ -170,7 +170,7 @@ class Permohonan extends CI_Controller {
 	 */
 	public function detail($mohon_id = null)
     {
-	   if (!isset($mohon_id)) redirect('pub/permohonan');
+	   if (!isset($mohon_id)) redirect('publicpermohonan');
 
 	   // Sanitize input
 	   $mohon_id = $this->db->escape_str($mohon_id);
@@ -189,7 +189,7 @@ class Permohonan extends CI_Controller {
 	public function caripermohonan()
 	{
 		// Redirect ke controller baru
-		redirect('pub/cekstatus');
+		redirect('cekstatus');
 	}
 
 

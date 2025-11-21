@@ -54,7 +54,7 @@
                                         </h2> -->
                                         <h2>Selamat Datang</h2>
                                         <p>di PPID Kab. Sumedang</p>
-                                        <a href="<?php echo site_url('pub/permohonan/permohonan')?>" class="thm-btn">Mulai Memohon Informasi</a>
+                                        <a href="<?php echo site_url('publicpermohonan/permohonan')?>" class="thm-btn">Mulai Memohon Informasi</a>
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +108,7 @@
                                 <div class="industries__icon">
                                     <span class="icon-bank"></span>
                                 </div>
-                                <h3 class="industries__title"><a href="<?php echo site_url('pub/overview/infoberkala')?>"> Berkala</a></h3>
+                                <h3 class="industries__title"><a href="<?php echo site_url('home/infoberkala')?>"> Berkala</a></h3>
                                 <p class="industries__text">informasi yang wajib diperbaharui kemudian disediakan dan diumumkan kepada publik secara berkala</p>
                             </li>
                         </div>
@@ -117,7 +117,7 @@
                                 <div class="industries__icon">
                                     <span class="icon-protection"></span>
                                 </div>
-                                <h3 class="industries__title"><a href="<?php echo site_url('pub/overview/infosetiapsaat')?>">Setiap Saat</a></h3>
+                                <h3 class="industries__title"><a href="<?php echo site_url('home/infosetiapsaat')?>">Setiap Saat</a></h3>
                                 <p class="industries__text">informasi yang harus disediakan oleh Badan Publik dan siap tersedia untuk Pemohon Informasi</p>
                             </li>
                         </div>
@@ -126,7 +126,7 @@
                                 <div class="industries__icon">
                                     <span class="icon-travel"></span>
                                 </div>
-                                <h3 class="industries__title"><a href="<?php echo site_url('pub/overview/infosertamerta')?>">Serta Merta</a></h3>
+                                <h3 class="industries__title"><a href="<?php echo site_url('home/infosertamerta')?>">Serta Merta</a></h3>
                                 <p class="industries__text">informasi yang berkaitan dengan hajat hidup orang banyak dan wajib diumumkan tanpa penundaan.</p>
                             </li>
                         </div>
@@ -135,7 +135,7 @@
                                 <div class="industries__icon">
                                     <span class="icon-research"></span>
                                 </div>
-                                <h3 class="industries__title"><a href="<?php echo site_url('pub/overview/dik')?>">Dikecualikan</a></h3>
+                                <h3 class="industries__title"><a href="<?php echo site_url('home/dik')?>">Dikecualikan</a></h3>
                                 <p class="industries__text">informasi yang tidak dapat diakses oleh pemohon informasi publik.</p>
                             </li>
                         </div>
@@ -165,10 +165,10 @@
                             <div class="services-two__icon">
                                 <span class="icon-creative-1"></span>
                             </div>
-                            <h3 class="services-two__title"><a href="<?php echo site_url('pub/overview/caradapatinfo')?>">Cara Mendapatkan Informasi</a>
+                            <h3 class="services-two__title"><a href="<?php echo site_url('home/caradapatinfo')?>">Cara Mendapatkan Informasi</a>
                             </h3>
                             <!-- <p class="services-two__text">Lorem ipsum is are many variations of pass of majority.</p> -->
-                            <a href="<?php echo site_url('pub/overview/caradapatinfo')?>" class="services-two__arrow">
+                            <a href="<?php echo site_url('home/caradapatinfo')?>" class="services-two__arrow">
                                 <span class="icon-right-arrow1"></span>
                             </a>
                         </div>
@@ -179,10 +179,10 @@
                             <div class="services-two__icon">
                                 <span class="icon-analysis"></span>
                             </div>
-                            <h3 class="services-two__title"><a href="<?php echo site_url('pub/overview/carakeberatan')?>">Tata Cara Pengajuan Keberatan</a>
+                            <h3 class="services-two__title"><a href="<?php echo site_url('home/carakeberatan')?>">Tata Cara Pengajuan Keberatan</a>
                             </h3>
                             <!-- <p class="services-two__text">Lorem ipsum is are many variations of pass of majority.</p> -->
-                            <a href="<?php echo site_url('pub/overview/carakeberatan')?>" class="services-two__arrow">
+                            <a href="<?php echo site_url('home/carakeberatan')?>" class="services-two__arrow">
                                 <span class="icon-right-arrow1"></span>
                             </a>
                         </div>
@@ -193,10 +193,10 @@
                             <div class="services-two__icon">
                                 <span class="icon-business"></span>
                             </div>
-                            <h6 class="services-two__title"><a href="<?php echo site_url('pub/overview/carasengketa')?>">Penanganan Sengketa Informasi</a>
+                            <h6 class="services-two__title"><a href="<?php echo site_url('home/carasengketa')?>">Penanganan Sengketa Informasi</a>
                             </h6>
                             <!-- <p class="services-two__text">Lorem ipsum is are many variations of pass of majority.</p> -->
-                            <a href="<?php echo site_url('pub/overview/carasengketa')?>" class="services-two__arrow">
+                            <a href="<?php echo site_url('home/carasengketa')?>" class="services-two__arrow">
                                 <span class="icon-right-arrow1"></span>
                             </a>
                         </div>

@@ -600,7 +600,7 @@
                                         <?php endif; ?>
 
                                         <div class="action-section">
-                                            <a href="<?php echo site_url('pub/cekstatus'); ?>" class="btn btn-default btn-lg">
+                                            <a href="<?php echo site_url('cekstatus'); ?>" class="btn btn-default btn-lg">
                                                 <i class="fa fa-search"></i> Cari Lagi
                                             </a>
 

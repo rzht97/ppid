@@ -324,7 +324,7 @@
                                 </div>
                             <?php endif; ?>
 
-                            <form data-toogle="validator" class="form-horizontal" action="<?php echo base_url('pub/permohonan/permohonan') ?>" method="post" enctype="multipart/form-data">
+                            <form data-toogle="validator" class="form-horizontal" action="<?php echo base_url('publicpermohonan/permohonan') ?>" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label class="col-md-12"><strong>Nama Lengkap <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">
@@ -506,7 +506,7 @@
                                             <button type="submit" class="btn btn-success btn-lg waves-effect waves-light">
                                                 <i class="fa fa-paper-plane"></i> Kirim Permohonan
                                             </button>
-                                            <a href="<?php echo site_url('pub/cekstatus'); ?>" class="btn btn-default btn-lg waves-effect waves-light">
+                                            <a href="<?php echo site_url('cekstatus'); ?>" class="btn btn-default btn-lg waves-effect waves-light">
                                                 <i class="fa fa-times"></i> Batal
                                             </a>
                                         </div>

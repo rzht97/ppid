@@ -280,7 +280,7 @@
                                         </div>
 
                                         <div class="text-center" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e3e3e3;">
-                                            <a href="<?php echo site_url('pub/permohonan/caripermohonan'); ?>" class="btn btn-default btn-lg" style="padding: 12px 30px; margin-right: 10px;">
+                                            <a href="<?php echo site_url('publicpermohonan/caripermohonan'); ?>" class="btn btn-default btn-lg" style="padding: 12px 30px; margin-right: 10px;">
                                                 <i class="fa fa-search"></i> Cari Permohonan Lain
                                             </a>
                                             <a href="<?php echo site_url('keberatan/index/'.$data->mohon_id); ?>" class="btn btn-warning btn-lg" style="padding: 12px 30px;">
@@ -328,7 +328,7 @@
                                                         <div class="form-group" style="margin-bottom: 0;">
                                                             <label style="margin-bottom: 5px;"><strong>ID Permohonan Terkait</strong></label>
                                                             <p class="form-control-static" style="margin: 0;">
-                                                                <a href="<?php echo site_url('pub/permohonan/detail/'.substr($data->mohon_id, 0, 11)); ?>" class="btn btn-sm btn-default">
+                                                                <a href="<?php echo site_url('publicpermohonan/detail/'.substr($data->mohon_id, 0, 11)); ?>" class="btn btn-sm btn-default">
                                                                     <i class="fa fa-link"></i> <?php echo $data->mohon_id ?>
                                                                 </a>
                                                             </p>
@@ -469,7 +469,7 @@
                                         </div>
 
                                         <div class="text-center" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e3e3e3;">
-                                            <a href="<?php echo site_url('pub/permohonan/caripermohonan'); ?>" class="btn btn-default btn-lg" style="padding: 12px 30px; margin-right: 10px;">
+                                            <a href="<?php echo site_url('publicpermohonan/caripermohonan'); ?>" class="btn btn-default btn-lg" style="padding: 12px 30px; margin-right: 10px;">
                                                 <i class="fa fa-search"></i> Cari Lagi
                                             </a>
                                             <a href="<?php echo site_url('keberatan/detail/'.$data->id_keberatan); ?>" class="btn btn-info btn-lg" style="padding: 12px 30px;">

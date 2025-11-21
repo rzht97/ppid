@@ -390,7 +390,7 @@
                                                 <button type="submit" class="btn btn-success btn-lg">
                                                     <i class="fa fa-check-circle"></i> Kirim Keberatan
                                                 </button>
-                                                <a href="<?php echo site_url('pub/cekstatus'); ?>" class="btn btn-default btn-lg">
+                                                <a href="<?php echo site_url('cekstatus'); ?>" class="btn btn-default btn-lg">
                                                     <i class="fa fa-times"></i> Batal
                                                 </a>
                                             </div>
@@ -403,7 +403,7 @@
                                     <i class="fa fa-exclamation-triangle"></i> <strong>Data Tidak Ditemukan!</strong><br>
                                     Mohon maaf, data permohonan tidak ditemukan. Silakan kembali ke halaman pencarian.
                                     <div style="margin-top: 15px;">
-                                        <a href="<?php echo site_url('pub/cekstatus'); ?>" class="btn btn-primary">
+                                        <a href="<?php echo site_url('cekstatus'); ?>" class="btn btn-primary">
                                             <i class="fa fa-search"></i> Cari Permohonan
                                         </a>
                                     </div>

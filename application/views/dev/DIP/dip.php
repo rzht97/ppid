@@ -77,7 +77,7 @@
                                                     <?php if ($dok_kec->image == "Belum Tersedia") { ?>
                                                         <a target="_blank" href="<?php echo $dok_kec->sumberdata; ?>"><button class="btn btn-success waves-effect waves-light" type="button"><i class="fa-thin fa-globe-pointer">Lihat</i></button></a>
                                                     <?php } else { ?>
-														<a href="<?php echo site_url('pub/dip/detaildip/' . $dok_kec->id) ?>" class="fcbtn btn btn-outline btn-success btn-1b"><i class="fa-solid fa-circle-info"></i> detail</a>
+														<a href="<?php echo site_url('publicdip/detaildip/' . $dok_kec->id) ?>" class="fcbtn btn btn-outline btn-success btn-1b"><i class="fa-solid fa-circle-info"></i> detail</a>
                                                     <?php } ?>
                                                 </td>
                                             </tr>

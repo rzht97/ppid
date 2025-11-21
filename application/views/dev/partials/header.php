@@ -95,7 +95,7 @@
                                         </li>
 										<li><a href = "<?php echo site_url('pub/profil/strukturorg')?>">Struktur Organisasi</a></li>
                                         <li><a href="<?php echo site_url('pub/profil/urtug')?>">Tugas dan Wewenang</a></li>
-										<!--<li><a href="<?php echo site_url('pub/overview/pejabat')?>">Profil Pejabat Struktural</a></li>-->
+										<!--<li><a href="<?php echo site_url('home/pejabat')?>">Profil Pejabat Struktural</a></li>-->
                                         <li><a href="<?php echo site_url('pub/profil/maklumat')?>">Maklumat Pelayanan</a></li>
                                     </ul>
                                 </li>
@@ -105,30 +105,30 @@
 										<li class="dropdown">
                                             <a href="#">Daftar Informasi Publik</a>
                                             <ul>
-                                                <li><a href="<?php echo site_url('pub/overview/skdip')?>">SK DIP</a></li>
-                                                <li><a href="<?php echo site_url('pub/dip')?>">DIP</a></li>
+                                                <li><a href="<?php echo site_url('home/skdip')?>">SK DIP</a></li>
+                                                <li><a href="<?php echo site_url('publicdip')?>">DIP</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="<?php echo site_url('pub/overview/dik')?>">Daftar Informasi Yang Dikecualikan</a></li>
-										<li><a href = "<?php echo site_url('pub/overview/cc')?>">Command Center</a></li>
-                                        <li><a href="<?php echo site_url('pub/overview/Laporan')?>">Laporan Pelayanan Informasi Publik</a>
+                                        <li><a href="<?php echo site_url('home/dik')?>">Daftar Informasi Yang Dikecualikan</a></li>
+										<li><a href = "<?php echo site_url('home/cc')?>">Command Center</a></li>
+                                        <li><a href="<?php echo site_url('home/Laporan')?>">Laporan Pelayanan Informasi Publik</a>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#">Regulasi</a>
                                     <ul>
-                                        <li><a href="<?php echo site_url('pub/overview/regulasi')?>">Regulasi Informasi Publik</a></li>
+                                        <li><a href="<?php echo site_url('home/regulasi')?>">Regulasi Informasi Publik</a></li>
                                         <li><a target = "_blank" href="https://jdih.sumedangkab.go.id">Dokumentasi dan Informasi Hukum Kab. Sumedang</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#">Pelayanan Informasi</a>
                                     <ul>
-                                        <li><a href="<?php echo site_url('pub/overview/caradapatinfo')?>">Tata Cara Mendapatkan Informasi</a></li>
-                                        <li><a href="<?php echo site_url('pub/overview/carakeberatan')?>">Tata Cara Pengajuan Keberatan</a></li>
-                                        <li><a href="<?php echo site_url('pub/overview/carasengketa')?>">Prosedur Penanganan Sengketa Informasi</a></li>
-										<li><a href="<?php echo site_url('pub/overview/sop')?>">SOP Pelayanan Informasi</a></li>
-										<li><a href="<?php echo site_url('pub/overview/standarbiaya')?>">Standar Biaya Pelayanan</a></li>
+                                        <li><a href="<?php echo site_url('home/caradapatinfo')?>">Tata Cara Mendapatkan Informasi</a></li>
+                                        <li><a href="<?php echo site_url('home/carakeberatan')?>">Tata Cara Pengajuan Keberatan</a></li>
+                                        <li><a href="<?php echo site_url('home/carasengketa')?>">Prosedur Penanganan Sengketa Informasi</a></li>
+										<li><a href="<?php echo site_url('home/sop')?>">SOP Pelayanan Informasi</a></li>
+										<li><a href="<?php echo site_url('home/standarbiaya')?>">Standar Biaya Pelayanan</a></li>
 										<li><a target = "__blank" href="https://wa.me/6281122202220?text=#Simpati">WA KEPO</a></li>
 										
                                     </ul>
@@ -141,11 +141,11 @@
                                     </ul>
                                 </li>
 								<li>
-                                    <a target = "blank_" href="<?php echo site_url('pub/cekstatus')?>">Cek Status</a>
+                                    <a target = "blank_" href="<?php echo site_url('cekstatus')?>">Cek Status</a>
 
                                 </li>
 								<li>
-                                    <a target = "blank_" href="<?php echo site_url('pub/overview/lapor')?>">LAPOR!</a>
+                                    <a target = "blank_" href="<?php echo site_url('home/lapor')?>">LAPOR!</a>
 
                                 </li>
                             </ul>
@@ -153,7 +153,7 @@
                     </div>
                     <div class="main-menu-wrapper__right">
                         <div class="main-menu-wrapper__search-box">
-                            <a href="<?php echo site_url('pub/permohonan/permohonan')?>" class="btn-ajukan-permohonan">Ajukan Permohonan</a>
+                            <a href="<?php echo site_url('publicpermohonan/permohonan')?>" class="btn-ajukan-permohonan">Ajukan Permohonan</a>
                         </div>
                         <!-- <div class="main-menu-wrapper__phone-contact">
                             <p>Need help? Talk to an expert</p>
