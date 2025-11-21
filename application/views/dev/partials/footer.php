@@ -52,9 +52,9 @@
                             <div class="footer-widget__column footer-widget__explore clearfix">
                                 <h3 class="footer-widget__title">Layanan Informasi</h3>
                                 <ul class="footer-widget__explore-list list-unstyled">
-                                    <li><a href="<?php echo site_url('home/caradapatinfo')?>">Tata Cara Permohonan Informasi</a></li>
-                                    <li><a href="<?php echo site_url('home/carakeberatan')?>">Tata Cara Keberatan Atas Informasi</a></li>
-                                    <li><a href="<?php echo site_url('home/carasengketa')?>">Prosedur Penanganan Sengketa Informasi</a></li>
+                                    <li><a href="<?php echo site_url('caradapatinfo')?>">Tata Cara Permohonan Informasi</a></li>
+                                    <li><a href="<?php echo site_url('carakeberatan')?>">Tata Cara Keberatan Atas Informasi</a></li>
+                                    <li><a href="<?php echo site_url('carasengketa')?>">Prosedur Penanganan Sengketa Informasi</a></li>
                                 </ul>
                             </div>
                         </div>

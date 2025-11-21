@@ -135,7 +135,7 @@
                                 <div class="industries__icon">
                                     <span class="icon-research"></span>
                                 </div>
-                                <h3 class="industries__title"><a href="<?php echo site_url('home/dik')?>">Dikecualikan</a></h3>
+                                <h3 class="industries__title"><a href="<?php echo site_url('dik')?>">Dikecualikan</a></h3>
                                 <p class="industries__text">informasi yang tidak dapat diakses oleh pemohon informasi publik.</p>
                             </li>
                         </div>
@@ -165,10 +165,10 @@
                             <div class="services-two__icon">
                                 <span class="icon-creative-1"></span>
                             </div>
-                            <h3 class="services-two__title"><a href="<?php echo site_url('home/caradapatinfo')?>">Cara Mendapatkan Informasi</a>
+                            <h3 class="services-two__title"><a href="<?php echo site_url('caradapatinfo')?>">Cara Mendapatkan Informasi</a>
                             </h3>
                             <!-- <p class="services-two__text">Lorem ipsum is are many variations of pass of majority.</p> -->
-                            <a href="<?php echo site_url('home/caradapatinfo')?>" class="services-two__arrow">
+                            <a href="<?php echo site_url('caradapatinfo')?>" class="services-two__arrow">
                                 <span class="icon-right-arrow1"></span>
                             </a>
                         </div>
@@ -179,10 +179,10 @@
                             <div class="services-two__icon">
                                 <span class="icon-analysis"></span>
                             </div>
-                            <h3 class="services-two__title"><a href="<?php echo site_url('home/carakeberatan')?>">Tata Cara Pengajuan Keberatan</a>
+                            <h3 class="services-two__title"><a href="<?php echo site_url('carakeberatan')?>">Tata Cara Pengajuan Keberatan</a>
                             </h3>
                             <!-- <p class="services-two__text">Lorem ipsum is are many variations of pass of majority.</p> -->
-                            <a href="<?php echo site_url('home/carakeberatan')?>" class="services-two__arrow">
+                            <a href="<?php echo site_url('carakeberatan')?>" class="services-two__arrow">
                                 <span class="icon-right-arrow1"></span>
                             </a>
                         </div>
@@ -193,10 +193,10 @@
                             <div class="services-two__icon">
                                 <span class="icon-business"></span>
                             </div>
-                            <h6 class="services-two__title"><a href="<?php echo site_url('home/carasengketa')?>">Penanganan Sengketa Informasi</a>
+                            <h6 class="services-two__title"><a href="<?php echo site_url('carasengketa')?>">Penanganan Sengketa Informasi</a>
                             </h6>
                             <!-- <p class="services-two__text">Lorem ipsum is are many variations of pass of majority.</p> -->
-                            <a href="<?php echo site_url('home/carasengketa')?>" class="services-two__arrow">
+                            <a href="<?php echo site_url('carasengketa')?>" class="services-two__arrow">
                                 <span class="icon-right-arrow1"></span>
                             </a>
                         </div>
