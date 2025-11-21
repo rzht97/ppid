@@ -65,7 +65,7 @@
                         <div class="services-details__sidebar">
                             
                             <div class="services-details__help-box">
-                                <div class="services-details__help-box-bg" style="background-image: url(<?= base_url()?>assets/images/services/services-details-need-help-bg.jpg)">
+                                <div class="services-details__help-box-bg" style="background-image: url(<?= base_url()?>newestassets/images/services/services-details-need-help-bg.jpg)">
                                 </div>
                                 <a target = "__blank"href="https://lapor.go.id"  class="services-details__phone">ADUKAN SEKARANG!</a>
                             </div>
