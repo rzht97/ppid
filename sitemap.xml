@@ -4,512 +4,156 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-
+<!-- Homepage -->
 <url>
   <loc>https://ppid.sumedangkab.go.id/</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   <priority>1.00</priority>
 </url>
+
+<!-- Profil -->
 <url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/profil/visimisikab</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
+  <loc>https://ppid.sumedangkab.go.id/profil/visimisikab</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/profil/visimisippid</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
+  <loc>https://ppid.sumedangkab.go.id/profil/visimisippid</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/profil/strukturorg</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
+  <loc>https://ppid.sumedangkab.go.id/profil/strukturorg</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/profil/urtug</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
+  <loc>https://ppid.sumedangkab.go.id/profil/urtug</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/profil/maklumat</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
+  <loc>https://ppid.sumedangkab.go.id/profil/maklumat</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+<!-- Informasi Publik -->
+<url>
+  <loc>https://ppid.sumedangkab.go.id/skdip</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/skdip</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
+  <loc>https://ppid.sumedangkab.go.id/publicdip</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
+  <loc>https://ppid.sumedangkab.go.id/dik</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/dik</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
+  <loc>https://ppid.sumedangkab.go.id/cc</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/cc</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
+  <loc>https://ppid.sumedangkab.go.id/laporan</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+<!-- Regulasi -->
+<url>
+  <loc>https://ppid.sumedangkab.go.id/regulasi</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+<!-- Pelayanan Informasi -->
+<url>
+  <loc>https://ppid.sumedangkab.go.id/caradapatinfo</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/Laporan</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
+  <loc>https://ppid.sumedangkab.go.id/carakeberatan</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/regulasi</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
+  <loc>https://ppid.sumedangkab.go.id/carasengketa</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/caradapatinfo</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
+  <loc>https://ppid.sumedangkab.go.id/sop</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/carakeberatan</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
+  <loc>https://ppid.sumedangkab.go.id/standarbiaya</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+<!-- Klasifikasi Informasi -->
+<url>
+  <loc>https://ppid.sumedangkab.go.id/infoberkala</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/carasengketa</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
+  <loc>https://ppid.sumedangkab.go.id/infosertamerta</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/sop</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
+  <loc>https://ppid.sumedangkab.go.id/infosetiapsaat</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+<!-- Berita -->
+<url>
+  <loc>https://ppid.sumedangkab.go.id/berita</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+<!-- Permohonan -->
+<url>
+  <loc>https://ppid.sumedangkab.go.id/cekstatus</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/standarbiaya</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
+  <loc>https://ppid.sumedangkab.go.id/publicpermohonan</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
+<!-- Lapor -->
 <url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/berita</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
+  <loc>https://ppid.sumedangkab.go.id/lapor</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
+<!-- LHKPN -->
 <url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/permohonan/caripermohonan</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://ppid.sumedangkab.go.id/lhkpn</loc>
+  <lastmod>2025-11-21T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/lapor</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/permohonan/permohonan</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/infoberkala</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/infosetiapsaat</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/infosertamerta</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
+
+<!-- Static Files -->
 <url>
   <loc>https://ppid.sumedangkab.go.id/upload/product/DIP%20Tahun%202024.pdf</loc>
   <lastmod>2024-08-20T09:15:48+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/5de3b51777fbd</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/615d58a1882e4</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/617a0cc9ee155</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/617a0d681065f</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/617a104300862</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/617a1089afbd1</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/617a112d6404b</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/617a1f326ae1f</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/617a21b3e119f</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/617a224921c1d</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/617a22adacf79</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/617a24be01c8e</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/617a250a486c9</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/617a2581bcc72</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/618c812fa4a77</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/618c81497a09c</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/618c8182a9d48</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/618c81d66bf1a</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/618c820b980f5</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/618c82ea8cbad</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/618cb08d1f443</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/623d6a9de7f0e</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/lhkpn</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/6306e11436a00</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/6306e385c9e52</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/6306eeaac960a</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/6306f38905dcc</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/6306f4f285546</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/631fe7a4d0ec6</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/631fe8575aa36</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/631fe8db754af</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/631feb43384bd</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/631ff87c22471</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/631ff8b8a1c34</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/632189e700638</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/63241e50c9ab5</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/633f920c15ed7</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/6348c9f29386b</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/634e25213aa6b</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/6405ade5865e7</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/6405af1267425</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64142a116af9f</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64dad8b12e67a</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64dad943cc351</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64dad9d0c2b26</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64dad9fab9c34</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64dada3e39a5b</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64dae441cb286</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64dae466099c6</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64dae490bc825</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64dae4c4b4dd4</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64dae4ea8b7dd</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64dae51a36c10</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64daf6f5298a3</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64daf78b39374</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64daf997e8b72</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64daf9f9b01af</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64db0bad5fb9c</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64db2fa0c8a32</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64ec527419ef3</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64ec53223d4db</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64ec5368bf48c</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/64efec74adbc2</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/66b2e0d996b83</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/66b2e3f2e0522</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/66b2e41a3203e</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/66b2e43bd59d2</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/66b2e4da9bd3b</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/66b2e543c8c04</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/66b2e573601e3</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/66b2ed1988b5f</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/66b2ed3fbf55b</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/66b2ee0e48527</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/66b2ee24085b3</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/66b2f536ddbb5</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/dip/detaildip/66b2f54e6ba2d</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
@@ -562,51 +206,5 @@
   <lastmod>2022-09-16T06:25:21+00:00</lastmod>
   <priority>0.64</priority>
 </url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/detail/dksoda4jk34</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/detail/dnashdw2342</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/detail/646f361910aac</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/detail/647c85c1cba4b</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/detail/647c8a480b874</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/detail/648d7ff203a94</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/pub/overview/detail/648d80186fc48</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/publik/overview/download/6306f38905dcc</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://ppid.sumedangkab.go.id/index.php/publik/overview/download/64dad9fab9c34</loc>
-  <lastmod>2024-10-07T07:12:03+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-
 
 </urlset>
