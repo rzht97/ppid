@@ -7,17 +7,20 @@
     <?php $this->load->view("dev/partials/head.php") ?>
 
     <style>
-        .message-box { padding: 40px 0; background: #f5f5f5; }
-        .message-box .white-box { padding: 25px; max-width: 900px; margin: 0 auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); }
-        .box-title { margin-top: 0; margin-bottom: 8px; font-size: 22px; }
-        .search-panel { margin-bottom: 25px; }
-        .search-panel .panel-body { background-color: #f9f9f9; padding: 25px; }
-        .search-panel .btn { padding: 10px 30px; font-size: 14px; }
-        .result-panel { margin-bottom: 20px; }
-        .result-panel .panel-heading { padding: 12px 15px; }
-        .result-panel .panel-title { margin: 0; font-size: 16px; }
-        .result-panel .panel-body { padding: 20px; }
-        .content-box { background-color: #fff; padding: 12px 15px; border: 2px solid #e8e8e8; border-radius: 6px; }
+        .message-box { padding: 40px 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        .message-box .white-box { padding: 30px; max-width: 900px; margin: 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
+        .box-title { margin-top: 0; margin-bottom: 8px; font-size: 24px; color: #333; font-weight: 600; }
+        .search-panel { margin-bottom: 25px; border: none; border-radius: 10px; overflow: hidden; }
+        .search-panel .panel-body { background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%); padding: 30px; border-radius: 10px; }
+        .search-panel .form-control { border: 2px solid #e0e0e0; border-radius: 8px; transition: all 0.3s ease; }
+        .search-panel .form-control:focus { border-color: #667eea; box-shadow: 0 0 0 3px rgba(102,126,234,0.1); }
+        .search-panel .btn { padding: 12px 35px; font-size: 15px; border-radius: 8px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; transition: all 0.3s ease; }
+        .search-panel .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102,126,234,0.4); }
+        .result-panel { margin-bottom: 20px; border: none; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        .result-panel .panel-heading { padding: 15px 20px; border: none; }
+        .result-panel .panel-title { margin: 0; font-size: 16px; font-weight: 600; }
+        .result-panel .panel-body { padding: 20px; background: #fff; }
+        .content-box { background-color: #f8f9fa; padding: 15px 18px; border: 1px solid #e9ecef; border-radius: 8px; }
         .content-box p { white-space: pre-wrap; word-wrap: break-word; margin: 0; line-height: 1.6; font-size: 14px; color: #555; }
         .content-box.info { background-color: #e8f4f8; border-color: #b8dce8; }
         .content-box.info p { color: #31708f; }
@@ -25,9 +28,9 @@
         .content-box.warning p { color: #856404; }
         .content-box.success { background-color: #d4edda; border-color: #c3e6cb; }
         .content-box.success p { color: #155724; }
-        .content-box.empty { background-color: #f9f9f9; padding: 20px; border: 2px dashed #ddd; text-align: center; }
-        .status-label { font-size: 14px; padding: 8px 15px; }
+        .status-label { font-size: 14px; padding: 8px 15px; border-radius: 20px; }
         .action-section { margin-top: 30px; padding-top: 20px; border-top: 1px solid #e3e3e3; text-align: center; }
+        .alert-success { border-radius: 8px; border: none; background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); }
         .action-section .btn { padding: 10px 25px; font-size: 14px; margin: 0 5px; }
         .keberatan-divider { margin: 30px 0; border-top: 2px solid #e3e3e3; }
         @media (max-width: 768px) { .message-box { padding: 30px 0; } .message-box .white-box { padding: 15px; } .action-section .btn { display: block; width: 100%; margin: 5px 0; } }
