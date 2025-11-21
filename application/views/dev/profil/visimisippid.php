@@ -3,26 +3,41 @@
 
 
 <head>
-    <title>Visi dan Misi Kab. Sumedang - PPID Kab. Sumedang</title>
+    <title>Visi dan Misi PPID - PPID Kab. Sumedang</title>
     <?php $this->load->view('dev/partials/head.php') ?>
+    <style>
+        .visimisi-section { padding: 60px 0; background: #f8f9fa; }
+        .section-card { background: #fff; border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.08); padding: 35px; margin-bottom: 30px; }
+        .section-title-custom { font-size: 22px; font-weight: 600; color: #333; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 3px solid var(--thm-primary, #0d6efd); }
+        .section-title-custom i { margin-right: 10px; color: var(--thm-primary, #0d6efd); }
+        .visi-box { background: linear-gradient(135deg, var(--thm-primary, #0d6efd) 0%, #0056b3 100%); color: #fff; padding: 30px; border-radius: 10px; text-align: center; }
+        .visi-box p { font-size: 18px; font-weight: 500; line-height: 1.6; margin: 0; }
+        .misi-list { list-style: none; padding: 0; margin: 0; }
+        .misi-list li { display: flex; align-items: flex-start; padding: 18px 0; border-bottom: 1px solid #e9ecef; }
+        .misi-list li:last-child { border-bottom: none; }
+        .misi-number { min-width: 40px; height: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; margin-right: 15px; flex-shrink: 0; }
+        .misi-text { font-size: 15px; line-height: 1.7; color: #555; }
+        @media (max-width: 768px) {
+            .visimisi-section { padding: 30px 0; }
+            .section-card { padding: 20px; }
+            .visi-box { padding: 20px; }
+            .visi-box p { font-size: 16px; }
+        }
+    </style>
 </head>
 
 <body>
 
-    
-
-    <!-- <div class="preloader">
+    <div class="preloader">
         <div class="preloader__image"></div>
-    </div> -->
-    <!-- /.preloader -->
+    </div>
+
     <div class="page-wrapper">
         <?php $this->load->view('dev/partials/header.php') ?>
 
         <div class="stricky-header stricked-menu main-menu">
             <div class="sticky-header__content"></div>
-            <!-- /.sticky-header__content -->
         </div>
-        <!-- /.stricky-header -->
 
         <!--Page Header Start-->
         <section class="page-header">
@@ -42,23 +57,29 @@
             </div>
         </section>
         <!--Page Header End-->
-        <section class="faqs-page">
+        <section class="visimisi-section">
             <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="section_tittle text-center">
-                            <h1>VISI & MISI PPID KABUPATEN SUMEDANG </h1>
-                            <br>
-                            <h3>Visi</h3>
-                            <br>
-                            <b>“Terwujudnya Pelayanan Informasi Yang Cepat dan Transparan Sesuai Dengan Ketentuan Perundang-Undangan Yang Berlaku”</b>
-                            <br>
-                            <br>
-                            <h3>Misi</h3>
-                        </div>
-                        <p>1. Meningkatkan Kecepatan Respon erhadap Permohonan Informasi Publik;</p>
-                        <p>2. Mewujudkan Keterbukaan Informasi Publik Pemerintah Kabupaten Sumedang;</p>
+                <!-- Visi -->
+                <div class="section-card">
+                    <h3 class="section-title-custom"><i class="fa fa-eye"></i> Visi PPID Kabupaten Sumedang</h3>
+                    <div class="visi-box">
+                        <p>"Terwujudnya Pelayanan Informasi Yang Cepat dan Transparan Sesuai Dengan Ketentuan Perundang-Undangan Yang Berlaku"</p>
                     </div>
+                </div>
+
+                <!-- Misi -->
+                <div class="section-card">
+                    <h3 class="section-title-custom"><i class="fa fa-bullseye"></i> Misi PPID Kabupaten Sumedang</h3>
+                    <ul class="misi-list">
+                        <li>
+                            <span class="misi-number">1</span>
+                            <span class="misi-text">Meningkatkan Kecepatan Respon terhadap Permohonan Informasi Publik</span>
+                        </li>
+                        <li>
+                            <span class="misi-number">2</span>
+                            <span class="misi-text">Mewujudkan Keterbukaan Informasi Publik Pemerintah Kabupaten Sumedang</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>
