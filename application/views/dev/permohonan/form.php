@@ -7,8 +7,8 @@
 
     <!-- Custom Form Styles -->
     <style>
-        .form-container { padding: 40px 0; }
-        .form-container .white-box { padding: 25px; max-width: 900px; margin: 0 auto; }
+        .form-container { padding: 40px 0; background: #f5f5f5; }
+        .form-container .white-box { padding: 25px; max-width: 900px; margin: 0 auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); }
         .form-container .box-title { margin-top: 0; margin-bottom: 8px; font-size: 22px; }
         .form-container .text-muted { margin-bottom: 20px; font-size: 14px; }
         .form-horizontal .form-group { margin-bottom: 15px; }
