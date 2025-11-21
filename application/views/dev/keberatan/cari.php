@@ -4,240 +4,35 @@
 
 <head>
     <title>Pengajuan Keberatan Atas Informasi - PPID Kab. Sumedang</title>
-
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- favicons Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url() ?>newestassets/images/logo/logo_sumedang.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= base_url() ?>newestassets/images/logo/logo_sumedang.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url() ?>newestassets/images/logo/logo_sumedang.png" />
-    <link rel="manifest" href="<?= base_url() ?>newestassets/images/favicons/site.webmanifest" />
-    <meta name="description" content="Aivons HTML Template For Business Consulting" />
-
-    <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com/">
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
-
-
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/animate/animate.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/fontawesome/css/all.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/jarallax/jarallax.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/jquery-magnific-popup/jquery.magnific-popup.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/nouislider/nouislider.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/nouislider/nouislider.pips.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/odometer/odometer.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/swiper/swiper.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/aivons-icons/style.css">
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/tiny-slider/tiny-slider.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/reey-font/stylesheet.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/owl-carousel/owl.carousel.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/owl-carousel/owl.theme.default.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/twentytwenty/twentytwenty.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/bxslider/css/jquery.bxslider.css" />
-    <!-- template styles -->
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/css/aivons.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/css/aivons-responsive.css" />
-
-    <!-- RTL Styles -->
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/css/aivons-rtl.css">
-
-    <!-- color css -->
-    <link rel="stylesheet" id="jssDefault" href="<?= base_url() ?>newestassets/css/colors/color-default.css">
-    <link rel="stylesheet" id="jssMode" href="<?= base_url() ?>newestassets/css/modes/aivons-normal.css">
-    <link href="<?= base_url() ?>inverse/css/colors/default.css" id="theme" rel="stylesheet">
-
-    <!-- toolbar css -->
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/css/aivons-toolbar.css">
-
-    <link href="<?= base_url() ?>inverse/css/style.css" rel="stylesheet">
+    <?php $this->load->view("dev/partials/head.php") ?>
 
     <style>
-        /* Compact Form Styles */
-        .message-box {
-            padding: 40px 0;
-        }
-
-        .message-box .white-box {
-            padding: 25px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .box-title {
-            font-size: 24px !important;
-            margin-bottom: 8px !important;
-        }
-
-        .text-muted {
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .info-section {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            border-left: 4px solid #ffc107;
-        }
-
-        .info-section h3 {
-            margin-top: 0;
-            color: #333;
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
-
-        .info-section h4 {
-            color: #555;
-            font-size: 15px;
-            margin-bottom: 12px;
-            margin-top: 15px;
-        }
-
-        .info-section .info-item {
-            margin-bottom: 10px;
-        }
-
-        .info-section .info-label {
-            font-weight: 600;
-            color: #666;
-            margin-bottom: 4px;
-            display: block;
-            font-size: 13px;
-        }
-
-        .info-section .info-value {
-            padding: 8px 12px;
-            background-color: white;
-            border-radius: 4px;
-            border: 1px solid #e3e3e3;
-        }
-
-        .info-section .info-value strong {
-            color: #2c3e50;
-            font-size: 14px;
-        }
-
-        .info-section .info-text {
-            margin: 0;
-            color: #333;
-            font-size: 14px;
-        }
-
-        .info-section hr {
-            margin: 15px 0;
-            border-color: #e0e0e0;
-        }
-
-        .form-section {
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 6px;
-            border: 2px solid #e0e0e0;
-            margin-top: 20px;
-        }
-
-        .form-section h3 {
-            margin-top: 0;
-            color: #2c3e50;
-            font-size: 20px;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            font-weight: 600;
-            color: #34495e;
-            margin-bottom: 8px;
-            display: block;
-            font-size: 14px;
-        }
-
-        .form-control {
-            padding: 10px 12px;
-            font-size: 14px;
-            border-radius: 5px;
-            border: 1px solid #d1d5db;
-            height: auto;
-            line-height: 1.5;
-        }
-
-        .form-control:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-            outline: none;
-        }
-
-        textarea.form-control {
-            resize: vertical;
-            font-family: inherit;
-            line-height: 1.4;
-        }
-
-        .help-block {
-            margin-top: 6px;
-            color: #6b7280;
-            font-size: 13px;
-        }
-
-        .form-actions {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 2px solid #f0f0f0;
-            text-align: center;
-        }
-
-        .btn-lg {
-            padding: 10px 30px;
-            font-size: 14px;
-            font-weight: 500;
-            border-radius: 5px;
-        }
-
-        .btn-success {
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .btn-default {
-            background-color: #f8f9fa;
-            border: 1px solid #d1d5db;
-            margin-left: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .message-box .white-box {
-                padding: 15px;
-            }
-
-            .box-title {
-                font-size: 20px !important;
-            }
-
-            .info-section,
-            .form-section {
-                padding: 15px;
-            }
-
-            .btn-lg {
-                padding: 10px 20px;
-                font-size: 13px;
-                display: block;
-                width: 100%;
-                margin: 5px 0;
-            }
-
-            .btn-default {
-                margin-left: 0;
-            }
-        }
+        .message-box { background: #f5f5f5; padding: 40px 0; }
+        .message-box .white-box { background: #fff; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); padding: 25px; max-width: 900px; margin: 0 auto; }
+        .box-title { font-size: 24px !important; margin-bottom: 8px !important; }
+        .text-muted { font-size: 14px; margin-bottom: 20px; }
+        .info-section { background-color: #f9f9f9; padding: 20px; border-radius: 6px; margin-bottom: 20px; border-left: 4px solid #ffc107; }
+        .info-section h3 { margin-top: 0; color: #333; font-size: 18px; margin-bottom: 15px; }
+        .info-section h4 { color: #555; font-size: 15px; margin-bottom: 12px; margin-top: 15px; }
+        .info-section .info-item { margin-bottom: 10px; }
+        .info-section .info-label { font-weight: 600; color: #666; margin-bottom: 4px; display: block; font-size: 13px; }
+        .info-section .info-value { padding: 8px 12px; background-color: white; border-radius: 4px; border: 1px solid #e3e3e3; }
+        .info-section .info-value strong { color: #2c3e50; font-size: 14px; }
+        .info-section .info-text { margin: 0; color: #333; font-size: 14px; }
+        .info-section hr { margin: 15px 0; border-color: #e0e0e0; }
+        .form-section { background-color: #fff; padding: 25px; border-radius: 6px; border: 2px solid #e0e0e0; margin-top: 20px; }
+        .form-section h3 { margin-top: 0; color: #2c3e50; font-size: 20px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #f0f0f0; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { font-weight: 600; color: #34495e; margin-bottom: 8px; display: block; font-size: 14px; }
+        .form-control { padding: 10px 12px; font-size: 14px; border-radius: 5px; border: 1px solid #d1d5db; height: auto; line-height: 1.5; }
+        .form-control:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); outline: none; }
+        textarea.form-control { resize: vertical; font-family: inherit; line-height: 1.4; }
+        .help-block { margin-top: 6px; color: #6b7280; font-size: 13px; }
+        .form-actions { margin-top: 25px; padding-top: 20px; border-top: 2px solid #f0f0f0; text-align: center; }
+        .btn-lg { padding: 10px 30px; font-size: 14px; font-weight: 500; border-radius: 5px; }
+        .btn-success { box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .btn-default { background-color: #f8f9fa; border: 1px solid #d1d5db; margin-left: 10px; }
+        @media (max-width: 768px) { .message-box .white-box { padding: 15px; } .box-title { font-size: 20px !important; } .info-section, .form-section { padding: 15px; } .btn-lg { padding: 10px 20px; font-size: 13px; display: block; width: 100%; margin: 5px 0; } .btn-default { margin-left: 0; } }
     </style>
 </head>
 

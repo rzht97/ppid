@@ -2,24 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url() ?>inverse/plugins/images/favicon.png">
     <title>Admin - PPID Kabupaten Sumedang</title>
-    <!-- Bootstrap Core CSS -->
-    <link href="<?= base_url() ?>inverse/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- animation CSS -->
-    <link href="<?= base_url() ?>inverse/css/animate.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="<?= base_url() ?>inverse/css/style.css" rel="stylesheet">
-    <!-- color CSS -->
-    <link href="<?= base_url() ?>inverse/css/colors/default.css" id="theme" rel="stylesheet">
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <?php $this->load->view("dev/partials/head.php") ?>
 
+    <style>
+        .login-register { background: #f5f5f5; }
+        .login-box .white-box { background: #fff; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); padding: 25px; }
+    </style>
 </head>
 
 <body>
