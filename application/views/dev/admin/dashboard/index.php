@@ -6,652 +6,314 @@
     <?php $this->load->view('dev/admin/partials/head.php')?>
 
     <style>
-        /* Global Dashboard Styles */
-        body {
-            background-color: #f8f9fa;
-        }
+        body { background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%); min-height: 100vh; }
+        .container-fluid { padding: 25px; }
 
-        .container-fluid {
-            padding: 30px 20px;
-        }
-
-        /* Welcome Section */
-        .welcome-section {
+        /* Welcome Card */
+        .welcome-card {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 12px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
-        }
-
-        .welcome-section h2 {
-            color: white;
-            margin: 0 0 10px 0;
-            font-size: 32px;
-            font-weight: 600;
-        }
-
-        .welcome-section p {
-            color: rgba(255, 255, 255, 0.9);
-            margin: 0;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        .welcome-section .greeting-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-            opacity: 0.9;
-        }
-
-        /* Stats Cards */
-        .stats-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
+            border-radius: 20px;
+            padding: 35px;
             margin-bottom: 25px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            border: 1px solid #eef2f7;
-            transition: all 0.3s ease;
-            height: 100%;
+            position: relative;
+            overflow: hidden;
         }
-
-        .stats-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        .welcome-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
         }
+        .welcome-card h2 { color: #fff; font-weight: 300; font-size: 28px; margin: 0 0 8px 0; }
+        .welcome-card h2 strong { font-weight: 600; }
+        .welcome-card p { color: rgba(255,255,255,0.85); margin: 0; font-size: 14px; }
 
-        .stats-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+        /* Mini Stats */
+        .mini-stats { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 25px; }
+        .mini-stat {
+            flex: 1;
+            min-width: 140px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: all 0.3s;
+        }
+        .mini-stat:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .mini-stat .number { font-size: 32px; font-weight: 700; margin-bottom: 5px; }
+        .mini-stat .label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+        .mini-stat.green .number { color: #10b981; }
+        .mini-stat.blue .number { color: #3b82f6; }
+        .mini-stat.orange .number { color: #f59e0b; }
+        .mini-stat.red .number { color: #ef4444; }
+        .mini-stat.purple .number { color: #8b5cf6; }
+
+        /* Cards */
+        .card-modern {
+            background: #fff;
+            border-radius: 16px;
+            padding: 25px;
             margin-bottom: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
         }
-
-        .stats-card-title {
-            font-size: 13px;
-            color: #6c757d;
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            margin: 0;
-        }
-
-        .stats-card-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-        }
-
-        .stats-card.permohonan .stats-card-icon {
-            background: linear-gradient(135deg, #5cb85c 0%, #449d44 100%);
-            color: white;
-        }
-
-        .stats-card.keberatan .stats-card-icon {
-            background: linear-gradient(135deg, #f0ad4e 0%, #ec971f 100%);
-            color: white;
-        }
-
-        .stats-number {
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 5px;
-            line-height: 1;
-        }
-
-        .stats-card.permohonan .stats-number {
-            background: linear-gradient(135deg, #5cb85c 0%, #449d44 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stats-card.keberatan .stats-number {
-            background: linear-gradient(135deg, #f0ad4e 0%, #ec971f 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stats-breakdown {
-            background: #f8f9fa;
-            padding: 18px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .stats-breakdown-item {
+        .card-header-flex {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #e9ecef;
-        }
-
-        .stats-breakdown-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .stats-breakdown-item:first-child {
-            padding-top: 0;
-        }
-
-        .stats-breakdown-label {
-            color: #6c757d;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-        }
-
-        .stats-breakdown-label i {
-            margin-right: 8px;
-            font-size: 12px;
-            opacity: 0.7;
-        }
-
-        .stats-breakdown-value {
-            font-weight: 700;
-            font-size: 16px;
-            color: #2c3e50;
-        }
-
-        .stats-card-action {
-            margin-top: 20px;
-        }
-
-        .stats-card-action .btn {
-            width: 100%;
-            padding: 10px;
-            font-size: 13px;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .stats-card.permohonan .btn {
-            background: linear-gradient(135deg, #5cb85c 0%, #449d44 100%);
-            border: none;
-            color: white;
-        }
-
-        .stats-card.keberatan .btn {
-            background: linear-gradient(135deg, #f0ad4e 0%, #ec971f 100%);
-            border: none;
-            color: white;
-        }
-
-        .stats-card .btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Data Tables */
-        .data-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            border: 1px solid #eef2f7;
-        }
-
-        .data-card-header {
             margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f8f9fa;
         }
-
-        .data-card-title {
-            margin: 0 0 8px 0;
-            font-size: 18px;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-
-        .data-card-title i {
-            margin-right: 10px;
-        }
-
-        .data-card-subtitle {
-            margin: 0;
-            font-size: 13px;
-            color: #6c757d;
-        }
-
-        .recent-table {
-            font-size: 13px;
-            margin-bottom: 0;
-        }
-
-        .recent-table thead th {
-            background-color: #f8f9fa;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 11px;
-            color: #6c757d;
-            letter-spacing: 0.5px;
-            border-bottom: 2px solid #e9ecef;
-            padding: 12px;
-        }
-
-        .recent-table tbody td {
-            padding: 12px;
-            vertical-align: middle;
-            border-bottom: 1px solid #f1f3f5;
-        }
-
-        .recent-table tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        .recent-table tbody tr:hover {
-            background-color: #f8f9fa;
-        }
-
-        .table-id {
-            font-weight: 700;
-            color: #2c3e50;
-            font-family: monospace;
-        }
-
-        /* Status Badges */
-        .status-badge {
-            padding: 5px 12px;
+        .card-title { font-size: 16px; font-weight: 600; color: #333; margin: 0; }
+        .card-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 6px 14px;
             border-radius: 20px;
             font-size: 11px;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            display: inline-block;
         }
 
-        .status-verifikasi {
-            background: #fff3cd;
-            color: #856404;
-        }
+        /* Progress Items */
+        .progress-item { margin-bottom: 15px; }
+        .progress-item:last-child { margin-bottom: 0; }
+        .progress-label { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px; }
+        .progress-label span:first-child { color: #666; }
+        .progress-label span:last-child { font-weight: 600; color: #333; }
+        .progress-bar-bg { height: 8px; background: #f1f5f9; border-radius: 4px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease; }
+        .progress-bar-fill.green { background: linear-gradient(90deg, #10b981, #34d399); }
+        .progress-bar-fill.blue { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+        .progress-bar-fill.orange { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+        .progress-bar-fill.red { background: linear-gradient(90deg, #ef4444, #f87171); }
 
-        .status-proses {
-            background: #cfe2ff;
-            color: #084298;
-        }
+        /* Table */
+        .table-modern { width: 100%; font-size: 13px; }
+        .table-modern th { color: #888; font-weight: 500; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; padding: 10px 12px; border-bottom: 2px solid #f1f5f9; }
+        .table-modern td { padding: 12px; border-bottom: 1px solid #f8fafc; vertical-align: middle; }
+        .table-modern tr:hover { background: #fafbfc; }
+        .table-modern .id { font-family: monospace; font-weight: 600; color: #667eea; }
 
-        .status-selesai, .status-diterima, .status-sudah {
-            background: #d1e7dd;
-            color: #0f5132;
-        }
+        /* Status Pills */
+        .pill { padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+        .pill.yellow { background: #fef3c7; color: #d97706; }
+        .pill.blue { background: #dbeafe; color: #2563eb; }
+        .pill.green { background: #d1fae5; color: #059669; }
+        .pill.red { background: #fee2e2; color: #dc2626; }
 
-        .status-ditolak {
-            background: #f8d7da;
-            color: #842029;
-        }
-
-        /* Empty State */
-        .empty-state {
+        /* Quick Actions */
+        .quick-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .quick-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px;
+            border-radius: 12px;
             text-align: center;
-            padding: 40px 20px;
-            color: #6c757d;
+            text-decoration: none;
+            transition: all 0.3s;
+            color: #fff;
         }
+        .quick-btn:hover { transform: scale(1.02); color: #fff; text-decoration: none; }
+        .quick-btn i { font-size: 24px; display: block; margin-bottom: 8px; }
+        .quick-btn span { font-size: 12px; font-weight: 500; }
+        .quick-btn.btn-green { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        .quick-btn.btn-orange { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+        .quick-btn.btn-blue { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
 
-        .empty-state i {
-            font-size: 48px;
-            margin-bottom: 15px;
-            opacity: 0.3;
-        }
+        /* Empty */
+        .empty-text { text-align: center; padding: 30px; color: #aaa; font-size: 13px; }
 
-        /* Section Divider */
-        .section-divider {
-            margin: 40px 0 30px 0;
-            border-top: 2px solid #e9ecef;
-            padding-top: 25px;
-        }
-
-        .section-header {
-            margin-bottom: 25px;
-        }
-
-        .section-header h3 {
-            margin: 0;
-            font-size: 20px;
-            font-weight: 600;
-            color: #2c3e50;
-            display: flex;
-            align-items: center;
-        }
-
-        .section-header h3 i {
-            margin-right: 12px;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 8px;
-            font-size: 18px;
-        }
-
-        .section-header p {
-            margin: 8px 0 0 48px;
-            font-size: 13px;
-            color: #6c757d;
-        }
-
-        /* Responsive */
-        @media (max-width: 991px) {
-            .stats-card {
-                margin-bottom: 20px;
-            }
-        }
+        /* Footer */
+        .footer-modern { text-align: center; padding: 20px; color: #888; font-size: 12px; }
 
         @media (max-width: 768px) {
-            .welcome-section {
-                padding: 25px;
-            }
-
-            .welcome-section h2 {
-                font-size: 24px;
-            }
-
-            .stats-number {
-                font-size: 32px;
-            }
-
-            .section-divider {
-                margin: 30px 0 20px 0;
-                padding-top: 20px;
-            }
-
-            .section-header h3 {
-                font-size: 18px;
-            }
-
-            .section-header p {
-                margin-left: 0;
-            }
+            .welcome-card { padding: 25px; }
+            .welcome-card h2 { font-size: 22px; }
+            .mini-stat { min-width: 100%; }
         }
     </style>
 </head>
 
 <body class="fix-sidebar">
     <div id="wrapper">
-        <!-- Top Navigation -->
         <nav class="navbar navbar-default navbar-static-top m-b-0">
-            <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
-                <div class="top-left-part"><a class="logo" href="index.html"><b><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-logo.png" alt="home" class="dark-logo" /><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-logo-dark.png" alt="home" class="light-logo" /></b><span class="hidden-xs"><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-text.png" alt="home" class="dark-logo" /><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-text-dark.png" alt="home" class="light-logo" /></span></a></div>
+            <div class="navbar-header">
+                <a class="navbar-toggle hidden-sm hidden-md hidden-lg" href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
+                <div class="top-left-part">
+                    <a class="logo" href="<?= site_url('admin/index') ?>">
+                        <b><img src="<?= base_url()?>inverse/plugins/images/pixeladmin-logo.png" alt="home" class="dark-logo" /></b>
+                        <span class="hidden-xs"><img src="<?= base_url()?>inverse/plugins/images/pixeladmin-text.png" alt="home" class="dark-logo" /></span>
+                    </a>
+                </div>
                 <ul class="nav navbar-top-links navbar-left hidden-xs">
                     <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
                 </ul>
-                <ul class="nav navbar-top-links navbar-right pull-right"></ul>
             </div>
         </nav>
-        <!-- End Top Navigation -->
 
-        <!-- Left navbar-header -->
         <?php $this->load->view('dev/admin/partials/sidebar.php')?>
-        <!-- Left navbar-header end -->
 
-        <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
-                <!-- Welcome Section -->
-                <div class="welcome-section">
-                    <div class="greeting-icon">
-                        <i class="fa fa-dashboard"></i>
+                <!-- Welcome -->
+                <div class="welcome-card">
+                    <h2>Selamat datang, <strong><?php echo $nama_user ?></strong></h2>
+                    <p>Dashboard PPID Kabupaten Sumedang - <?php echo date('l, d F Y') ?></p>
+                </div>
+
+                <!-- Mini Stats -->
+                <div class="mini-stats">
+                    <div class="mini-stat green">
+                        <div class="number"><?php echo $total_permohonan ?></div>
+                        <div class="label">Total Permohonan</div>
                     </div>
-                    <h2>Dashboard PPID</h2>
-                    <p>Selamat datang, <strong><?php echo $nama_user ?></strong>! Berikut adalah ringkasan sistem informasi PPID Kabupaten Sumedang.</p>
+                    <div class="mini-stat blue">
+                        <div class="number"><?php echo $permohonan_selesai ?></div>
+                        <div class="label">Selesai</div>
+                    </div>
+                    <div class="mini-stat orange">
+                        <div class="number"><?php echo $permohonan_proses ?></div>
+                        <div class="label">Diproses</div>
+                    </div>
+                    <div class="mini-stat red">
+                        <div class="number"><?php echo $permohonan_ditolak ?></div>
+                        <div class="label">Ditolak</div>
+                    </div>
+                    <div class="mini-stat purple">
+                        <div class="number"><?php echo $total_keberatan ?></div>
+                        <div class="label">Keberatan</div>
+                    </div>
                 </div>
 
-                <!-- Section: Statistik -->
-                <div class="section-header">
-                    <h3>
-                        <i class="fa fa-bar-chart"></i>
-                        Statistik Sistem
-                    </h3>
-                    <p>Ringkasan data dari semua modul sistem PPID</p>
-                </div>
-
-                <!-- Statistik Cards -->
                 <div class="row">
-                    <!-- Card Permohonan -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="stats-card permohonan">
-                            <div class="stats-card-header">
-                                <div>
-                                    <h3 class="stats-card-title">Permohonan Informasi</h3>
-                                    <div class="stats-number"><?php echo $total_permohonan ?></div>
-                                </div>
-                                <div class="stats-card-icon">
+                    <!-- Progress Permohonan -->
+                    <div class="col-md-4">
+                        <div class="card-modern">
+                            <div class="card-header-flex">
+                                <h3 class="card-title">Status Permohonan</h3>
+                                <span class="card-badge"><?php echo $total_permohonan ?> Total</span>
+                            </div>
+                            <?php $max = max($permohonan_verifikasi, $permohonan_proses, $permohonan_selesai, $permohonan_ditolak, 1); ?>
+                            <div class="progress-item">
+                                <div class="progress-label"><span>Menunggu Verifikasi</span><span><?php echo $permohonan_verifikasi ?></span></div>
+                                <div class="progress-bar-bg"><div class="progress-bar-fill orange" style="width: <?php echo ($permohonan_verifikasi/$max)*100 ?>%"></div></div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-label"><span>Sedang Diproses</span><span><?php echo $permohonan_proses ?></span></div>
+                                <div class="progress-bar-bg"><div class="progress-bar-fill blue" style="width: <?php echo ($permohonan_proses/$max)*100 ?>%"></div></div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-label"><span>Selesai</span><span><?php echo $permohonan_selesai ?></span></div>
+                                <div class="progress-bar-bg"><div class="progress-bar-fill green" style="width: <?php echo ($permohonan_selesai/$max)*100 ?>%"></div></div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-label"><span>Ditolak</span><span><?php echo $permohonan_ditolak ?></span></div>
+                                <div class="progress-bar-bg"><div class="progress-bar-fill red" style="width: <?php echo ($permohonan_ditolak/$max)*100 ?>%"></div></div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="card-modern">
+                            <h3 class="card-title" style="margin-bottom: 15px;">Aksi Cepat</h3>
+                            <div class="quick-actions">
+                                <a href="<?php echo site_url('admin/permohonan') ?>" class="quick-btn btn-green">
                                     <i class="fa fa-file-text"></i>
-                                </div>
-                            </div>
-
-                            <div class="stats-breakdown">
-                                <div class="stats-breakdown-item">
-                                    <span class="stats-breakdown-label">
-                                        <i class="fa fa-circle"></i> Menunggu Verifikasi
-                                    </span>
-                                    <span class="stats-breakdown-value"><?php echo $permohonan_verifikasi ?></span>
-                                </div>
-                                <div class="stats-breakdown-item">
-                                    <span class="stats-breakdown-label">
-                                        <i class="fa fa-circle"></i> Sedang Diproses
-                                    </span>
-                                    <span class="stats-breakdown-value"><?php echo $permohonan_proses ?></span>
-                                </div>
-                                <div class="stats-breakdown-item">
-                                    <span class="stats-breakdown-label">
-                                        <i class="fa fa-circle"></i> Selesai
-                                    </span>
-                                    <span class="stats-breakdown-value"><?php echo $permohonan_selesai ?></span>
-                                </div>
-                                <div class="stats-breakdown-item">
-                                    <span class="stats-breakdown-label">
-                                        <i class="fa fa-circle"></i> Ditolak
-                                    </span>
-                                    <span class="stats-breakdown-value"><?php echo $permohonan_ditolak ?></span>
-                                </div>
-                            </div>
-
-                            <div class="stats-card-action">
-                                <a href="<?php echo site_url('admin/permohonan') ?>" class="btn">
-                                    <i class="fa fa-arrow-right"></i> Lihat Semua
+                                    <span>Permohonan</span>
+                                </a>
+                                <a href="<?php echo site_url('admin/keberatan') ?>" class="quick-btn btn-orange">
+                                    <i class="fa fa-exclamation-circle"></i>
+                                    <span>Keberatan</span>
+                                </a>
+                                <a href="<?php echo site_url('admin/dip') ?>" class="quick-btn btn-blue">
+                                    <i class="fa fa-database"></i>
+                                    <span>DIP</span>
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Card Keberatan -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="stats-card keberatan">
-                            <div class="stats-card-header">
-                                <div>
-                                    <h3 class="stats-card-title">Keberatan Informasi</h3>
-                                    <div class="stats-number"><?php echo $total_keberatan ?></div>
-                                </div>
-                                <div class="stats-card-icon">
-                                    <i class="fa fa-exclamation-triangle"></i>
-                                </div>
+                    <!-- Recent Data -->
+                    <div class="col-md-8">
+                        <div class="card-modern">
+                            <div class="card-header-flex">
+                                <h3 class="card-title">Permohonan Terbaru</h3>
+                                <a href="<?php echo site_url('admin/permohonan') ?>" style="font-size: 12px; color: #667eea;">Lihat Semua →</a>
                             </div>
-
-                            <div class="stats-breakdown">
-                                <div class="stats-breakdown-item">
-                                    <span class="stats-breakdown-label">
-                                        <i class="fa fa-circle"></i> Menunggu Verifikasi
-                                    </span>
-                                    <span class="stats-breakdown-value"><?php echo $keberatan_verifikasi ?></span>
-                                </div>
-                                <div class="stats-breakdown-item">
-                                    <span class="stats-breakdown-label">
-                                        <i class="fa fa-circle"></i> Sedang Diproses
-                                    </span>
-                                    <span class="stats-breakdown-value"><?php echo $keberatan_proses ?></span>
-                                </div>
-                                <div class="stats-breakdown-item">
-                                    <span class="stats-breakdown-label">
-                                        <i class="fa fa-circle"></i> Diterima
-                                    </span>
-                                    <span class="stats-breakdown-value"><?php echo $keberatan_diterima ?></span>
-                                </div>
-                                <div class="stats-breakdown-item">
-                                    <span class="stats-breakdown-label">
-                                        <i class="fa fa-circle"></i> Ditolak
-                                    </span>
-                                    <span class="stats-breakdown-value"><?php echo $keberatan_ditolak ?></span>
-                                </div>
-                            </div>
-
-                            <div class="stats-card-action">
-                                <a href="<?php echo site_url('admin/keberatan') ?>" class="btn">
-                                    <i class="fa fa-arrow-right"></i> Lihat Semua
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section Divider -->
-                <div class="section-divider"></div>
-
-                <!-- Section: Data Terbaru -->
-                <div class="section-header">
-                    <h3>
-                        <i class="fa fa-clock-o"></i>
-                        Data Terbaru
-                    </h3>
-                    <p>5 data terakhir yang masuk ke sistem dari setiap modul</p>
-                </div>
-
-                <!-- Data Terbaru -->
-                <div class="row">
-                    <!-- Permohonan Terbaru -->
-                    <div class="col-lg-6">
-                        <div class="data-card">
-                            <div class="data-card-header">
-                                <h3 class="data-card-title">
-                                    <i class="fa fa-file-text text-success"></i> Permohonan Terbaru
-                                </h3>
-                                <p class="data-card-subtitle">5 permohonan terakhir yang masuk</p>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table recent-table">
-                                    <thead>
+                            <table class="table-modern">
+                                <thead>
+                                    <tr><th>ID</th><th>Nama</th><th>Tanggal</th><th>Status</th></tr>
+                                </thead>
+                                <tbody>
+                                    <?php if (!empty($permohonan_terbaru)): ?>
+                                        <?php foreach ($permohonan_terbaru as $data): ?>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Nama</th>
-                                            <th>Tanggal</th>
-                                            <th>Status</th>
+                                            <td class="id"><?php echo $data->mohon_id ?></td>
+                                            <td><?php echo $data->nama ?></td>
+                                            <td><?php echo date('d M Y', strtotime($data->tanggal)) ?></td>
+                                            <td>
+                                                <?php if ($data->status == 'Menunggu Verifikasi'): ?>
+                                                    <span class="pill yellow">Verifikasi</span>
+                                                <?php elseif ($data->status == 'Sedang Diproses'): ?>
+                                                    <span class="pill blue">Proses</span>
+                                                <?php elseif ($data->status == 'Selesai'): ?>
+                                                    <span class="pill green">Selesai</span>
+                                                <?php else: ?>
+                                                    <span class="pill red">Ditolak</span>
+                                                <?php endif; ?>
+                                            </td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php if (!empty($permohonan_terbaru)): ?>
-                                            <?php foreach ($permohonan_terbaru as $data): ?>
-                                                <tr>
-                                                    <td><span class="table-id"><?php echo $data->mohon_id ?></span></td>
-                                                    <td><?php echo $data->nama ?></td>
-                                                    <td><?php echo date('d/m/Y', strtotime($data->tanggal)) ?></td>
-                                                    <td>
-                                                        <?php if ($data->status == 'Menunggu Verifikasi'): ?>
-                                                            <span class="status-badge status-verifikasi">Verifikasi</span>
-                                                        <?php elseif ($data->status == 'Sedang Diproses'): ?>
-                                                            <span class="status-badge status-proses">Proses</span>
-                                                        <?php elseif ($data->status == 'Selesai'): ?>
-                                                            <span class="status-badge status-selesai">Selesai</span>
-                                                        <?php else: ?>
-                                                            <span class="status-badge status-ditolak">Ditolak</span>
-                                                        <?php endif; ?>
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        <?php else: ?>
-                                            <tr>
-                                                <td colspan="4">
-                                                    <div class="empty-state">
-                                                        <i class="fa fa-inbox"></i>
-                                                        <p>Belum ada data permohonan</p>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        <?php endif; ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr><td colspan="4" class="empty-text">Belum ada data</td></tr>
+                                    <?php endif; ?>
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
 
-                    <!-- Keberatan Terbaru -->
-                    <div class="col-lg-6">
-                        <div class="data-card">
-                            <div class="data-card-header">
-                                <h3 class="data-card-title">
-                                    <i class="fa fa-exclamation-triangle text-warning"></i> Keberatan Terbaru
-                                </h3>
-                                <p class="data-card-subtitle">5 keberatan terakhir yang masuk</p>
+                        <div class="card-modern">
+                            <div class="card-header-flex">
+                                <h3 class="card-title">Keberatan Terbaru</h3>
+                                <a href="<?php echo site_url('admin/keberatan') ?>" style="font-size: 12px; color: #667eea;">Lihat Semua →</a>
                             </div>
-                            <div class="table-responsive">
-                                <table class="table recent-table">
-                                    <thead>
+                            <table class="table-modern">
+                                <thead>
+                                    <tr><th>ID</th><th>ID Permohonan</th><th>Tanggal</th><th>Status</th></tr>
+                                </thead>
+                                <tbody>
+                                    <?php if (!empty($keberatan_terbaru)): ?>
+                                        <?php foreach ($keberatan_terbaru as $data): ?>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>ID Permohonan</th>
-                                            <th>Tanggal</th>
-                                            <th>Status</th>
+                                            <td class="id"><?php echo $data->id_keberatan ?></td>
+                                            <td class="id"><?php echo $data->mohon_id ?></td>
+                                            <td><?php echo date('d M Y', strtotime($data->tanggal)) ?></td>
+                                            <td>
+                                                <?php if ($data->status == 'Menunggu Verifikasi'): ?>
+                                                    <span class="pill yellow">Verifikasi</span>
+                                                <?php elseif ($data->status == 'Sedang Diproses'): ?>
+                                                    <span class="pill blue">Proses</span>
+                                                <?php elseif ($data->status == 'Diterima'): ?>
+                                                    <span class="pill green">Diterima</span>
+                                                <?php else: ?>
+                                                    <span class="pill red">Ditolak</span>
+                                                <?php endif; ?>
+                                            </td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php if (!empty($keberatan_terbaru)): ?>
-                                            <?php foreach ($keberatan_terbaru as $data): ?>
-                                                <tr>
-                                                    <td><span class="table-id"><?php echo $data->id_keberatan ?></span></td>
-                                                    <td><span class="table-id"><?php echo $data->mohon_id ?></span></td>
-                                                    <td><?php echo date('d/m/Y', strtotime($data->tanggal)) ?></td>
-                                                    <td>
-                                                        <?php if ($data->status == 'Menunggu Verifikasi'): ?>
-                                                            <span class="status-badge status-verifikasi">Verifikasi</span>
-                                                        <?php elseif ($data->status == 'Sedang Diproses'): ?>
-                                                            <span class="status-badge status-proses">Proses</span>
-                                                        <?php elseif ($data->status == 'Diterima'): ?>
-                                                            <span class="status-badge status-diterima">Diterima</span>
-                                                        <?php else: ?>
-                                                            <span class="status-badge status-ditolak">Ditolak</span>
-                                                        <?php endif; ?>
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        <?php else: ?>
-                                            <tr>
-                                                <td colspan="4">
-                                                    <div class="empty-state">
-                                                        <i class="fa fa-inbox"></i>
-                                                        <p>Belum ada data keberatan</p>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        <?php endif; ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr><td colspan="4" class="empty-text">Belum ada data</td></tr>
+                                    <?php endif; ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-
-
             </div>
-            <!-- /.container-fluid -->
-            <footer class="footer text-center"> <?php echo date('Y') ?> &copy; PPID Kabupaten Sumedang </footer>
+            <div class="footer-modern">&copy; <?php echo date('Y') ?> PPID Kabupaten Sumedang</div>
         </div>
-        <!-- /#page-wrapper -->
     </div>
-    <!-- /#wrapper -->
 
     <?php $this->load->view('dev/admin/partials/js.php')?>
 </body>
