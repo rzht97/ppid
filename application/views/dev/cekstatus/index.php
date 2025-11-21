@@ -233,11 +233,11 @@
 
                                                 <div class="form-group">
                                                     <label style="margin-bottom: 8px; font-size: 14px;"><strong>Jawaban/Hasil Pemrosesan</strong></label>
-                                                    <div class="content-box">
+                                                    <div class="content-box info">
                                                         <?php if (!empty($data->jawab)): ?>
                                                         <p style="margin: 0; font-size: 14px;"><?php echo trim($data->jawab); ?></p>
                                                         <?php else: ?>
-                                                        <p class="text-muted" style="margin: 0; font-size: 14px;">
+                                                        <p style="margin: 0; font-size: 14px;">
                                                             <i class="fa fa-clock-o"></i> Belum ada jawaban. Permohonan masih dalam proses.
                                                         </p>
                                                         <?php endif; ?>
