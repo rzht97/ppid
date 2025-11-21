@@ -74,7 +74,7 @@
                 <div class="main-menu-wrapper clearfix">
                     <div class="main-menu-wrapper__left">
                         <div class="main-menu-wrapper__logo">
-                            <a href="index-2.html"><img src="<?= base_url() ?>newestassets/images/logo/logo_sumedang.png" width="50" alt=""></a>
+                            <a href="<?php echo base_url(); ?>"><img src="<?= base_url() ?>newestassets/images/logo/logo_sumedang.png" width="50" alt=""></a>
                         </div>
                         <div class="main-menu-wrapper__main-menu">
                             <a href="#" class="mobile-nav__toggler">

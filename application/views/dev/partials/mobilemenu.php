@@ -5,7 +5,7 @@
             <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
 
             <div class="logo-box">
-                <a href="index-2.html" aria-label="logo image"><img src="<?= base_url() ?>newestassets/images/logo/logo_sumedang.png" width="155" alt="" /></a>
+                <a href="<?php echo base_url(); ?>" aria-label="logo image"><img src="<?= base_url() ?>newestassets/images/logo/logo_sumedang.png" width="155" alt="" /></a>
             </div>
             <!-- /.logo-box -->
             <div class="mobile-nav__container"></div>

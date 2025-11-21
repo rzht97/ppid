@@ -15,6 +15,11 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
+		// Redirect /home to / for clean URL
+		if ($this->uri->segment(1) === 'home' && !$this->uri->segment(2)) {
+			redirect(base_url(), 'location', 301);
+		}
+
 		// Optimized: Gabung query statistik
 		$stats = $this->db->select('
 			COUNT(*) as total,

@@ -6,7 +6,7 @@
                         <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
                             <div class="footer-widget__column footer-widget__about">
                                 <!-- <div class="footer-widget__about-logo">
-                                    <a href="index-2.html"><img src="" alt=""></a>
+                                    <a href="<?php echo base_url(); ?>"><img src="" alt=""></a>
                                 </div> -->
                                 <p class="footer-widget__text">Kontak Kami di PPID Utama Kab. Sumedang</p>
                                 <ul class="list-unstyled footer-widget__contact-list">
