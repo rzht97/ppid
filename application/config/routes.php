@@ -63,6 +63,12 @@ $route['dik'] = 'home/dik';
 $route['cc'] = 'home/cc';
 $route['laporan'] = 'home/laporan';
 $route['regulasi'] = 'home/regulasi';
+$route['skdip'] = 'home/skdip';
+
+// Information classification routes
+$route['infoberkala'] = 'home/infoberkala';
+$route['infosertamerta'] = 'home/infosertamerta';
+$route['infosetiapsaat'] = 'home/infosetiapsaat';
 
 // Service routes
 $route['caradapatinfo'] = 'home/caradapatinfo';

@@ -108,7 +108,7 @@
                                 <div class="industries__icon">
                                     <span class="icon-bank"></span>
                                 </div>
-                                <h3 class="industries__title"><a href="<?php echo site_url('home/infoberkala')?>"> Berkala</a></h3>
+                                <h3 class="industries__title"><a href="<?php echo site_url('infoberkala')?>"> Berkala</a></h3>
                                 <p class="industries__text">informasi yang wajib diperbaharui kemudian disediakan dan diumumkan kepada publik secara berkala</p>
                             </li>
                         </div>
@@ -117,7 +117,7 @@
                                 <div class="industries__icon">
                                     <span class="icon-protection"></span>
                                 </div>
-                                <h3 class="industries__title"><a href="<?php echo site_url('home/infosetiapsaat')?>">Setiap Saat</a></h3>
+                                <h3 class="industries__title"><a href="<?php echo site_url('infosetiapsaat')?>">Setiap Saat</a></h3>
                                 <p class="industries__text">informasi yang harus disediakan oleh Badan Publik dan siap tersedia untuk Pemohon Informasi</p>
                             </li>
                         </div>
@@ -126,7 +126,7 @@
                                 <div class="industries__icon">
                                     <span class="icon-travel"></span>
                                 </div>
-                                <h3 class="industries__title"><a href="<?php echo site_url('home/infosertamerta')?>">Serta Merta</a></h3>
+                                <h3 class="industries__title"><a href="<?php echo site_url('infosertamerta')?>">Serta Merta</a></h3>
                                 <p class="industries__text">informasi yang berkaitan dengan hajat hidup orang banyak dan wajib diumumkan tanpa penundaan.</p>
                             </li>
                         </div>

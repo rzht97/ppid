@@ -105,13 +105,13 @@
 										<li class="dropdown">
                                             <a href="#">Daftar Informasi Publik</a>
                                             <ul>
-                                                <li><a href="<?php echo site_url('home/skdip')?>">SK DIP</a></li>
+                                                <li><a href="<?php echo site_url('skdip')?>">SK DIP</a></li>
                                                 <li><a href="<?php echo site_url('publicdip')?>">DIP</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="<?php echo site_url('dik')?>">Daftar Informasi Yang Dikecualikan</a></li>
 										<li><a href = "<?php echo site_url('cc')?>">Command Center</a></li>
-                                        <li><a href="<?php echo site_url('home/Laporan')?>">Laporan Pelayanan Informasi Publik</a>
+                                        <li><a href="<?php echo site_url('laporan')?>">Laporan Pelayanan Informasi Publik</a>
                                     </ul>
                                 </li>
                                 <li class="dropdown">

@@ -62,9 +62,9 @@
                             <div class="footer-widget__column footer-widget__explore clearfix">
                                 <h3 class="footer-widget__title">Klasifikasi Informasi</h3>
                                 <ul class="footer-widget__explore-list list-unstyled">
-                                    <li><a href="<?php echo site_url('home/infoberkala')?>">Berkala</a></li>
-                                    <li><a href="<?php echo site_url('home/infosertamerta')?>">Serta Merta</a></li>
-                                    <li><a href="<?php echo site_url('home/infosetiapsaat')?>">Setiap Saat</a></li>
+                                    <li><a href="<?php echo site_url('infoberkala')?>">Berkala</a></li>
+                                    <li><a href="<?php echo site_url('infosertamerta')?>">Serta Merta</a></li>
+                                    <li><a href="<?php echo site_url('infosetiapsaat')?>">Setiap Saat</a></li>
                                 </ul>
                             </div>
                         </div>
