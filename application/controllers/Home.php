@@ -69,18 +69,6 @@ class Home extends CI_Controller {
         $this->load->view("dev/berita/berita", $data);
   }
 
-
-    public function galeri()
-  {
-        // load view admin/overview.php
-        $data["berita"] = $this->db->select('berita_id, judul, tanggal, isi, gambar, slug, kategori')
-                                     ->from('berita')
-                                     ->order_by('tanggal', 'DESC')
-                                     ->get()
-                                     ->result();
-        $this->load->view("publik/galeri", $data);
-  }
-
   	/**
 	 * Detail berita
 	 * Fixed: SQL injection vulnerability
