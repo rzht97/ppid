@@ -83,6 +83,9 @@
                                 <span class="mobile-nav__toggler-bar"></span>
                             </a>
                             <ul class="main-menu__list">
+                                <li>
+                                    <a href="<?php echo base_url(); ?>">Beranda</a>
+                                </li>
                                 <li class="dropdown">
                                     <a href="#">Profil</a>
                                     <ul>
