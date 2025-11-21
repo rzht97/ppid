@@ -292,9 +292,6 @@
                                             <button type="submit" class="btn btn-success btn-lg waves-effect waves-light">
                                                 <i class="fa fa-paper-plane"></i> Kirim Permohonan
                                             </button>
-                                            <a href="<?php echo site_url('cekstatus'); ?>" class="btn btn-default btn-lg waves-effect waves-light">
-                                                <i class="fa fa-times"></i> Batal
-                                            </a>
                                         </div>
                                     </div>
                                 </div>
