@@ -294,7 +294,7 @@
                                 </h3>
                                 <a href="<?= site_url('berita/detail/' . htmlspecialchars($item['title_slug'])) ?>" class="news-one__btn">Baca Selengkapnya</a>
                                 <div class="news-one__date-box">
-                                    <p><?= htmlspecialchars($item['publish_date']) ?></p>
+                                    <p><?= date('d-m-Y', strtotime($item['publish_date'])) ?></p>
                                 </div>
                             </div>
                         </div>
