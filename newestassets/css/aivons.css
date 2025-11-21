@@ -5762,7 +5762,7 @@ body.boxed-wrapper {
 .page-header {
     position: relative;
     display: block;
-    padding: 100px 0 80px;
+    padding: 120px 0 40px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -5821,9 +5821,9 @@ body.boxed-wrapper {
 }
 
 .page-header__inner h2 {
-    font-size: 36px;
+    font-size: 26px;
     color: var(--thm-base);
-    line-height: 40px;
+    line-height: 32px;
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: var(--thm-letter-space-small);
