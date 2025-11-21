@@ -3,18 +3,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Berita extends CI_Controller {
 
-  	public function index() {
-    	$data['news'] = $this->get_news();
-		$data['news2'] = $this->get_news();
-		// Ambil hanya 3 berita
-        if (isset($data['news2']) && is_array($data['news2'])) {
-            $data['news2'] = array_slice($data['news2'], 0, 3); // Mengambil 3 berita pertama
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function index()
+    {
+        $data['news'] = $this->get_news();
+        $data['news2'] = $this->get_news();
+
+        // Ambil hanya 3 berita untuk sidebar
+        if (isset($data['news2']) && is_array($data['news2']) && !isset($data['news2']['error'])) {
+            $data['news2'] = array_slice($data['news2'], 0, 3);
         }
 
-		
-           $this->load->view('dev/berita/berita2', $data);
+        $this->load->view('dev/berita/berita2', $data);
     }
-    private function get_news() {
+
+    private function get_news()
+    {
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -27,44 +35,45 @@ class Berita extends CI_Controller {
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => array(
-                'X-API-KEY: Sumedang#3211',
-                'Cookie: sumedangkab_session=4e4nvaa13ntpahlsad1ihtuh5s9bou6i'
+                'X-API-KEY: Sumedang#3211'
             ),
-            CURLOPT_SSL_VERIFYPEER => false, // Nonaktifkan verifikasi SSL (hanya untuk pengujian)
+            CURLOPT_SSL_VERIFYPEER => false,
         ));
 
         $response = curl_exec($curl);
 
-        // Cek jika terjadi kesalahan
         if (curl_errno($curl)) {
             $error_msg = curl_error($curl);
+            curl_close($curl);
             return ['error' => "cURL Error: " . $error_msg];
         }
 
         curl_close($curl);
-        $result = json_decode($response, true); // Mengembalikan data dalam format array
+        $result = json_decode($response, true);
 
-        // Memeriksa status dan mengembalikan data berita
-        if ($result['status'] === 200) {
-            return $result['news']; // Mengembalikan array berita
+        if (isset($result['status']) && $result['status'] === 200) {
+            return $result['news'];
         } else {
-            return ['error' => $result['message']];
+            return ['error' => $result['message'] ?? 'Gagal mengambil data berita'];
         }
     }
-	
-	    public function detail($title_slug) {
-		$data['news'] = $this->get_news($title_slug);
-		
-		$data['news2'] = $this->get_news();
-		// Ambil hanya 3 berita
-        if (isset($data['news2']) && is_array($data['news2'])) {
-            $data['news2'] = array_slice($data['news2'], 0, 3); // Mengambil 3 berita pertama
+
+    public function detail($title_slug = '')
+    {
+        if (empty($title_slug)) {
+            redirect('berita');
         }
-			
-			
-		$curl = curl_init();
+
+        // Ambil berita populer untuk sidebar
+        $data['news2'] = $this->get_news();
+        if (isset($data['news2']) && is_array($data['news2']) && !isset($data['news2']['error'])) {
+            $data['news2'] = array_slice($data['news2'], 0, 3);
+        }
+
+        // Ambil detail berita
+        $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://sumedangkab.go.id/api/news/detail' . $title_slug,
+            CURLOPT_URL => 'https://sumedangkab.go.id/api/news/detail/' . $title_slug,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -73,25 +82,30 @@ class Berita extends CI_Controller {
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => array(
-                'X-API-KEY: Sumedang#3211',
-                'Cookie: sumedangkab_session=4e4nvaa13ntpahlsad1ihtuh5s9bou6i'
+                'X-API-KEY: Sumedang#3211'
             ),
             CURLOPT_SSL_VERIFYPEER => false,
         ));
+
         $response = curl_exec($curl);
+
         if (curl_errno($curl)) {
             $error_msg = curl_error($curl);
-            return ['error' => "cURL Error: " . $error_msg];
+            curl_close($curl);
+            $data['error'] = "cURL Error: " . $error_msg;
+            $this->load->view('dev/berita/detail', $data);
+            return;
         }
+
         curl_close($curl);
         $result = json_decode($response, true);
-        if ($result['status'] === 200) {
-            $data['news'] = is_array($result['news']) ? $result['news'][0] : $result['news']; // Mengembalikan detail berita
-            $this->load->view('dev/berita/detail', $data); // Menampilkan view detail
+
+        if (isset($result['status']) && $result['status'] === 200) {
+            $data['news'] = is_array($result['news']) ? $result['news'][0] : $result['news'];
+            $this->load->view('dev/berita/detail', $data);
         } else {
-            $data['error'] = $result['message'];
-            $this->load->view('dev/berita/error', $data); // Menampilkan view error
+            $data['error'] = $result['message'] ?? 'Berita tidak ditemukan';
+            $this->load->view('dev/berita/detail', $data);
         }
     }
 }
-?>

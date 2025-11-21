@@ -58,7 +58,8 @@ $route['publik'] = 'home';
 $route['admin'] = 'admin/index';
 
 // Content routes
-$route['berita'] = 'home/berita';
+$route['berita'] = 'berita';
+$route['berita/detail/(:any)'] = 'berita/detail/$1';
 $route['dik'] = 'home/dik';
 $route['cc'] = 'home/cc';
 $route['laporan'] = 'home/laporan';
