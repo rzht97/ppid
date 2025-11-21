@@ -168,7 +168,6 @@
                                         <?php if(form_error('rincian')): ?>
                                             <div class="text-danger"><?php echo form_error('rincian'); ?></div>
                                         <?php endif; ?>
-                                        <span class="help-block"><small>Jelaskan informasi yang Anda butuhkan sejelas mungkin</small></span>
                                     </div>
                                 </div>
 
@@ -179,7 +178,6 @@
                                         <?php if(form_error('tujuan')): ?>
                                             <div class="text-danger"><?php echo form_error('tujuan'); ?></div>
                                         <?php endif; ?>
-                                        <span class="help-block"><small>Jelaskan untuk apa informasi tersebut akan digunakan</small></span>
                                     </div>
                                 </div>
 
