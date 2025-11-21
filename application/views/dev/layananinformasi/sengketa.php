@@ -38,13 +38,11 @@
             <div class="container">
                 <div class="page-header__inner">
                     <ul class="thm-breadcrumb list-unstyled">
-                        <li><a href="index-2.html">Beranda</a></li>
+                        <li><a href="<?php echo base_url(); ?>">Beranda</a></li>
                         <li><span>/</span></li>
-                        <li><a>Layanan Informasi</a></li>
-                        <li><span>/</span></li>
-                        <li><a href="#">Services</a></li>
+                        <li>Layanan Informasi</li>
                     </ul>
-                    <h2>PROSEDUR PENANGANAN SENGKETA INFORMASI</h2>
+                    <h2>PROSEDUR SENGKETA INFORMASI</h2>
                 </div>
             </div>
         </section>

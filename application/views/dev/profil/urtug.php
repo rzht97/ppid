@@ -34,6 +34,16 @@
             <!-- /.page-header-shape-2 -->
             <div class="page-header-shape-3"></div>
             <!-- /.page-header-shape-3 -->
+            <div class="container">
+                <div class="page-header__inner">
+                    <ul class="thm-breadcrumb list-unstyled">
+                        <li><a href="<?php echo base_url(); ?>">Beranda</a></li>
+                        <li><span>/</span></li>
+                        <li>Profil</li>
+                    </ul>
+                    <h2>URAIAN TUGAS</h2>
+                </div>
+            </div>
         </section>
         <!--Page Header End-->
         <section class="faqs-page">

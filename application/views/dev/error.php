@@ -36,12 +36,12 @@
             <!-- /.page-header-shape-3 -->
             <div class="container">
                 <div class="page-header__inner">
-                    <!--<ul class="thm-breadcrumb list-unstyled">
-                        <li><a href="index-2.html">Home</a></li>
+                    <ul class="thm-breadcrumb list-unstyled">
+                        <li><a href="<?php echo base_url(); ?>">Beranda</a></li>
                         <li><span>/</span></li>
-                        <li>Services</li>
-                    </ul>-->
-                    <h2>PENGUMUMAN</h2>
+                        <li>Error</li>
+                    </ul>
+                    <h2>HALAMAN TIDAK TERSEDIA</h2>
                 </div>
             </div>
         </section>
