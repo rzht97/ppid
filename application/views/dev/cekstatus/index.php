@@ -92,7 +92,6 @@
                                                 <div class="form-group">
                                                     <label class="control-label"><strong>ID Permohonan</strong></label>
                                                     <input type="text" name="token" placeholder="Contoh: P191125001" class="form-control input-lg" value="<?php echo $this->input->post('token'); ?>" required>
-                                                    <span class="help-block"><small>ID dikirimkan ke email Anda saat mengajukan permohonan</small></span>
                                                 </div>
                                             </div>
                                         </div>
