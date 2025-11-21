@@ -133,12 +133,8 @@
 										
                                     </ul>
                                 </li>
-                                <li class="dropdown">
-                                    <a href="#">Media</a>
-                                    <ul>
-                                        <li><a href="<?php echo site_url('berita')?>">Berita</a></li>
-                                        <li><a href="#">Galeri</a></li>
-                                    </ul>
+                                <li>
+                                    <a href="<?php echo site_url('berita')?>">Berita</a>
                                 </li>
 								<li>
                                     <a target = "blank_" href="<?php echo site_url('cekstatus')?>">Cek Status</a>
