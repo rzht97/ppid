@@ -67,9 +67,9 @@
                             <div class="services-details__services-list-box">
                                 <h3 class="services-detials__categories">Layanan Informasi</h3>
                                 <ul class="services-details__services-list list-unstyled">
-                                    <li><a href="<?php echo site_url('dev/overview/caradapatinfo')?>">Tata Cara Mendapatkan Informasi <span class="icon-right-arrow"></span></a></li>
-                                    <li  class="active"><a href="<?php echo site_url('dev/overview/carakeberatan')?>">Tata Cara Pengajuan Keberatan<span class="icon-right-arrow"></span></a></li>
-                                    <li><a href="<?php echo site_url('dev/overview/sengketa')?>">Prosedur Penanganan Sengketa Informasi<span class="icon-right-arrow"></span></a></li>
+                                    <li><a href="<?php echo site_url('caradapatinfo')?>">Tata Cara Mendapatkan Informasi <span class="icon-right-arrow"></span></a></li>
+                                    <li  class="active"><a href="<?php echo site_url('carakeberatan')?>">Tata Cara Pengajuan Keberatan<span class="icon-right-arrow"></span></a></li>
+                                    <li><a href="<?php echo site_url('carasengketa')?>">Prosedur Penanganan Sengketa Informasi<span class="icon-right-arrow"></span></a></li>
                                 </ul>
                             </div>
                             <!--<div class="services-details__help-box">
