@@ -279,13 +279,13 @@
                     ?>
                     <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="<?= $delays[$i % 3] ?>" data-wow-duration="1500ms">
                         <div class="news-one__single">
-                            <div class="news-one__img" style="position: relative; overflow: hidden;">
-                                <img src="<?= htmlspecialchars($item['picture']) ?>" alt="<?= htmlspecialchars($item['title']) ?>" style="width: 100%; height: 220px; object-fit: cover;">
+                            <div class="news-one__img">
+                                <img src="<?= htmlspecialchars($item['picture']) ?>" alt="<?= htmlspecialchars($item['title']) ?>">
                                 <a href="<?= site_url('berita/detail/' . htmlspecialchars($item['title_slug'])) ?>">
                                     <span class="news-one__plus"></span>
                                 </a>
                             </div>
-                            <div class="news-one__content" style="padding: 25px 20px 30px;">
+                            <div class="news-one__content">
                                 <ul class="list-unstyled news-one__meta">
                                     <li><a href="#"><i class="far fa-user-circle"></i> <?= htmlspecialchars($item['author']['full_name'] ?? 'Admin') ?></a></li>
                                 </ul>
@@ -294,7 +294,7 @@
                                 </h3>
                                 <a href="<?= site_url('berita/detail/' . htmlspecialchars($item['title_slug'])) ?>" class="news-one__btn">Baca Selengkapnya</a>
                                 <div class="news-one__date-box">
-                                    <p><?= htmlspecialchars($item['publish_date']) ?></p>
+                                    <p><?= date('d M', strtotime($item['publish_date'])) ?></p>
                                 </div>
                             </div>
                         </div>
