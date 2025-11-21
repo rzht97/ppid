@@ -279,8 +279,8 @@
                     ?>
                     <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="<?= $delays[$i % 3] ?>" data-wow-duration="1500ms">
                         <div class="news-one__single">
-                            <div class="news-one__img" style="height: 220px; overflow: hidden;">
-                                <img src="<?= htmlspecialchars($item['picture']) ?>" alt="<?= htmlspecialchars($item['title']) ?>" style="width: 100%; height: 100%; object-fit: cover;">
+                            <div class="news-one__img" style="height: 220px; overflow: hidden; background-color: transparent;">
+                                <img src="<?= htmlspecialchars($item['picture']) ?>" alt="<?= htmlspecialchars($item['title']) ?>" style="width: 100%; height: 100%; object-fit: cover; mix-blend-mode: normal;">
                                 <a href="<?= site_url('berita/detail/' . htmlspecialchars($item['title_slug'])) ?>">
                                     <span class="news-one__plus"></span>
                                 </a>
