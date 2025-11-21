@@ -1,259 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <title>Pengajuan Permohonan Informasi - PPID Kab. Sumedang</title>
-    
-	<meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- favicons Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url() ?>newestassets/images/logo/logo_sumedang.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= base_url() ?>newestassets/images/logo/logo_sumedang.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url() ?>newestassets/images/logo/logo_sumedang.png" />
-    <link rel="manifest" href="<?= base_url() ?>newestassets/images/favicons/site.webmanifest" />
-    <meta name="description" content="Aivons HTML Template For Business Consulting" />
-
-    <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com/">
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
-
-
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/animate/animate.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/fontawesome/css/all.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/jarallax/jarallax.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/jquery-magnific-popup/jquery.magnific-popup.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/nouislider/nouislider.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/nouislider/nouislider.pips.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/odometer/odometer.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/swiper/swiper.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/aivons-icons/style.css">
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/tiny-slider/tiny-slider.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/reey-font/stylesheet.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/owl-carousel/owl.carousel.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/owl-carousel/owl.theme.default.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/twentytwenty/twentytwenty.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/bxslider/css/jquery.bxslider.css" />
-    <!-- template styles -->
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/css/aivons.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/css/aivons-responsive.css" />
-
-    <!-- RTL Styles -->
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/css/aivons-rtl.css">
-
-    <!-- color css -->
-    <link rel="stylesheet" id="jssDefault" href="<?= base_url() ?>newestassets/css/colors/color-default.css">
-    <link rel="stylesheet" id="jssMode" href="<?= base_url() ?>newestassets/css/modes/aivons-normal.css">
-	<link href="<?= base_url()?>inverse/css/colors/default.css" id="theme" rel="stylesheet">
-
-    <!-- toolbar css -->
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/css/aivons-toolbar.css">
-
-	<link href="<?= base_url()?>inverse/css/style.css" rel="stylesheet">
+    <?php $this->load->view("dev/partials/head.php") ?>
 
     <!-- Custom Form Styles -->
     <style>
-        /* Form Container */
-        .form-container {
-            padding: 40px 0;
-        }
-        .form-container .white-box {
-            padding: 25px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .form-container .box-title {
-            margin-top: 0;
-            margin-bottom: 8px;
-            font-size: 22px;
-        }
-        .form-container .text-muted {
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
-        /* Form Groups and Labels */
-        .form-horizontal .form-group {
-            margin-bottom: 15px;
-        }
-        .form-horizontal .form-group label {
-            margin-bottom: 6px;
-            font-size: 14px;
-        }
-
-        /* Alerts */
-        .form-container .alert {
-            padding: 12px;
-            margin-bottom: 15px;
-        }
-        .form-container .alert span {
-            margin-top: 5px;
-            display: inline-block;
-        }
-        .form-container .alert div {
-            margin-top: 5px;
-        }
-
-        /* Error Messages and Help Text */
-        .form-group .text-danger {
-            margin-top: 5px;
-            font-size: 13px;
-        }
-        .form-group .help-block {
-            margin-top: 5px;
-        }
-        .form-group .help-block small {
-            font-size: 12px;
-        }
-
-        /* Form Controls */
-        .form-control {
-            font-size: 14px;
-        }
-        textarea.form-control {
-            padding: 10px 12px;
-        }
-
-        /* File Upload Custom Styles */
-        .custom-file-upload {
-            margin-bottom: 8px;
-        }
-        .file-clear-btn {
-            margin-top: 6px;
-            display: none;
-        }
-        #ktpPreviewContainer {
-            margin-top: 12px;
-            display: none;
-        }
-        #ktpPreviewContainer > div {
-            background-color: #f9f9f9;
-            padding: 12px;
-            border: 2px solid #e8e8e8;
-            border-radius: 6px;
-            text-align: center;
-        }
-        #ktpPreviewContainer label {
-            margin-bottom: 8px;
-            display: block;
-            font-size: 14px;
-        }
-        #ktpPreview {
-            max-width: 100%;
-            max-height: 300px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        #pdfPreview {
-            display: none;
-        }
-        #pdfPreview i {
-            font-size: 50px;
-            color: #d9534f;
-        }
-        #pdfPreview p:first-of-type {
-            margin-top: 8px;
-            font-weight: bold;
-            font-size: 14px;
-        }
-        #pdfPreview p:last-of-type {
-            margin: 5px 0;
-            font-size: 13px;
-        }
-
-        /* Agreement Section */
-        #agreementSection .btn-info {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-        #agreementStatus {
-            display: none;
-            padding: 12px;
-            background-color: #d4edda;
-            border: 2px solid #c3e6cb;
-            border-radius: 6px;
-            text-align: center;
-        }
-        #agreementStatus i {
-            color: #28a745;
-            font-size: 20px;
-        }
-        #agreementStatus p {
-            margin: 8px 0 0 0;
-            color: #155724;
-            font-weight: bold;
-            font-size: 14px;
-        }
-        #agreementWarning {
-            padding: 8px;
-            background-color: #fff3cd;
-            border: 1px solid #ffc107;
-            border-radius: 4px;
-            text-align: center;
-        }
-        #agreementWarning small {
-            color: #856404;
-            font-size: 12px;
-        }
-
-        /* Form Actions */
-        .form-actions {
-            margin-top: 20px;
-        }
-        .form-actions .btn {
-            padding: 10px 35px;
-            font-size: 14px;
-        }
-        .form-actions .btn-default {
-            padding: 10px 30px;
-        }
-
-        /* Modal */
-        .modal-body {
-            line-height: 1.6;
-            font-size: 14px;
-        }
-        .modal-body h4 {
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
-        .modal-body p {
-            font-size: 13px;
-            margin-bottom: 10px;
-        }
-        .modal-footer {
-            text-align: center;
-        }
-        .modal-footer .btn {
-            font-size: 14px;
-        }
-
-        /* Honeypot */
-        .honeypot-field {
-            position: absolute;
-            left: -5000px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .form-container .white-box {
-                padding: 20px 15px;
-            }
-            .form-container {
-                padding: 30px 0;
-            }
-        }
+        .form-container { padding: 40px 0; }
+        .form-container .white-box { padding: 25px; max-width: 900px; margin: 0 auto; }
+        .form-container .box-title { margin-top: 0; margin-bottom: 8px; font-size: 22px; }
+        .form-container .text-muted { margin-bottom: 20px; font-size: 14px; }
+        .form-horizontal .form-group { margin-bottom: 15px; }
+        .form-horizontal .form-group label { margin-bottom: 6px; font-size: 14px; }
+        .form-container .alert { padding: 12px; margin-bottom: 15px; }
+        .form-group .text-danger { margin-top: 5px; font-size: 13px; }
+        .form-control { font-size: 14px; }
+        textarea.form-control { padding: 10px 12px; }
+        .custom-file-upload { margin-bottom: 8px; }
+        .file-clear-btn { margin-top: 6px; display: none; }
+        #ktpPreviewContainer { margin-top: 12px; display: none; }
+        #ktpPreviewContainer > div { background-color: #f9f9f9; padding: 12px; border: 2px solid #e8e8e8; border-radius: 6px; text-align: center; }
+        #ktpPreview { max-width: 100%; max-height: 300px; border: 1px solid #ddd; border-radius: 4px; }
+        #pdfPreview { display: none; }
+        #pdfPreview i { font-size: 50px; color: #d9534f; }
+        #agreementSection .btn-info { width: 100%; padding: 12px; margin-bottom: 8px; font-size: 14px; }
+        #agreementStatus { display: none; padding: 12px; background-color: #d4edda; border: 2px solid #c3e6cb; border-radius: 6px; text-align: center; }
+        #agreementStatus i { color: #28a745; font-size: 20px; }
+        #agreementStatus p { margin: 8px 0 0 0; color: #155724; font-weight: bold; }
+        #agreementWarning { padding: 8px; background-color: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; text-align: center; }
+        #agreementWarning small { color: #856404; font-size: 12px; }
+        .form-actions { margin-top: 20px; }
+        .form-actions .btn { padding: 10px 35px; font-size: 14px; }
+        .honeypot-field { position: absolute; left: -5000px; }
+        @media (max-width: 768px) { .form-container .white-box { padding: 20px 15px; } .form-container { padding: 30px 0; } }
     </style>
 </head>
 
 <body>
 
-    
+
 
     <div class="preloader">
         <div class="preloader__image"></div>
