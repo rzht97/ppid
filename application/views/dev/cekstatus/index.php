@@ -152,22 +152,22 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label><strong>Nama</strong></label>
-                                                            <p class="form-control-static"><?php echo $data->nama ?></p>
+                                                            <label style="margin-bottom: 8px; font-size: 14px;"><strong>Nama</strong></label>
+                                                            <p style="margin: 0; font-size: 14px;"><?php echo $data->nama ?></p>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label><strong>Email</strong></label>
-                                                            <p class="form-control-static"><?php echo $data->email ?></p>
+                                                            <label style="margin-bottom: 8px; font-size: 14px;"><strong>Email</strong></label>
+                                                            <p style="margin: 0; font-size: 14px;"><?php echo $data->email ?></p>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label><strong>Alamat</strong></label>
-                                                            <p class="form-control-static"><?php echo $data->alamat ?></p>
+                                                            <label style="margin-bottom: 8px; font-size: 14px;"><strong>Alamat</strong></label>
+                                                            <p style="margin: 0; font-size: 14px;"><?php echo $data->alamat ?></p>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label><strong>No. HP</strong></label>
-                                                            <p class="form-control-static"><?php echo $data->nohp ?></p>
+                                                            <label style="margin-bottom: 8px; font-size: 14px;"><strong>No. HP</strong></label>
+                                                            <p style="margin: 0; font-size: 14px;"><?php echo $data->nohp ?></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -206,7 +206,7 @@
                                             </div>
                                             <div class="panel-body">
                                                 <div class="form-group">
-                                                    <label style="margin-bottom: 8px;"><strong>Status Permohonan</strong></label>
+                                                    <label style="margin-bottom: 8px; font-size: 14px;"><strong>Status Permohonan</strong></label>
                                                     <div>
                                                         <?php if ($data->status == 'Menunggu Verifikasi'): ?>
                                                             <span class="label label-warning status-label">
