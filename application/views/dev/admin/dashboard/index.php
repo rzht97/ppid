@@ -6,156 +6,343 @@
     <?php $this->load->view('dev/admin/partials/head.php')?>
 
     <style>
+        /* Global Dashboard Styles */
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container-fluid {
+            padding: 30px 20px;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .welcome-section h2 {
+            color: white;
+            margin: 0 0 10px 0;
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        .welcome-section p {
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .welcome-section .greeting-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        /* Stats Cards */
         .stats-card {
-            background: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border: 1px solid #eef2f7;
+            transition: all 0.3s ease;
+            height: 100%;
         }
 
         .stats-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
 
-        .stats-card .title {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 10px;
+        .stats-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .stats-card-title {
+            font-size: 13px;
+            color: #6c757d;
             text-transform: uppercase;
             font-weight: 600;
+            letter-spacing: 0.5px;
+            margin: 0;
         }
 
-        .stats-card .number {
-            font-size: 36px;
-            font-weight: bold;
+        .stats-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .stats-card.informasi .stats-card-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .stats-card.permohonan .stats-card-icon {
+            background: linear-gradient(135deg, #5cb85c 0%, #449d44 100%);
+            color: white;
+        }
+
+        .stats-card.keberatan .stats-card-icon {
+            background: linear-gradient(135deg, #f0ad4e 0%, #ec971f 100%);
+            color: white;
+        }
+
+        .stats-number {
+            font-size: 42px;
+            font-weight: 700;
             margin-bottom: 5px;
+            line-height: 1;
         }
 
-        .stats-card.informasi .number {
-            color: #5bc0de;
+        .stats-card.informasi .stats-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .stats-card.permohonan .number {
-            color: #5cb85c;
+        .stats-card.permohonan .stats-number {
+            background: linear-gradient(135deg, #5cb85c 0%, #449d44 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .stats-card.keberatan .number {
-            color: #f0ad4e;
+        .stats-card.keberatan .stats-number {
+            background: linear-gradient(135deg, #f0ad4e 0%, #ec971f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .stats-breakdown {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 15px;
+            background: #f8f9fa;
+            padding: 18px;
+            border-radius: 10px;
+            margin-top: 20px;
         }
 
-        .stats-breakdown .item {
+        .stats-breakdown-item {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #e8e8e8;
-            font-size: 13px;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
         }
 
-        .stats-breakdown .item:last-child {
+        .stats-breakdown-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .stats-breakdown-item:first-child {
+            padding-top: 0;
+        }
+
+        .stats-breakdown-label {
+            color: #6c757d;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+        }
+
+        .stats-breakdown-label i {
+            margin-right: 8px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .stats-breakdown-value {
+            font-weight: 700;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+
+        .stats-card-action {
+            margin-top: 20px;
+        }
+
+        .stats-card-action .btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stats-card.informasi .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+        }
+
+        .stats-card.permohonan .btn {
+            background: linear-gradient(135deg, #5cb85c 0%, #449d44 100%);
+            border: none;
+            color: white;
+        }
+
+        .stats-card.keberatan .btn {
+            background: linear-gradient(135deg, #f0ad4e 0%, #ec971f 100%);
+            border: none;
+            color: white;
+        }
+
+        .stats-card .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Data Tables */
+        .data-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border: 1px solid #eef2f7;
+        }
+
+        .data-card-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f8f9fa;
+        }
+
+        .data-card-title {
+            margin: 0 0 8px 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .data-card-title i {
+            margin-right: 10px;
+        }
+
+        .data-card-subtitle {
+            margin: 0;
+            font-size: 13px;
+            color: #6c757d;
+        }
+
+        .recent-table {
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        .recent-table thead th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 11px;
+            color: #6c757d;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e9ecef;
+            padding: 12px;
+        }
+
+        .recent-table tbody td {
+            padding: 12px;
+            vertical-align: middle;
+            border-bottom: 1px solid #f1f3f5;
+        }
+
+        .recent-table tbody tr:last-child td {
             border-bottom: none;
         }
 
-        .stats-breakdown .label {
-            color: #666;
+        .recent-table tbody tr:hover {
+            background-color: #f8f9fa;
         }
 
-        .stats-breakdown .value {
-            font-weight: 600;
-            color: #333;
+        .table-id {
+            font-weight: 700;
+            color: #2c3e50;
+            font-family: monospace;
         }
 
-        .recent-data-table {
-            font-size: 13px;
-        }
-
-        .recent-data-table th {
-            background-color: #f5f5f5;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 12px;
-            color: #666;
-        }
-
-        .badge-status {
-            padding: 4px 10px;
-            border-radius: 12px;
+        /* Status Badges */
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
             font-size: 11px;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            display: inline-block;
         }
 
         .status-verifikasi {
-            background-color: #ffeaa7;
+            background: #fff3cd;
             color: #856404;
         }
 
         .status-proses {
-            background-color: #d1ecf1;
-            color: #0c5460;
+            background: #cfe2ff;
+            color: #084298;
         }
 
         .status-selesai, .status-diterima, .status-sudah {
-            background-color: #d4edda;
-            color: #155724;
+            background: #d1e7dd;
+            color: #0f5132;
         }
 
         .status-ditolak {
-            background-color: #f8d7da;
-            color: #721c24;
+            background: #f8d7da;
+            color: #842029;
         }
 
-        .icon-box {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6c757d;
+        }
+
+        .empty-state i {
+            font-size: 48px;
             margin-bottom: 15px;
-            font-size: 24px;
+            opacity: 0.3;
         }
 
-        .icon-box.informasi {
-            background-color: #d9edf7;
-            color: #5bc0de;
+        /* Responsive */
+        @media (max-width: 991px) {
+            .stats-card {
+                margin-bottom: 20px;
+            }
         }
 
-        .icon-box.permohonan {
-            background-color: #dff0d8;
-            color: #5cb85c;
-        }
+        @media (max-width: 768px) {
+            .welcome-section {
+                padding: 25px;
+            }
 
-        .icon-box.keberatan {
-            background-color: #fcf8e3;
-            color: #f0ad4e;
-        }
+            .welcome-section h2 {
+                font-size: 24px;
+            }
 
-        .welcome-banner {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-
-        .welcome-banner h2 {
-            margin: 0 0 10px 0;
-            font-size: 28px;
-        }
-
-        .welcome-banner p {
-            margin: 0;
-            opacity: 0.9;
-            font-size: 14px;
+            .stats-number {
+                font-size: 32px;
+            }
         }
     </style>
 </head>
@@ -181,14 +368,13 @@
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
-                <!-- Welcome Banner -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="welcome-banner">
-                            <h2><i class="fa fa-dashboard"></i> Dashboard PPID</h2>
-                            <p>Selamat datang, <?php echo $nama_user ?>! Berikut adalah ringkasan sistem informasi PPID Kabupaten Sumedang.</p>
-                        </div>
+                <!-- Welcome Section -->
+                <div class="welcome-section">
+                    <div class="greeting-icon">
+                        <i class="fa fa-dashboard"></i>
                     </div>
+                    <h2>Dashboard PPID</h2>
+                    <p>Selamat datang, <strong><?php echo $nama_user ?></strong>! Berikut adalah ringkasan sistem informasi PPID Kabupaten Sumedang.</p>
                 </div>
 
                 <!-- Statistik Cards -->
@@ -196,31 +382,45 @@
                     <!-- Card Daftar Informasi -->
                     <div class="col-lg-4 col-md-6">
                         <div class="stats-card informasi">
-                            <div class="icon-box informasi">
-                                <i class="fa fa-info-circle"></i>
+                            <div class="stats-card-header">
+                                <div>
+                                    <h3 class="stats-card-title">Daftar Informasi Publik</h3>
+                                    <div class="stats-number"><?php echo $total_informasi ?></div>
+                                </div>
+                                <div class="stats-card-icon">
+                                    <i class="fa fa-info-circle"></i>
+                                </div>
                             </div>
-                            <div class="title">Daftar Informasi Publik</div>
-                            <div class="number"><?php echo $total_informasi ?></div>
+
                             <div class="stats-breakdown">
-                                <div class="item">
-                                    <span class="label">Belum Diproses</span>
-                                    <span class="value"><?php echo $informasi_belum ?></span>
+                                <div class="stats-breakdown-item">
+                                    <span class="stats-breakdown-label">
+                                        <i class="fa fa-circle"></i> Belum Diproses
+                                    </span>
+                                    <span class="stats-breakdown-value"><?php echo $informasi_belum ?></span>
                                 </div>
-                                <div class="item">
-                                    <span class="label">Sedang Diproses</span>
-                                    <span class="value"><?php echo $informasi_sedang ?></span>
+                                <div class="stats-breakdown-item">
+                                    <span class="stats-breakdown-label">
+                                        <i class="fa fa-circle"></i> Sedang Diproses
+                                    </span>
+                                    <span class="stats-breakdown-value"><?php echo $informasi_sedang ?></span>
                                 </div>
-                                <div class="item">
-                                    <span class="label">Sudah Diproses</span>
-                                    <span class="value"><?php echo $informasi_sudah ?></span>
+                                <div class="stats-breakdown-item">
+                                    <span class="stats-breakdown-label">
+                                        <i class="fa fa-circle"></i> Sudah Diproses
+                                    </span>
+                                    <span class="stats-breakdown-value"><?php echo $informasi_sudah ?></span>
                                 </div>
-                                <div class="item">
-                                    <span class="label">Ditolak</span>
-                                    <span class="value"><?php echo $informasi_ditolak ?></span>
+                                <div class="stats-breakdown-item">
+                                    <span class="stats-breakdown-label">
+                                        <i class="fa fa-circle"></i> Ditolak
+                                    </span>
+                                    <span class="stats-breakdown-value"><?php echo $informasi_ditolak ?></span>
                                 </div>
                             </div>
-                            <div style="margin-top: 15px;">
-                                <a href="<?php echo site_url('admin/info') ?>" class="btn btn-info btn-sm btn-block">
+
+                            <div class="stats-card-action">
+                                <a href="<?php echo site_url('admin/info') ?>" class="btn">
                                     <i class="fa fa-arrow-right"></i> Lihat Semua
                                 </a>
                             </div>
@@ -230,31 +430,45 @@
                     <!-- Card Permohonan -->
                     <div class="col-lg-4 col-md-6">
                         <div class="stats-card permohonan">
-                            <div class="icon-box permohonan">
-                                <i class="fa fa-file-text"></i>
+                            <div class="stats-card-header">
+                                <div>
+                                    <h3 class="stats-card-title">Permohonan Informasi</h3>
+                                    <div class="stats-number"><?php echo $total_permohonan ?></div>
+                                </div>
+                                <div class="stats-card-icon">
+                                    <i class="fa fa-file-text"></i>
+                                </div>
                             </div>
-                            <div class="title">Permohonan Informasi</div>
-                            <div class="number"><?php echo $total_permohonan ?></div>
+
                             <div class="stats-breakdown">
-                                <div class="item">
-                                    <span class="label">Menunggu Verifikasi</span>
-                                    <span class="value"><?php echo $permohonan_verifikasi ?></span>
+                                <div class="stats-breakdown-item">
+                                    <span class="stats-breakdown-label">
+                                        <i class="fa fa-circle"></i> Menunggu Verifikasi
+                                    </span>
+                                    <span class="stats-breakdown-value"><?php echo $permohonan_verifikasi ?></span>
                                 </div>
-                                <div class="item">
-                                    <span class="label">Sedang Diproses</span>
-                                    <span class="value"><?php echo $permohonan_proses ?></span>
+                                <div class="stats-breakdown-item">
+                                    <span class="stats-breakdown-label">
+                                        <i class="fa fa-circle"></i> Sedang Diproses
+                                    </span>
+                                    <span class="stats-breakdown-value"><?php echo $permohonan_proses ?></span>
                                 </div>
-                                <div class="item">
-                                    <span class="label">Selesai</span>
-                                    <span class="value"><?php echo $permohonan_selesai ?></span>
+                                <div class="stats-breakdown-item">
+                                    <span class="stats-breakdown-label">
+                                        <i class="fa fa-circle"></i> Selesai
+                                    </span>
+                                    <span class="stats-breakdown-value"><?php echo $permohonan_selesai ?></span>
                                 </div>
-                                <div class="item">
-                                    <span class="label">Ditolak</span>
-                                    <span class="value"><?php echo $permohonan_ditolak ?></span>
+                                <div class="stats-breakdown-item">
+                                    <span class="stats-breakdown-label">
+                                        <i class="fa fa-circle"></i> Ditolak
+                                    </span>
+                                    <span class="stats-breakdown-value"><?php echo $permohonan_ditolak ?></span>
                                 </div>
                             </div>
-                            <div style="margin-top: 15px;">
-                                <a href="<?php echo site_url('admin/overview') ?>" class="btn btn-success btn-sm btn-block">
+
+                            <div class="stats-card-action">
+                                <a href="<?php echo site_url('admin/permohonan') ?>" class="btn">
                                     <i class="fa fa-arrow-right"></i> Lihat Semua
                                 </a>
                             </div>
@@ -264,31 +478,45 @@
                     <!-- Card Keberatan -->
                     <div class="col-lg-4 col-md-6">
                         <div class="stats-card keberatan">
-                            <div class="icon-box keberatan">
-                                <i class="fa fa-exclamation-triangle"></i>
+                            <div class="stats-card-header">
+                                <div>
+                                    <h3 class="stats-card-title">Keberatan Informasi</h3>
+                                    <div class="stats-number"><?php echo $total_keberatan ?></div>
+                                </div>
+                                <div class="stats-card-icon">
+                                    <i class="fa fa-exclamation-triangle"></i>
+                                </div>
                             </div>
-                            <div class="title">Keberatan Informasi</div>
-                            <div class="number"><?php echo $total_keberatan ?></div>
+
                             <div class="stats-breakdown">
-                                <div class="item">
-                                    <span class="label">Menunggu Verifikasi</span>
-                                    <span class="value"><?php echo $keberatan_verifikasi ?></span>
+                                <div class="stats-breakdown-item">
+                                    <span class="stats-breakdown-label">
+                                        <i class="fa fa-circle"></i> Menunggu Verifikasi
+                                    </span>
+                                    <span class="stats-breakdown-value"><?php echo $keberatan_verifikasi ?></span>
                                 </div>
-                                <div class="item">
-                                    <span class="label">Sedang Diproses</span>
-                                    <span class="value"><?php echo $keberatan_proses ?></span>
+                                <div class="stats-breakdown-item">
+                                    <span class="stats-breakdown-label">
+                                        <i class="fa fa-circle"></i> Sedang Diproses
+                                    </span>
+                                    <span class="stats-breakdown-value"><?php echo $keberatan_proses ?></span>
                                 </div>
-                                <div class="item">
-                                    <span class="label">Diterima</span>
-                                    <span class="value"><?php echo $keberatan_diterima ?></span>
+                                <div class="stats-breakdown-item">
+                                    <span class="stats-breakdown-label">
+                                        <i class="fa fa-circle"></i> Diterima
+                                    </span>
+                                    <span class="stats-breakdown-value"><?php echo $keberatan_diterima ?></span>
                                 </div>
-                                <div class="item">
-                                    <span class="label">Ditolak</span>
-                                    <span class="value"><?php echo $keberatan_ditolak ?></span>
+                                <div class="stats-breakdown-item">
+                                    <span class="stats-breakdown-label">
+                                        <i class="fa fa-circle"></i> Ditolak
+                                    </span>
+                                    <span class="stats-breakdown-value"><?php echo $keberatan_ditolak ?></span>
                                 </div>
                             </div>
-                            <div style="margin-top: 15px;">
-                                <a href="<?php echo site_url('admin/keberatan') ?>" class="btn btn-warning btn-sm btn-block">
+
+                            <div class="stats-card-action">
+                                <a href="<?php echo site_url('admin/keberatan') ?>" class="btn">
                                     <i class="fa fa-arrow-right"></i> Lihat Semua
                                 </a>
                             </div>
@@ -300,13 +528,15 @@
                 <div class="row">
                     <!-- Permohonan Terbaru -->
                     <div class="col-lg-6">
-                        <div class="white-box">
-                            <h3 class="box-title m-b-0">
-                                <i class="fa fa-file-text text-success"></i> Permohonan Terbaru
-                            </h3>
-                            <p class="text-muted m-b-20">5 permohonan terakhir yang masuk</p>
+                        <div class="data-card">
+                            <div class="data-card-header">
+                                <h3 class="data-card-title">
+                                    <i class="fa fa-file-text text-success"></i> Permohonan Terbaru
+                                </h3>
+                                <p class="data-card-subtitle">5 permohonan terakhir yang masuk</p>
+                            </div>
                             <div class="table-responsive">
-                                <table class="table recent-data-table">
+                                <table class="table recent-table">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -319,25 +549,30 @@
                                         <?php if (!empty($permohonan_terbaru)): ?>
                                             <?php foreach ($permohonan_terbaru as $data): ?>
                                                 <tr>
-                                                    <td><strong><?php echo $data->mohon_id ?></strong></td>
+                                                    <td><span class="table-id"><?php echo $data->mohon_id ?></span></td>
                                                     <td><?php echo $data->nama ?></td>
                                                     <td><?php echo date('d/m/Y', strtotime($data->tanggal)) ?></td>
                                                     <td>
                                                         <?php if ($data->status == 'Menunggu Verifikasi'): ?>
-                                                            <span class="badge-status status-verifikasi">Verifikasi</span>
+                                                            <span class="status-badge status-verifikasi">Verifikasi</span>
                                                         <?php elseif ($data->status == 'Sedang Diproses'): ?>
-                                                            <span class="badge-status status-proses">Proses</span>
+                                                            <span class="status-badge status-proses">Proses</span>
                                                         <?php elseif ($data->status == 'Selesai'): ?>
-                                                            <span class="badge-status status-selesai">Selesai</span>
+                                                            <span class="status-badge status-selesai">Selesai</span>
                                                         <?php else: ?>
-                                                            <span class="badge-status status-ditolak">Ditolak</span>
+                                                            <span class="status-badge status-ditolak">Ditolak</span>
                                                         <?php endif; ?>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php else: ?>
                                             <tr>
-                                                <td colspan="4" class="text-center text-muted">Belum ada data permohonan</td>
+                                                <td colspan="4">
+                                                    <div class="empty-state">
+                                                        <i class="fa fa-inbox"></i>
+                                                        <p>Belum ada data permohonan</p>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         <?php endif; ?>
                                     </tbody>
@@ -348,13 +583,15 @@
 
                     <!-- Keberatan Terbaru -->
                     <div class="col-lg-6">
-                        <div class="white-box">
-                            <h3 class="box-title m-b-0">
-                                <i class="fa fa-exclamation-triangle text-warning"></i> Keberatan Terbaru
-                            </h3>
-                            <p class="text-muted m-b-20">5 keberatan terakhir yang masuk</p>
+                        <div class="data-card">
+                            <div class="data-card-header">
+                                <h3 class="data-card-title">
+                                    <i class="fa fa-exclamation-triangle text-warning"></i> Keberatan Terbaru
+                                </h3>
+                                <p class="data-card-subtitle">5 keberatan terakhir yang masuk</p>
+                            </div>
                             <div class="table-responsive">
-                                <table class="table recent-data-table">
+                                <table class="table recent-table">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -367,25 +604,30 @@
                                         <?php if (!empty($keberatan_terbaru)): ?>
                                             <?php foreach ($keberatan_terbaru as $data): ?>
                                                 <tr>
-                                                    <td><strong><?php echo $data->id_keberatan ?></strong></td>
-                                                    <td><?php echo $data->mohon_id ?></td>
+                                                    <td><span class="table-id"><?php echo $data->id_keberatan ?></span></td>
+                                                    <td><span class="table-id"><?php echo $data->mohon_id ?></span></td>
                                                     <td><?php echo date('d/m/Y', strtotime($data->tanggal)) ?></td>
                                                     <td>
                                                         <?php if ($data->status == 'Menunggu Verifikasi'): ?>
-                                                            <span class="badge-status status-verifikasi">Verifikasi</span>
+                                                            <span class="status-badge status-verifikasi">Verifikasi</span>
                                                         <?php elseif ($data->status == 'Sedang Diproses'): ?>
-                                                            <span class="badge-status status-proses">Proses</span>
+                                                            <span class="status-badge status-proses">Proses</span>
                                                         <?php elseif ($data->status == 'Diterima'): ?>
-                                                            <span class="badge-status status-diterima">Diterima</span>
+                                                            <span class="status-badge status-diterima">Diterima</span>
                                                         <?php else: ?>
-                                                            <span class="badge-status status-ditolak">Ditolak</span>
+                                                            <span class="status-badge status-ditolak">Ditolak</span>
                                                         <?php endif; ?>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php else: ?>
                                             <tr>
-                                                <td colspan="4" class="text-center text-muted">Belum ada data keberatan</td>
+                                                <td colspan="4">
+                                                    <div class="empty-state">
+                                                        <i class="fa fa-inbox"></i>
+                                                        <p>Belum ada data keberatan</p>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         <?php endif; ?>
                                     </tbody>
@@ -398,13 +640,15 @@
                 <!-- Informasi Terbaru -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="white-box">
-                            <h3 class="box-title m-b-0">
-                                <i class="fa fa-info-circle text-info"></i> Informasi Publik Terbaru
-                            </h3>
-                            <p class="text-muted m-b-20">5 informasi publik terakhir</p>
+                        <div class="data-card">
+                            <div class="data-card-header">
+                                <h3 class="data-card-title">
+                                    <i class="fa fa-info-circle text-info"></i> Informasi Publik Terbaru
+                                </h3>
+                                <p class="data-card-subtitle">5 informasi publik terakhir</p>
+                            </div>
                             <div class="table-responsive">
-                                <table class="table recent-data-table">
+                                <table class="table recent-table">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -418,26 +662,31 @@
                                         <?php if (!empty($informasi_terbaru)): ?>
                                             <?php foreach ($informasi_terbaru as $data): ?>
                                                 <tr>
-                                                    <td><strong><?php echo $data->informasi_id ?></strong></td>
+                                                    <td><span class="table-id"><?php echo $data->informasi_id ?></span></td>
                                                     <td><?php echo substr($data->judul, 0, 50) ?><?php echo strlen($data->judul) > 50 ? '...' : '' ?></td>
                                                     <td><?php echo $data->pengaju ?></td>
                                                     <td><?php echo date('d/m/Y', strtotime($data->tanggal)) ?></td>
                                                     <td>
                                                         <?php if ($data->status == 'belum di proses'): ?>
-                                                            <span class="badge-status status-verifikasi">Belum Diproses</span>
+                                                            <span class="status-badge status-verifikasi">Belum Diproses</span>
                                                         <?php elseif ($data->status == 'sedang diproses'): ?>
-                                                            <span class="badge-status status-proses">Sedang Diproses</span>
+                                                            <span class="status-badge status-proses">Sedang Diproses</span>
                                                         <?php elseif ($data->status == 'sudah diproses'): ?>
-                                                            <span class="badge-status status-sudah">Sudah Diproses</span>
+                                                            <span class="status-badge status-sudah">Sudah Diproses</span>
                                                         <?php else: ?>
-                                                            <span class="badge-status status-ditolak">Ditolak</span>
+                                                            <span class="status-badge status-ditolak">Ditolak</span>
                                                         <?php endif; ?>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php else: ?>
                                             <tr>
-                                                <td colspan="5" class="text-center text-muted">Belum ada data informasi publik</td>
+                                                <td colspan="5">
+                                                    <div class="empty-state">
+                                                        <i class="fa fa-inbox"></i>
+                                                        <p>Belum ada data informasi publik</p>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         <?php endif; ?>
                                     </tbody>
