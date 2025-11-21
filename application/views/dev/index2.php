@@ -72,7 +72,7 @@
                                     <div class="main-slider__content text-center">
                                         <!-- <h2>Finance <span class="main-slider-two__single-text">&</span> <br> Consulting
                                         </h2> -->
-                                        <h2>Pengelolaan Pengaduan Pelayanan Publik</h2>>
+                                        <h2>Pengelolaan Pengaduan Pelayanan Publik</h2>
                                         <p>Sampaikan Laporan Anda Langsung Kepada Instansi Pemerintah Kabupaten Sumedang</p>
                                         <a target="_blank" href="https://lapor.go.id" class="thm-btn">Adukan Sekarang!</a>
                                     </div>
@@ -97,7 +97,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="section-title text-center">
-                            <h2 class="section-title__title">Kasifikasi Informasi Publik</h2>
+                            <h2 class="section-title__title">Klasifikasi Informasi Publik</h2>
                         </div>
                     </div>
                 </div>
