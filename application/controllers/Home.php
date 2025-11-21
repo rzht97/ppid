@@ -34,8 +34,11 @@ class Home extends CI_Controller {
 		$data['jml'] = array((object)array('total' => $stats->total));
 		$data['selesai'] = array((object)array('total' => $stats->selesai));
 
-		// Hitung jumlah keberatan/sengketa
-		$sengketa_count = $this->db->count_all('keberatan');
+		// Hitung jumlah keberatan dan sengketa
+		$keberatan_count = $this->db->count_all('keberatan');
+		$data['keberatan'] = array((object)array('total' => $keberatan_count));
+
+		$sengketa_count = $this->db->count_all('sengketa');
 		$data['sengketa'] = array((object)array('total' => $sengketa_count));
 
 		// Fixed: Gunakan query builder dan select specific columns

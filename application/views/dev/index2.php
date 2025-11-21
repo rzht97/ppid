@@ -213,46 +213,49 @@
             </div>
             <div class="container">
                 <ul class="counters-one__box list-unstyled">
-                    <div class="row">
-                        <div class="col-md-3">
+                    <div class="row justify-content-center">
+                        <div class="col">
                             <li class="counter-one__single">
                                 <div class="counter-one__icon">
                                     <span class="icon-customer-review"></span>
                                 </div>
-                                <h3 class="odometer" data-count="<?php foreach($jml as $jml):?>
-										<?php echo $jml->total?>
-									<?php endforeach;?>"></h3>
+                                <h3 class="odometer" data-count="<?php foreach($jml as $j): echo $j->total; endforeach; ?>"></h3>
                                 <p class="counter-one__text">Jumlah Permohonan</p>
                             </li>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col">
                             <li class="counter-one__single">
                                 <div class="counter-one__icon">
                                     <span class="icon-video"></span>
                                 </div>
-                                <h3 class="odometer" data-count="<?php foreach($selesai as $selesai):?>
-										<?php echo $selesai->total?>
-									<?php endforeach;?>"></h3>
+                                <h3 class="odometer" data-count="<?php foreach($selesai as $s): echo $s->total; endforeach; ?>"></h3>
                                 <p class="counter-one__text">Selesai</p>
                             </li>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col">
                             <li class="counter-one__single">
                                 <div class="counter-one__icon">
                                     <span class="icon-help"></span>
                                 </div>
-								<h3 class="odometer" data-count="<?php foreach($ditolak as $ditolak):?>
-										<?php echo $ditolak->total?>
-									<?php endforeach;?>"></h3>
+                                <h3 class="odometer" data-count="<?php foreach($ditolak as $d): echo $d->total; endforeach; ?>"></h3>
                                 <p class="counter-one__text">Ditolak</p>
                             </li>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col">
+                            <li class="counter-one__single">
+                                <div class="counter-one__icon">
+                                    <span class="icon-clipboard"></span>
+                                </div>
+                                <h3 class="odometer" data-count="<?php foreach($keberatan as $k): echo $k->total; endforeach; ?>"></h3>
+                                <p class="counter-one__text">Keberatan</p>
+                            </li>
+                        </div>
+                        <div class="col">
                             <li class="counter-one__single">
                                 <div class="counter-one__icon">
                                     <span class="icon-consultant"></span>
                                 </div>
-                                <h3 class="odometer" data-count="<?php foreach($sengketa as $s): echo $s->total; endforeach; ?>"></h3>
+                                <h3 class="odometer" data-count="<?php foreach($sengketa as $sg): echo $sg->total; endforeach; ?>"></h3>
                                 <p class="counter-one__text">Sengketa</p>
                             </li>
                         </div>
