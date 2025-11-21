@@ -286,13 +286,11 @@
                                 </div>
 
                                 <hr>
-                                <div class="form-actions">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <button type="submit" class="btn btn-success btn-lg waves-effect waves-light">
-                                                <i class="fa fa-paper-plane"></i> Kirim Permohonan
-                                            </button>
-                                        </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-success btn-lg waves-effect waves-light">
+                                            <i class="fa fa-paper-plane"></i> Kirim Permohonan
+                                        </button>
                                     </div>
                                 </div>
                             </form>
