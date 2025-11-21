@@ -4,254 +4,33 @@
 
 <head>
     <title>Cek Status Permohonan - PPID Kab. Sumedang</title>
-
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- favicons Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url() ?>newestassets/images/logo/logo_sumedang.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= base_url() ?>newestassets/images/logo/logo_sumedang.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url() ?>newestassets/images/logo/logo_sumedang.png" />
-    <link rel="manifest" href="<?= base_url() ?>newestassets/images/favicons/site.webmanifest" />
-    <meta name="description" content="Aivons HTML Template For Business Consulting" />
-
-    <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com/">
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
-
-
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/animate/animate.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/fontawesome/css/all.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/jarallax/jarallax.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/jquery-magnific-popup/jquery.magnific-popup.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/nouislider/nouislider.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/nouislider/nouislider.pips.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/odometer/odometer.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/swiper/swiper.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/aivons-icons/style.css">
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/tiny-slider/tiny-slider.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/reey-font/stylesheet.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/owl-carousel/owl.carousel.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/owl-carousel/owl.theme.default.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/twentytwenty/twentytwenty.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/vendors/bxslider/css/jquery.bxslider.css" />
-    <!-- template styles -->
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/css/aivons.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/css/aivons-responsive.css" />
-
-    <!-- RTL Styles -->
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/css/aivons-rtl.css">
-
-    <!-- color css -->
-    <link rel="stylesheet" id="jssDefault" href="<?= base_url() ?>newestassets/css/colors/color-default.css">
-    <link rel="stylesheet" id="jssMode" href="<?= base_url() ?>newestassets/css/modes/aivons-normal.css">
-    <link href="<?= base_url() ?>inverse/css/colors/default.css" id="theme" rel="stylesheet">
-
-    <!-- toolbar css -->
-    <link rel="stylesheet" href="<?= base_url() ?>newestassets/css/aivons-toolbar.css">
-
-    <link href="<?= base_url() ?>inverse/css/style.css" rel="stylesheet">
+    <?php $this->load->view("dev/partials/head.php") ?>
 
     <style>
-        /* Compact Form Styles */
-        .message-box {
-            padding: 40px 0;
-        }
-
-        .message-box .white-box {
-            padding: 25px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .box-title {
-            margin-top: 0;
-            margin-bottom: 8px;
-            font-size: 22px;
-        }
-
-        .text-muted {
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
-        /* Search Panel */
-        .search-panel {
-            margin-bottom: 25px;
-        }
-
-        .search-panel .panel-body {
-            background-color: #f9f9f9;
-            padding: 25px;
-        }
-
-        .search-panel .form-group {
-            margin-bottom: 15px;
-        }
-
-        .search-panel label {
-            margin-bottom: 6px;
-            font-size: 14px;
-        }
-
-        .search-panel .help-block {
-            margin-top: 6px;
-            font-size: 13px;
-        }
-
-        .search-panel .btn {
-            padding: 10px 30px;
-            font-size: 14px;
-        }
-
-        /* Alert Messages */
-        .alert {
-            padding: 12px 15px;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
-        /* Result Panels */
-        .result-panel {
-            margin-bottom: 20px;
-        }
-
-        .result-panel .panel-heading {
-            padding: 12px 15px;
-        }
-
-        .result-panel .panel-title {
-            margin: 0;
-            font-size: 16px;
-        }
-
-        .result-panel .panel-body {
-            padding: 20px;
-        }
-
-        .result-panel .form-group {
-            margin-bottom: 15px;
-        }
-
-        .result-panel .form-group:last-child {
-            margin-bottom: 0;
-        }
-
-        .result-panel label {
-            margin-bottom: 4px;
-            font-size: 13px;
-        }
-
-        .result-panel .form-control-static {
-            margin: 0;
-            font-size: 14px;
-        }
-
-        /* Content Boxes */
-        .content-box {
-            background-color: #ffffff;
-            padding: 12px 15px;
-            border: 2px solid #e8e8e8;
-            border-radius: 6px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-
-        .content-box p {
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            font-size: 14px;
-            color: #555;
-        }
-
-        .content-box.info {
-            background-color: #e8f4f8;
-            border-color: #b8dce8;
-        }
-
-        .content-box.info p {
-            color: #31708f;
-        }
-
-        .content-box.warning {
-            background-color: #fff3cd;
-            border-color: #ffeaa7;
-        }
-
-        .content-box.warning p {
-            color: #856404;
-        }
-
-        .content-box.success {
-            background-color: #d4edda;
-            border-color: #c3e6cb;
-        }
-
-        .content-box.success p {
-            color: #155724;
-        }
-
-        .content-box.empty {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border: 2px dashed #ddd;
-            text-align: center;
-        }
-
-        /* Status Labels */
-        .status-label {
-            font-size: 14px;
-            padding: 8px 15px;
-        }
-
-        /* Action Buttons */
-        .action-section {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #e3e3e3;
-            text-align: center;
-        }
-
-        .action-section .btn {
-            padding: 10px 25px;
-            font-size: 14px;
-            margin: 0 5px;
-        }
-
-        /* Keberatan Divider */
-        .keberatan-divider {
-            margin: 30px 0;
-            border-top: 2px solid #e3e3e3;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .message-box {
-                padding: 30px 0;
-            }
-
-            .message-box .white-box {
-                padding: 15px;
-            }
-
-            .box-title {
-                font-size: 20px;
-            }
-
-            .search-panel .panel-body,
-            .result-panel .panel-body {
-                padding: 15px;
-            }
-
-            .action-section .btn {
-                display: block;
-                width: 100%;
-                margin: 5px 0;
-            }
-        }
+        .message-box { padding: 40px 0; background: #f5f5f5; }
+        .message-box .white-box { padding: 25px; max-width: 900px; margin: 0 auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); }
+        .box-title { margin-top: 0; margin-bottom: 8px; font-size: 22px; }
+        .search-panel { margin-bottom: 25px; }
+        .search-panel .panel-body { background-color: #f9f9f9; padding: 25px; }
+        .search-panel .btn { padding: 10px 30px; font-size: 14px; }
+        .result-panel { margin-bottom: 20px; }
+        .result-panel .panel-heading { padding: 12px 15px; }
+        .result-panel .panel-title { margin: 0; font-size: 16px; }
+        .result-panel .panel-body { padding: 20px; }
+        .content-box { background-color: #fff; padding: 12px 15px; border: 2px solid #e8e8e8; border-radius: 6px; }
+        .content-box p { white-space: pre-wrap; word-wrap: break-word; margin: 0; line-height: 1.6; font-size: 14px; color: #555; }
+        .content-box.info { background-color: #e8f4f8; border-color: #b8dce8; }
+        .content-box.info p { color: #31708f; }
+        .content-box.warning { background-color: #fff3cd; border-color: #ffeaa7; }
+        .content-box.warning p { color: #856404; }
+        .content-box.success { background-color: #d4edda; border-color: #c3e6cb; }
+        .content-box.success p { color: #155724; }
+        .content-box.empty { background-color: #f9f9f9; padding: 20px; border: 2px dashed #ddd; text-align: center; }
+        .status-label { font-size: 14px; padding: 8px 15px; }
+        .action-section { margin-top: 30px; padding-top: 20px; border-top: 1px solid #e3e3e3; text-align: center; }
+        .action-section .btn { padding: 10px 25px; font-size: 14px; margin: 0 5px; }
+        .keberatan-divider { margin: 30px 0; border-top: 2px solid #e3e3e3; }
+        @media (max-width: 768px) { .message-box { padding: 30px 0; } .message-box .white-box { padding: 15px; } .action-section .btn { display: block; width: 100%; margin: 5px 0; } }
     </style>
 </head>
 
