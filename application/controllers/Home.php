@@ -259,19 +259,4 @@ class Home extends CI_Controller {
 	{
 		$this->load->view("dev/cc");
 	}
-	
-	/**
-	 * List semua permohonan
-	 * Fixed: SQL injection, select specific columns
-	 */
-	public function listpermohonan()
-	{
-		$data['permohonan'] = $this->db->select('mohon_id, nama, alamat, email, nohp, tanggal, status')
-		                               ->order_by('mohon_id', 'DESC')
-		                               ->get('permohonan')
-		                               ->result();
-
-		$this->load->view('dev/listpemohon',$data);
-	}
-
 }
