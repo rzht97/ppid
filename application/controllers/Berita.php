@@ -102,11 +102,18 @@ class Berita extends CI_Controller {
         curl_close($curl);
         $result = json_decode($response, true);
 
-        if (isset($result['status']) && $result['status'] === 200) {
-            $data['news'] = is_array($result['news']) ? $result['news'][0] : $result['news'];
+        log_message('debug', 'API Detail Response: ' . print_r($result, true));
+
+        if (isset($result['status']) && $result['status'] === 200 && isset($result['news'])) {
+            // Handle both array and single object response
+            if (isset($result['news'][0])) {
+                $data['news'] = $result['news'][0];
+            } else {
+                $data['news'] = $result['news'];
+            }
         } else {
             $error_message = $result['message'] ?? 'Berita tidak ditemukan';
-            log_message('error', 'API Berita Detail Error: ' . $error_message);
+            log_message('error', 'API Berita Detail Error: ' . $error_message . ' | Response: ' . print_r($result, true));
             $data['error'] = 'Maaf, detail berita tidak dapat ditampilkan. Silakan coba beberapa saat lagi.';
         }
 
