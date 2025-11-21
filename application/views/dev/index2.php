@@ -244,7 +244,7 @@
                         <div class="col">
                             <li class="counter-one__single">
                                 <div class="counter-one__icon">
-                                    <span class="icon-clipboard"></span>
+                                    <span class="icon-protection"></span>
                                 </div>
                                 <h3 class="odometer" data-count="<?php foreach($keberatan as $k): echo $k->total; endforeach; ?>"></h3>
                                 <p class="counter-one__text">Keberatan</p>
