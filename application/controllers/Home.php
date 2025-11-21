@@ -44,8 +44,8 @@ class Home extends CI_Controller {
 		                         ->get('user')
 		                         ->result();
 
-		// Berita terbaru untuk homepage (3 berita)
-		$data['berita'] = $this->db->select('berita_id, judul, tanggal, isi, gambar, slug')
+		// Berita terbaru untuk homepage (3 berita) - konsisten dengan controller berita
+		$data['berita'] = $this->db->select('berita_id, judul, tanggal, isi, gambar, slug, kategori')
 		                           ->from('berita')
 		                           ->order_by('tanggal', 'DESC')
 		                           ->limit(3)
