@@ -324,6 +324,45 @@
             opacity: 0.3;
         }
 
+        /* Section Divider */
+        .section-divider {
+            margin: 40px 0 30px 0;
+            border-top: 2px solid #e9ecef;
+            padding-top: 25px;
+        }
+
+        .section-header {
+            margin-bottom: 25px;
+        }
+
+        .section-header h3 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-header h3 i {
+            margin-right: 12px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            font-size: 18px;
+        }
+
+        .section-header p {
+            margin: 8px 0 0 48px;
+            font-size: 13px;
+            color: #6c757d;
+        }
+
         /* Responsive */
         @media (max-width: 991px) {
             .stats-card {
@@ -342,6 +381,19 @@
 
             .stats-number {
                 font-size: 32px;
+            }
+
+            .section-divider {
+                margin: 30px 0 20px 0;
+                padding-top: 20px;
+            }
+
+            .section-header h3 {
+                font-size: 18px;
+            }
+
+            .section-header p {
+                margin-left: 0;
             }
         }
     </style>
@@ -375,6 +427,15 @@
                     </div>
                     <h2>Dashboard PPID</h2>
                     <p>Selamat datang, <strong><?php echo $nama_user ?></strong>! Berikut adalah ringkasan sistem informasi PPID Kabupaten Sumedang.</p>
+                </div>
+
+                <!-- Section: Statistik -->
+                <div class="section-header">
+                    <h3>
+                        <i class="fa fa-bar-chart"></i>
+                        Statistik Sistem
+                    </h3>
+                    <p>Ringkasan data dari semua modul sistem PPID</p>
                 </div>
 
                 <!-- Statistik Cards -->
@@ -524,6 +585,18 @@
                     </div>
                 </div>
 
+                <!-- Section Divider -->
+                <div class="section-divider"></div>
+
+                <!-- Section: Data Terbaru -->
+                <div class="section-header">
+                    <h3>
+                        <i class="fa fa-clock-o"></i>
+                        Data Terbaru
+                    </h3>
+                    <p>5 data terakhir yang masuk ke sistem dari setiap modul</p>
+                </div>
+
                 <!-- Data Terbaru -->
                 <div class="row">
                     <!-- Permohonan Terbaru -->
@@ -636,6 +709,9 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Mini Divider -->
+                <div style="margin: 15px 0; border-top: 1px solid #f1f3f5;"></div>
 
                 <!-- Informasi Terbaru -->
                 <div class="row">
