@@ -285,7 +285,7 @@
                                     <span class="news-one__plus"></span>
                                 </a>
                             </div>
-                            <div class="news-one__content">
+                            <div class="news-one__content" style="margin-top: 0; margin-left: 0;">
                                 <ul class="list-unstyled news-one__meta">
                                     <li><a href="#"><i class="far fa-user-circle"></i> <?= htmlspecialchars($item['author']['full_name'] ?? 'Admin') ?></a></li>
                                 </ul>
