@@ -281,9 +281,6 @@
                         <div class="news-one__single">
                             <div class="news-one__img" style="height: 220px; overflow: hidden; background-color: transparent;">
                                 <img src="<?= htmlspecialchars($item['picture']) ?>" alt="<?= htmlspecialchars($item['title']) ?>" style="width: 100%; height: 100%; object-fit: cover; mix-blend-mode: normal;">
-                                <a href="<?= site_url('berita/detail/' . htmlspecialchars($item['title_slug'])) ?>">
-                                    <span class="news-one__plus"></span>
-                                </a>
                             </div>
                             <div class="news-one__content" style="margin-top: 0; margin-left: 0;">
                                 <ul class="list-unstyled news-one__meta">
