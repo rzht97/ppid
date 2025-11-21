@@ -78,3 +78,4 @@ $route['carasengketa'] = 'home/carasengketa';
 $route['sop'] = 'home/sop';
 $route['standarbiaya'] = 'home/standarbiaya';
 $route['lapor'] = 'home/lapor';
+$route['download/(:any)'] = 'home/download/$1';

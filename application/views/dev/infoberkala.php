@@ -97,7 +97,7 @@
                                                     <?php if ($dok_kec->image == "Belum Tersedia") { ?>
                                                         <a target="_blank" href="<?php echo $dok_kec->sumberdata; ?>"><button class="btn btn-success waves-effect waves-light" type="button"><i class="fa fa-external-link">Lihat</i></button></a>
                                                     <?php } else { ?>
-                                                        <a href="<?php echo base_url() . 'index.php/publik/overview/download/' . $dok_kec->id; ?>"><button class="btn btn-success waves-effect waves-light" type="button"><i class="fa fa-download"></i></button></a>
+                                                        <a href="<?php echo site_url('download/' . $dok_kec->id); ?>"><button class="btn btn-success waves-effect waves-light" type="button"><i class="fa fa-download"></i></button></a>
                                                     <?php } ?>
                                                 </td>
                                             </tr>

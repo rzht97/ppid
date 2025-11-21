@@ -1,40 +1,54 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * Profil Controller
+ * Menampilkan halaman profil PPID
+ */
 class Profil extends CI_Controller {
+
     public function __construct()
     {
-		parent::__construct();
-
-		}
-
-	public function index()
-	{
-		$data['ditolak'] = $this->db->query("SELECT count(status) as total FROM informasi WHERE status = 'ditolak'")->result();
-		$data['jmlpermohonan'] = $this->db->query("SELECT * FROM informasi");
-		$data['diproses'] = $this->db->query("SELECT count(status) as total FROM informasi WHERE status = 'sudah diproses'")->result();
-		$data['user'] = $this->db->query("SELECT * FROM user");
-        // load view admin/overview.php
-        $this->load->view("dev/index2", $data);
-	}
-	public function maklumat()
-    {
-       $this->load->view("dev/profil/maklumat");
+        parent::__construct();
     }
+
+    /**
+     * Halaman Maklumat Pelayanan
+     */
+    public function maklumat()
+    {
+        $this->load->view("dev/profil/maklumat");
+    }
+
+    /**
+     * Halaman Uraian Tugas
+     */
     public function urtug()
     {
-        // load view admin/overview.php
         $this->load->view("dev/profil/urtug");
     }
+
+    /**
+     * Halaman Visi Misi Kabupaten
+     */
     public function visimisikab()
-	{
-		$this->load->view("dev/profil/visimisikab");
-	}
-	public function strukturorg()
-	{
-		$this->load->view("dev/profil/strukturorg");
-	}
-	public function visimisippid()
-	{
-		$this->load->view("dev/profil/visimisippid");
-	}
+    {
+        $this->load->view("dev/profil/visimisikab");
+    }
+
+    /**
+     * Halaman Struktur Organisasi
+     */
+    public function strukturorg()
+    {
+        $this->load->view("dev/profil/strukturorg");
+    }
+
+    /**
+     * Halaman Visi Misi PPID
+     */
+    public function visimisippid()
+    {
+        $this->load->view("dev/profil/visimisippid");
+    }
 }
