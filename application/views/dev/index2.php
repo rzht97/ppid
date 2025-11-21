@@ -280,21 +280,21 @@
                     <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="<?= $delays[$i % 3] ?>" data-wow-duration="1500ms">
                         <div class="news-one__single">
                             <div class="news-one__img">
-                                <img src="<?= base_url() ?>upload/berita/<?= $item->gambar ?>" alt="<?= htmlspecialchars($item->judul) ?>">
-                                <a href="<?= site_url('berita/detail/' . $item->slug) ?>">
+                                <img src="<?= htmlspecialchars($item['picture']) ?>" alt="<?= htmlspecialchars($item['title']) ?>">
+                                <a href="<?= site_url('berita/detail/' . htmlspecialchars($item['title_slug'])) ?>">
                                     <span class="news-one__plus"></span>
                                 </a>
                             </div>
                             <div class="news-one__content">
                                 <ul class="list-unstyled news-one__meta">
-                                    <li><a href="#"><i class="far fa-user-circle"></i> Admin</a></li>
+                                    <li><a href="#"><i class="far fa-user-circle"></i> <?= htmlspecialchars($item['author']['full_name'] ?? 'Admin') ?></a></li>
                                 </ul>
                                 <h3 class="news-one__title">
-                                    <a href="<?= site_url('berita/detail/' . $item->slug) ?>"><?= htmlspecialchars($item->judul) ?></a>
+                                    <a href="<?= site_url('berita/detail/' . htmlspecialchars($item['title_slug'])) ?>"><?= htmlspecialchars($item['title']) ?></a>
                                 </h3>
-                                <a href="<?= site_url('berita/detail/' . $item->slug) ?>" class="news-one__btn">Baca Selengkapnya</a>
+                                <a href="<?= site_url('berita/detail/' . htmlspecialchars($item['title_slug'])) ?>" class="news-one__btn">Baca Selengkapnya</a>
                                 <div class="news-one__date-box">
-                                    <p><?= date('d M', strtotime($item->tanggal)) ?></p>
+                                    <p><?= htmlspecialchars($item['publish_date']) ?></p>
                                 </div>
                             </div>
                         </div>
