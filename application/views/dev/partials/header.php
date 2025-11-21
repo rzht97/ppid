@@ -89,14 +89,14 @@
 										<li class="dropdown">
                                             <a href="#">Visi dan Misi</a>
                                             <ul>
-                                                <li><a href="<?php echo site_url('pub/profil/visimisikab')?>">Kabupaten Sumedang</a></li>
-                                                <li><a href="<?php echo site_url('pub/profil/visimisippid')?>">PPID</a></li>
+                                                <li><a href="<?php echo site_url('profil/visimisikab')?>">Kabupaten Sumedang</a></li>
+                                                <li><a href="<?php echo site_url('profil/visimisippid')?>">PPID</a></li>
                                             </ul>
                                         </li>
-										<li><a href = "<?php echo site_url('pub/profil/strukturorg')?>">Struktur Organisasi</a></li>
-                                        <li><a href="<?php echo site_url('pub/profil/urtug')?>">Tugas dan Wewenang</a></li>
+										<li><a href = "<?php echo site_url('profil/strukturorg')?>">Struktur Organisasi</a></li>
+                                        <li><a href="<?php echo site_url('profil/urtug')?>">Tugas dan Wewenang</a></li>
 										<!--<li><a href="<?php echo site_url('home/pejabat')?>">Profil Pejabat Struktural</a></li>-->
-                                        <li><a href="<?php echo site_url('pub/profil/maklumat')?>">Maklumat Pelayanan</a></li>
+                                        <li><a href="<?php echo site_url('profil/maklumat')?>">Maklumat Pelayanan</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
