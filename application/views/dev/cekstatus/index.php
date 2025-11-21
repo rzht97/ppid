@@ -238,11 +238,9 @@
                                                 <?php else: ?>
                                                 <div class="form-group">
                                                     <label style="margin-bottom: 8px; font-size: 14px;"><strong>Jawaban/Hasil Pemrosesan</strong></label>
-                                                    <div class="content-box empty" style="padding: 15px; background-color: #f9f9f9; border-radius: 4px;">
-                                                        <p class="text-muted" style="margin: 0; font-style: italic; font-size: 14px;">
-                                                            <i class="fa fa-clock-o"></i> Belum ada jawaban. Permohonan masih dalam proses.
-                                                        </p>
-                                                    </div>
+                                                    <p class="text-muted" style="margin: 0; padding: 10px 0; font-size: 14px;">
+                                                        <i class="fa fa-clock-o"></i> Belum ada jawaban. Permohonan masih dalam proses.
+                                                    </p>
                                                 </div>
                                                 <?php endif; ?>
                                             </div>
