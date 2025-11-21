@@ -4951,7 +4951,7 @@ body.boxed-wrapper {
     position: relative;
     display: block;
     border-top: 1px solid #e6e9ef;
-    padding: 108px 0 120px;
+    padding: 60px 0 60px;
 }
 
 .cta-two-bg {
@@ -4982,12 +4982,12 @@ body.boxed-wrapper {
 }
 
 .cta-two__title {
-    font-size: 50px;
+    font-size: 32px;
     color: #000000;
     font-weight: 900;
-    line-height: 60px;
+    line-height: 40px;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     letter-spacing: var(--thm-letter-space-small);
 }
 
