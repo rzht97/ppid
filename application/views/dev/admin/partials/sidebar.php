@@ -26,7 +26,7 @@
                         <!-- /input-group -->
                     </li>
                     <li class="nav-small-cap m-t-10">--- Main Menu</li>
-                    <li><a href="#" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu">Dashboard</span></a></li>
+                    <li><a href="<?php echo site_url('admin/overview')?>" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu">Dashboard</span></a></li>
                     <li> <a href="<?php echo site_url('admin/dip')?>" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Daftar Informasi</span></a>
                     </li>
                     <li> <a href="<?php echo site_url('admin/permohonan')?>" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Permohonan</span></a>
