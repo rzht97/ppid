@@ -364,10 +364,8 @@
                                                     <?php if (empty($keberatan->tanggapan) && empty($keberatan->putusan)): ?>
                                                     <div class="form-group">
                                                         <label style="margin-bottom: 8px; font-size: 14px;"><strong>Tanggapan/Putusan</strong></label>
-                                                        <div class="content-box info" style="text-align: left;">
-                                                            <p style="margin: 0; font-size: 14px;">
-                                                                <i class="fa fa-clock-o"></i> Belum ada tanggapan atau putusan. Keberatan masih dalam proses.
-                                                            </p>
+                                                        <div class="content-box info" style="padding: 15px 18px;">
+                                                            <p style="margin: 0; font-size: 14px;"><i class="fa fa-clock-o"></i> Belum ada tanggapan atau putusan. Keberatan masih dalam proses.</p>
                                                         </div>
                                                     </div>
                                                     <?php endif; ?>
