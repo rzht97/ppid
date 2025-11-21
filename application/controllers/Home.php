@@ -183,27 +183,6 @@ class Home extends CI_Controller {
         $this->load->view("dev/regulasi");
     }
 
-       public function detaildok($id = null)
-    {
-        if (!isset($id)) redirect('overview/berita');
-       
-        $berita = $this->dokumen_model;
-        $validation = $this->form_validation;
-        $validation->set_rules($berita->rules());
-
-        if ($validation->run()) {
-            $berita->update();
-            $this->session->set_flashdata('success', 'Berhasil disimpan');
-        }
-
-
-        $data["dokumen"] = $berita->getById($id);
-        if (!$data["dokumen"]) show_404();
-        
-        $this->load->view("publik/detaildok", $data);
-         
-    }
-
     public function download($id){
     $this->load->helper('download');
     $fileinfo = $this->dokumen_model->download($id);
