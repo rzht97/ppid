@@ -289,7 +289,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <button type="submit" class="btn btn-success btn-lg waves-effect waves-light">
-                                            <i class="fa fa-paper-plane"></i> Kirim Permohonan
+                                            <i class="fa fa-paper-plane"></i> Kirim
                                         </button>
                                     </div>
                                 </div>
