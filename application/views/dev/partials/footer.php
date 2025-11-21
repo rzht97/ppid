@@ -34,8 +34,7 @@
                                             <p>Jl. Angkrek No. 103 Kel. Situ Kec. Sumedang Utara Kab. Sumedang</p>
                                         </div>
                                     </li>
-									<br>
-									<li>
+										<li class="mt-3">
                                         <div class="icon">
 											<i class="fas fa-calendar"></i>
                                         </div>
@@ -87,13 +86,11 @@
                         <div class="col-xl-12">
                             <div class="site-footer-bottom__inner">
                                 <div class="site-footer-bottom__left">
-                                    <p>© Copyright 2022 by <a href="#">Diskominfosanditik Kab. Sumedang</a></p>
+                                    <p>© Copyright <?= date('Y') ?> by <a href="#">Diskominfosanditik Kab. Sumedang</a></p>
                                 </div>
                                 <div class="site-footer__social">
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a target="blank_" href="https://www.facebook.com/diskominfosanditiksumedang" class="clr-fb"><i class="fab fa-facebook"></i></a>
-                                    <a href="#" class="clr-dri"><i class="fab fa-dribbble"></i></a>
-                                    <a href="https://www.instagram.com/humassumedang/" class="clr-ins"><i class="fab fa-instagram"></i></a>
+                                    <a href="https://www.facebook.com/diskominfosanditiksumedang" target="_blank" rel="noopener noreferrer" class="clr-fb" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                                    <a href="https://www.instagram.com/humassumedang/" target="_blank" rel="noopener noreferrer" class="clr-ins" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                                 </div>
                             </div>
                         </div>
