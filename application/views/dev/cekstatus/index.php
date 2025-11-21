@@ -7,7 +7,7 @@
     <?php $this->load->view("dev/partials/head.php") ?>
 
     <style>
-        .message-box { padding: 40px 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        .message-box { padding: 40px 0; background: #fff; }
         .message-box .white-box { padding: 30px; max-width: 900px; margin: 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
         .box-title { margin-top: 0; margin-bottom: 8px; font-size: 24px; color: #333; font-weight: 600; }
         .search-panel { margin-bottom: 25px; border: none; border-radius: 10px; overflow: hidden; }
