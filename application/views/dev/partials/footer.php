@@ -1,5 +1,5 @@
 <footer class="site-footer">
-            <div class="site-footer-shape wow slideInRight" data-wow-delay="100ms" data-wow-duration="3500ms" style="background-image: url(<?= base_url(); ?>assets/images/shapes/footer-shape.png)"></div>
+            <div class="site-footer-shape wow slideInRight" data-wow-delay="100ms" data-wow-duration="3500ms" style="background-image: url(<?= base_url(); ?>newestassets/images/shapes/footer-shape.png)"></div>
             <div class="container">
                 <div class="site-footer__top">
                     <div class="row">
