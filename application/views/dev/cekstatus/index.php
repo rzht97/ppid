@@ -184,11 +184,15 @@
                                             <div class="panel-body">
                                                 <div class="form-group">
                                                     <label style="margin-bottom: 8px; font-size: 14px;"><strong>Rincian Informasi yang Dibutuhkan</strong></label>
-                                                    <p style="margin: 0; font-size: 14px;"><?php echo trim($data->rincian); ?></p>
+                                                    <div class="content-box">
+                                                        <p style="margin: 0; font-size: 14px;"><?php echo trim($data->rincian); ?></p>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label style="margin-bottom: 8px; font-size: 14px;"><strong>Tujuan Penggunaan Informasi</strong></label>
-                                                    <p style="margin: 0; font-size: 14px;"><?php echo trim($data->tujuan); ?></p>
+                                                    <div class="content-box">
+                                                        <p style="margin: 0; font-size: 14px;"><?php echo trim($data->tujuan); ?></p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -226,13 +230,15 @@
 
                                                 <div class="form-group">
                                                     <label style="margin-bottom: 8px; font-size: 14px;"><strong>Jawaban/Hasil Pemrosesan</strong></label>
-                                                    <?php if (!empty($data->jawab)): ?>
-                                                    <p style="margin: 0; font-size: 14px;"><?php echo trim($data->jawab); ?></p>
-                                                    <?php else: ?>
-                                                    <p class="text-muted" style="margin: 0; font-size: 14px;">
-                                                        <i class="fa fa-clock-o"></i> Belum ada jawaban. Permohonan masih dalam proses.
-                                                    </p>
-                                                    <?php endif; ?>
+                                                    <div class="content-box">
+                                                        <?php if (!empty($data->jawab)): ?>
+                                                        <p style="margin: 0; font-size: 14px;"><?php echo trim($data->jawab); ?></p>
+                                                        <?php else: ?>
+                                                        <p class="text-muted" style="margin: 0; font-size: 14px;">
+                                                            <i class="fa fa-clock-o"></i> Belum ada jawaban. Permohonan masih dalam proses.
+                                                        </p>
+                                                        <?php endif; ?>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
