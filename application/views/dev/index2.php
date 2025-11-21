@@ -54,7 +54,7 @@
                                         </h2> -->
                                         <h2>Selamat Datang</h2>
                                         <p>di PPID Kab. Sumedang</p>
-                                        <a href="<?php echo site_url('publicpermohonan/permohonan')?>" class="thm-btn">Mulai Memohon Informasi</a>
+                                        <a href="<?php echo site_url('publicpermohonan')?>" class="thm-btn">Mulai Memohon Informasi</a>
                                     </div>
                                 </div>
                             </div>

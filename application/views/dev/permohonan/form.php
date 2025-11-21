@@ -324,7 +324,7 @@
                                 </div>
                             <?php endif; ?>
 
-                            <form data-toogle="validator" class="form-horizontal" action="<?php echo base_url('publicpermohonan/permohonan') ?>" method="post" enctype="multipart/form-data">
+                            <form data-toogle="validator" class="form-horizontal" action="<?php echo base_url('publicpermohonan') ?>" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label class="col-md-12"><strong>Nama Lengkap <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">

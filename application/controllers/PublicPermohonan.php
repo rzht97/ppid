@@ -17,7 +17,7 @@ class PublicPermohonan extends CI_Controller {
 	 * Updated: Better error handling and debugging
 	 * Security: Anti-spam protection with session rate limiting, IP throttling, and honeypot
 	 */
-	public function permohonan()
+	public function index()
     {
         $permohonan = $this->Permohonan_model;
         $validation = $this->form_validation;
@@ -29,7 +29,7 @@ class PublicPermohonan extends CI_Controller {
             if (!empty($honeypot)) {
                 log_message('warning', 'Bot detected via honeypot from IP: ' . $this->input->ip_address());
                 $this->session->set_flashdata('error', 'Submission failed. Please try again later.');
-                redirect('publicpermohonan/permohonan');
+                redirect('publicpermohonan');
                 return;
             }
 
@@ -51,7 +51,7 @@ class PublicPermohonan extends CI_Controller {
                 $wait_time = ceil((600 - $time_elapsed) / 60); // Minutes remaining
                 log_message('warning', 'Session rate limit exceeded from session: ' . session_id());
                 $this->session->set_flashdata('error', 'Anda telah mengirim terlalu banyak permohonan. Silakan tunggu ' . $wait_time . ' menit lagi.');
-                redirect('publicpermohonan/permohonan');
+                redirect('publicpermohonan');
                 return;
             }
 
@@ -73,7 +73,7 @@ class PublicPermohonan extends CI_Controller {
                     $ip_wait_time = ceil((3600 - $ip_time_elapsed) / 60);
                     log_message('warning', 'IP rate limit exceeded from IP: ' . $ip_address);
                     $this->session->set_flashdata('error', 'Terlalu banyak permintaan dari IP Anda. Silakan tunggu ' . $ip_wait_time . ' menit lagi.');
-                    redirect('publicpermohonan/permohonan');
+                    redirect('publicpermohonan');
                     return;
                 }
             } else {

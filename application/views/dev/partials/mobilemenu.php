@@ -14,7 +14,7 @@
             <ul class="mobile-nav__contact list-unstyled">
 
 				<li>
-               		<a href="<?php echo site_url('publicpermohonan/permohonan')?>" class="btn-ajukan-permohonan" style="display: block; text-align: center;">Ajukan Permohonan</a>
+               		<a href="<?php echo site_url('publicpermohonan')?>" class="btn-ajukan-permohonan" style="display: block; text-align: center;">Ajukan Permohonan</a>
 				</li>
 				<li>
                     <i class="fa fa-envelope"></i>

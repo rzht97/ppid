@@ -153,7 +153,7 @@
                     </div>
                     <div class="main-menu-wrapper__right">
                         <div class="main-menu-wrapper__search-box">
-                            <a href="<?php echo site_url('publicpermohonan/permohonan')?>" class="btn-ajukan-permohonan">Ajukan Permohonan</a>
+                            <a href="<?php echo site_url('publicpermohonan')?>" class="btn-ajukan-permohonan">Ajukan Permohonan</a>
                         </div>
                         <!-- <div class="main-menu-wrapper__phone-contact">
                             <p>Need help? Talk to an expert</p>

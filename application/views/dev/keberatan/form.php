@@ -106,7 +106,7 @@
                         <div class="white-box">
                             <h3 class="box-title m-b-0">Formulir Permohonan Informasi Publik</h3>
                             <p class="text-muted m-b-30 font-13"></p>
-                            <form  data-toogle = "validator" class="form-horizontal" action="<?php base_url('publicpermohonan/permohonan') ?>" method="post" enctype="multipart/form-data">
+                            <form  data-toogle = "validator" class="form-horizontal" action="<?php base_url('publicpermohonan') ?>" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label class="col-md-12">Nama</label>
                                     <div class="col-md-12">
