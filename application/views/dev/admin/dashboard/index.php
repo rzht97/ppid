@@ -481,7 +481,7 @@
                             </div>
 
                             <div class="stats-card-action">
-                                <a href="<?php echo site_url('admin/info') ?>" class="btn">
+                                <a href="<?php echo site_url('admin/dip') ?>" class="btn">
                                     <i class="fa fa-arrow-right"></i> Lihat Semua
                                 </a>
                             </div>
