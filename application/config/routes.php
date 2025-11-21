@@ -55,5 +55,4 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['publik'] = 'pub/overview';
 $route['admin'] = 'admin/index';
-$route['user'] = 'user/overview';
 $route['berita'] = 'pub/overview/berita';
