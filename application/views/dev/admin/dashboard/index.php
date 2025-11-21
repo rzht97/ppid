@@ -87,11 +87,6 @@
             font-size: 22px;
         }
 
-        .stats-card.informasi .stats-card-icon {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
         .stats-card.permohonan .stats-card-icon {
             background: linear-gradient(135deg, #5cb85c 0%, #449d44 100%);
             color: white;
@@ -107,13 +102,6 @@
             font-weight: 700;
             margin-bottom: 5px;
             line-height: 1;
-        }
-
-        .stats-card.informasi .stats-number {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .stats-card.permohonan .stats-number {
@@ -186,12 +174,6 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-        }
-
-        .stats-card.informasi .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            color: white;
         }
 
         .stats-card.permohonan .btn {
@@ -440,54 +422,6 @@
 
                 <!-- Statistik Cards -->
                 <div class="row">
-                    <!-- Card Daftar Informasi -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="stats-card informasi">
-                            <div class="stats-card-header">
-                                <div>
-                                    <h3 class="stats-card-title">Daftar Informasi Publik</h3>
-                                    <div class="stats-number"><?php echo $total_informasi ?></div>
-                                </div>
-                                <div class="stats-card-icon">
-                                    <i class="fa fa-info-circle"></i>
-                                </div>
-                            </div>
-
-                            <div class="stats-breakdown">
-                                <div class="stats-breakdown-item">
-                                    <span class="stats-breakdown-label">
-                                        <i class="fa fa-circle"></i> Belum Diproses
-                                    </span>
-                                    <span class="stats-breakdown-value"><?php echo $informasi_belum ?></span>
-                                </div>
-                                <div class="stats-breakdown-item">
-                                    <span class="stats-breakdown-label">
-                                        <i class="fa fa-circle"></i> Sedang Diproses
-                                    </span>
-                                    <span class="stats-breakdown-value"><?php echo $informasi_sedang ?></span>
-                                </div>
-                                <div class="stats-breakdown-item">
-                                    <span class="stats-breakdown-label">
-                                        <i class="fa fa-circle"></i> Sudah Diproses
-                                    </span>
-                                    <span class="stats-breakdown-value"><?php echo $informasi_sudah ?></span>
-                                </div>
-                                <div class="stats-breakdown-item">
-                                    <span class="stats-breakdown-label">
-                                        <i class="fa fa-circle"></i> Ditolak
-                                    </span>
-                                    <span class="stats-breakdown-value"><?php echo $informasi_ditolak ?></span>
-                                </div>
-                            </div>
-
-                            <div class="stats-card-action">
-                                <a href="<?php echo site_url('admin/dip') ?>" class="btn">
-                                    <i class="fa fa-arrow-right"></i> Lihat Semua
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Card Permohonan -->
                     <div class="col-lg-4 col-md-6">
                         <div class="stats-card permohonan">
@@ -710,67 +644,6 @@
                     </div>
                 </div>
 
-                <!-- Mini Divider -->
-                <div style="margin: 15px 0; border-top: 1px solid #f1f3f5;"></div>
-
-                <!-- Informasi Terbaru -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="data-card">
-                            <div class="data-card-header">
-                                <h3 class="data-card-title">
-                                    <i class="fa fa-info-circle text-info"></i> Informasi Publik Terbaru
-                                </h3>
-                                <p class="data-card-subtitle">5 informasi publik terakhir</p>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table recent-table">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Judul</th>
-                                            <th>Pengaju</th>
-                                            <th>Tanggal</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php if (!empty($informasi_terbaru)): ?>
-                                            <?php foreach ($informasi_terbaru as $data): ?>
-                                                <tr>
-                                                    <td><span class="table-id"><?php echo $data->informasi_id ?></span></td>
-                                                    <td><?php echo substr($data->judul, 0, 50) ?><?php echo strlen($data->judul) > 50 ? '...' : '' ?></td>
-                                                    <td><?php echo $data->pengaju ?></td>
-                                                    <td><?php echo date('d/m/Y', strtotime($data->tanggal)) ?></td>
-                                                    <td>
-                                                        <?php if ($data->status == 'belum di proses'): ?>
-                                                            <span class="status-badge status-verifikasi">Belum Diproses</span>
-                                                        <?php elseif ($data->status == 'sedang diproses'): ?>
-                                                            <span class="status-badge status-proses">Sedang Diproses</span>
-                                                        <?php elseif ($data->status == 'sudah diproses'): ?>
-                                                            <span class="status-badge status-sudah">Sudah Diproses</span>
-                                                        <?php else: ?>
-                                                            <span class="status-badge status-ditolak">Ditolak</span>
-                                                        <?php endif; ?>
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        <?php else: ?>
-                                            <tr>
-                                                <td colspan="5">
-                                                    <div class="empty-state">
-                                                        <i class="fa fa-inbox"></i>
-                                                        <p>Belum ada data informasi publik</p>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        <?php endif; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
             </div>
             <!-- /.container-fluid -->
