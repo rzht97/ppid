@@ -265,93 +265,45 @@
         <!--Counters One Start-->
 
         <!--News One Start-->
-        <!--<section class="news-one news-two">
+        <?php if (!empty($berita)): ?>
+        <section class="news-one news-two">
             <div class="container">
                 <div class="section-title text-center">
                     <h2 class="section-title__title">Berita PPID</h2>
                 </div>
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
-                        
+                    <?php
+                    $delays = ['0ms', '300ms', '600ms'];
+                    $i = 0;
+                    foreach($berita as $item):
+                    ?>
+                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="<?= $delays[$i % 3] ?>" data-wow-duration="1500ms">
                         <div class="news-one__single">
                             <div class="news-one__img">
-                                <img src="<?= base_url() ?>newestassets/images/blog/news-1-1.jpg" alt="">
-                                <a href="bloag-details.html">
+                                <img src="<?= base_url() ?>upload/berita/<?= $item->gambar ?>" alt="<?= htmlspecialchars($item->judul) ?>">
+                                <a href="<?= site_url('berita/detail/' . $item->slug) ?>">
                                     <span class="news-one__plus"></span>
                                 </a>
                             </div>
                             <div class="news-one__content">
                                 <ul class="list-unstyled news-one__meta">
-                                    <li><a href="#"><i class="far fa-user-circle"></i> by Admin</a></li>
-                                    <li><span>/</span></li>
-                                    <li><a href="#"><i class="far fa-comments"></i> 2 Comments</a>
-                                    </li>
+                                    <li><a href="#"><i class="far fa-user-circle"></i> Admin</a></li>
                                 </ul>
                                 <h3 class="news-one__title">
-                                    <a href="blog-details.html">business advice for growth</a>
+                                    <a href="<?= site_url('berita/detail/' . $item->slug) ?>"><?= htmlspecialchars($item->judul) ?></a>
                                 </h3>
-                                <a href="blog-details.html" class="news-one__btn">Read More</a>
+                                <a href="<?= site_url('berita/detail/' . $item->slug) ?>" class="news-one__btn">Baca Selengkapnya</a>
                                 <div class="news-one__date-box">
-                                    <p>26 mar</p>
+                                    <p><?= date('d M', strtotime($item->tanggal)) ?></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
-                        
-                        <div class="news-one__single">
-                            <div class="news-one__img">
-                                <img src="<?= base_url() ?>newestassets/images/blog/news-1-2.jpg" alt="">
-                                <a href="blog-details.html">
-                                    <span class="news-one__plus"></span>
-                                </a>
-                            </div>
-                            <div class="news-one__content">
-                                <ul class="list-unstyled news-one__meta">
-                                    <li><a href="#"><i class="far fa-user-circle"></i> by Admin</a></li>
-                                    <li><span>/</span></li>
-                                    <li><a href="#"><i class="far fa-comments"></i> 2 Comments</a>
-                                    </li>
-                                </ul>
-                                <h3 class="news-one__title">
-                                    <a href="blog-details.html">solutions total link parallel</a>
-                                </h3>
-                                <a href="blog-details.html" class="news-one__btn">Read More</a>
-                                <div class="news-one__date-box">
-                                    <p>26 mar</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="600ms" data-wow-duration="1500ms">
-                        
-                        <div class="news-one__single">
-                            <div class="news-one__img">
-                                <img src="<?= base_url() ?>newestassets/images/blog/news-1-3.jpg" alt="">
-                                <a href="blog-details.html">
-                                    <span class="news-one__plus"></span>
-                                </a>
-                            </div>
-                            <div class="news-one__content">
-                                <ul class="list-unstyled news-one__meta">
-                                    <li><a href="#"><i class="far fa-user-circle"></i> by Admin</a></li>
-                                    <li><span>/</span></li>
-                                    <li><a href="#"><i class="far fa-comments"></i> 2 Comments</a>
-                                    </li>
-                                </ul>
-                                <h3 class="news-one__title">
-                                    <a href="blog-details.html">Metrics mission skills.</a>
-                                </h3>
-                                <a href="blog-details.html" class="news-one__btn">Read More</a>
-                                <div class="news-one__date-box">
-                                    <p>26 mar</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php $i++; endforeach; ?>
                 </div>
             </div>
-        </section>-->
+        </section>
+        <?php endif; ?>
         <!--News One End-->
 
         <!--CTA Two Start-->

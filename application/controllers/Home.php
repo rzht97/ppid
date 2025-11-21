@@ -44,6 +44,14 @@ class Home extends CI_Controller {
 		                         ->get('user')
 		                         ->result();
 
+		// Berita terbaru untuk homepage (3 berita)
+		$data['berita'] = $this->db->select('berita_id, judul, tanggal, isi, gambar, slug')
+		                           ->from('berita')
+		                           ->order_by('tanggal', 'DESC')
+		                           ->limit(3)
+		                           ->get()
+		                           ->result();
+
         // load view admin/overview.php
         $this->load->view("dev/index2", $data);
 	}
