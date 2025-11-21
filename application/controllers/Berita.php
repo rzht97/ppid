@@ -54,7 +54,9 @@ class Berita extends CI_Controller {
         if (isset($result['status']) && $result['status'] === 200) {
             return $result['news'];
         } else {
-            return ['error' => $result['message'] ?? 'Gagal mengambil data berita'];
+            $error_message = $result['message'] ?? 'Gagal mengambil data berita';
+            log_message('error', 'API Berita Error: ' . $error_message);
+            return ['error' => 'Maaf, data berita sementara tidak dapat ditampilkan. Silakan coba beberapa saat lagi.'];
         }
     }
 
@@ -102,10 +104,12 @@ class Berita extends CI_Controller {
 
         if (isset($result['status']) && $result['status'] === 200) {
             $data['news'] = is_array($result['news']) ? $result['news'][0] : $result['news'];
-            $this->load->view('dev/berita/detail', $data);
         } else {
-            $data['error'] = $result['message'] ?? 'Berita tidak ditemukan';
-            $this->load->view('dev/berita/detail', $data);
+            $error_message = $result['message'] ?? 'Berita tidak ditemukan';
+            log_message('error', 'API Berita Detail Error: ' . $error_message);
+            $data['error'] = 'Maaf, detail berita tidak dapat ditampilkan. Silakan coba beberapa saat lagi.';
         }
+
+        $this->load->view('dev/berita/detail', $data);
     }
 }
