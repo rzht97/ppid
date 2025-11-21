@@ -3,11 +3,57 @@
 
 <head>
     <title>Admin - PPID Kabupaten Sumedang</title>
-    <?php $this->load->view("dev/partials/head.php") ?>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Core CSS -->
+    <link href="<?= base_url() ?>inverse/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- animation CSS -->
+    <link href="<?= base_url() ?>inverse/css/animate.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="<?= base_url() ?>inverse/css/style.css" rel="stylesheet">
+    <!-- color CSS -->
+    <link href="<?= base_url() ?>inverse/css/colors/default.css" rel="stylesheet">
 
     <style>
-        .login-register { background: #f5f5f5; }
-        .login-box .white-box { background: #fff; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); padding: 25px; }
+        .login-register {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-box {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .login-box .white-box {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 40px 30px;
+        }
+        .box-title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        .form-control {
+            height: 45px;
+            border-radius: 8px;
+        }
+        .btn-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            height: 45px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .btn-info:hover {
+            background: linear-gradient(135deg, #5a6fd6 0%, #6a4190 100%);
+        }
     </style>
 </head>
 
