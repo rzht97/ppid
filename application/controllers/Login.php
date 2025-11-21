@@ -128,10 +128,4 @@ class Login extends CI_Controller{
 		$this->session->sess_destroy();
 		redirect(base_url('login'));
 	}
-
-		function regis(){
-		$this->load->view('publik/regis');
-	}
-
-	
 }
