@@ -5,11 +5,9 @@ class PublicPermohonan extends CI_Controller {
     {
 		parent::__construct();
 
-		 $this->load->model("Permohonan_model");
-		$this->load->model("informasi_model");
-		//$this->load->model("user_model");
-        $this->load->library('form_validation');
-        $this->load->model("dokumen_model");
+		$this->load->model("Permohonan_model");
+		$this->load->library('form_validation');
+		$this->load->model("dokumen_model");
 	}
 
 
