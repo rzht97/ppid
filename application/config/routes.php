@@ -53,7 +53,21 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+// Main routes
 $route['publik'] = 'home';
 $route['admin'] = 'admin/index';
+
+// Content routes
 $route['berita'] = 'home/berita';
 $route['dik'] = 'home/dik';
+$route['cc'] = 'home/cc';
+$route['laporan'] = 'home/laporan';
+$route['regulasi'] = 'home/regulasi';
+
+// Service routes
+$route['caradapatinfo'] = 'home/caradapatinfo';
+$route['carakeberatan'] = 'home/carakeberatan';
+$route['carasengketa'] = 'home/carasengketa';
+$route['sop'] = 'home/sop';
+$route['standarbiaya'] = 'home/standarbiaya';
+$route['lapor'] = 'home/lapor';
