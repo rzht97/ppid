@@ -56,3 +56,4 @@ $route['translate_uri_dashes'] = FALSE;
 $route['publik'] = 'home';
 $route['admin'] = 'admin/index';
 $route['berita'] = 'home/berita';
+$route['dik'] = 'home/dik';
