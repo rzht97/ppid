@@ -266,7 +266,7 @@
 
         <!--News One Start-->
         <?php if (!empty($berita)): ?>
-        <section class="news-one news-two">
+        <section class="news-one" style="background-color: #f8f9fa;">
             <div class="container">
                 <div class="section-title text-center">
                     <h2 class="section-title__title">Berita PPID</h2>
