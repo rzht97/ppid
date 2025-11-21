@@ -34,6 +34,10 @@ class Home extends CI_Controller {
 		$data['jml'] = array((object)array('total' => $stats->total));
 		$data['selesai'] = array((object)array('total' => $stats->selesai));
 
+		// Hitung jumlah keberatan/sengketa
+		$sengketa_count = $this->db->count_all('keberatan');
+		$data['sengketa'] = array((object)array('total' => $sengketa_count));
+
 		// Fixed: Gunakan query builder dan select specific columns
 		$data['done'] = $this->db->select('mohon_id, nama, tanggal, status')
 		                         ->where('status', 'Sudah Diproses')

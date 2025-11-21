@@ -252,10 +252,8 @@
                                 <div class="counter-one__icon">
                                     <span class="icon-consultant"></span>
                                 </div>
-                                <?php foreach ($ditolak as $ditolak) : ?>
-                                    <h3 class="odometer" data-count="00">00</h3>
-                                    <p class="counter-one__text">Sengketa</p>
-                                <?php endforeach; ?>
+                                <h3 class="odometer" data-count="<?php foreach($sengketa as $s): echo $s->total; endforeach; ?>"></h3>
+                                <p class="counter-one__text">Sengketa</p>
                             </li>
                         </div>
                     </div>
