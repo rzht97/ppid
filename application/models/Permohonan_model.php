@@ -24,7 +24,7 @@ class Permohonan_model extends CI_Model
 
     /**
      * Validation rules untuk form permohonan
-     * Updated: Tambahkan max_length, regex, dan in_list untuk keamanan
+     * Updated: Tambahkan max_length, regex, dan in_list untuk keamanan maksimal
      */
     public function rules()
     {
@@ -35,11 +35,11 @@ class Permohonan_model extends CI_Model
 
             ['field' => 'alamat',
              'label' => 'Alamat',
-             'rules' => 'required|min_length[5]|max_length[500]'],
+             'rules' => 'required|min_length[5]|max_length[500]|regex_match[/^[a-zA-Z0-9\s\.,\/-]+$/]'],
 
             ['field' => 'pekerjaan',
              'label' => 'Pekerjaan',
-             'rules' => 'required|max_length[100]'],
+             'rules' => 'required|max_length[100]|regex_match[/^[a-zA-Z\s\.\/\-]+$/]'],
 
             ['field' => 'nohp',
              'label' => 'No HP',
@@ -51,11 +51,11 @@ class Permohonan_model extends CI_Model
 
             ['field' => 'rincian',
              'label' => 'Rincian Informasi',
-             'rules' => 'required|min_length[10]|max_length[1000]'],
+             'rules' => 'required|min_length[10]|max_length[1000]|regex_match[/^[a-zA-Z0-9\s\.,\?\!\:\;\(\)\/\-\'\"]+$/]'],
 
             ['field' => 'tujuan',
              'label' => 'Tujuan',
-             'rules' => 'required|max_length[500]'],
+             'rules' => 'required|max_length[500]|regex_match[/^[a-zA-Z0-9\s\.,\?\!\(\)\/\-]+$/]'],
 
             ['field' => 'caraperoleh',
              'label' => 'Cara Memperoleh Informasi',
