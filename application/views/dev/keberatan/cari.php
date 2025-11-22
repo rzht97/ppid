@@ -186,7 +186,6 @@
                                                     <option value="Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan">Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan</option>
                                                 </select>
                                                 <span id="alasanError" class="help-block text-danger" style="display:none; margin-top: 8px;"></span>
-                                                <span class="help-block"><small>Pilih alasan yang sesuai dengan kondisi permohonan Anda</small></span>
                                             </div>
 
                                             <div class="form-group">
@@ -195,12 +194,6 @@
                                                 </label>
                                                 <textarea class="form-control" name="kronologi" id="kronologiTextarea" rows="7" required></textarea>
                                                 <span id="kronologiError" class="help-block text-danger" style="display:none; margin-top: 8px;"></span>
-                                                <span class="help-block">
-                                                    <small>
-                                                        Jelaskan kronologi atau uraian keberatan Anda sejelas mungkin (minimal 20 karakter, maksimal 2000 karakter)<br>
-                                                        Karakter yang diizinkan: huruf, angka, spasi, dan tanda baca standar (. , ? ! : ; ( ) / - ' ")
-                                                    </small>
-                                                </span>
                                                 <span id="kronologiCount" class="help-block" style="display:block; margin-top: 5px;">
                                                     <small><strong>Jumlah karakter:</strong> <span id="charCount">0</span> / 2000</small>
                                                 </span>
