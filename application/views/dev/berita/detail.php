@@ -51,8 +51,8 @@
                                 </div>
                             <?php elseif (isset($news)): ?>
                                 <div class="news-details__left">
-                                    <div class="news-details__img">
-                                        <img src="<?= htmlspecialchars($news['picture'] ?? '') ?>" alt="" style="width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 8px; background: #f5f5f5;">
+                                    <div class="news-details__img" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 8px; padding: 10px;">
+                                        <img src="<?= htmlspecialchars($news['picture'] ?? '') ?>" alt="" style="width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 8px;">
                                         <div class="news-details__date-box">
                                             <p><?= htmlspecialchars($news['publish_date'] ?? '') ?></p>
                                         </div>
