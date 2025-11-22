@@ -27,12 +27,21 @@ class Audit_model extends CI_Model
      */
     public function log($action, $table_name, $record_id = null, $old_values = null, $new_values = null, $description = null)
     {
+        // Check if audit_logs table exists
+        if (!$this->db->table_exists($this->_table)) {
+            // Silent fail - tabel belum dibuat, skip logging
+            // Tidak throw error agar aplikasi tetap berjalan
+            log_message('warning', 'Audit logging skipped: table audit_logs does not exist. Run migration first.');
+            return false;
+        }
+
         // Ambil data user dari session
         $user_id = $this->session->userdata('id');
         $username = $this->session->userdata('username');
 
         // Jika tidak ada session (shouldn't happen in admin area), skip logging
         if (!$username) {
+            log_message('warning', 'Audit logging skipped: no user session found');
             return false;
         }
 
@@ -51,7 +60,18 @@ class Audit_model extends CI_Model
             'created_at' => date('Y-m-d H:i:s')
         );
 
-        return $this->db->insert($this->_table, $data);
+        try {
+            $result = $this->db->insert($this->_table, $data);
+
+            if (!$result) {
+                log_message('error', 'Audit logging failed: ' . $this->db->error()['message']);
+            }
+
+            return $result;
+        } catch (Exception $e) {
+            log_message('error', 'Audit logging exception: ' . $e->getMessage());
+            return false;
+        }
     }
 
     /**
