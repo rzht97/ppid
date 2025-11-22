@@ -176,7 +176,7 @@
                                                     Alasan Pengajuan Keberatan <span class="text-danger">*</span>
                                                 </label>
                                                 <select class="form-control" name="alasan" id="alasanSelect" required>
-                                                    <option value="">-- Pilih Alasan Keberatan --</option>
+                                                    <option value="" Hidden></option>
                                                     <option value="Permohonan Informasi Publik Ditolak">Permohonan Informasi Publik Ditolak</option>
                                                     <option value="Informasi Berkala Tidak Disediakan">Informasi Berkala Tidak Disediakan</option>
                                                     <option value="Permohonan Informasi Tidak Ditanggapi">Permohonan Informasi Tidak Ditanggapi</option>
