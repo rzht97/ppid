@@ -98,16 +98,6 @@
                                 </div>
                             <?php endif; ?>
 
-                            <?php if($this->session->flashdata('success')): ?>
-                                <div class="alert alert-success alert-dismissible" style="border-radius: 6px;">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <i class="fa fa-check-circle"></i> <strong>Berhasil!</strong><br>
-                                    <?php echo $this->session->flashdata('success'); ?>
-                                </div>
-                            <?php endif; ?>
-
                             <?php if($caritoken): ?>
                                 <?php foreach($caritoken as $data): ?>
 
