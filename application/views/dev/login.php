@@ -66,6 +66,9 @@
         <div class="login-box">
             <div class="white-box">
                 <form class="form-horizontal form-material" action="<?php echo base_url('login/aksi_login'); ?>" method="post">
+                    <!-- CSRF Token -->
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                     <h3 class="box-title m-b-20">Login Admin PPID Kab. Sumedang</h3>
 
                     <?php if($this->session->flashdata('error')): ?>

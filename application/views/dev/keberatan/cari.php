@@ -169,6 +169,8 @@
                                         </h3>
 
                                         <form action="<?= base_url()?>keberatan/save" method="post">
+                                            <!-- CSRF Token -->
+                                            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                             <input type="hidden" name="mohon_id" value="<?php echo $data->mohon_id?>" required>
 
                                             <div class="form-group">

@@ -90,6 +90,9 @@
                             <div class="panel panel-default search-panel">
                                 <div class="panel-body">
                                     <form method="POST">
+                                        <!-- CSRF Token -->
+                                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                                         <div class="row">
                                             <div class="col-md-8 col-md-offset-2">
                                                 <div class="form-group">
