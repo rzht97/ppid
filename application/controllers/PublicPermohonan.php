@@ -8,6 +8,7 @@ class PublicPermohonan extends CI_Controller {
 
 		$this->load->model("Permohonan_model");
 		$this->load->library('form_validation');
+		$this->load->library('rate_limiter');  // ADDED: Enhanced rate limiting
 		$this->load->model("dokumen_model");
 	}
 

@@ -11,6 +11,7 @@ class Keberatan extends CI_Controller {
 		$this->load->model("Keberatan_model");
 		// Removed: user_model does not exist
         $this->load->library('form_validation');
+        $this->load->library('rate_limiter');  // ADDED: Enhanced rate limiting
 	}
 
 	/**
