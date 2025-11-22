@@ -227,7 +227,10 @@ $config['allow_get_array'] = TRUE;
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 4;
+// SECURITY: Production-ready error logging
+// Development: 4 (ALL) - untuk debugging
+// Production: 1 (ERROR only) - untuk keamanan dan performa
+$config['log_threshold'] = (ENVIRONMENT === 'production') ? 1 : 4;
 
 /*
 |--------------------------------------------------------------------------
