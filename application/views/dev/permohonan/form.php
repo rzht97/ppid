@@ -640,6 +640,20 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 				return null;
 			},
 
+			caraperoleh: function(value) {
+				if (!value || value.trim().length === 0) {
+					return 'Cara memperoleh informasi wajib dipilih';
+				}
+				return null;
+			},
+
+			caradapat: function(value) {
+				if (!value || value.trim().length === 0) {
+					return 'Cara mendapatkan salinan wajib dipilih';
+				}
+				return null;
+			},
+
 			terms: function(checkbox) {
 				if (!checkbox || !checkbox.checked) {
 					return 'Anda harus menyetujui Hak-hak Pemohon Informasi';
@@ -704,7 +718,7 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 
 		// Function to check if all fields are valid and enable/disable submit button
 		function checkAllFieldsValid() {
-			const fieldsToCheck = ['nama', 'alamat', 'pekerjaan', 'nohp', 'email', 'rincian', 'tujuan', 'ktp', 'terms'];
+			const fieldsToCheck = ['nama', 'alamat', 'pekerjaan', 'nohp', 'email', 'rincian', 'tujuan', 'caraperoleh', 'caradapat', 'ktp', 'terms'];
 			let allValid = true;
 
 			fieldsToCheck.forEach(function(fieldName) {
@@ -766,7 +780,7 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 			let isValid = true;
 
 			// Validate all fields
-			const fieldsToValidate = ['nama', 'alamat', 'pekerjaan', 'nohp', 'email', 'rincian', 'tujuan', 'ktp', 'terms'];
+			const fieldsToValidate = ['nama', 'alamat', 'pekerjaan', 'nohp', 'email', 'rincian', 'tujuan', 'caraperoleh', 'caradapat', 'ktp', 'terms'];
 
 			fieldsToValidate.forEach(function(fieldName) {
 				if (!validateField(fieldName)) {

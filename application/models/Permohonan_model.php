@@ -59,11 +59,11 @@ class Permohonan_model extends CI_Model
 
             ['field' => 'caraperoleh',
              'label' => 'Cara Memperoleh Informasi',
-             'rules' => 'required|in_list[Melihat,Membaca,Mendengar,Mencatat,Fotokopi,Email]'],
+             'rules' => 'required|in_list[Mendapat Salinan informasi (hardcopy/softcopy),Melihat/membaca/mendengarkan/mecatat]'],
 
             ['field' => 'caradapat',
              'label' => 'Cara Mendapatkan Salinan',
-             'rules' => 'required|in_list[Mengambil Langsung,Kurir,Pos,Faksimili,Email]'],
+             'rules' => 'required|in_list[Mengambil Langsung,Kurir,Pos,Faksimil,E-mail]'],
         ];
     }
 
