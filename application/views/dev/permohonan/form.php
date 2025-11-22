@@ -33,6 +33,9 @@
         .form-actions { margin-top: 20px; }
         .form-actions .btn { padding: 10px 35px; font-size: 14px; }
         .honeypot-field { position: absolute; left: -5000px; }
+        #submitBtn:disabled { opacity: 0.5; cursor: not-allowed; background-color: #6c757d; border-color: #6c757d; }
+        #submitBtn:disabled:hover { background-color: #6c757d; border-color: #6c757d; }
+        #submitHelp { font-size: 12px; }
         @media (max-width: 768px) { .form-container .white-box { padding: 20px 15px; } .form-container { padding: 30px 0; } }
     </style>
 </head>
@@ -286,9 +289,12 @@
                                 <hr>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-success btn-lg waves-effect waves-light">
+                                        <button type="submit" id="submitBtn" class="btn btn-success btn-lg waves-effect waves-light" disabled>
                                             <i class="fa fa-paper-plane"></i> Kirim
                                         </button>
+                                        <small id="submitHelp" class="text-muted" style="display: block; margin-top: 8px;">
+                                            <i class="fa fa-info-circle"></i> Lengkapi semua field dengan benar untuk mengaktifkan tombol kirim
+                                        </small>
                                     </div>
                                 </div>
                             </form>
@@ -487,6 +493,9 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 			// Check the hidden checkbox
 			document.getElementById('terms').checked = true;
 
+			// Trigger change event to update validation
+			$('#terms').trigger('change');
+
 			// Force close the modal using multiple methods for compatibility
 			$('#exampleModal').modal('hide');
 
@@ -681,13 +690,55 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 				const error = validators[fieldName](value);
 				if (error) {
 					showError(fieldName, error);
+					checkAllFieldsValid(); // Check after validation
 					return false;
 				} else {
 					clearError(fieldName);
+					checkAllFieldsValid(); // Check after validation
 					return true;
 				}
 			}
+			checkAllFieldsValid(); // Check after validation
 			return true;
+		}
+
+		// Function to check if all fields are valid and enable/disable submit button
+		function checkAllFieldsValid() {
+			const fieldsToCheck = ['nama', 'alamat', 'pekerjaan', 'nohp', 'email', 'rincian', 'tujuan', 'ktp', 'terms'];
+			let allValid = true;
+
+			fieldsToCheck.forEach(function(fieldName) {
+				const field = $('[name="' + fieldName + '"]');
+				let value;
+
+				if (fieldName === 'ktp') {
+					value = field[0];
+				} else if (fieldName === 'terms') {
+					value = field[0];
+				} else {
+					value = field.val();
+				}
+
+				// Check if field has value and is valid
+				if (validators[fieldName]) {
+					const error = validators[fieldName](value);
+					if (error) {
+						allValid = false;
+					}
+				}
+			});
+
+			// Enable or disable submit button
+			const submitBtn = $('#submitBtn');
+			const submitHelp = $('#submitHelp');
+
+			if (allValid) {
+				submitBtn.prop('disabled', false);
+				submitHelp.html('<i class="fa fa-check-circle text-success"></i> <span class="text-success">Semua field sudah terisi dengan benar. Silakan kirim permohonan.</span>');
+			} else {
+				submitBtn.prop('disabled', true);
+				submitHelp.html('<i class="fa fa-info-circle"></i> Lengkapi semua field dengan benar untuk mengaktifkan tombol kirim');
+			}
 		}
 
 		// Attach blur AND input event listeners for text inputs (real-time validation)
@@ -703,6 +754,11 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 		// Attach change event for file input
 		$('input[name="ktp"]').on('change', function() {
 			validateField('ktp');
+		});
+
+		// Attach change event for dropdown fields
+		$('select[name="caraperoleh"], select[name="caradapat"]').on('change', function() {
+			checkAllFieldsValid();
 		});
 
 		// Validate all fields before form submission
@@ -739,7 +795,11 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 			if ($(this).is(':checked')) {
 				clearError('terms');
 			}
+			checkAllFieldsValid();
 		});
+
+		// Initial check on page load
+		checkAllFieldsValid();
 	});
 	</script>
 
