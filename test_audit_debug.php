@@ -22,10 +22,52 @@ $config_file = dirname(__FILE__) . '/application/config/database.php';
 if (!file_exists($config_file)) {
     die("<h1>❌ Database config file not found!</h1><p>File: {$config_file}</p>");
 }
+
+// Initialize $db before requiring config
+$db = null;
 require_once($config_file);
 
-if (!isset($db) || !isset($db['default'])) {
-    die("<h1>❌ Database configuration error!</h1><p>Variable \$db not found in config file.</p>");
+if (!isset($db) || !is_array($db) || !isset($db['default'])) {
+    die("
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Database Config Error</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 50px; background: #f5f5f5; }
+            .error { background: #fff; padding: 30px; border-radius: 10px; border-left: 5px solid #dc3545; }
+            h1 { color: #dc3545; margin: 0 0 20px 0; }
+            pre { background: #f8f9fa; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        </style>
+    </head>
+    <body>
+        <div class='error'>
+            <h1>❌ Database Configuration Error</h1>
+            <p><strong>Problem:</strong> Variable \$db not properly loaded from config file.</p>
+            <p><strong>Config file path:</strong> <code>{$config_file}</code></p>
+            <p><strong>Possible causes:</strong></p>
+            <ul>
+                <li>Database config file is empty or malformed</li>
+                <li>BASEPATH constant issue (though it's defined)</li>
+                <li>PHP syntax error in database.php</li>
+            </ul>
+            <p><strong>Debug info:</strong></p>
+            <pre>BASEPATH defined: " . (defined('BASEPATH') ? 'YES' : 'NO') . "
+ENVIRONMENT defined: " . (defined('ENVIRONMENT') ? 'YES (' . ENVIRONMENT . ')' : 'NO') . "
+\$db variable type: " . gettype($db) . "
+Config file exists: " . (file_exists($config_file) ? 'YES' : 'NO') . "</pre>
+        </div>
+    </body>
+    </html>
+    ");
+}
+
+// Validate database credentials
+if (empty($db['default']['hostname'])) {
+    die("<h1>❌ Database hostname is empty!</h1>");
+}
+if (empty($db['default']['database'])) {
+    die("<h1>❌ Database name is empty!</h1>");
 }
 
 // Connect to database
