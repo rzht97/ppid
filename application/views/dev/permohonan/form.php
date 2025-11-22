@@ -516,7 +516,7 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 	<!-- Real-time Validation Script -->
 	<script>
 	$(document).ready(function() {
-		// Real-time validation functions
+		// Real-time validation functions with regex (match server-side validation)
 		const validators = {
 			nama: function(value) {
 				if (!value || value.trim().length === 0) {
@@ -528,6 +528,10 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 				if (value.length > 100) {
 					return 'Nama maksimal 100 karakter';
 				}
+				// Regex: only letters, spaces, dots, commas, apostrophes
+				if (!/^[a-zA-Z\s\.,\']+$/.test(value)) {
+					return 'Nama hanya boleh berisi huruf, spasi, titik, koma, dan apostrof';
+				}
 				return null;
 			},
 
@@ -538,12 +542,26 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 				if (value.length < 5) {
 					return 'Alamat minimal 5 karakter';
 				}
+				if (value.length > 500) {
+					return 'Alamat maksimal 500 karakter';
+				}
+				// Regex: letters, numbers, spaces, dots, commas, slashes, dashes
+				if (!/^[a-zA-Z0-9\s\.,\/-]+$/.test(value)) {
+					return 'Alamat hanya boleh berisi huruf, angka, spasi, titik, koma, garis miring, dan strip';
+				}
 				return null;
 			},
 
 			pekerjaan: function(value) {
 				if (!value || value.trim().length === 0) {
 					return 'Pekerjaan wajib diisi';
+				}
+				if (value.length > 100) {
+					return 'Pekerjaan maksimal 100 karakter';
+				}
+				// Regex: letters, spaces, dots, slashes, dashes
+				if (!/^[a-zA-Z\s\.\/\-]+$/.test(value)) {
+					return 'Pekerjaan hanya boleh berisi huruf, spasi, titik, garis miring, dan strip';
 				}
 				return null;
 			},
@@ -582,12 +600,26 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 				if (value.length < 10) {
 					return 'Rincian informasi minimal 10 karakter';
 				}
+				if (value.length > 1000) {
+					return 'Rincian informasi maksimal 1000 karakter';
+				}
+				// Regex: letters, numbers, spaces, punctuation (.,?!:;()/-'")
+				if (!/^[a-zA-Z0-9\s\.,\?\!\:\;\(\)\/\-\'\"]+$/.test(value)) {
+					return 'Rincian informasi mengandung karakter yang tidak diizinkan (tidak boleh <, >, @, #, dll)';
+				}
 				return null;
 			},
 
 			tujuan: function(value) {
 				if (!value || value.trim().length === 0) {
 					return 'Tujuan penggunaan informasi wajib diisi';
+				}
+				if (value.length > 500) {
+					return 'Tujuan maksimal 500 karakter';
+				}
+				// Regex: letters, numbers, spaces, punctuation (.,?!()/-)
+				if (!/^[a-zA-Z0-9\s\.,\?\!\(\)\/\-]+$/.test(value)) {
+					return 'Tujuan mengandung karakter yang tidak diizinkan (tidak boleh <, >, @, #, dll)';
 				}
 				return null;
 			},
@@ -658,31 +690,19 @@ diterimanya keputusan atasan PPID oleh Pemohon Informasi Publik.</p>
 			return true;
 		}
 
-		// Attach blur event listeners for text inputs
-		$('input[name="nama"], input[name="alamat"], input[name="pekerjaan"], input[name="nohp"], input[name="email"]').on('blur', function() {
+		// Attach blur AND input event listeners for text inputs (real-time validation)
+		$('input[name="nama"], input[name="alamat"], input[name="pekerjaan"], input[name="nohp"], input[name="email"]').on('blur input', function() {
 			validateField($(this).attr('name'));
 		});
 
-		// Attach blur event listeners for textareas
-		$('textarea[name="rincian"], textarea[name="tujuan"]').on('blur', function() {
+		// Attach blur AND input event listeners for textareas (real-time validation)
+		$('textarea[name="rincian"], textarea[name="tujuan"]').on('blur input', function() {
 			validateField($(this).attr('name'));
 		});
 
 		// Attach change event for file input
 		$('input[name="ktp"]').on('change', function() {
 			validateField('ktp');
-		});
-
-		// Real-time input validation (while typing)
-		$('input[name="nama"], input[name="alamat"], input[name="pekerjaan"], input[name="nohp"], input[name="email"]').on('input', function() {
-			const fieldName = $(this).attr('name');
-			// Clear error immediately when user starts typing
-			clearError(fieldName);
-		});
-
-		$('textarea[name="rincian"], textarea[name="tujuan"]').on('input', function() {
-			const fieldName = $(this).attr('name');
-			clearError(fieldName);
 		});
 
 		// Validate all fields before form submission
