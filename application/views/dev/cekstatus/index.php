@@ -108,7 +108,7 @@
                                         <div class="row">
                                             <div class="col-md-12 text-center">
                                                 <button type="submit" id="submitBtn" class="btn btn-primary btn-lg" name="type" value="filter" disabled>
-                                                    <i class="fa fa-search"></i> Cari Status
+                                                    <i class="fa fa-search"></i> Cari Permohonan
                                                 </button>
                                             </div>
                                         </div>
