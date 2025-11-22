@@ -64,7 +64,13 @@
                                             <li><a href="#"><i class="far fa-comments"></i> <?= htmlspecialchars($news['hits'] ?? '0') ?> Dilihat</a></li>
                                         </ul>
                                         <h3 class="news-details__title"><?= htmlspecialchars($news['title'] ?? '') ?></h3>
-                                        <div class="news-details__text-one"><?= $news['content'] ?? '' ?></div>
+                                        <div class="news-details__text-one">
+                                            <?php
+                                            // SECURITY: Sanitize HTML content from API - allow safe tags only
+                                            $allowed_tags = '<p><br><b><i><u><strong><em><ul><ol><li><a><img><h1><h2><h3><h4><h5><h6><blockquote><pre><code><table><tr><td><th><tbody><thead><div><span>';
+                                            echo strip_tags($news['content'] ?? '', $allowed_tags);
+                                            ?>
+                                        </div>
                                     </div>
                                     <div class="news-details__bottom">
                                         <div class="news-details__social-list">
