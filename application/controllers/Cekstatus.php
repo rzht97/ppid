@@ -13,6 +13,7 @@ class Cekstatus extends CI_Controller {
     /**
      * Cek status permohonan berdasarkan ID
      * Search hanya di tabel permohonan
+     * Updated: Tambahkan validasi dan sanitasi input
      */
     public function index()
     {
@@ -20,8 +21,22 @@ class Cekstatus extends CI_Controller {
 
         // Initialize empty results
         $data['caritoken'] = array();
+        $data['error'] = null;
 
         if (!empty($token)) {
+            // Sanitize: remove whitespace and convert to uppercase P
+            $token = strtoupper(trim($token));
+
+            // Validate format: P + 9 digits (total 10 chars)
+            // Format: P + DDMMYY + 3 digit increment (e.g., P221124001)
+            if (!preg_match('/^P\d{9}$/', $token)) {
+                $data['error'] = 'Format ID Permohonan tidak valid. Format yang benar: P221124001 (P diikuti 9 angka)';
+                $this->load->view("dev/cekstatus/index", $data);
+                return;
+            }
+
+            // Additional sanitization: ensure only alphanumeric (already validated by regex, but extra safety)
+            $token = preg_replace('/[^A-Z0-9]/', '', $token);
             // Search di tabel PERMOHONAN
             $permohonan_result = $this->db
                 ->select('mohon_id, nama, alamat, nohp, email, rincian, tujuan, tanggal, status, jawab, tanggaljawab')

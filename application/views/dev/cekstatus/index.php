@@ -94,20 +94,35 @@
                                             <div class="col-md-8 col-md-offset-2">
                                                 <div class="form-group">
                                                     <label class="control-label"><strong>ID Permohonan</strong></label>
-                                                    <input type="text" name="token" placeholder="Contoh: P191125001" class="form-control input-lg" value="<?php echo $this->input->post('token'); ?>" required>
+                                                    <input type="text" name="token" id="tokenInput" placeholder="Contoh: P191125001" class="form-control input-lg" value="<?php echo $this->input->post('token'); ?>" required>
+                                                    <span id="tokenError" class="help-block text-danger" style="display:none; margin-top: 8px;"></span>
+                                                    <small class="text-muted" style="display: block; margin-top: 5px;">
+                                                        <i class="fa fa-info-circle"></i> Format: P diikuti 9 angka (contoh: P221124001)
+                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12 text-center">
-                                                <button type="submit" class="btn btn-primary btn-lg" name="type" value="filter">
+                                                <button type="submit" id="submitBtn" class="btn btn-primary btn-lg" name="type" value="filter" disabled>
                                                     <i class="fa fa-search"></i> Cari Status
                                                 </button>
+                                                <small id="submitHelp" class="text-muted" style="display: block; margin-top: 8px;">
+                                                    <i class="fa fa-info-circle"></i> Masukkan ID permohonan dengan format yang benar untuk mencari
+                                                </small>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
+
+                            <!-- Error Message -->
+                            <?php if(isset($error) && $error): ?>
+                                <div class="alert alert-danger" style="border-radius: 8px;">
+                                    <i class="fa fa-exclamation-triangle"></i> <strong>Error!</strong><br>
+                                    <?php echo $error; ?>
+                                </div>
+                            <?php endif; ?>
 
                             <!-- Hasil Pencarian -->
                             <?php if($this->input->post('token')): ?>
@@ -452,6 +467,127 @@
     <!--Style Switcher -->
     <script src="<?= base_url() ?>inverse/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
     <?php $this->load->view('dev/admin/partials/js.php') ?>
+
+    <!-- Real-time validation for ID Permohonan -->
+    <script>
+    $(document).ready(function() {
+        const tokenInput = $('#tokenInput');
+        const tokenError = $('#tokenError');
+        const submitBtn = $('#submitBtn');
+        const submitHelp = $('#submitHelp');
+
+        /**
+         * Validator untuk ID Permohonan
+         * Format: P diikuti 9 digit angka (total 10 karakter)
+         * Contoh valid: P221124001
+         */
+        function validateToken(value) {
+            // Hapus whitespace
+            value = value.trim();
+
+            // Cek jika kosong
+            if (!value || value.length === 0) {
+                return 'ID Permohonan wajib diisi';
+            }
+
+            // Konversi ke uppercase untuk validasi
+            value = value.toUpperCase();
+
+            // Cek panjang (harus 10 karakter: P + 9 digit)
+            if (value.length !== 10) {
+                return 'ID Permohonan harus 10 karakter (P diikuti 9 angka)';
+            }
+
+            // Cek format: P diikuti 9 digit angka
+            // Format: P + DDMMYY + 3 digit increment
+            if (!/^P\d{9}$/.test(value)) {
+                return 'Format tidak valid. Harus P diikuti 9 angka (contoh: P221124001)';
+            }
+
+            return null; // Valid
+        }
+
+        /**
+         * Tampilkan error atau hapus error
+         */
+        function showError(message) {
+            if (message) {
+                tokenError.text(message).show();
+                tokenInput.closest('.form-group').addClass('has-error');
+            } else {
+                tokenError.hide();
+                tokenInput.closest('.form-group').removeClass('has-error');
+            }
+        }
+
+        /**
+         * Update status tombol submit
+         */
+        function updateSubmitButton(isValid) {
+            if (isValid) {
+                submitBtn.prop('disabled', false);
+                submitBtn.removeClass('btn-default').addClass('btn-primary');
+                submitHelp.html('<i class="fa fa-check-circle text-success"></i> <span class="text-success">Format ID benar. Silakan klik tombol untuk mencari.</span>');
+            } else {
+                submitBtn.prop('disabled', true);
+                submitBtn.removeClass('btn-primary').addClass('btn-default');
+                submitHelp.html('<i class="fa fa-info-circle"></i> Masukkan ID permohonan dengan format yang benar untuk mencari');
+            }
+        }
+
+        /**
+         * Validasi field saat input atau blur
+         */
+        function validateField() {
+            let value = tokenInput.val().trim();
+
+            // Auto-uppercase
+            if (value) {
+                value = value.toUpperCase();
+                tokenInput.val(value);
+            }
+
+            const error = validateToken(value);
+            showError(error);
+            updateSubmitButton(!error);
+        }
+
+        // Event listeners
+        tokenInput.on('input', function() {
+            validateField();
+        });
+
+        tokenInput.on('blur', function() {
+            validateField();
+        });
+
+        // Validasi saat halaman dimuat (jika ada value dari POST)
+        if (tokenInput.val()) {
+            validateField();
+        }
+
+        // Prevent submit jika tidak valid
+        $('form').on('submit', function(e) {
+            const value = tokenInput.val().trim().toUpperCase();
+            const error = validateToken(value);
+
+            if (error) {
+                e.preventDefault();
+                showError(error);
+                updateSubmitButton(false);
+
+                // Scroll ke input
+                $('html, body').animate({
+                    scrollTop: tokenInput.offset().top - 100
+                }, 300);
+
+                return false;
+            }
+
+            return true;
+        });
+    });
+    </script>
 
 </body>
 
