@@ -7,13 +7,14 @@ class Dip extends CI_Controller
 {
     public function __construct()
     {
-        
+
         parent::__construct();
          if($this->session->userdata('status') != "login"){
       redirect(base_url("index.php/login"));
     }
         $this->load->helper('url');
         $this->load->model("dokumen_model");
+        $this->load->model("audit_model");  // ADDED: Audit logging
         $this->load->library('form_validation');
     }
 
@@ -55,6 +56,13 @@ class Dip extends CI_Controller
             $result = $dokumen->save();
 
             if($result) {
+                // AUDIT LOG: Catat penambahan dokumen DIP
+                $new_data = array(
+                    'judul' => $this->input->post('judul'),
+                    'kategori' => $this->input->post('kategori')
+                );
+                $this->audit_model->log_create('dokumen', $result, $new_data, 'Menambahkan dokumen DIP baru');
+
                 $this->session->set_flashdata('success', 'Informasi berhasil ditambahkan');
                 $this->session->set_flashdata('success_target', 'admin/dip');
                 redirect(site_url('admin/dip'));
@@ -77,9 +85,19 @@ class Dip extends CI_Controller
          $validation->set_rules($dokumen->rules());
 
          if ($validation->run()) {
+             // Get old data before update
+             $old_data = $dokumen->getById($id);
+
              $result = $dokumen->update();
 
              if($result) {
+                 // AUDIT LOG: Catat perubahan dokumen DIP
+                 $new_data = array(
+                     'judul' => $this->input->post('judul'),
+                     'kategori' => $this->input->post('kategori')
+                 );
+                 $this->audit_model->log_update('dokumen', $id, $old_data, $new_data, 'Update dokumen DIP');
+
                  $this->session->set_flashdata('success', 'Informasi berhasil diperbarui');
                  $this->session->set_flashdata('success_target', 'admin/dip');
              } else {
@@ -102,7 +120,13 @@ class Dip extends CI_Controller
     {
         if (!isset($id)) show_404();
 
+        // Get data before delete for audit log
+        $old_data = $this->dokumen_model->getById($id);
+
         if ($this->dokumen_model->delete($id)) {
+            // AUDIT LOG: Catat penghapusan dokumen DIP
+            $this->audit_model->log_delete('dokumen', $id, $old_data, 'Menghapus dokumen DIP');
+
             $this->session->set_flashdata('success', 'Informasi berhasil dihapus');
             $this->session->set_flashdata('success_target', 'admin/dip');
         } else {

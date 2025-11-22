@@ -141,16 +141,39 @@ public function save()
 		$config['allowed_types']        = 'docx|doc|pdf|xlsx';
 		$config['file_name']            = $this->id;
 		$config['overwrite']			= true;
-		$config['max_size']             = 50024; // 13MB
+		$config['max_size']             = 10240; // UPDATED: 10MB (was 50MB) - Security improvement
 		// $config['max_width']            = 1024;
 		// $config['max_height']           = 768;
 
 		$this->load->library('upload', $config);
 
 		if ($this->upload->do_upload('image')) {
-			return $this->upload->data("file_name");
+			$upload_data = $this->upload->data();
+
+			// SECURITY: MIME Type Validation to prevent file type spoofing
+			$finfo = finfo_open(FILEINFO_MIME_TYPE);
+			$mime = finfo_file($finfo, $upload_data['full_path']);
+			finfo_close($finfo);
+
+			// Whitelist of allowed MIME types for documents
+			$allowed_mimes = array(
+				'application/pdf',
+				'application/msword',  // .doc
+				'application/vnd.openxmlformats-officedocument.wordprocessingml.document',  // .docx
+				'application/vnd.ms-excel',  // .xls
+				'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'  // .xlsx
+			);
+
+			if (!in_array($mime, $allowed_mimes)) {
+				// Invalid MIME type - delete file and return error
+				unlink($upload_data['full_path']);
+				$this->upload->display_errors('<p>', '</p>'); // Clear errors
+				return "Belum Tersedia";
+			}
+
+			return $upload_data["file_name"];
 		}
-		
+
 		return "Belum Tersedia";
 	}
 

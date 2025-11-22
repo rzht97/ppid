@@ -306,16 +306,38 @@ public function getById($mohon_id)
 		$config['allowed_types']        = 'png|jpg|jpeg|pdf|';
 		$config['file_name']            = $this->mohon_id;
 		$config['overwrite']			= true;
-		$config['max_size']             = 20024; // 13MB
+		$config['max_size']             = 5120; // UPDATED: 5MB (was 20MB) - Security improvement
 		// $config['max_width']            = 1024;
 		// $config['max_height']           = 768;
 
 		$this->load->library('upload', $config);
 
 		if ($this->upload->do_upload('ktp')) {
-			return $this->upload->data("file_name");
+			$upload_data = $this->upload->data();
+
+			// SECURITY: MIME Type Validation to prevent file type spoofing
+			$finfo = finfo_open(FILEINFO_MIME_TYPE);
+			$mime = finfo_file($finfo, $upload_data['full_path']);
+			finfo_close($finfo);
+
+			// Whitelist of allowed MIME types
+			$allowed_mimes = array(
+				'image/png',
+				'image/jpeg',
+				'image/jpg',
+				'application/pdf'
+			);
+
+			if (!in_array($mime, $allowed_mimes)) {
+				// Invalid MIME type - delete file and return error
+				unlink($upload_data['full_path']);
+				$this->upload->display_errors('<p>', '</p>'); // Clear errors
+				return "Belum Tersedia";
+			}
+
+			return $upload_data["file_name"];
 		}
-		
+
 		return "Belum Tersedia";
 	}
 

@@ -9,13 +9,14 @@ class Permohonan extends CI_Controller
 {
     public function __construct()
     {
-        
+
         parent::__construct();
          if($this->session->userdata('status') != "login"){
       redirect(base_url("index.php/login"));
     }
         $this->load->helper('url');
         $this->load->model("permohonan_model");
+        $this->load->model("audit_model");  // ADDED: Audit logging
         $this->load->library('form_validation');
     }
 
@@ -52,6 +53,9 @@ class Permohonan extends CI_Controller
         $this->db->where('mohon_id', $mohon_id)
                  ->update('permohonan', array('status' => 'Sedang Diproses'));
 
+        // AUDIT LOG: Catat verifikasi permohonan
+        $this->audit_model->log_verify('permohonan', $mohon_id, 'Verifikasi permohonan - status diubah menjadi Sedang Diproses');
+
         $this->session->set_flashdata('success', 'Permohonan berhasil diverifikasi');
         $this->session->set_flashdata('success_target', 'admin/permohonan');
 		redirect(site_url('admin/permohonan'));
@@ -87,6 +91,14 @@ class Permohonan extends CI_Controller
             $result = $permohonan->save();
 
             if($result) {
+                // AUDIT LOG: Catat penambahan permohonan baru
+                $new_data = array(
+                    'nama' => $this->input->post('nama'),
+                    'pekerjaan' => $this->input->post('pekerjaan'),
+                    'rincian' => $this->input->post('rincian')
+                );
+                $this->audit_model->log_create('permohonan', $result, $new_data, 'Menambahkan permohonan baru melalui admin');
+
                 $this->session->set_flashdata('success', 'Permohonan berhasil ditambahkan');
                 $this->session->set_flashdata('success_target', 'admin/permohonan');
                 redirect(site_url('admin/permohonan'));
@@ -111,9 +123,19 @@ class Permohonan extends CI_Controller
          $validation->set_rules($permohonan->edit_rules());
 
          if ($validation->run()) {
+             // Get old data before update
+             $old_data = $permohonan->getById($id);
+
              $result = $permohonan->update();
 
              if($result) {
+                 // AUDIT LOG: Catat perubahan permohonan
+                 $new_data = array(
+                     'status' => $this->input->post('status'),
+                     'jawab' => $this->input->post('jawab')
+                 );
+                 $this->audit_model->log_update('permohonan', $id, $old_data, $new_data, 'Update status dan jawaban permohonan');
+
                  $this->session->set_flashdata('success', 'Permohonan berhasil diproses dan disimpan');
                  $this->session->set_flashdata('success_target', 'admin/permohonan');
              } else {
