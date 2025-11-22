@@ -73,7 +73,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             Maaf, halaman yang Anda cari tidak dapat ditemukan.<br>
             Halaman mungkin telah dipindahkan atau dihapus.
         </p>
-        <a href="<?php echo base_url(); ?>" class="btn-home">Kembali ke Beranda</a>
+        <?php
+        // Detect base URL from REQUEST_URI
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
+        $host = $_SERVER['HTTP_HOST'];
+        // Get first segment from REQUEST_URI as base path (e.g., /ppid/)
+        $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+        $segments = explode('/', trim($uri, '/'));
+        $base_path = isset($segments[0]) && $segments[0] != '' ? '/' . $segments[0] . '/' : '/';
+        $base_url = $protocol . $host . $base_path;
+        ?>
+        <a href="<?php echo htmlspecialchars($base_url); ?>" class="btn-home">Kembali ke Beranda</a>
     </div>
 </body>
 </html>
