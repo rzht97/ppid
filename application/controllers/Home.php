@@ -47,10 +47,6 @@ class Home extends CI_Controller {
 		                         ->get('permohonan')
 		                         ->result();
 
-		$data['user'] = $this->db->select('user_id, username, nama, email')
-		                         ->get('user')
-		                         ->result();
-
 		// Berita terbaru untuk homepage (3 berita) dari API
 		$data['berita'] = $this->get_news_api();
 
