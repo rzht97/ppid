@@ -3,12 +3,28 @@
 
 
 <head>
-    <title>Pengajuan Permohonan Informasi - PPID Kab. Sumedang</title>
+    <title>Detail Permohonan Informasi - PPID Kab. Sumedang</title>
     <?php $this->load->view("dev/partials/head.php") ?>
 
     <style>
-        .message-box { background: #f5f5f5; padding: 40px 0; }
-        .white-box { background: #fff; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); padding: 25px; }
+        .message-box { padding: 40px 0; background: #fff; }
+        .message-box .white-box { padding: 30px; max-width: 900px; margin: 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
+        .box-title { margin-top: 0; margin-bottom: 8px; font-size: 24px; color: #333; font-weight: 600; }
+        .result-panel { margin-bottom: 20px; border: none; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        .result-panel .panel-heading { padding: 15px 20px; border: none; }
+        .result-panel .panel-title { margin: 0; font-size: 16px; font-weight: 600; }
+        .result-panel .panel-body { padding: 20px; background: #fff; }
+        .content-box { background-color: #f8f9fa; padding: 15px 18px; border: 1px solid #e9ecef; border-radius: 8px; }
+        .content-box p { white-space: pre-wrap; word-wrap: break-word; margin: 0; line-height: 1.6; font-size: 14px; color: #555; }
+        .status-label { font-size: 14px; padding: 8px 15px; border-radius: 20px; }
+        .action-section { margin-top: 30px; padding-top: 20px; border-top: 1px solid #e3e3e3; text-align: center; }
+        .alert-success { border-radius: 8px; border: none; background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); }
+        .action-section .btn { padding: 10px 25px; font-size: 14px; margin: 0 5px; }
+        @media (max-width: 768px) {
+            .message-box { padding: 30px 0; }
+            .message-box .white-box { padding: 15px; }
+            .action-section .btn { display: block; width: 100%; margin: 5px 0; }
+        }
     </style>
 </head>
 
@@ -44,144 +60,177 @@
                     <ul class="thm-breadcrumb list-unstyled">
                         <li><a href="https://ppid.sumedangkab.go.id">Beranda</a></li>
                         <li><span>/</span></li>
-                        <li>Permohonan</li>
+                        <li>Detail Permohonan</li>
                     </ul>
-                    <h2>PERMOHONAN INFORMASI PUBLIK</h2>
+                    <h2>DETAIL PERMOHONAN INFORMASI</h2>
                 </div>
             </div>
         </section>
         <!--Page Header End-->
 
-        <!--Form Permhononan-->
+        <!--Detail Permohonan-->
         <section class="message-box">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title m-b-0">Formulir Permohonan Informasi Publik</h3>
-                            <p class="text-muted m-b-30 font-13"></p>
+                            <h3 class="box-title">Detail Permohonan Informasi</h3>
+                            <p class="text-muted">Informasi lengkap permohonan informasi publik Anda</p>
 
                             <?php if($this->session->flashdata('success')): ?>
-                                <div class="alert alert-success alert-dismissible" style="padding: 15px; margin-bottom: 20px;">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <div class="alert alert-success">
                                     <i class="fa fa-check-circle"></i> <strong>Berhasil!</strong><br>
                                     <span style="margin-top: 5px; display: inline-block;"><?php echo $this->session->flashdata('success'); ?></span>
                                 </div>
                             <?php else: ?>
-                                <div class="alert alert-success"> Permohonan Telah dibuat. Harap simpan No Token untuk pengecekan status informasi yang dimohon </div>
+                                <div class="alert alert-success">
+                                    <i class="fa fa-check-circle"></i> <strong>Permohonan Berhasil Dibuat!</strong><br>
+                                    <span style="margin-top: 5px; display: inline-block;">Harap simpan nomor permohonan untuk pengecekan status informasi yang dimohon.</span>
+                                </div>
                             <?php endif; ?>
 
-                            <form data-toogle="validator" class="form-horizontal">
-                                <div class="form-body">
+                            <!-- Info Waktu -->
+                            <div class="panel panel-default result-panel">
+                                <div class="panel-heading" style="background-color: #f5f5f5;">
+                                    <h4 class="panel-title">
+                                        <i class="fa fa-calendar"></i> Informasi Waktu
+                                    </h4>
+                                </div>
+                                <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label">Token:</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"> <?php echo $permohonan->mohon_id ?> </p>
-                                                </div>
+                                                <label><strong>ID Permohonan</strong></label>
+                                                <p class="form-control-static"><span class="label label-primary" style="font-size: 14px; padding: 8px 15px;"><?php echo $permohonan->mohon_id ?></span></p>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label">Tanggal Permohonan:</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"> <?php echo $permohonan->tanggal ?> </p>
-                                                </div>
+                                                <label><strong>Tanggal Permohonan</strong></label>
+                                                <p class="form-control-static"><?php echo $permohonan->tanggal ?></p>
                                             </div>
                                         </div>
                                     </div>
-                                    <h2 class="box-title">Data Pemohon</h2>
-                                    <hr>
+                                </div>
+                            </div>
+
+                            <!-- Data Pemohon -->
+                            <div class="panel panel-info result-panel">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <i class="fa fa-user"></i> Data Pemohon
+                                    </h4>
+                                </div>
+                                <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label">Nama:</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"> <?php echo $permohonan->nama ?> </p>
-                                                </div>
+                                                <label style="margin-bottom: 8px; font-size: 14px;"><strong>Nama</strong></label>
+                                                <p style="margin: 0; font-size: 14px;"><?php echo $permohonan->nama ?></p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label style="margin-bottom: 8px; font-size: 14px;"><strong>Pekerjaan</strong></label>
+                                                <p style="margin: 0; font-size: 14px;"><?php echo $permohonan->pekerjaan ?></p>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label">Pekerjaan:</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"> <?php echo $permohonan->pekerjaan ?> </p>
-                                                </div>
+                                                <label style="margin-bottom: 8px; font-size: 14px;"><strong>No. HP</strong></label>
+                                                <p style="margin: 0; font-size: 14px;"><?php echo $permohonan->nohp ?></p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label style="margin-bottom: 8px; font-size: 14px;"><strong>Email</strong></label>
+                                                <p style="margin: 0; font-size: 14px;"><?php echo $permohonan->email ?></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label style="margin-bottom: 8px; font-size: 14px;"><strong>Alamat</strong></label>
+                                                <p style="margin: 0; font-size: 14px;"><?php echo $permohonan->alamat ?></p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3">Alamat:</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"> <?php echo $permohonan->alamat ?> </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">No HP/e-Mail:</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"> <?php echo $permohonan->nohp ?> /<?php echo $permohonan->email ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h2 class="box-title">Permohonan</h2>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Rincian Informasi :</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"> <?php echo $permohonan->rincian ?> </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Tujuan Penggunaan Informasi :</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"> <?php echo $permohonan->tujuan ?> </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Cara Memperoleh Informasi :</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"> <?php echo $permohonan->caraperoleh ?> </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Cara Mendapatkan Salinan Informasi :</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"> <?php echo $permohonan->caradapat ?> </p>
-                                                </div>
-                                            </div>
+                                </div>
+                            </div>
+
+                            <!-- Detail Permohonan -->
+                            <div class="panel panel-primary result-panel">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <i class="fa fa-file-text"></i> Detail Permohonan
+                                    </h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label style="margin-bottom: 8px; font-size: 14px;"><strong>Rincian Informasi yang Dibutuhkan</strong></label>
+                                        <div class="content-box">
+                                            <p style="margin: 0; font-size: 14px;"><?php echo trim($permohonan->rincian); ?></p>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label">Status :</label>
-                                        <div class="col-md-3">
-                                            <?php if ($permohonan->status == 'Menunggu Verifikasi') : ?>
-                                                <button class="btn btn-block btn-warning disabled"><?php echo $permohonan->status ?> </button>
-                                            <?php elseif ($permohonan->status == 'Sedang Diproses') : ?>
-                                                <button class="btn btn-block btn-info disabled"><?php echo $permohonan->status ?> </button>
-                                            <?php else : ?>
-                                                <button class="btn btn-block btn-success disabled"><?php echo $permohonan->status ?> </button>
-                                            <?php endif ?>
+                                        <label style="margin-bottom: 8px; font-size: 14px;"><strong>Tujuan Penggunaan Informasi</strong></label>
+                                        <div class="content-box">
+                                            <p style="margin: 0; font-size: 14px;"><?php echo trim($permohonan->tujuan); ?></p>
                                         </div>
                                     </div>
-
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label style="margin-bottom: 8px; font-size: 14px;"><strong>Cara Memperoleh Informasi</strong></label>
+                                                <p style="margin: 0; font-size: 14px;"><?php echo $permohonan->caraperoleh ?></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label style="margin-bottom: 8px; font-size: 14px;"><strong>Cara Mendapatkan Salinan</strong></label>
+                                                <p style="margin: 0; font-size: 14px;"><?php echo $permohonan->caradapat ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </form>
+                            </div>
+
+                            <!-- Status -->
+                            <div class="panel panel-success result-panel">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <i class="fa fa-check-circle"></i> Status Permohonan
+                                    </h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label style="margin-bottom: 8px;"><strong>Status Saat Ini</strong></label>
+                                        <div>
+                                            <?php if ($permohonan->status == 'Menunggu Verifikasi'): ?>
+                                                <span class="label label-warning status-label">
+                                                    <i class="fa fa-clock-o"></i> Menunggu Verifikasi
+                                                </span>
+                                            <?php elseif ($permohonan->status == 'Sedang Diproses'): ?>
+                                                <span class="label label-info status-label">
+                                                    <i class="fa fa-spinner fa-spin"></i> Sedang Diproses
+                                                </span>
+                                            <?php elseif ($permohonan->status == 'Selesai'): ?>
+                                                <span class="label label-success status-label">
+                                                    <i class="fa fa-check"></i> Selesai
+                                                </span>
+                                            <?php else: ?>
+                                                <span class="label label-default status-label">
+                                                    <?php echo $permohonan->status ?>
+                                                </span>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="action-section">
+                                <a href="<?php echo site_url('cekstatus'); ?>" class="btn btn-default btn-lg">
+                                    <i class="fa fa-search"></i> Cek Status
+                                </a>
+                                <a href="<?php echo site_url('publicpermohonan'); ?>" class="btn btn-primary btn-lg">
+                                    <i class="fa fa-plus"></i> Ajukan Permohonan Baru
+                                </a>
+                            </div>
 
                         </div>
                     </div>
@@ -189,7 +238,7 @@
                 </div>
             </div>
         </section>
-        <!--Form Permohonan End-->
+        <!--Detail Permohonan End-->
 
         <?php $this->load->view("dev/partials/sectionapp.php") ?>
 
