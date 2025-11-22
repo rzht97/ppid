@@ -288,7 +288,7 @@
                                     <li><a href="#"><i class="far fa-user-circle"></i> <?= htmlspecialchars($item['author']['full_name'] ?? 'Admin') ?></a></li>
                                 </ul>
                                 <h3 class="news-one__title" style="font-size: 18px; line-height: 1.4; min-height: 75px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-transform: none;">
-                                    <a href="<?= site_url('berita/detail/' . htmlspecialchars($item['title_slug'])) ?>"><?= htmlspecialchars($item['title']) ?></a>
+                                    <?= htmlspecialchars($item['title']) ?>
                                 </h3>
                                 <a href="<?= site_url('berita/detail/' . htmlspecialchars($item['title_slug'])) ?>" class="news-one__btn">Baca Selengkapnya</a>
                                 <div class="news-one__date-box">
