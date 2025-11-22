@@ -87,6 +87,27 @@
                             </h1>
                             <p class="text-muted">Silakan lengkapi form di bawah ini untuk mengajukan keberatan atas permohonan informasi Anda.</p>
 
+                            <!-- Flash Messages -->
+                            <?php if($this->session->flashdata('error')): ?>
+                                <div class="alert alert-danger alert-dismissible" style="border-radius: 6px;">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <i class="fa fa-exclamation-triangle"></i> <strong>Error!</strong><br>
+                                    <?php echo $this->session->flashdata('error'); ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if($this->session->flashdata('success')): ?>
+                                <div class="alert alert-success alert-dismissible" style="border-radius: 6px;">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <i class="fa fa-check-circle"></i> <strong>Berhasil!</strong><br>
+                                    <?php echo $this->session->flashdata('success'); ?>
+                                </div>
+                            <?php endif; ?>
+
                             <?php if($caritoken): ?>
                                 <?php foreach($caritoken as $data): ?>
 
@@ -154,8 +175,8 @@
                                                 <label>
                                                     Alasan Pengajuan Keberatan <span class="text-danger">*</span>
                                                 </label>
-                                                <select class="form-control" name="alasan" required>
-                                                    <option value="" Hidden></option>
+                                                <select class="form-control" name="alasan" id="alasanSelect" required>
+                                                    <option value="">-- Pilih Alasan Keberatan --</option>
                                                     <option value="Permohonan Informasi Publik Ditolak">Permohonan Informasi Publik Ditolak</option>
                                                     <option value="Informasi Berkala Tidak Disediakan">Informasi Berkala Tidak Disediakan</option>
                                                     <option value="Permohonan Informasi Tidak Ditanggapi">Permohonan Informasi Tidak Ditanggapi</option>
@@ -164,13 +185,25 @@
                                                     <option value="Biaya yang Dikenakan Tidak Wajar">Biaya yang Dikenakan Tidak Wajar</option>
                                                     <option value="Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan">Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan</option>
                                                 </select>
+                                                <span id="alasanError" class="help-block text-danger" style="display:none; margin-top: 8px;"></span>
+                                                <span class="help-block"><small>Pilih alasan yang sesuai dengan kondisi permohonan Anda</small></span>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>
                                                     Kronologi/Uraian Keberatan <span class="text-danger">*</span>
                                                 </label>
-                                                <textarea class="form-control" name="kronologi" rows="7" required></textarea>                                                
+                                                <textarea class="form-control" name="kronologi" id="kronologiTextarea" rows="7" required></textarea>
+                                                <span id="kronologiError" class="help-block text-danger" style="display:none; margin-top: 8px;"></span>
+                                                <span class="help-block">
+                                                    <small>
+                                                        Jelaskan kronologi atau uraian keberatan Anda sejelas mungkin (minimal 20 karakter, maksimal 2000 karakter)<br>
+                                                        Karakter yang diizinkan: huruf, angka, spasi, dan tanda baca standar (. , ? ! : ; ( ) / - ' ")
+                                                    </small>
+                                                </span>
+                                                <span id="kronologiCount" class="help-block" style="display:block; margin-top: 5px;">
+                                                    <small><strong>Jumlah karakter:</strong> <span id="charCount">0</span> / 2000</small>
+                                                </span>
                                             </div>
 
                                             <!-- Honeypot field - Anti-bot protection (DO NOT REMOVE) -->
@@ -180,12 +213,15 @@
                                             </div>
 
                                             <div class="form-actions">
-                                                <button type="submit" class="btn btn-success btn-lg">
+                                                <button type="submit" id="submitBtn" class="btn btn-success btn-lg" disabled>
                                                     <i class="fa fa-check-circle"></i> Kirim Keberatan
                                                 </button>
                                                 <a href="<?php echo site_url('cekstatus'); ?>" class="btn btn-default btn-lg">
                                                     <i class="fa fa-times"></i> Batal
                                                 </a>
+                                                <div id="submitHelp" class="help-block text-muted" style="display: block; margin-top: 12px;">
+                                                    <i class="fa fa-info-circle"></i> Lengkapi semua field dengan benar untuk mengaktifkan tombol kirim
+                                                </div>
                                             </div>
                                         </form>
                                     </div>
@@ -262,6 +298,221 @@
     <!--Style Switcher -->
     <script src="<?= base_url() ?>inverse/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
     <?php $this->load->view('dev/admin/partials/js.php') ?>
+
+    <!-- Real-time validation for Keberatan Form -->
+    <script>
+    $(document).ready(function() {
+        const alasanSelect = $('#alasanSelect');
+        const kronologiTextarea = $('#kronologiTextarea');
+        const alasanError = $('#alasanError');
+        const kronologiError = $('#kronologiError');
+        const submitBtn = $('#submitBtn');
+        const submitHelp = $('#submitHelp');
+        const charCount = $('#charCount');
+
+        /**
+         * Validator untuk Alasan Keberatan (dropdown)
+         */
+        const validators = {
+            alasan: function(value) {
+                if (!value || value.trim() === '') {
+                    return 'Alasan keberatan wajib dipilih';
+                }
+
+                // Whitelist validation (sesuai dengan dropdown options)
+                const validOptions = [
+                    'Permohonan Informasi Publik Ditolak',
+                    'Informasi Berkala Tidak Disediakan',
+                    'Permohonan Informasi Tidak Ditanggapi',
+                    'Permohonan Informasi Tidak Ditanggapi Sebagaimana Diminta',
+                    'Permintaan Informasi Tidak Dipenuhi',
+                    'Biaya yang Dikenakan Tidak Wajar',
+                    'Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan'
+                ];
+
+                if (!validOptions.includes(value)) {
+                    return 'Alasan tidak valid. Pilih dari opsi yang tersedia';
+                }
+
+                return null; // Valid
+            },
+
+            /**
+             * Validator untuk Kronologi (textarea)
+             * Regex: ^[a-zA-Z0-9\s\.,\?\!\:\;\(\)\/\-\'\"]+$
+             * Karakter yang diizinkan: huruf, angka, spasi, tanda baca standar
+             */
+            kronologi: function(value) {
+                if (!value || value.trim() === '') {
+                    return 'Kronologi/Uraian Keberatan wajib diisi';
+                }
+
+                // Trim whitespace for validation
+                value = value.trim();
+
+                // Min length validation
+                if (value.length < 20) {
+                    return 'Kronologi terlalu pendek. Minimal 20 karakter (saat ini: ' + value.length + ' karakter)';
+                }
+
+                // Max length validation
+                if (value.length > 2000) {
+                    return 'Kronologi terlalu panjang. Maksimal 2000 karakter (saat ini: ' + value.length + ' karakter)';
+                }
+
+                // Regex validation - karakter yang diizinkan
+                // Allow: a-z A-Z 0-9 spasi . , ? ! : ; ( ) / - ' "
+                // Plus newline characters untuk line breaks
+                if (!/^[a-zA-Z0-9\s\.,\?\!\:\;\(\)\/\-\'\"]+$/.test(value.replace(/\n/g, ' ').replace(/\r/g, ' '))) {
+                    return 'Kronologi mengandung karakter yang tidak diizinkan. Hanya boleh: huruf, angka, spasi, dan tanda baca standar (. , ? ! : ; ( ) / - \' ")';
+                }
+
+                return null; // Valid
+            }
+        };
+
+        /**
+         * Tampilkan atau hapus error message
+         */
+        function showError(fieldName, message) {
+            let errorSpan, inputField;
+
+            if (fieldName === 'alasan') {
+                errorSpan = alasanError;
+                inputField = alasanSelect;
+            } else if (fieldName === 'kronologi') {
+                errorSpan = kronologiError;
+                inputField = kronologiTextarea;
+            }
+
+            if (message) {
+                errorSpan.text(message).show();
+                inputField.closest('.form-group').addClass('has-error');
+                inputField.css('border-color', '#a94442');
+            } else {
+                errorSpan.hide();
+                inputField.closest('.form-group').removeClass('has-error');
+                inputField.css('border-color', '#28a745'); // Green border when valid
+            }
+        }
+
+        /**
+         * Validasi single field
+         */
+        function validateField(fieldName) {
+            let value;
+
+            if (fieldName === 'alasan') {
+                value = alasanSelect.val();
+            } else if (fieldName === 'kronologi') {
+                value = kronologiTextarea.val();
+            }
+
+            const error = validators[fieldName](value);
+            showError(fieldName, error);
+
+            // Update submit button status
+            checkAllFieldsValid();
+
+            return !error;
+        }
+
+        /**
+         * Cek semua field valid atau tidak
+         */
+        function checkAllFieldsValid() {
+            const fieldsToCheck = ['alasan', 'kronologi'];
+            let allValid = true;
+
+            fieldsToCheck.forEach(function(fieldName) {
+                let value;
+
+                if (fieldName === 'alasan') {
+                    value = alasanSelect.val();
+                } else if (fieldName === 'kronologi') {
+                    value = kronologiTextarea.val();
+                }
+
+                const error = validators[fieldName](value);
+                if (error) {
+                    allValid = false;
+                }
+            });
+
+            updateSubmitButton(allValid);
+        }
+
+        /**
+         * Update status tombol submit
+         */
+        function updateSubmitButton(isValid) {
+            if (isValid) {
+                submitBtn.prop('disabled', false);
+                submitBtn.removeClass('btn-default').addClass('btn-success');
+                submitHelp.html('<i class="fa fa-check-circle text-success"></i> <span class="text-success">Semua field sudah terisi dengan benar. Silakan kirim keberatan.</span>');
+            } else {
+                submitBtn.prop('disabled', true);
+                submitBtn.removeClass('btn-success').addClass('btn-default');
+                submitHelp.html('<i class="fa fa-info-circle"></i> Lengkapi semua field dengan benar untuk mengaktifkan tombol kirim');
+            }
+        }
+
+        /**
+         * Update character counter untuk kronologi
+         */
+        function updateCharCount() {
+            const length = kronologiTextarea.val().length;
+            charCount.text(length);
+
+            // Color coding
+            if (length < 20) {
+                charCount.css('color', '#a94442'); // Red
+            } else if (length > 2000) {
+                charCount.css('color', '#a94442'); // Red
+            } else if (length >= 1800) {
+                charCount.css('color', '#f0ad4e'); // Orange (warning)
+            } else {
+                charCount.css('color', '#28a745'); // Green
+            }
+        }
+
+        // Event listeners
+        alasanSelect.on('change blur', function() {
+            validateField('alasan');
+        });
+
+        kronologiTextarea.on('input', function() {
+            updateCharCount();
+            validateField('kronologi');
+        });
+
+        kronologiTextarea.on('blur', function() {
+            validateField('kronologi');
+        });
+
+        // Initialize character counter
+        updateCharCount();
+
+        // Prevent form submit if validation fails
+        $('form').on('submit', function(e) {
+            const alasanValid = validateField('alasan');
+            const kronologiValid = validateField('kronologi');
+
+            if (!alasanValid || !kronologiValid) {
+                e.preventDefault();
+
+                // Scroll to first error
+                $('html, body').animate({
+                    scrollTop: $('.has-error:first').offset().top - 100
+                }, 300);
+
+                return false;
+            }
+
+            return true;
+        });
+    });
+    </script>
 
 </body>
 
