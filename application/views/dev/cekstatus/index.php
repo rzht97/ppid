@@ -110,9 +110,6 @@
                                                 <button type="submit" id="submitBtn" class="btn btn-primary btn-lg" name="type" value="filter" disabled>
                                                     <i class="fa fa-search"></i> Cari Status
                                                 </button>
-                                                <small id="submitHelp" class="text-muted" style="display: block; margin-top: 8px;">
-                                                    <i class="fa fa-info-circle"></i> Masukkan ID permohonan dengan format yang benar untuk mencari
-                                                </small>
                                             </div>
                                         </div>
                                     </form>
@@ -477,7 +474,6 @@
         const tokenInput = $('#tokenInput');
         const tokenError = $('#tokenError');
         const submitBtn = $('#submitBtn');
-        const submitHelp = $('#submitHelp');
 
         /**
          * Validator untuk ID Permohonan
@@ -530,11 +526,9 @@
             if (isValid) {
                 submitBtn.prop('disabled', false);
                 submitBtn.removeClass('btn-default').addClass('btn-primary');
-                submitHelp.html('<i class="fa fa-check-circle text-success"></i> <span class="text-success">Format ID benar. Silakan klik tombol untuk mencari.</span>');
             } else {
                 submitBtn.prop('disabled', true);
                 submitBtn.removeClass('btn-primary').addClass('btn-default');
-                submitHelp.html('<i class="fa fa-info-circle"></i> Masukkan ID permohonan dengan format yang benar untuk mencari');
             }
         }
 
