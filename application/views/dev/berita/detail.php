@@ -52,7 +52,7 @@
                             <?php elseif (isset($news)): ?>
                                 <div class="news-details__left">
                                     <div class="news-details__img">
-                                        <img src="<?= htmlspecialchars($news['picture'] ?? '') ?>" alt="" style="width: 100%; height: 400px; object-fit: cover; border-radius: 8px;">
+                                        <img src="<?= htmlspecialchars($news['picture'] ?? '') ?>" alt="" style="width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 8px; background: #f5f5f5;">
                                         <div class="news-details__date-box">
                                             <p><?= htmlspecialchars($news['publish_date'] ?? '') ?></p>
                                         </div>

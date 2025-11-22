@@ -51,7 +51,7 @@
                                         <div class="blog-single__content">
                                             <div class="blog-single__content-single">
                                                 <div class="blog-single__content-img">
-                                                    <img src="<?= htmlspecialchars($item['picture']) ?>" alt="" style="width: 100%; height: 350px; object-fit: cover; border-radius: 8px;">
+                                                    <img src="<?= htmlspecialchars($item['picture']) ?>" alt="" style="width: 100%; height: auto; max-height: 350px; object-fit: contain; border-radius: 8px; background: #f5f5f5;">
                                                     <div class="blog-single__date-box">
                                                         <p><?= htmlspecialchars($item['publish_date']) ?></p>
                                                     </div>
