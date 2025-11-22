@@ -168,7 +168,6 @@
                                         <?php if(form_error('rincian')): ?>
                                             <div class="text-danger"><?php echo form_error('rincian'); ?></div>
                                         <?php endif; ?>
-                                        <span class="help-block"><small>Jelaskan informasi yang Anda butuhkan sejelas mungkin</small></span>
                                     </div>
                                 </div>
 
@@ -179,7 +178,6 @@
                                         <?php if(form_error('tujuan')): ?>
                                             <div class="text-danger"><?php echo form_error('tujuan'); ?></div>
                                         <?php endif; ?>
-                                        <span class="help-block"><small>Jelaskan untuk apa informasi tersebut akan digunakan</small></span>
                                     </div>
                                 </div>
 
@@ -286,16 +284,11 @@
                                 </div>
 
                                 <hr>
-                                <div class="form-actions">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <button type="submit" class="btn btn-success btn-lg waves-effect waves-light">
-                                                <i class="fa fa-paper-plane"></i> Kirim Permohonan
-                                            </button>
-                                            <a href="<?php echo site_url('cekstatus'); ?>" class="btn btn-default btn-lg waves-effect waves-light">
-                                                <i class="fa fa-times"></i> Batal
-                                            </a>
-                                        </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-success btn-lg waves-effect waves-light">
+                                            <i class="fa fa-paper-plane"></i> Kirim
+                                        </button>
                                     </div>
                                 </div>
                             </form>

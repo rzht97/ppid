@@ -140,11 +140,11 @@
                                     <a href="<?php echo site_url('berita')?>">Berita</a>
                                 </li>
 								<li>
-                                    <a target = "blank_" href="<?php echo site_url('cekstatus')?>">Cek Status</a>
+                                    <a href="<?php echo site_url('cekstatus')?>">Cek Status</a>
 
                                 </li>
 								<li>
-                                    <a target = "blank_" href="<?php echo site_url('lapor')?>">LAPOR!</a>
+                                    <a target="_blank" href="<?php echo site_url('lapor')?>">LAPOR!</a>
 
                                 </li>
                             </ul>

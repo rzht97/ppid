@@ -5,6 +5,32 @@
 <head>
     <title>Struktur Organisasi - PPID Kab. Sumedang</title>
     <?php $this->load->view('dev/partials/head.php') ?>
+    <style>
+        .struktur-section { padding: 60px 0; background: #f8f9fa; }
+        .section-card { background: #fff; border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.08); padding: 30px; margin-bottom: 30px; }
+        .section-title-custom { font-size: 22px; font-weight: 600; color: #333; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 3px solid var(--thm-primary, #0d6efd); }
+        .section-title-custom i { margin-right: 10px; color: var(--thm-primary, #0d6efd); }
+        .struktur-img { width: 100%; border-radius: 8px; box-shadow: 0 3px 15px rgba(0,0,0,0.1); }
+        .table-modern { border-collapse: separate; border-spacing: 0; width: 100%; }
+        .table-modern thead th { background: linear-gradient(135deg, var(--thm-primary, #0d6efd) 0%, #0056b3 100%); color: #fff; padding: 15px 12px; font-weight: 600; text-transform: uppercase; font-size: 13px; border: none; }
+        .table-modern tbody td, .table-modern tbody th { padding: 12px; border-bottom: 1px solid #e9ecef; vertical-align: middle; font-size: 14px; }
+        .table-modern tbody tr:hover { background-color: #f1f8ff; }
+        .table-modern tbody tr:last-child td { border-bottom: none; }
+        .table-modern .section-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; font-weight: 600; text-align: center; font-size: 14px; }
+        .table-modern .section-header th { padding: 12px; border: none; }
+        .badge-jabatan { display: inline-block; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+        .badge-pembina { background: #fef3cd; color: #856404; }
+        .badge-utama { background: #d4edda; color: #155724; }
+        .badge-koordinator { background: #cce5ff; color: #004085; }
+        .badge-anggota { background: #e2e3e5; color: #383d41; }
+        .badge-tim { background: #f8d7da; color: #721c24; }
+        @media (max-width: 768px) {
+            .struktur-section { padding: 30px 0; }
+            .section-card { padding: 15px; }
+            .table-modern { font-size: 12px; }
+            .table-modern thead th, .table-modern tbody td { padding: 8px 6px; }
+        }
+    </style>
 </head>
 
 <body>
@@ -46,24 +72,27 @@
             </div>
         </section>
         <!--Page Header End-->
-        <section class="faqs-page">
+        <section class="struktur-section">
             <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-						<div class="feature_img">
-                            <center><img src="<?= base_url();?>upload/profil/struktur.png" width="1100" height="700px" alt=""></center>
-                        </div>
-						<br>
-                        <table class="table table-striped table-bordered f-table">
-                        <thead>
-                            <tr>
-                                <td scope="col">No</td>
-                                <td scope="col">Nama</td>
-                                <td scope="col">Jabatan/INSTANSI</td>
-                                <td scope="col">JABATAN DALAM PPID</td>
+                <!-- Bagan Struktur -->
+                <div class="section-card">
+                    <h3 class="section-title-custom"><i class="fa fa-sitemap"></i> Bagan Struktur Organisasi</h3>
+                    <img src="<?= base_url();?>upload/profil/struktur.png" class="struktur-img" alt="Struktur Organisasi PPID">
+                </div>
 
-                            </tr>
-                        </thead>
+                <!-- Tabel Anggota -->
+                <div class="section-card">
+                    <h3 class="section-title-custom"><i class="fa fa-users"></i> Daftar Pejabat PPID</h3>
+                    <div class="table-responsive">
+                        <table class="table-modern">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50px; text-align: center;">No</th>
+                                    <th>Nama</th>
+                                    <th>Jabatan / Instansi</th>
+                                    <th style="width: 200px;">Jabatan dalam PPID</th>
+                                </tr>
+                            </thead>
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
@@ -122,10 +151,8 @@
 
                             </tr>
                             
-                            <tr>
-
-                                <th colspan="4" align="center">PPID UTAMA
-                                </th>
+                            <tr class="section-header">
+                                <th colspan="4">PPID UTAMA</th>
                             </tr>
 
                             <tr>
@@ -136,10 +163,8 @@
                             </tr>
 
                          
-                            <tr>
-
-                                <th colspan="4" align="center">Sekretariat Pengelola Layanan Informasi dan Dokumentasi
-                                </th>
+                            <tr class="section-header">
+                                <th colspan="4">Sekretariat Pengelola Layanan Informasi dan Dokumentasi</th>
                             </tr>
 
                             <tr>
@@ -169,8 +194,8 @@
 								<td></td>
                                 <td>Anggota</td>
                             </tr>
-                            <tr>
-                                <th colspan="4" align="center">Bidang Pelayanan Informasi dan Dokumentasi</th>
+                            <tr class="section-header">
+                                <th colspan="4">Bidang Pelayanan Informasi dan Dokumentasi</th>
                             </tr>
                             <tr>
                                 <th scope="row">14</th>
@@ -197,7 +222,9 @@
                                 <td>-</td>
                                 <td>Anggota</td>
                             </tr>
-                            <th colspan="4" align="center">Bidang Pengolah Data dan Klasifikasi</th>
+                            <tr class="section-header">
+                                <th colspan="4">Bidang Pengolah Data dan Klasifikasi</th>
+                            </tr>
                             <tr>
                                 <th scope="row">18</th>
                                 <td>Hj. Yuyun Yusiva Wahyuningsih, SE, MM.</td>
@@ -228,8 +255,8 @@
                                 <td></td>
                                 <td>Anggota</td>
                             </tr>
-                            <tr>
-                                <th colspan="4" align="center">Bidang Fasilitasi Sengketa Informasi</th>
+                            <tr class="section-header">
+                                <th colspan="4">Bidang Fasilitasi Sengketa Informasi</th>
                             </tr>
                             <tr>
                                 <th scope="row">23</th>
@@ -258,9 +285,8 @@
                                 <td>-</td>
                                 <td>Anggota</td>
                             </tr>
-                        </tbody>
-                    </table>
-
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

@@ -72,10 +72,10 @@ class Berita extends CI_Controller {
             $data['news2'] = array_slice($data['news2'], 0, 3);
         }
 
-        // Ambil detail berita
+        // Ambil detail berita dari API list, lalu filter by slug
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://sumedangkab.go.id/api/news/detail/' . $title_slug,
+            CURLOPT_URL => 'https://sumedangkab.go.id/api/news',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -102,11 +102,23 @@ class Berita extends CI_Controller {
         curl_close($curl);
         $result = json_decode($response, true);
 
-        if (isset($result['status']) && $result['status'] === 200) {
-            $data['news'] = is_array($result['news']) ? $result['news'][0] : $result['news'];
+        log_message('debug', 'API Detail Response: ' . print_r($result, true));
+
+        if (isset($result['status']) && $result['status'] === 200 && isset($result['news'])) {
+            // Cari berita berdasarkan slug
+            $found = null;
+            foreach ($result['news'] as $item) {
+                if (isset($item['title_slug']) && $item['title_slug'] === $title_slug) {
+                    $found = $item;
+                    break;
+                }
+            }
+            if ($found) {
+                $data['news'] = $found;
+            } else {
+                $data['error'] = 'Berita tidak ditemukan.';
+            }
         } else {
-            $error_message = $result['message'] ?? 'Berita tidak ditemukan';
-            log_message('error', 'API Berita Detail Error: ' . $error_message);
             $data['error'] = 'Maaf, detail berita tidak dapat ditampilkan. Silakan coba beberapa saat lagi.';
         }
 

@@ -72,7 +72,7 @@
                                     <div class="main-slider__content text-center">
                                         <!-- <h2>Finance <span class="main-slider-two__single-text">&</span> <br> Consulting
                                         </h2> -->
-                                        <h2>Pengelolaan Pengaduan Pelayanan Publik</h2>>
+                                        <h2>Pengelolaan Pengaduan Pelayanan Publik</h2>
                                         <p>Sampaikan Laporan Anda Langsung Kepada Instansi Pemerintah Kabupaten Sumedang</p>
                                         <a target="_blank" href="https://lapor.go.id" class="thm-btn">Adukan Sekarang!</a>
                                     </div>
@@ -97,7 +97,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="section-title text-center">
-                            <h2 class="section-title__title">Kasifikasi Informasi Publik</h2>
+                            <h2 class="section-title__title">Klasifikasi Informasi Publik</h2>
                         </div>
                     </div>
                 </div>
@@ -213,49 +213,50 @@
             </div>
             <div class="container">
                 <ul class="counters-one__box list-unstyled">
-                    <div class="row">
-                        <div class="col-md-3">
+                    <div class="row justify-content-center">
+                        <div class="col">
                             <li class="counter-one__single">
                                 <div class="counter-one__icon">
                                     <span class="icon-customer-review"></span>
                                 </div>
-                                <h3 class="odometer" data-count="<?php foreach($jml as $jml):?>
-										<?php echo $jml->total?>
-									<?php endforeach;?>"></h3>
+                                <h3 class="odometer" data-count="<?php foreach($jml as $j): echo $j->total; endforeach; ?>"></h3>
                                 <p class="counter-one__text">Jumlah Permohonan</p>
                             </li>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col">
                             <li class="counter-one__single">
                                 <div class="counter-one__icon">
                                     <span class="icon-video"></span>
                                 </div>
-                                <h3 class="odometer" data-count="<?php foreach($selesai as $selesai):?>
-										<?php echo $selesai->total?>
-									<?php endforeach;?>"></h3>
+                                <h3 class="odometer" data-count="<?php foreach($selesai as $s): echo $s->total; endforeach; ?>"></h3>
                                 <p class="counter-one__text">Selesai</p>
                             </li>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col">
                             <li class="counter-one__single">
                                 <div class="counter-one__icon">
                                     <span class="icon-help"></span>
                                 </div>
-								<h3 class="odometer" data-count="<?php foreach($ditolak as $ditolak):?>
-										<?php echo $ditolak->total?>
-									<?php endforeach;?>"></h3>
+                                <h3 class="odometer" data-count="<?php foreach($ditolak as $d): echo $d->total; endforeach; ?>"></h3>
                                 <p class="counter-one__text">Ditolak</p>
                             </li>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col">
+                            <li class="counter-one__single">
+                                <div class="counter-one__icon">
+                                    <span class="icon-protection"></span>
+                                </div>
+                                <h3 class="odometer" data-count="<?php foreach($keberatan as $k): echo $k->total; endforeach; ?>"></h3>
+                                <p class="counter-one__text">Keberatan</p>
+                            </li>
+                        </div>
+                        <div class="col">
                             <li class="counter-one__single">
                                 <div class="counter-one__icon">
                                     <span class="icon-consultant"></span>
                                 </div>
-                                <?php foreach ($ditolak as $ditolak) : ?>
-                                    <h3 class="odometer" data-count="00">00</h3>
-                                    <p class="counter-one__text">Sengketa</p>
-                                <?php endforeach; ?>
+                                <h3 class="odometer" data-count="<?php foreach($sengketa as $sg): echo $sg->total; endforeach; ?>"></h3>
+                                <p class="counter-one__text">Sengketa</p>
                             </li>
                         </div>
                     </div>
@@ -265,93 +266,42 @@
         <!--Counters One Start-->
 
         <!--News One Start-->
-        <!--<section class="news-one news-two">
+        <?php if (!empty($berita)): ?>
+        <section class="news-one" style="background-color: #f8f9fa;">
             <div class="container">
                 <div class="section-title text-center">
                     <h2 class="section-title__title">Berita PPID</h2>
                 </div>
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
-                        
+                    <?php
+                    $delays = ['0ms', '300ms', '600ms'];
+                    $i = 0;
+                    foreach($berita as $item):
+                    ?>
+                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="<?= $delays[$i % 3] ?>" data-wow-duration="1500ms">
                         <div class="news-one__single">
-                            <div class="news-one__img">
-                                <img src="<?= base_url() ?>newestassets/images/blog/news-1-1.jpg" alt="">
-                                <a href="bloag-details.html">
-                                    <span class="news-one__plus"></span>
-                                </a>
+                            <div class="news-one__img" style="height: 220px; overflow: hidden; background-color: transparent;">
+                                <img src="<?= htmlspecialchars($item['picture']) ?>" alt="<?= htmlspecialchars($item['title']) ?>" style="width: 100%; height: 100%; object-fit: cover; mix-blend-mode: normal;">
                             </div>
-                            <div class="news-one__content">
+                            <div class="news-one__content" style="margin-top: 0; margin-left: 0;">
                                 <ul class="list-unstyled news-one__meta">
-                                    <li><a href="#"><i class="far fa-user-circle"></i> by Admin</a></li>
-                                    <li><span>/</span></li>
-                                    <li><a href="#"><i class="far fa-comments"></i> 2 Comments</a>
-                                    </li>
+                                    <li><a href="#"><i class="far fa-user-circle"></i> <?= htmlspecialchars($item['author']['full_name'] ?? 'Admin') ?></a></li>
                                 </ul>
-                                <h3 class="news-one__title">
-                                    <a href="blog-details.html">business advice for growth</a>
+                                <h3 class="news-one__title" style="font-size: 18px; line-height: 1.4; min-height: 75px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-transform: none;">
+                                    <a href="<?= site_url('berita/detail/' . htmlspecialchars($item['title_slug'])) ?>"><?= htmlspecialchars($item['title']) ?></a>
                                 </h3>
-                                <a href="blog-details.html" class="news-one__btn">Read More</a>
+                                <a href="<?= site_url('berita/detail/' . htmlspecialchars($item['title_slug'])) ?>" class="news-one__btn">Baca Selengkapnya</a>
                                 <div class="news-one__date-box">
-                                    <p>26 mar</p>
+                                    <p><?= date('d-m-Y', strtotime($item['publish_date'])) ?></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
-                        
-                        <div class="news-one__single">
-                            <div class="news-one__img">
-                                <img src="<?= base_url() ?>newestassets/images/blog/news-1-2.jpg" alt="">
-                                <a href="blog-details.html">
-                                    <span class="news-one__plus"></span>
-                                </a>
-                            </div>
-                            <div class="news-one__content">
-                                <ul class="list-unstyled news-one__meta">
-                                    <li><a href="#"><i class="far fa-user-circle"></i> by Admin</a></li>
-                                    <li><span>/</span></li>
-                                    <li><a href="#"><i class="far fa-comments"></i> 2 Comments</a>
-                                    </li>
-                                </ul>
-                                <h3 class="news-one__title">
-                                    <a href="blog-details.html">solutions total link parallel</a>
-                                </h3>
-                                <a href="blog-details.html" class="news-one__btn">Read More</a>
-                                <div class="news-one__date-box">
-                                    <p>26 mar</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="600ms" data-wow-duration="1500ms">
-                        
-                        <div class="news-one__single">
-                            <div class="news-one__img">
-                                <img src="<?= base_url() ?>newestassets/images/blog/news-1-3.jpg" alt="">
-                                <a href="blog-details.html">
-                                    <span class="news-one__plus"></span>
-                                </a>
-                            </div>
-                            <div class="news-one__content">
-                                <ul class="list-unstyled news-one__meta">
-                                    <li><a href="#"><i class="far fa-user-circle"></i> by Admin</a></li>
-                                    <li><span>/</span></li>
-                                    <li><a href="#"><i class="far fa-comments"></i> 2 Comments</a>
-                                    </li>
-                                </ul>
-                                <h3 class="news-one__title">
-                                    <a href="blog-details.html">Metrics mission skills.</a>
-                                </h3>
-                                <a href="blog-details.html" class="news-one__btn">Read More</a>
-                                <div class="news-one__date-box">
-                                    <p>26 mar</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php $i++; endforeach; ?>
                 </div>
             </div>
-        </section>-->
+        </section>
+        <?php endif; ?>
         <!--News One End-->
 
         <!--CTA Two Start-->

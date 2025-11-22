@@ -34,6 +34,13 @@ class Home extends CI_Controller {
 		$data['jml'] = array((object)array('total' => $stats->total));
 		$data['selesai'] = array((object)array('total' => $stats->selesai));
 
+		// Hitung jumlah keberatan dan sengketa
+		$keberatan_count = $this->db->count_all('keberatan');
+		$data['keberatan'] = array((object)array('total' => $keberatan_count));
+
+		$sengketa_count = $this->db->count_all('sengketa');
+		$data['sengketa'] = array((object)array('total' => $sengketa_count));
+
 		// Fixed: Gunakan query builder dan select specific columns
 		$data['done'] = $this->db->select('mohon_id, nama, tanggal, status')
 		                         ->where('status', 'Sudah Diproses')
@@ -44,8 +51,44 @@ class Home extends CI_Controller {
 		                         ->get('user')
 		                         ->result();
 
+		// Berita terbaru untuk homepage (3 berita) dari API
+		$data['berita'] = $this->get_news_api();
+
         // load view admin/overview.php
         $this->load->view("dev/index2", $data);
+	}
+
+	/**
+	 * Ambil berita dari API sumedangkab.go.id
+	 */
+	private function get_news_api()
+	{
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'https://sumedangkab.go.id/api/news',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 10,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+			CURLOPT_HTTPHEADER => array('X-API-KEY: Sumedang#3211'),
+			CURLOPT_SSL_VERIFYPEER => false,
+		));
+
+		$response = curl_exec($curl);
+		if (curl_errno($curl)) {
+			curl_close($curl);
+			return [];
+		}
+		curl_close($curl);
+
+		$result = json_decode($response, true);
+		if (isset($result['status']) && $result['status'] === 200 && isset($result['news'])) {
+			return array_slice($result['news'], 0, 3);
+		}
+		return [];
 	}
 
 	/**
