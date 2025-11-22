@@ -155,24 +155,22 @@
                                                     Alasan Pengajuan Keberatan <span class="text-danger">*</span>
                                                 </label>
                                                 <select class="form-control" name="alasan" required>
-                                                    <option value="">-- Pilih Alasan Keberatan --</option>
-                                                    <option value="a. Permohonan Informasi Publik Ditolak">a. Permohonan Informasi Publik Ditolak</option>
-                                                    <option value="b. Informasi Berkala Tidak Disediakan">b. Informasi Berkala Tidak Disediakan</option>
-                                                    <option value="c. Permohonan Informasi Tidak Ditanggapi">c. Permohonan Informasi Tidak Ditanggapi</option>
-                                                    <option value="d. Permohonan Informasi Tidak Ditanggapi Sebagaimana Diminta">d. Permohonan Informasi Tidak Ditanggapi Sebagaimana Diminta</option>
-                                                    <option value="e. Permintaan Informasi Tidak Dipenuhi">e. Permintaan Informasi Tidak Dipenuhi</option>
-                                                    <option value="f. Biaya yang Dikenakan Tidak Wajar">f. Biaya yang Dikenakan Tidak Wajar</option>
-                                                    <option value="g. Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan">g. Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan</option>
+                                                    <option value="" Hidden></option>
+                                                    <option value="Permohonan Informasi Publik Ditolak">a. Permohonan Informasi Publik Ditolak</option>
+                                                    <option value="Informasi Berkala Tidak Disediakan">b. Informasi Berkala Tidak Disediakan</option>
+                                                    <option value="Permohonan Informasi Tidak Ditanggapi">c. Permohonan Informasi Tidak Ditanggapi</option>
+                                                    <option value="Permohonan Informasi Tidak Ditanggapi Sebagaimana Diminta">d. Permohonan Informasi Tidak Ditanggapi Sebagaimana Diminta</option>
+                                                    <option value="Permintaan Informasi Tidak Dipenuhi">e. Permintaan Informasi Tidak Dipenuhi</option>
+                                                    <option value="Biaya yang Dikenakan Tidak Wajar">f. Biaya yang Dikenakan Tidak Wajar</option>
+                                                    <option value="Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan">g. Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan</option>
                                                 </select>
-                                                <span class="help-block"><small>Pilih alasan yang sesuai dengan kondisi permohonan Anda</small></span>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>
                                                     Kronologi/Uraian Keberatan <span class="text-danger">*</span>
                                                 </label>
-                                                <textarea class="form-control" name="kronologi" rows="7" required></textarea>
-                                                <span class="help-block"><small>Jelaskan kronologi atau uraian keberatan Anda sejelas mungkin (tanggal, waktu, dan kejadian yang terjadi)</small></span>
+                                                <textarea class="form-control" name="kronologi" rows="7" required></textarea>                                                
                                             </div>
 
                                             <!-- Honeypot field - Anti-bot protection (DO NOT REMOVE) -->
