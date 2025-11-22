@@ -84,15 +84,6 @@
 
                             <form data-toogle="validator" class="form-horizontal">
                                 <div class="form-body">
-									<div class="alert alert-success"> Permohonan Telah dibuat. Harap simpan No Token untuk pengecekan status informasi yang dimohon </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Token:</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"> <?php echo $keberatan->id_keberatan ?> </p>
-                                                </div>
-                                            </div>
-                                        </div>
                                     <h2 class="box-title">Data Pemohon</h2>
                                     <hr>
                                     <div class="row">
