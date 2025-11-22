@@ -8,12 +8,21 @@
  * PENTING: Hapus file ini setelah testing!
  */
 
-// Load CodeIgniter
-require_once(dirname(__FILE__) . '/index.php');
+// Define BASEPATH constant (required by CodeIgniter config)
+if (!defined('BASEPATH')) {
+    define('BASEPATH', dirname(__FILE__) . '/system/');
+}
 
-// OR load minimal framework
-$APPPATH = dirname(__FILE__) . '/application/';
-require_once($APPPATH . 'config/database.php');
+// Load database config
+$config_file = dirname(__FILE__) . '/application/config/database.php';
+if (!file_exists($config_file)) {
+    die("<h1>❌ Database config file not found!</h1><p>File: {$config_file}</p>");
+}
+require_once($config_file);
+
+if (!isset($db) || !isset($db['default'])) {
+    die("<h1>❌ Database configuration error!</h1><p>Variable \$db not found in config file.</p>");
+}
 
 // Connect to database
 $mysqli = new mysqli(

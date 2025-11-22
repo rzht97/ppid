@@ -10,8 +10,63 @@
  * @created 2025-11-22
  */
 
+// Define BASEPATH constant (required by CodeIgniter config files)
+if (!defined('BASEPATH')) {
+    define('BASEPATH', dirname(__DIR__) . '/system/');
+}
+
 // Load CodeIgniter database configuration
-require_once dirname(__DIR__) . '/application/config/database.php';
+$config_file = dirname(__DIR__) . '/application/config/database.php';
+
+if (!file_exists($config_file)) {
+    die("
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Config File Not Found</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 50px; background: #f5f5f5; }
+            .error { background: #fff; padding: 30px; border-radius: 10px; border-left: 5px solid #dc3545; }
+            h1 { color: #dc3545; margin: 0 0 20px 0; }
+            code { background: #f8f9fa; padding: 2px 6px; border-radius: 3px; }
+        </style>
+    </head>
+    <body>
+        <div class='error'>
+            <h1>❌ Configuration File Not Found</h1>
+            <p>File tidak ditemukan: <code>{$config_file}</code></p>
+        </div>
+    </body>
+    </html>
+    ");
+}
+
+require_once($config_file);
+
+// Verify $db variable is loaded
+if (!isset($db) || !isset($db['default'])) {
+    die("
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Database Config Error</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 50px; background: #f5f5f5; }
+            .error { background: #fff; padding: 30px; border-radius: 10px; border-left: 5px solid #dc3545; }
+            h1 { color: #dc3545; margin: 0 0 20px 0; }
+            code { background: #f8f9fa; padding: 2px 6px; border-radius: 3px; }
+        </style>
+    </head>
+    <body>
+        <div class='error'>
+            <h1>❌ Database Configuration Error</h1>
+            <p>Variable <code>\$db</code> not found in database config file.</p>
+            <p>Pastikan file <code>application/config/database.php</code> sudah benar.</p>
+        </div>
+    </body>
+    </html>
+    ");
+}
 
 // Get database configuration
 $db_config = $db['default'];
