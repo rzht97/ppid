@@ -91,6 +91,9 @@
                             <?php endif; ?>
 
                             <form class="form-horizontal" action="<?php echo base_url("admin/permohonan/add") ?>" method="post" enctype="multipart/form-data">
+                                <!-- FIX HIGH: Add CSRF token -->
+                                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
+
                                 <div class="form-body">
                                     <!-- Data Pemohon -->
                                     <h4 class="m-t-30 m-b-20"><i class="fa fa-user"></i> Data Pemohon</h4>

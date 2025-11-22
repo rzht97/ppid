@@ -103,8 +103,8 @@
                                         <?php if (!empty($permohonan_terbaru)): ?>
                                             <?php foreach ($permohonan_terbaru as $data): ?>
                                             <tr>
-                                                <td><?php echo $data->mohon_id ?></td>
-                                                <td><?php echo $data->nama ?></td>
+                                                <td><?php echo html_escape($data->mohon_id) ?></td>
+                                                <td><?php echo html_escape($data->nama) ?></td>
                                                 <td><?php echo date('d/m/Y', strtotime($data->tanggal)) ?></td>
                                                 <td>
                                                     <?php if ($data->status == 'Selesai'): ?>
@@ -140,8 +140,8 @@
                                         <?php if (!empty($keberatan_terbaru)): ?>
                                             <?php foreach ($keberatan_terbaru as $data): ?>
                                             <tr>
-                                                <td><?php echo $data->id_keberatan ?></td>
-                                                <td><?php echo $data->mohon_id ?></td>
+                                                <td><?php echo html_escape($data->id_keberatan) ?></td>
+                                                <td><?php echo html_escape($data->mohon_id) ?></td>
                                                 <td><?php echo date('d/m/Y', strtotime($data->tanggal)) ?></td>
                                                 <td>
                                                     <?php if ($data->status == 'Diterima'): ?>

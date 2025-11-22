@@ -99,6 +99,9 @@
                             <?php endif; ?>
 
                             <form class="form-horizontal" action="<?php echo site_url('admin/dip/add') ?>" method="post" enctype="multipart/form-data">
+                                <!-- FIX HIGH: Add CSRF token -->
+                                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
+
                                 <div class="form-group">
                                     <label class="col-md-12"><strong>Ringkasan Isi Informasi <span class="text-danger">*</span></strong></label>
                                     <div class="col-md-12">

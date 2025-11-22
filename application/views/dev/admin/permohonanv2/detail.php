@@ -1,6 +1,8 @@
 <?php
-$nama = $_POST['nama'];
-$detail = $this->db->query("SELECT * FROM permohonan WHERE nama = '$nama'")->result();
+// FIX CRITICAL: SQL Injection - gunakan query builder dengan prepared statement
+$nama = $this->input->post('nama', TRUE); // XSS filter enabled
+$this->db->where('nama', $nama);
+$detail = $this->db->get('permohonan')->result();
 ?>
 <?php foreach ($detail as $data) : ?>
     <div class="form-body">
@@ -11,7 +13,7 @@ $detail = $this->db->query("SELECT * FROM permohonan WHERE nama = '$nama'")->res
                         Permohonan:</label>
                     <div class="col-md-9">
                         <p class="form-control-static">
-                            <?php echo $data->tanggal ?>
+                            <?php echo html_escape($data->tanggal) ?>
                         </p>
                     </div>
                 </div>
@@ -23,7 +25,7 @@ $detail = $this->db->query("SELECT * FROM permohonan WHERE nama = '$nama'")->res
                             Selesai:</label>
                         <div class="col-md-9">
                             <p class="form-control-static">
-                                <?php echo $data->tanggaljawab ?>
+                                <?php echo html_escape($data->tanggaljawab) ?>
                             </p>
                         </div>
                     </div>
@@ -39,7 +41,7 @@ $detail = $this->db->query("SELECT * FROM permohonan WHERE nama = '$nama'")->res
                         Informasi :</label>
                     <div class="col-md-9">
                         <p class="form-control-static">
-                            <?php echo $data->rincian ?>
+                            <?php echo html_escape($data->rincian) ?>
                         </p>
                     </div>
                 </div>
@@ -50,7 +52,7 @@ $detail = $this->db->query("SELECT * FROM permohonan WHERE nama = '$nama'")->res
                         Penggunaan Informasi :</label>
                     <div class="col-md-9">
                         <p class="form-control-static">
-                            <?php echo $data->tujuan ?>
+                            <?php echo html_escape($data->tujuan) ?>
                         </p>
                     </div>
                 </div>
@@ -63,7 +65,7 @@ $detail = $this->db->query("SELECT * FROM permohonan WHERE nama = '$nama'")->res
                         Memperoleh Informasi :</label>
                     <div class="col-md-9">
                         <p class="form-control-static">
-                            <?php echo $data->caraperoleh ?>
+                            <?php echo html_escape($data->caraperoleh) ?>
                         </p>
                     </div>
                 </div>
@@ -75,7 +77,7 @@ $detail = $this->db->query("SELECT * FROM permohonan WHERE nama = '$nama'")->res
                         :</label>
                     <div class="col-md-9">
                         <p class="form-control-static">
-                            <?php echo $data->caradapat ?>
+                            <?php echo html_escape($data->caradapat) ?>
                         </p>
                     </div>
                 </div>
@@ -86,15 +88,15 @@ $detail = $this->db->query("SELECT * FROM permohonan WHERE nama = '$nama'")->res
             <div class="col-md-3">
                 <?php if ($data->status == 'Menunggu Verifikasi') : ?>
                     <button class="btn btn-block btn-warning disabled">
-                        <?php echo $data->status ?>
+                        <?php echo html_escape($data->status) ?>
                     </button>
                 <?php elseif ($data->status == 'Sedang Diproses') : ?>
                     <button class="btn btn-block btn-info disabled">
-                        <?php echo $data->status ?>
+                        <?php echo html_escape($data->status) ?>
                     </button>
                 <?php else : ?>
                     <button class="btn btn-block btn-success disabled">
-                        <?php echo $data->status ?>
+                        <?php echo html_escape($data->status) ?>
                     </button>
                 <?php endif ?>
             </div>
@@ -103,7 +105,7 @@ $detail = $this->db->query("SELECT * FROM permohonan WHERE nama = '$nama'")->res
             <label class="control-label">Jawaban :</label>
             <div class="col-md-9">
                 <p class="form-control-static">
-                    <?php echo $data->jawab ?>
+                    <?php echo html_escape($data->jawab) ?>
                 </p>
             </div>
         </div>

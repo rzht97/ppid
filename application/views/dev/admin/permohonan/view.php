@@ -69,21 +69,26 @@
                                         <?php foreach ($berita as $berita_kec) : ?>
                                             <tr>
                                                 <td width="150">
-                                                    <?php echo $berita_kec->judul ?>
+                                                    <?php echo html_escape($berita_kec->judul) ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $berita_kec->status ?>
+                                                    <?php echo html_escape($berita_kec->status) ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $berita_kec->jawab ?>
+                                                    <?php echo html_escape($berita_kec->jawab) ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $berita_kec->pengaju ?>
+                                                    <?php echo html_escape($berita_kec->pengaju) ?>
                                                 </td>
 
                                                 <td width="250">
                                                     <a href="<?php echo site_url('admin/info/edit/' . $berita_kec->informasi_id) ?>" class="fcbtn btn btn-outline btn-warning btn-1b"><i class="fa fa-edit"></i> Edit</a>
-                                                    <a onclick="deleteConfirm('<?php echo site_url('admin/info/delete/' . $berita_kec->informasi_id) ?>')" href="#!" class="fcbtn btn btn-outline btn-danger btn-1b"><i class="fa fa-trash"></i> Hapus</a>
+
+                                                    <!-- FIX HIGH: Delete using POST method with CSRF token -->
+                                                    <form id="delete-form-<?php echo $berita_kec->informasi_id ?>" action="<?php echo site_url('admin/info/delete/' . $berita_kec->informasi_id) ?>" method="post" style="display:inline;">
+                                                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
+                                                        <button type="button" onclick="if(confirm('Apakah Anda yakin ingin menghapus data ini?')) document.getElementById('delete-form-<?php echo $berita_kec->informasi_id ?>').submit();" class="fcbtn btn btn-outline btn-danger btn-1b"><i class="fa fa-trash"></i> Hapus</button>
+                                                    </form>
                                                     <!-- <a href="<?php echo base_url() . 'index.php/admin/berita/download/' . $berita_kec->berita_id; ?>" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-download-alt">download</a> -->
                                                 </td>
                                             </tr>

@@ -111,21 +111,21 @@
 									<tr>
 										<td class="text-center" style="vertical-align: middle;"><?php echo $no++; ?></td>
 										<td style="vertical-align: middle;">
-											<strong><?php echo $dok_kec->judul ?></strong>
+											<strong><?php echo html_escape($dok_kec->judul) ?></strong>
 										</td>
 										<td class="text-center" style="vertical-align: middle;">
-											<small><?php echo $dok_kec->tanggal ?></small>
+											<small><?php echo html_escape($dok_kec->tanggal) ?></small>
 										</td>
 										<td style="vertical-align: middle;">
 											<span class="label label-primary" style="font-size: 11px; padding: 5px 10px;">
-												<?php echo $dok_kec->kategori ?>
+												<?php echo html_escape($dok_kec->kategori) ?>
 											</span>
 										</td>
 										<td style="vertical-align: middle;">
-											<small><?php echo $dok_kec->bentukinfo?></small>
+											<small><?php echo html_escape($dok_kec->bentukinfo)?></small>
 										</td>
 										<td class="text-center" style="vertical-align: middle;">
-											<small><?php echo $dok_kec->jangkawaktu?></small>
+											<small><?php echo html_escape($dok_kec->jangkawaktu)?></small>
 										</td>
 										<td class="text-center" style="vertical-align: middle;">
 											<?php if ($dok_kec->image != "Belum Tersedia") { ?>
@@ -134,7 +134,7 @@
 												</a>
 											<?php } else { ?>
 												<span class="label label-default" style="font-size: 10px;">
-													<?php echo $dok_kec->sumberdata; ?>
+													<?php echo html_escape($dok_kec->sumberdata); ?>
 												</span>
 											<?php } ?>
 										</td>
@@ -143,9 +143,14 @@
 												<a href="<?php echo site_url('admin/dip/edit/' . $dok_kec->id) ?>" class="btn btn-warning btn-xs" title="Edit Informasi">
 													<i class="fa fa-edit"></i> Edit
 												</a>
-												<a onclick="deleteConfirm('<?php echo site_url('admin/dip/delete/'.$dok_kec->id) ?>')" href="#!" class="btn btn-danger btn-xs" title="Hapus Informasi">
-													<i class="fa fa-trash-o"></i> Hapus
-												</a>
+
+												<!-- FIX HIGH: Delete using POST method with CSRF token -->
+												<form id="delete-form-<?php echo $dok_kec->id ?>" action="<?php echo site_url('admin/dip/delete/'.$dok_kec->id) ?>" method="post" style="display:inline;">
+													<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
+													<button type="button" onclick="if(confirm('Apakah Anda yakin ingin menghapus dokumen ini?')) document.getElementById('delete-form-<?php echo $dok_kec->id ?>').submit();" class="btn btn-danger btn-xs" title="Hapus Informasi">
+														<i class="fa fa-trash-o"></i> Hapus
+													</button>
+												</form>
 											</div>
 										</td>
 									</tr>

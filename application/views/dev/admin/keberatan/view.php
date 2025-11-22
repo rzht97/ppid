@@ -108,16 +108,16 @@
 									<tr>
 										<td class="text-center" style="vertical-align: middle;"><?php echo $no++; ?></td>
 										<td style="vertical-align: middle;">
-											<strong><?php echo $item->nama ?></strong>
+											<strong><?php echo html_escape($item->nama) ?></strong>
 										</td>
 										<td style="vertical-align: middle;">
-											<small><?php echo $item->email ?></small>
+											<small><?php echo html_escape($item->email) ?></small>
 										</td>
 										<td style="vertical-align: middle;">
-											<small><?php echo $item->nohp ?></small>
+											<small><?php echo html_escape($item->nohp) ?></small>
 										</td>
 										<td style="vertical-align: middle;">
-											<?php echo substr($item->alasan, 0, 100); ?><?php echo strlen($item->alasan) > 100 ? '...' : ''; ?>
+											<?php echo html_escape(substr($item->alasan, 0, 100)); ?><?php echo strlen($item->alasan) > 100 ? '...' : ''; ?>
 										</td>
 										<td class="text-center" style="vertical-align: middle;">
 											<?php if ($item->status == 'Belum Diverifikasi'): ?>
@@ -138,12 +138,12 @@
 												</span>
 											<?php else: ?>
 												<span class="label label-default" style="font-size: 11px; padding: 5px 10px;">
-													<?php echo $item->status ?>
+													<?php echo html_escape($item->status) ?>
 												</span>
 											<?php endif; ?>
 										</td>
 										<td class="text-center" style="vertical-align: middle;">
-											<small><?php echo $item->tanggal ?></small>
+											<small><?php echo html_escape($item->tanggal) ?></small>
 										</td>
 										<td class="text-center" style="vertical-align: middle;">
 											<div class="btn-group" role="group">
@@ -160,9 +160,14 @@
 														<i class="fa fa-gavel"></i> Proses
 													</a>
 												<?php endif; ?>
-												<a onclick="deleteConfirm('<?php echo site_url('admin/keberatan/delete/'.$item->id_keberatan) ?>')" href="#!" class="btn btn-danger btn-xs" title="Hapus Keberatan">
-													<i class="fa fa-trash-o"></i> Hapus
-												</a>
+
+												<!-- FIX HIGH: Delete using POST method with CSRF token -->
+												<form id="delete-form-<?php echo $item->id_keberatan ?>" action="<?php echo site_url('admin/keberatan/delete/'.$item->id_keberatan) ?>" method="post" style="display:inline;">
+													<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
+													<button type="button" onclick="if(confirm('Apakah Anda yakin ingin menghapus keberatan ini?')) document.getElementById('delete-form-<?php echo $item->id_keberatan ?>').submit();" class="btn btn-danger btn-xs" title="Hapus Keberatan">
+														<i class="fa fa-trash-o"></i> Hapus
+													</button>
+												</form>
 											</div>
 										</td>
 									</tr>
