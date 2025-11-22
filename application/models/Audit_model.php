@@ -37,11 +37,12 @@ class Audit_model extends CI_Model
 
         // Ambil data user dari session
         $user_id = $this->session->userdata('id');
-        $username = $this->session->userdata('username');
+        // FIX: Session key adalah 'nama', bukan 'username' (sesuai Login.php:77)
+        $username = $this->session->userdata('nama');
 
         // Jika tidak ada session (shouldn't happen in admin area), skip logging
         if (!$username) {
-            log_message('warning', 'Audit logging skipped: no user session found');
+            log_message('warning', 'Audit logging skipped: no user session found (id=' . $user_id . ')');
             return false;
         }
 
