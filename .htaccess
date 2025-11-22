@@ -1,13 +1,13 @@
 RewriteEngine On
-RewriteBase /ppidC/
+RewriteBase /ppid/
 
 # Redirect to HTTPS (optional - uncomment for production)
 # RewriteCond %{HTTPS} off
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Redirect index.php to clean URL (301 permanent redirect)
-# Example: /ppidC/index.php -> /ppidC/
-# Example: /ppidC/index.php/pub/cekstatus -> /ppidC/pub/cekstatus
+# Example: /ppid/index.php -> /ppid/
+# Example: /ppid/index.php/pub/cekstatus -> /ppid/pub/cekstatus
 RewriteCond %{THE_REQUEST} \s(/[^\s]*?)/?index\.php(/[^\s?]*)?\s [NC]
 RewriteRule ^ %1%2 [R=301,L,NE]
 
