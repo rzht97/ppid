@@ -60,17 +60,30 @@
                         <div class="white-box">
                             <h3 class="box-title m-b-0">Formulir Permohonan Informasi Publik</h3>
                             <p class="text-muted m-b-30 font-13"></p>
+
+                            <!-- Flash Messages -->
+                            <?php if($this->session->flashdata('success')): ?>
+                                <div class="alert alert-success alert-dismissible" style="border-radius: 6px; margin-bottom: 20px;">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <i class="fa fa-check-circle"></i> <strong>Berhasil!</strong><br>
+                                    <?php echo $this->session->flashdata('success'); ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if($this->session->flashdata('error')): ?>
+                                <div class="alert alert-danger alert-dismissible" style="border-radius: 6px; margin-bottom: 20px;">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <i class="fa fa-exclamation-triangle"></i> <strong>Error!</strong><br>
+                                    <?php echo $this->session->flashdata('error'); ?>
+                                </div>
+                            <?php endif; ?>
+
                             <form data-toogle="validator" class="form-horizontal">
                                 <div class="form-body">
-									<div class="alert alert-success"> Permohonan Telah dibuat. Harap simpan No Token untuk pengecekan status informasi yang dimohon </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Token:</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"> <?php echo $keberatan->id_keberatan ?> </p>
-                                                </div>
-                                            </div>
-                                        </div>
                                     <h2 class="box-title">Data Pemohon</h2>
                                     <hr>
                                     <div class="row">

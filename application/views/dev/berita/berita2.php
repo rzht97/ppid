@@ -50,8 +50,8 @@
                                     <div class="blog-single__left">
                                         <div class="blog-single__content">
                                             <div class="blog-single__content-single">
-                                                <div class="blog-single__content-img">
-                                                    <img src="<?= htmlspecialchars($item['picture']) ?>" alt="" width="50%" height="40%">
+                                                <div class="blog-single__content-img" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 8px; padding: 10px;">
+                                                    <img src="<?= htmlspecialchars($item['picture']) ?>" alt="" style="width: 100%; height: auto; max-height: 350px; object-fit: contain; border-radius: 8px;">
                                                     <div class="blog-single__date-box">
                                                         <p><?= htmlspecialchars($item['publish_date']) ?></p>
                                                     </div>

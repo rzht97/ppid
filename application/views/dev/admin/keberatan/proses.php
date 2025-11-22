@@ -110,19 +110,19 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label><strong>Nama Lengkap</strong></label>
-                                                <p class="form-control-static"><?php echo $keberatan->nama ?></p>
+                                                <p class="form-control-static"><?php echo html_escape($keberatan->nama) ?></p>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label><strong>Email</strong></label>
-                                                <p class="form-control-static"><?php echo $keberatan->email ?></p>
+                                                <p class="form-control-static"><?php echo html_escape($keberatan->email) ?></p>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label><strong>No. HP</strong></label>
-                                                <p class="form-control-static"><?php echo $keberatan->nohp ?></p>
+                                                <p class="form-control-static"><?php echo html_escape($keberatan->nohp) ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -130,7 +130,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label><strong>Alasan Keberatan</strong></label>
-                                                <p class="form-control-static" style="white-space: pre-wrap; background-color: #f9f9f9; padding: 10px; border: 1px solid #e3e3e3; border-radius: 4px;"><?php echo $keberatan->alasan ?></p>
+                                                <p class="form-control-static" style="white-space: pre-wrap; background-color: #f9f9f9; padding: 10px; border: 1px solid #e3e3e3; border-radius: 4px;"><?php echo html_escape($keberatan->alasan) ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -138,7 +138,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label><strong>Kronologi / Kasus Posisi</strong></label>
-                                                <p class="form-control-static" style="white-space: pre-wrap; background-color: #f9f9f9; padding: 10px; border: 1px solid #e3e3e3; border-radius: 4px;"><?php echo $keberatan->kronologi ?></p>
+                                                <p class="form-control-static" style="white-space: pre-wrap; background-color: #f9f9f9; padding: 10px; border: 1px solid #e3e3e3; border-radius: 4px;"><?php echo html_escape($keberatan->kronologi) ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -154,6 +154,9 @@
                                 </div>
                                 <div class="panel-body" style="padding: 20px;">
                                     <form class="form-horizontal" action="<?php echo site_url('admin/keberatan/proses/'.$keberatan->id_keberatan) ?>" method="post">
+                                        <!-- FIX HIGH: Add CSRF token -->
+                                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
+
                                         <div class="form-group">
                                             <label class="col-md-12"><strong>Tanggapan <span class="text-danger">*</span></strong></label>
                                             <div class="col-md-12">

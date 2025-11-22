@@ -271,15 +271,32 @@ class CI_Security {
 			return FALSE;
 		}
 
-		setcookie(
-			$this->_csrf_cookie_name,
-			$this->_csrf_hash,
-			$expire,
-			config_item('cookie_path'),
-			config_item('cookie_domain'),
-			$secure_cookie,
-			config_item('cookie_httponly')
-		);
+		// PHP 7.3+ support with SameSite attribute for PHP 8.2 compatibility
+		if (PHP_VERSION_ID >= 70300) {
+			setcookie(
+				$this->_csrf_cookie_name,
+				$this->_csrf_hash,
+				[
+					'expires' => $expire,
+					'path' => config_item('cookie_path'),
+					'domain' => config_item('cookie_domain'),
+					'secure' => $secure_cookie,
+					'httponly' => config_item('cookie_httponly'),
+					'samesite' => 'Lax'  // PHP 8.2 compatibility fix
+				]
+			);
+		} else {
+			// Fallback for PHP < 7.3
+			setcookie(
+				$this->_csrf_cookie_name,
+				$this->_csrf_hash,
+				$expire,
+				config_item('cookie_path'),
+				config_item('cookie_domain'),
+				$secure_cookie,
+				config_item('cookie_httponly')
+			);
+		}
 		log_message('info', 'CSRF cookie sent');
 
 		return $this;

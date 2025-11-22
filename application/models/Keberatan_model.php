@@ -17,12 +17,17 @@ class Keberatan_model extends CI_Model
     public function rules()
     {
         return [
+            ['field' => 'mohon_id',
+             'label' => 'ID Permohonan',
+             'rules' => 'required|min_length[10]|max_length[10]|regex_match[/^P\d{9}$/]'],
+
+            ['field' => 'alasan',
+             'label' => 'Alasan Keberatan',
+             'rules' => 'required|in_list[Permohonan Informasi Publik Ditolak,Informasi Berkala Tidak Disediakan,Permohonan Informasi Tidak Ditanggapi,Permohonan Informasi Tidak Ditanggapi Sebagaimana Diminta,Permintaan Informasi Tidak Dipenuhi,Biaya yang Dikenakan Tidak Wajar,Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan]'],
 
             ['field' => 'kronologi',
-            'label' => 'nama',
-            'rules' => 'required'],
-
-            
+             'label' => 'Kronologi/Uraian Keberatan',
+             'rules' => 'required|min_length[20]|max_length[2000]|regex_match[/^[a-zA-Z0-9\s\.,\?\!\:\;\(\)\/\-\'\"\n\r]+$/]'],
         ];
 
     }
@@ -43,6 +48,80 @@ public function getById($id_keberatan)
 public function save()
     {
         $post = $this->input->post();
+
+        // ===== VALIDASI & SANITASI mohon_id =====
+
+        // Step 1: Sanitasi - bersihkan input
+        $mohon_id = strtoupper(trim($post["mohon_id"]));
+        $mohon_id = preg_replace('/[^A-Z0-9]/', '', $mohon_id);
+
+        // Step 2: Format validation - regex
+        if (!preg_match('/^P\d{9}$/', $mohon_id)) {
+            throw new Exception('Format ID Permohonan tidak valid. Harus P diikuti 9 angka.');
+        }
+
+        // Step 3: Database validation - cek apakah mohon_id exist di tabel permohonan
+        $permohonan = $this->db->get_where('permohonan', ['mohon_id' => $mohon_id])->row();
+        if (!$permohonan) {
+            throw new Exception('ID Permohonan tidak ditemukan di sistem. Pastikan Anda menggunakan ID yang benar.');
+        }
+
+        // Step 4: Database validation - cek apakah sudah ada keberatan untuk mohon_id ini
+        $existing_keberatan = $this->db->get_where($this->_table, ['mohon_id' => $mohon_id])->num_rows();
+        if ($existing_keberatan > 0) {
+            throw new Exception('Permohonan ini sudah memiliki keberatan yang diajukan sebelumnya. Satu permohonan hanya bisa memiliki satu keberatan.');
+        }
+
+
+        // ===== VALIDASI & SANITASI alasan =====
+
+        // Sanitasi
+        $alasan = strip_tags(trim($post["alasan"]));
+
+        // Whitelist validation (sudah ada di rules(), tapi double check untuk keamanan)
+        $valid_alasan = [
+            'Permohonan Informasi Publik Ditolak',
+            'Informasi Berkala Tidak Disediakan',
+            'Permohonan Informasi Tidak Ditanggapi',
+            'Permohonan Informasi Tidak Ditanggapi Sebagaimana Diminta',
+            'Permintaan Informasi Tidak Dipenuhi',
+            'Biaya yang Dikenakan Tidak Wajar',
+            'Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan'
+        ];
+
+        if (!in_array($alasan, $valid_alasan)) {
+            throw new Exception('Alasan keberatan tidak valid. Silakan pilih dari opsi yang tersedia.');
+        }
+
+
+        // ===== VALIDASI & SANITASI kronologi =====
+
+        // Step 1: Sanitasi - strip HTML tags
+        $kronologi = strip_tags(trim($post["kronologi"]));
+
+        // Step 2: Character encoding validation - ensure UTF-8
+        if (!mb_check_encoding($kronologi, 'UTF-8')) {
+            $kronologi = mb_convert_encoding($kronologi, 'UTF-8', 'auto');
+            log_message('info', 'Konversi encoding kronologi ke UTF-8 untuk mohon_id: ' . $mohon_id);
+        }
+
+        // Step 3: Remove non-printable characters (kecuali \n \r \t)
+        // \x00-\x08: control chars sebelum tab
+        // \x0B-\x0C: vertical tab dan form feed
+        // \x0E-\x1F: control chars setelah carriage return
+        // \x7F: delete character
+        $kronologi = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/u', '', $kronologi);
+
+        // Step 4: Normalize line breaks - convert \r\n dan \r ke \n
+        $kronologi = str_replace(["\r\n", "\r"], "\n", $kronologi);
+
+        // Step 5: Length validation
+        if (strlen($kronologi) < 20) {
+            throw new Exception('Kronologi terlalu pendek. Minimal 20 karakter.');
+        }
+        if (strlen($kronologi) > 2000) {
+            throw new Exception('Kronologi terlalu panjang. Maksimal 2000 karakter.');
+        }
 
         // Generate unique id_keberatan with retry mechanism for race conditions
         $max_retries = 10;
@@ -86,9 +165,10 @@ public function save()
             log_message('info', 'Used timestamp fallback for id_keberatan: ' . $this->id_keberatan);
         }
 
-        $this->mohon_id = $post["mohon_id"];
-		$this->kronologi = $post["kronologi"];
-		$this->alasan = $post["alasan"];
+        // Set sanitized values
+        $this->mohon_id = $mohon_id;
+		$this->kronologi = $kronologi;
+		$this->alasan = $alasan;
 		$this->status = "Menunggu Verifikasi";
 		$this->tanggal = date('Y-m-d H:i:s'); // Current datetime
 		// tanggapan and putusan will be NULL by default (set when answered)

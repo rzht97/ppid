@@ -79,22 +79,22 @@
                                         <?php foreach ($permohonan as $data) : ?>
                                             <tr>
                                                 <td width="150">
-                                                    <?php echo $data->tanggal ?>
+                                                    <?php echo html_escape($data->tanggal) ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $data->nama ?>
+                                                    <?php echo html_escape($data->nama) ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $data->pekerjaan ?>
+                                                    <?php echo html_escape($data->pekerjaan) ?>
                                                 </td>
 												<td>
-                                                    <?php echo $data->nohp ?> / <?php echo $data->email?>
+                                                    <?php echo html_escape($data->nohp) ?> / <?php echo html_escape($data->email)?>
                                                 </td>
 												<td>
-                                                    <?php echo $data->ktp ?>
+                                                    <?php echo html_escape($data->ktp) ?>
                                                 </td>
 												<td>
-                                                    <?php echo $data->status ?>
+                                                    <?php echo html_escape($data->status) ?>
                                                 </td>
 
                                                 <td width="250">
@@ -120,7 +120,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label">Tanggal Permohonan:</label>
                                                         <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->tanggal ?> </p>
+                                                            <p class="form-control-static"> <?php echo html_escape($data->tanggal) ?> </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -129,7 +129,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label">Permohonan Selesai:</label>
                                                         <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->tanggaljawab ?> </p>
+                                                            <p class="form-control-static"> <?php echo html_escape($data->tanggaljawab) ?> </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -142,7 +142,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label">Rincian Informasi :</label>
                                                         <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->rincian ?> </p>
+                                                            <p class="form-control-static"> <?php echo html_escape($data->rincian) ?> </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -150,7 +150,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label">Tujuan Penggunaan Informasi :</label>
                                                         <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->tujuan ?> </p>
+                                                            <p class="form-control-static"> <?php echo html_escape($data->tujuan) ?> </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -160,7 +160,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label">Cara Memperoleh Informasi :</label>
                                                         <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->caraperoleh ?> </p>
+                                                            <p class="form-control-static"> <?php echo html_escape($data->caraperoleh) ?> </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -168,7 +168,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label">Cara Mendapatkan Salinan Informasi :</label>
                                                         <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->caradapat ?> </p>
+                                                            <p class="form-control-static"> <?php echo html_escape($data->caradapat) ?> </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -177,18 +177,18 @@
                                                 <label class="control-label">Status :</label>
                                                 <div class="col-md-3">
                                                     <?php if ($data->status == 'Menunggu Verifikasi') : ?>
-                                                        <button class="btn btn-block btn-warning disabled"><?php echo $data->status ?> </button>
+                                                        <button class="btn btn-block btn-warning disabled"><?php echo html_escape($data->status) ?> </button>
                                                     <?php elseif ($data->status == 'Sedang Diproses') : ?>
-                                                        <button class="btn btn-block btn-info disabled"><?php echo $data->status ?> </button>
+                                                        <button class="btn btn-block btn-info disabled"><?php echo html_escape($data->status) ?> </button>
                                                     <?php else : ?>
-                                                        <button class="btn btn-block btn-success disabled"><?php echo $data->status ?></button>
+                                                        <button class="btn btn-block btn-success disabled"><?php echo html_escape($data->status) ?></button>
                                                     <?php endif ?>
                                                 </div>
                                             </div>
 											<div class="form-group">
                                                   <label class="control-label">Jawaban :</label>
                                                   <div class="col-md-9">
-                                                       <p class="form-control-static"> <?php echo $data->jawab ?> </p>
+                                                       <p class="form-control-static"> <?php echo html_escape($data->jawab) ?> </p>
                                                   </div>
                                             </div>
                                         </div>
@@ -215,7 +215,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label">Tanggal Permohonan:</label>
                                                         <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->tanggal ?> </p>
+                                                            <p class="form-control-static"> <?php echo html_escape($data->tanggal) ?> </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -224,7 +224,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label">Permohonan Selesai:</label>
                                                         <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->tanggaljawab ?> </p>
+                                                            <p class="form-control-static"> <?php echo html_escape($data->tanggaljawab) ?> </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -237,7 +237,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label">Rincian Informasi :</label>
                                                         <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->rincian ?> </p>
+                                                            <p class="form-control-static"> <?php echo html_escape($data->rincian) ?> </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -245,7 +245,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label">Tujuan Penggunaan Informasi :</label>
                                                         <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->tujuan ?> </p>
+                                                            <p class="form-control-static"> <?php echo html_escape($data->tujuan) ?> </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -255,7 +255,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label">Cara Memperoleh Informasi :</label>
                                                         <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->caraperoleh ?> </p>
+                                                            <p class="form-control-static"> <?php echo html_escape($data->caraperoleh) ?> </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -263,7 +263,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label">Cara Mendapatkan Salinan Informasi :</label>
                                                         <div class="col-md-9">
-                                                            <p class="form-control-static"> <?php echo $data->caradapat ?> </p>
+                                                            <p class="form-control-static"> <?php echo html_escape($data->caradapat) ?> </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -272,18 +272,18 @@
                                                 <label class="control-label">Status :</label>
                                                 <div class="col-md-3">
                                                     <?php if ($data->status == 'Menunggu Verifikasi') : ?>
-                                                        <button class="btn btn-block btn-warning disabled"><?php echo $data->status ?> </button>
+                                                        <button class="btn btn-block btn-warning disabled"><?php echo html_escape($data->status) ?> </button>
                                                     <?php elseif ($data->status == 'Sedang Diproses') : ?>
-                                                        <button class="btn btn-block btn-info disabled"><?php echo $data->status ?> </button>
+                                                        <button class="btn btn-block btn-info disabled"><?php echo html_escape($data->status) ?> </button>
                                                     <?php else : ?>
-                                                        <button class="btn btn-block btn-success disabled"><?php echo $data->status ?></button>
+                                                        <button class="btn btn-block btn-success disabled"><?php echo html_escape($data->status) ?></button>
                                                     <?php endif ?>
                                                 </div>
                                             </div>
 											<div class="form-group">
                                                   <label class="control-label">Jawaban :</label>
                                                   <div class="col-md-9">
-                                                       <p class="form-control-static"> <?php echo $data->jawab ?> </p>
+                                                       <p class="form-control-static"> <?php echo html_escape($data->jawab) ?> </p>
                                                   </div>
                                             </div>
                                         </div>

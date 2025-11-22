@@ -13,7 +13,7 @@
         font-weight: 700;
         text-transform: uppercase;
         padding: 14px 28px;
-        margin-left: 30px;
+        margin-left: 15px;
         border-radius: 6px;
         transition: all 0.3s ease;
         letter-spacing: 0.03em;
@@ -40,7 +40,16 @@
     .main-menu-wrapper__search-box {
         display: flex;
         align-items: center;
-        margin-left: 20px;
+        justify-content: center;
+        margin-right: 20px;
+    }
+
+    /* Adjust right wrapper for better centering */
+    .main-menu-wrapper__right {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 15px;
     }
 
     /* Responsive adjustments */
@@ -48,7 +57,10 @@
         .btn-ajukan-permohonan {
             padding: 12px 24px;
             font-size: 12px;
-            margin-left: 20px;
+            margin-left: 12px;
+        }
+        .main-menu-wrapper__search-box {
+            margin-right: 15px;
         }
     }
 
@@ -56,7 +68,10 @@
         .btn-ajukan-permohonan {
             padding: 10px 20px;
             font-size: 11px;
-            margin-left: 15px;
+            margin-left: 10px;
+        }
+        .main-menu-wrapper__search-box {
+            margin-right: 10px;
         }
     }
 
@@ -64,7 +79,13 @@
         .btn-ajukan-permohonan {
             padding: 10px 18px;
             font-size: 11px;
-            margin-left: 10px;
+            margin-left: 8px;
+        }
+        .main-menu-wrapper__search-box {
+            margin-right: 5px;
+        }
+        .main-menu-wrapper__right {
+            padding-right: 5px;
         }
     }
 </style>

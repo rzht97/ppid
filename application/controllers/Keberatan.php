@@ -10,6 +10,7 @@ class Keberatan extends CI_Controller {
 		$this->load->model("Keberatan_model");
 		// Removed: user_model does not exist
         $this->load->library('form_validation');
+        $this->load->library('rate_limiter');  // ADDED: Enhanced rate limiting
 	}
 
 	/**
@@ -122,9 +123,27 @@ class Keberatan extends CI_Controller {
 		// Proceed with normal submission
 		$keberatan = $this->Keberatan_model;
 
-        $keberatan->save();
-       	$this->session->set_flashdata('success', 'Keberatan berhasil disimpan');
-		redirect(base_url("index.php/keberatan/detail/".substr($keberatan->id_keberatan,0,11)));
+		// Validate form rules first
+		$validation = $this->form_validation;
+		$validation->set_rules($keberatan->rules());
+
+		if ($validation->run()) {
+			try {
+				// Try to save with validation and sanitization
+				$keberatan->save();
+				$this->session->set_flashdata('success', 'Keberatan berhasil disimpan');
+				redirect(base_url("index.php/keberatan/detail/".substr($keberatan->id_keberatan,0,11)));
+			} catch (Exception $e) {
+				// Catch validation errors from model
+				log_message('error', 'Keberatan save error: ' . $e->getMessage());
+				$this->session->set_flashdata('error', $e->getMessage());
+				redirect('keberatan/index/' . $this->input->post('mohon_id', TRUE));
+			}
+		} else {
+			// Form validation failed
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('keberatan/index/' . $this->input->post('mohon_id', TRUE));
+		}
 	}
 
 	/**

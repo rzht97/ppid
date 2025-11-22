@@ -111,35 +111,35 @@
                                     <?php foreach ($permohonan as $data) : ?>
                                         <tr>
                                             <td class="text-center"><?php echo $no++; ?></td>
-                                            <td><?php echo $data->tanggal ?></td>
-                                            <td><strong><?php echo $data->nama ?></strong></td>
-                                            <td><?php echo $data->pekerjaan ?></td>
+                                            <td><?php echo html_escape($data->tanggal) ?></td>
+                                            <td><strong><?php echo html_escape($data->nama) ?></strong></td>
+                                            <td><?php echo html_escape($data->pekerjaan) ?></td>
                                             <td>
                                                 <small>
-                                                    <i class="fa fa-phone"></i> <?php echo $data->nohp ?><br>
-                                                    <i class="fa fa-envelope"></i> <?php echo $data->email ?>
+                                                    <i class="fa fa-phone"></i> <?php echo html_escape($data->nohp) ?><br>
+                                                    <i class="fa fa-envelope"></i> <?php echo html_escape($data->email) ?>
                                                 </small>
                                             </td>
-                                            <td class="text-center"><?php echo $data->ktp ?></td>
+                                            <td class="text-center"><?php echo html_escape($data->ktp) ?></td>
                                             <td class="text-center">
                                                 <?php if($data->status == "Menunggu Verifikasi"): ?>
                                                     <span class="label label-warning">
-                                                        <i class="fa fa-clock-o"></i> <?php echo $data->status ?>
+                                                        <i class="fa fa-clock-o"></i> <?php echo html_escape($data->status) ?>
                                                     </span>
                                                 <?php elseif($data->status == "Sedang Diproses"): ?>
                                                     <span class="label label-info">
-                                                        <i class="fa fa-spinner"></i> <?php echo $data->status ?>
+                                                        <i class="fa fa-spinner"></i> <?php echo html_escape($data->status) ?>
                                                     </span>
                                                 <?php elseif($data->status == "Selesai"): ?>
                                                     <span class="label label-success">
-                                                        <i class="fa fa-check-circle"></i> <?php echo $data->status ?>
+                                                        <i class="fa fa-check-circle"></i> <?php echo html_escape($data->status) ?>
                                                     </span>
                                                 <?php elseif($data->status == "Ditolak"): ?>
                                                     <span class="label label-danger">
-                                                        <i class="fa fa-times-circle"></i> <?php echo $data->status ?>
+                                                        <i class="fa fa-times-circle"></i> <?php echo html_escape($data->status) ?>
                                                     </span>
                                                 <?php else: ?>
-                                                    <span class="label label-default"><?php echo $data->status ?></span>
+                                                    <span class="label label-default"><?php echo html_escape($data->status) ?></span>
                                                 <?php endif; ?>
                                             </td>
                                             <td class="text-center">

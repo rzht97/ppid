@@ -42,7 +42,7 @@
                     <div class="col-sm-12">
                         <div class="white-box">
                             <h3 class="box-title m-b-0">Proses Permohonan Informasi</h3>
-                            <p class="text-muted m-b-20">ID Permohonan: <strong><?php echo $permohonan->mohon_id ?></strong></p>
+                            <p class="text-muted m-b-20">ID Permohonan: <strong><?php echo html_escape($permohonan->mohon_id) ?></strong></p>
 
                             <?php
                                 // Read flashdata and target page
@@ -82,7 +82,9 @@
                             <?php endif; ?>
 
                             <form class="form-horizontal" action="<?php echo base_url("admin/permohonan/edit/".$permohonan->mohon_id) ?>" method="post" enctype="multipart/form-data">
-                                <input type="hidden" name="mohon_id" value="<?php echo $permohonan->mohon_id ?>" />
+                                <input type="hidden" name="mohon_id" value="<?php echo html_escape($permohonan->mohon_id) ?>" />
+                                <!-- FIX HIGH: Add CSRF token -->
+                                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
 
                                 <div class="form-body">
                                     <h4 class="m-t-30 m-b-20"><i class="fa fa-user"></i> Data Pemohon</h4>
@@ -93,21 +95,21 @@
                                             <tbody>
                                                 <tr>
                                                     <td width="20%" class="active"><strong>Nama</strong></td>
-                                                    <td width="30%"><?php echo $permohonan->nama ?></td>
+                                                    <td width="30%"><?php echo html_escape($permohonan->nama) ?></td>
                                                     <td width="20%" class="active"><strong>Pekerjaan</strong></td>
-                                                    <td width="30%"><?php echo $permohonan->pekerjaan ?></td>
+                                                    <td width="30%"><?php echo html_escape($permohonan->pekerjaan) ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="active"><strong>Alamat</strong></td>
-                                                    <td><?php echo $permohonan->alamat ?></td>
+                                                    <td><?php echo html_escape($permohonan->alamat) ?></td>
                                                     <td class="active"><strong>No HP</strong></td>
-                                                    <td><?php echo $permohonan->nohp ?></td>
+                                                    <td><?php echo html_escape($permohonan->nohp) ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="active"><strong>Email</strong></td>
-                                                    <td><?php echo $permohonan->email ?></td>
+                                                    <td><?php echo html_escape($permohonan->email) ?></td>
                                                     <td class="active"><strong>Tanggal Permohonan</strong></td>
-                                                    <td><?php echo $permohonan->tanggal ?></td>
+                                                    <td><?php echo html_escape($permohonan->tanggal) ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="active"><strong>KTP</strong></td>
@@ -137,7 +139,7 @@
                                         <label class="col-md-12"><strong>Rincian Informasi yang Dibutuhkan</strong></label>
                                         <div class="col-md-12">
                                             <div class="well well-sm">
-                                                <?php echo nl2br($permohonan->rincian) ?>
+                                                <?php echo nl2br(html_escape($permohonan->rincian)) ?>
                                             </div>
                                         </div>
                                     </div>
@@ -146,7 +148,7 @@
                                         <label class="col-md-12"><strong>Tujuan Penggunaan Informasi</strong></label>
                                         <div class="col-md-12">
                                             <div class="well well-sm">
-                                                <?php echo nl2br($permohonan->tujuan) ?>
+                                                <?php echo nl2br(html_escape($permohonan->tujuan)) ?>
                                             </div>
                                         </div>
                                     </div>
@@ -155,7 +157,7 @@
                                         <label class="col-md-12"><strong>Cara Memperoleh Informasi</strong></label>
                                         <div class="col-md-12">
                                             <div class="well well-sm">
-                                                <?php echo $permohonan->caraperoleh ?>
+                                                <?php echo html_escape($permohonan->caraperoleh) ?>
                                             </div>
                                         </div>
                                     </div>
@@ -164,7 +166,7 @@
                                         <label class="col-md-12"><strong>Cara Mendapatkan Salinan Informasi</strong></label>
                                         <div class="col-md-12">
                                             <div class="well well-sm">
-                                                <?php echo $permohonan->caradapat ?>
+                                                <?php echo html_escape($permohonan->caradapat) ?>
                                             </div>
                                         </div>
                                     </div>
@@ -180,7 +182,7 @@
                                                 <option value="Selesai" <?php echo ($permohonan->status == 'Selesai') ? 'selected' : '' ?>>Selesai (Diterima)</option>
                                                 <option value="Ditolak" <?php echo ($permohonan->status == 'Ditolak') ? 'selected' : '' ?>>Ditolak</option>
                                             </select>
-                                            <small class="text-muted">Status saat ini: <strong><?php echo $permohonan->status ?></strong></small>
+                                            <small class="text-muted">Status saat ini: <strong><?php echo html_escape($permohonan->status) ?></strong></small>
                                             <?php if(form_error('status')): ?>
                                                 <div class="text-danger"><?php echo form_error('status') ?></div>
                                             <?php endif; ?>
@@ -190,7 +192,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12"><strong>Jawaban/Keterangan <span class="text-danger">*</span></strong></label>
                                         <div class="col-md-12">
-                                            <textarea class="form-control" rows="6" <?php echo form_error('jawab') ? 'is-invalid' : '' ?> name="jawab" placeholder="Masukkan jawaban atau keterangan atas permohonan informasi ini..." required><?php echo $permohonan->jawab ?></textarea>
+                                            <textarea class="form-control" rows="6" <?php echo form_error('jawab') ? 'is-invalid' : '' ?> name="jawab" placeholder="Masukkan jawaban atau keterangan atas permohonan informasi ini..." required><?php echo html_escape($permohonan->jawab) ?></textarea>
                                             <small class="text-muted">
                                                 <i class="fa fa-info-circle"></i>
                                                 Untuk status <strong>Selesai</strong>: Jelaskan informasi yang diberikan atau lampiran yang disediakan.<br>

@@ -54,11 +54,13 @@
                             <p class="text-muted m-b-30 font-13"> All bootstrap element classies </p>
                             <form class="form-horizontal" action="<?php base_url(" admin/info/edit") ?>" method="post"
 							enctype="multipart/form-data">
-								<input type="hidden" name="id" value="<?php echo $berita->informasi_id?>" />
+								<input type="hidden" name="id" value="<?php echo html_escape($berita->informasi_id)?>" />
+								<!-- FIX HIGH: Add CSRF token -->
+								<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
                                 <div class="form-group">
 								<label for="name">Jenis</label>
 								<input class="form-control <?php echo form_error('judul') ? 'is-invalid':'' ?>"
-								 type="text" name="judul" placeholder="Judul Berita" value="<?php echo $berita->judul ?>" readonly />
+								 type="text" name="judul" placeholder="Judul Berita" value="<?php echo html_escape($berita->judul) ?>" readonly />
 								<div class="invalid-feedback">
 									<?php echo form_error('judul') ?>
 								</div>
@@ -74,7 +76,7 @@
 							<div class="form-group">
 								<label for="name">Description*</label>
 								<textarea readonly class="form-control <?php echo form_error('deskripsi') ? 'is-invalid':'' ?>"
-								 name="deskripsi" placeholder="deskirpisn..."><?php echo $berita->deskripsi ?></textarea>
+								 name="deskripsi" placeholder="deskirpisn..."><?php echo html_escape($berita->deskripsi) ?></textarea>
 								<div class="invalid-feedback">
 									<?php echo form_error('desckripsi') ?>
 								</div>
@@ -83,7 +85,7 @@
 							<div class="form-group">
 								<label for="name">Tanggal*</label>
 								<input class="form-control <?php echo form_error('tanggal') ? 'is-invalid':'' ?>"
-								 type="text" name="tanggal" placeholder="" value="<?php echo $berita->tanggal ?>" readonly />
+								 type="text" name="tanggal" placeholder="" value="<?php echo html_escape($berita->tanggal) ?>" readonly />
 								<div class="invalid-feedback">
 									<?php echo form_error('tanggal') ?>
 								</div>
@@ -92,7 +94,7 @@
 							<div class="form-group">
 								<label for="name">Pengaju*</label>
 								<input class="form-control <?php echo form_error('pengaju') ? 'is-invalid':'' ?>"
-								 type="text" name="pengaju" placeholder="" value="<?php echo $berita->pengaju ?>" readonly />
+								 type="text" name="pengaju" placeholder="" value="<?php echo html_escape($berita->pengaju) ?>" readonly />
 								<div class="invalid-feedback">
 									<?php echo form_error('pengaju') ?>
 								</div>
@@ -105,8 +107,8 @@
 
 							<div class="form-group">
 								<label for="status">Status</label>
-								<select class="form-control <?php echo form_error('status') ? 'is-invalid':'' ?>" name="status" placeholder="status..."><?php echo $berita->status ?>
-								<option value="<?php echo $berita->status ?>" placeholder="Product kategori..."><?php echo $berita->status ?></option>
+								<select class="form-control <?php echo form_error('status') ? 'is-invalid':'' ?>" name="status" placeholder="status..."><?php echo html_escape($berita->status) ?>
+								<option value="<?php echo html_escape($berita->status) ?>" placeholder="Product kategori..."><?php echo html_escape($berita->status) ?></option>
 								<option value="sedang diproses">sedang diproses</option>
 								<option value="sudah diproses">sudah diproses</option>
 								<option value="ditolak">ditolak</option>
@@ -122,7 +124,7 @@
 								<div class="form-group">
 								<label for="name">Tanggapan</label>
 								<textarea class="ckeditor <?php echo form_error('jawab') ? 'is-invalid':'' ?>"
-								 type="text" name="jawab" placeholder="" value="<?php echo $berita->jawab ?>"  ></textarea>
+								 type="text" name="jawab" placeholder="" value="<?php echo html_escape($berita->jawab) ?>"  ></textarea>
 								<div class="invalid-feedback">
 									<?php echo form_error('jawab') ?>
 								</div> 

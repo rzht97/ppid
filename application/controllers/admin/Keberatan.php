@@ -13,6 +13,7 @@ class Keberatan extends CI_Controller
         $this->load->helper('url');
         $this->load->model("Keberatan_model");
         $this->load->model("Permohonan_model");
+        $this->load->model("audit_model");  // ADDED: Audit logging
         $this->load->library('form_validation');
     }
 
@@ -67,6 +68,9 @@ class Keberatan extends CI_Controller
         $this->db->where('id_keberatan', $id);
         $this->db->update('keberatan', array('status' => 'Sedang Diproses'));
 
+        // AUDIT LOG: Catat verifikasi keberatan
+        $this->audit_model->log_verify('keberatan', $id, 'Verifikasi keberatan - status diubah menjadi Sedang Diproses');
+
         $this->session->set_flashdata('success', 'Keberatan berhasil diverifikasi');
         $this->session->set_flashdata('success_target', 'admin/keberatan'); // Mark target page
         redirect(site_url('admin/keberatan'));
@@ -94,6 +98,11 @@ class Keberatan extends CI_Controller
             );
 
             $result = $this->db->where('id_keberatan', $id)->update('keberatan', $data);
+
+            // AUDIT LOG: Catat pemrosesan keberatan
+            if ($result) {
+                $this->audit_model->log_process('keberatan', $id, $data, 'Pemrosesan keberatan - status: ' . $post['status']);
+            }
 
             if($result) {
                 $this->session->set_flashdata('success', 'Keberatan berhasil diproses');
@@ -127,7 +136,13 @@ class Keberatan extends CI_Controller
     {
         if (!isset($id)) show_404();
 
+        // Get data before delete for audit log
+        $old_data = $this->db->get_where('keberatan', array('id_keberatan' => $id))->row();
+
         if ($this->Keberatan_model->delete($id)) {
+            // AUDIT LOG: Catat penghapusan keberatan
+            $this->audit_model->log_delete('keberatan', $id, $old_data, 'Menghapus keberatan');
+
             $this->session->set_flashdata('success', 'Keberatan berhasil dihapus');
             $this->session->set_flashdata('success_target', 'admin/keberatan');
         } else {

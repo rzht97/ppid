@@ -64,13 +64,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label><strong>Nama Lengkap</strong></label>
-                                                <p class="form-control-static"><?php echo $keberatan->nama ?></p>
+                                                <p class="form-control-static"><?php echo html_escape($keberatan->nama) ?></p>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label><strong>Email</strong></label>
-                                                <p class="form-control-static"><?php echo $keberatan->email ?></p>
+                                                <p class="form-control-static"><?php echo html_escape($keberatan->email) ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -78,13 +78,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label><strong>No. HP</strong></label>
-                                                <p class="form-control-static"><?php echo $keberatan->nohp ?></p>
+                                                <p class="form-control-static"><?php echo html_escape($keberatan->nohp) ?></p>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label><strong>Tanggal Pengajuan</strong></label>
-                                                <p class="form-control-static"><?php echo $keberatan->tanggal ?></p>
+                                                <p class="form-control-static"><?php echo html_escape($keberatan->tanggal) ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -101,18 +101,18 @@
                                 <div class="panel-body" style="padding: 20px;">
                                     <div class="form-group">
                                         <label><strong>Alasan Keberatan</strong></label>
-                                        <p class="form-control-static" style="white-space: pre-wrap;"><?php echo $keberatan->alasan ?></p>
+                                        <p class="form-control-static" style="white-space: pre-wrap;"><?php echo html_escape($keberatan->alasan) ?></p>
                                     </div>
                                     <div class="form-group">
                                         <label><strong>Kronologi / Kasus Posisi</strong></label>
-                                        <p class="form-control-static" style="white-space: pre-wrap;"><?php echo $keberatan->kronologi ?></p>
+                                        <p class="form-control-static" style="white-space: pre-wrap;"><?php echo html_escape($keberatan->kronologi) ?></p>
                                     </div>
                                     <div class="form-group">
                                         <label><strong>Status</strong></label>
                                         <div>
                                             <?php if ($keberatan->status == 'Menunggu Verifikasi' || $keberatan->status == 'Belum Diverifikasi'): ?>
                                                 <span class="label label-warning" style="font-size: 13px; padding: 8px 12px;">
-                                                    <?php echo $keberatan->status ?>
+                                                    <?php echo html_escape($keberatan->status) ?>
                                                 </span>
                                             <?php elseif ($keberatan->status == 'Sedang Diproses'): ?>
                                                 <span class="label label-info" style="font-size: 13px; padding: 8px 12px;">
@@ -120,7 +120,7 @@
                                                 </span>
                                             <?php elseif ($keberatan->status == 'Diterima' || $keberatan->status == 'Selesai'): ?>
                                                 <span class="label label-success" style="font-size: 13px; padding: 8px 12px;">
-                                                    <?php echo $keberatan->status ?>
+                                                    <?php echo html_escape($keberatan->status) ?>
                                                 </span>
                                             <?php elseif ($keberatan->status == 'Ditolak'): ?>
                                                 <span class="label label-danger" style="font-size: 13px; padding: 8px 12px;">
@@ -128,7 +128,7 @@
                                                 </span>
                                             <?php else: ?>
                                                 <span class="label label-default" style="font-size: 13px; padding: 8px 12px;">
-                                                    <?php echo $keberatan->status ?>
+                                                    <?php echo html_escape($keberatan->status) ?>
                                                 </span>
                                             <?php endif; ?>
                                         </div>
@@ -148,14 +148,14 @@
                                     <?php if (!empty($keberatan->tanggapan)): ?>
                                     <div class="form-group">
                                         <label><strong>Tanggapan</strong></label>
-                                        <p class="form-control-static" style="white-space: pre-wrap;"><?php echo $keberatan->tanggapan ?></p>
+                                        <p class="form-control-static" style="white-space: pre-wrap;"><?php echo html_escape($keberatan->tanggapan) ?></p>
                                     </div>
                                     <?php endif; ?>
 
                                     <?php if (!empty($keberatan->putusan)): ?>
                                     <div class="form-group">
                                         <label><strong>Putusan</strong></label>
-                                        <p class="form-control-static" style="white-space: pre-wrap;"><?php echo $keberatan->putusan ?></p>
+                                        <p class="form-control-static" style="white-space: pre-wrap;"><?php echo html_escape($keberatan->putusan) ?></p>
                                     </div>
                                     <?php endif; ?>
                                 </div>
@@ -180,9 +180,13 @@
                                     </a>
                                 <?php endif; ?>
 
-                                <a href="<?php echo site_url('admin/keberatan/delete/' . $keberatan->id_keberatan) ?>" class="btn btn-danger waves-effect waves-light" onclick="return confirm('Yakin ingin menghapus keberatan ini?')">
-                                    <i class="fa fa-trash"></i> Hapus
-                                </a>
+                                <!-- FIX HIGH: Delete using POST method with CSRF token -->
+                                <form id="delete-form-<?php echo $keberatan->id_keberatan ?>" action="<?php echo site_url('admin/keberatan/delete/' . $keberatan->id_keberatan) ?>" method="post" style="display:inline;">
+                                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
+                                    <button type="button" onclick="if(confirm('Yakin ingin menghapus keberatan ini?')) document.getElementById('delete-form-<?php echo $keberatan->id_keberatan ?>').submit();" class="btn btn-danger waves-effect waves-light">
+                                        <i class="fa fa-trash"></i> Hapus
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

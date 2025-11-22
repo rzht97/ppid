@@ -90,6 +90,9 @@
                             <div class="panel panel-default search-panel">
                                 <div class="panel-body">
                                     <form method="POST">
+                                        <!-- CSRF Token -->
+                                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+
                                         <div class="row">
                                             <div class="col-md-8 col-md-offset-2">
                                                 <div class="form-group">
@@ -105,11 +108,8 @@
                                         <div class="row">
                                             <div class="col-md-12 text-center">
                                                 <button type="submit" id="submitBtn" class="btn btn-primary btn-lg" name="type" value="filter" disabled>
-                                                    <i class="fa fa-search"></i> Cari Status
+                                                    <i class="fa fa-search"></i> Cari Permohonan
                                                 </button>
-                                                <small id="submitHelp" class="text-muted" style="display: block; margin-top: 8px;">
-                                                    <i class="fa fa-info-circle"></i> Masukkan ID permohonan dengan format yang benar untuk mencari
-                                                </small>
                                             </div>
                                         </div>
                                     </form>
@@ -474,7 +474,6 @@
         const tokenInput = $('#tokenInput');
         const tokenError = $('#tokenError');
         const submitBtn = $('#submitBtn');
-        const submitHelp = $('#submitHelp');
 
         /**
          * Validator untuk ID Permohonan
@@ -527,11 +526,9 @@
             if (isValid) {
                 submitBtn.prop('disabled', false);
                 submitBtn.removeClass('btn-default').addClass('btn-primary');
-                submitHelp.html('<i class="fa fa-check-circle text-success"></i> <span class="text-success">Format ID benar. Silakan klik tombol untuk mencari.</span>');
             } else {
                 submitBtn.prop('disabled', true);
                 submitBtn.removeClass('btn-primary').addClass('btn-default');
-                submitHelp.html('<i class="fa fa-info-circle"></i> Masukkan ID permohonan dengan format yang benar untuk mencari');
             }
         }
 

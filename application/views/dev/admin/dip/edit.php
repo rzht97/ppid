@@ -99,7 +99,9 @@
                             <?php endif; ?>
 
                             <form class="form-horizontal" action="<?php echo site_url('admin/dip/edit/'.$dokumen->id) ?>" method="post" enctype="multipart/form-data">
-								<input type="hidden" name="id" value="<?php echo $dokumen->id ?>" />
+								<input type="hidden" name="id" value="<?php echo html_escape($dokumen->id) ?>" />
+								<!-- FIX HIGH: Add CSRF token -->
+								<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
 
                                 <div class="form-group">
                                     <label class="col-md-12"><strong>Ringkasan Isi Informasi <span class="text-danger">*</span></strong></label>
@@ -163,7 +165,7 @@
                                     <div class="col-sm-12">
                                         <?php if($dokumen->image != "Belum Tersedia"): ?>
                                             <div class="alert alert-info">
-                                                <i class="fa fa-file"></i> Dokumen saat ini: <strong><?php echo $dokumen->image ?></strong>
+                                                <i class="fa fa-file"></i> Dokumen saat ini: <strong><?php echo html_escape($dokumen->image) ?></strong>
                                                 <a href="<?php echo base_url().'index.php/admin/dip/download/'.$dokumen->id; ?>" class="btn btn-xs btn-success pull-right">
                                                     <i class="fa fa-download"></i> Download
                                                 </a>
