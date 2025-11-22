@@ -1,5 +1,6 @@
-<?php 
+<?php
 
+#[AllowDynamicProperties]  // PHP 8.2 compatibility
 class M_login extends CI_Model{
 
     private $_table = "admin";

@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+#[AllowDynamicProperties]  // PHP 8.2 compatibility
 class Berita extends CI_Controller {
 
     public function __construct()

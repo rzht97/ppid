@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+#[AllowDynamicProperties]  // PHP 8.2 compatibility
 /**
  * Profil Controller
  * Menampilkan halaman profil PPID

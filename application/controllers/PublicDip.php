@@ -1,5 +1,6 @@
 <?php
 
+#[AllowDynamicProperties]  // PHP 8.2 compatibility
 class PublicDip extends CI_Controller {
     public function __construct()
     {

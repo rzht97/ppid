@@ -1,5 +1,6 @@
 <?php
 
+#[AllowDynamicProperties]  // PHP 8.2 compatibility
 class Cekstatus extends CI_Controller {
 
     public function __construct()

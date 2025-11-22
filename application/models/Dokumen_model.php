@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+#[AllowDynamicProperties]  // PHP 8.2 compatibility
 class Dokumen_model extends CI_Model
 {
     private $_table = "dokumen";

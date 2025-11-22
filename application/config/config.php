@@ -417,8 +417,8 @@ $config['sess_regenerate_destroy'] = FALSE;
 $config['cookie_prefix']	= '';
 $config['cookie_domain']	= '';
 $config['cookie_path']		= '/';
-$config['cookie_secure']	= true;
-$config['cookie_httponly'] 	= true;
+$config['cookie_secure']	= FALSE;  // Set TRUE in production with HTTPS, FALSE for localhost HTTP
+$config['cookie_httponly'] 	= TRUE;  // ✅ Prevent JavaScript access (XSS protection)
 
 /*
 |--------------------------------------------------------------------------
@@ -461,13 +461,16 @@ $config['global_xss_filtering'] = FALSE;
 | 'csrf_expire' = The number in seconds the token should expire.
 | 'csrf_regenerate' = Regenerate token on every submission
 | 'csrf_exclude_uris' = Array of URIs which ignore CSRF checks
+|
+| PHP 8.2 COMPATIBILITY: Security.php has been patched with SameSite support
+| csrf_regenerate set to FALSE to prevent race conditions in PHP 8.2+
 */
-$config['csrf_protection'] = FALSE;  // DISABLED - CI3 + PHP 8.1 compatibility issues
+$config['csrf_protection'] = TRUE;  // ✅ ENABLED - PHP 8.2 compatible with patched Security.php
 $config['csrf_token_name'] = 'ppid_csrf_token';
 $config['csrf_cookie_name'] = 'ppid_csrf_cookie';
 $config['csrf_expire'] = 7200;  // 2 hours
-$config['csrf_regenerate'] = TRUE;  // Regenerate on each request for better security
-$config['csrf_exclude_uris'] = array();  // Not needed when disabled
+$config['csrf_regenerate'] = FALSE;  // Set FALSE for PHP 8.2 stability (prevents race condition)
+$config['csrf_exclude_uris'] = array();  // Add URIs to exclude if needed
 
 /*
 |--------------------------------------------------------------------------
