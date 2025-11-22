@@ -162,7 +162,7 @@
                                                     <option value="Permohonan Informasi Tidak Ditanggapi Sebagaimana Diminta">Permohonan Informasi Tidak Ditanggapi Sebagaimana Diminta</option>
                                                     <option value="Permintaan Informasi Tidak Dipenuhi">Permintaan Informasi Tidak Dipenuhi</option>
                                                     <option value="Biaya yang Dikenakan Tidak Wajar">Biaya yang Dikenakan Tidak Wajar</option>
-                                                    <option value="Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan">g. Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan</option>
+                                                    <option value="Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan">Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan</option>
                                                 </select>
                                             </div>
 
