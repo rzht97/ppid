@@ -8,9 +8,13 @@
  * PENTING: Hapus file ini setelah testing!
  */
 
-// Define BASEPATH constant (required by CodeIgniter config)
+// Define constants required by CodeIgniter config
 if (!defined('BASEPATH')) {
     define('BASEPATH', dirname(__FILE__) . '/system/');
+}
+
+if (!defined('ENVIRONMENT')) {
+    define('ENVIRONMENT', 'development');
 }
 
 // Load database config

@@ -10,9 +10,13 @@
  * @created 2025-11-22
  */
 
-// Define BASEPATH constant (required by CodeIgniter config files)
+// Define constants required by CodeIgniter config files
 if (!defined('BASEPATH')) {
     define('BASEPATH', dirname(__DIR__) . '/system/');
+}
+
+if (!defined('ENVIRONMENT')) {
+    define('ENVIRONMENT', 'development');
 }
 
 // Load CodeIgniter database configuration
