@@ -24,46 +24,46 @@ class Permohonan_model extends CI_Model
 
     /**
      * Validation rules untuk form permohonan
-     * Updated: Tambahkan semua required fields
+     * Updated: Tambahkan max_length, regex, dan in_list untuk keamanan
      */
     public function rules()
     {
         return [
             ['field' => 'nama',
              'label' => 'Nama',
-             'rules' => 'required|min_length[3]|max_length[100]'],
+             'rules' => 'required|min_length[3]|max_length[100]|regex_match[/^[a-zA-Z\s\.,\']+$/]'],
 
             ['field' => 'alamat',
              'label' => 'Alamat',
-             'rules' => 'required|min_length[5]'],
+             'rules' => 'required|min_length[5]|max_length[500]'],
 
             ['field' => 'pekerjaan',
              'label' => 'Pekerjaan',
-             'rules' => 'required'],
+             'rules' => 'required|max_length[100]'],
 
             ['field' => 'nohp',
              'label' => 'No HP',
-             'rules' => 'required|numeric|min_length[10]|max_length[15]'],
+             'rules' => 'required|numeric|min_length[10]|max_length[15]|regex_match[/^[0-9]+$/]'],
 
             ['field' => 'email',
              'label' => 'Email',
-             'rules' => 'required|valid_email'],
+             'rules' => 'required|valid_email|max_length[100]'],
 
             ['field' => 'rincian',
              'label' => 'Rincian Informasi',
-             'rules' => 'required|min_length[10]'],
+             'rules' => 'required|min_length[10]|max_length[1000]'],
 
             ['field' => 'tujuan',
              'label' => 'Tujuan',
-             'rules' => 'required'],
+             'rules' => 'required|max_length[500]'],
 
             ['field' => 'caraperoleh',
              'label' => 'Cara Memperoleh Informasi',
-             'rules' => 'required'],
+             'rules' => 'required|in_list[Melihat,Membaca,Mendengar,Mencatat,Fotokopi,Email]'],
 
             ['field' => 'caradapat',
              'label' => 'Cara Mendapatkan Salinan',
-             'rules' => 'required'],
+             'rules' => 'required|in_list[Mengambil Langsung,Kurir,Pos,Faksimili,Email]'],
         ];
     }
 
@@ -152,16 +152,16 @@ public function getById($mohon_id)
 		// Upload KTP file
 		$this->ktp = $this->_uploadFile();
 
-        // Sanitize inputs (already done by form_validation if configured)
-        $this->nama = $post["nama"];
-		$this->alamat = $post["alamat"];
-	    $this->pekerjaan = $post["pekerjaan"];
-	    $this->nohp = $post["nohp"];
-	    $this->email = $post["email"];
-        $this->rincian = $post["rincian"];
-	 	$this->tujuan = $post["tujuan"];
-		$this->caraperoleh = $post["caraperoleh"];
-		$this->caradapat = $post["caradapat"];
+        // Sanitize inputs - strip HTML tags and trim whitespace
+        $this->nama = strip_tags(trim($post["nama"]));
+		$this->alamat = strip_tags(trim($post["alamat"]));
+	    $this->pekerjaan = strip_tags(trim($post["pekerjaan"]));
+	    $this->nohp = preg_replace('/[^0-9]/', '', $post["nohp"]); // Only numbers
+	    $this->email = filter_var(trim($post["email"]), FILTER_SANITIZE_EMAIL);
+        $this->rincian = strip_tags(trim($post["rincian"]));
+	 	$this->tujuan = strip_tags(trim($post["tujuan"]));
+		$this->caraperoleh = strip_tags(trim($post["caraperoleh"]));
+		$this->caradapat = strip_tags(trim($post["caradapat"]));
 		$this->status = $this->status();
 
         // Set tanggal to current datetime in MySQL format
