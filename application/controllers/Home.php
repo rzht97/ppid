@@ -1,6 +1,5 @@
 <?php
 
-#[AllowDynamicProperties]  // PHP 8.2 compatibility
 class Home extends CI_Controller {
     public function __construct()
     {

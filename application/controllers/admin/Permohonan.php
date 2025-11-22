@@ -3,7 +3,6 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-#[AllowDynamicProperties]  // PHP 8.2 compatibility
 
 class Permohonan extends CI_Controller
 {

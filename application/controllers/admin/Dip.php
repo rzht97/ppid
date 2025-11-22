@@ -2,7 +2,6 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-#[AllowDynamicProperties]  // PHP 8.2 compatibility
 class Dip extends CI_Controller
 {
     public function __construct()

@@ -1,6 +1,5 @@
 <?php
 
-#[AllowDynamicProperties]  // PHP 8.2 compatibility
 class Login extends CI_Controller{
 
 	function __construct(){
