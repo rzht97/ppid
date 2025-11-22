@@ -156,12 +156,12 @@
                                                 </label>
                                                 <select class="form-control" name="alasan" required>
                                                     <option value="" Hidden></option>
-                                                    <option value="Permohonan Informasi Publik Ditolak">a. Permohonan Informasi Publik Ditolak</option>
-                                                    <option value="Informasi Berkala Tidak Disediakan">b. Informasi Berkala Tidak Disediakan</option>
-                                                    <option value="Permohonan Informasi Tidak Ditanggapi">c. Permohonan Informasi Tidak Ditanggapi</option>
-                                                    <option value="Permohonan Informasi Tidak Ditanggapi Sebagaimana Diminta">d. Permohonan Informasi Tidak Ditanggapi Sebagaimana Diminta</option>
-                                                    <option value="Permintaan Informasi Tidak Dipenuhi">e. Permintaan Informasi Tidak Dipenuhi</option>
-                                                    <option value="Biaya yang Dikenakan Tidak Wajar">f. Biaya yang Dikenakan Tidak Wajar</option>
+                                                    <option value="Permohonan Informasi Publik Ditolak">Permohonan Informasi Publik Ditolak</option>
+                                                    <option value="Informasi Berkala Tidak Disediakan">Informasi Berkala Tidak Disediakan</option>
+                                                    <option value="Permohonan Informasi Tidak Ditanggapi">Permohonan Informasi Tidak Ditanggapi</option>
+                                                    <option value="Permohonan Informasi Tidak Ditanggapi Sebagaimana Diminta">Permohonan Informasi Tidak Ditanggapi Sebagaimana Diminta</option>
+                                                    <option value="Permintaan Informasi Tidak Dipenuhi">Permintaan Informasi Tidak Dipenuhi</option>
+                                                    <option value="Biaya yang Dikenakan Tidak Wajar">Biaya yang Dikenakan Tidak Wajar</option>
                                                     <option value="Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan">g. Informasi disampaikan Melebihi Jangka Waktu yang Ditentukan</option>
                                                 </select>
                                             </div>
