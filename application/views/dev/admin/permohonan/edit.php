@@ -13,17 +13,21 @@
     </div>-->
     <div id="wrapper">
         <!-- Top Navigation -->
-        <nav class="navbar navbar-default navbar-static-top m-b-0">
-            <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
-                <div class="top-left-part"><a class="logo" href="index.html"><b><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-logo.png" alt="home" class="dark-logo" /><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-logo-dark.png" alt="home" class="light-logo" /></b><span class="hidden-xs"><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-text.png" alt="home" class="dark-logo" /><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-text-dark.png" alt="home" class="light-logo" /></span></a></div>
-                <ul class="nav navbar-top-links navbar-left hidden-xs">
-                    <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
-                </ul>
-                <ul class="nav navbar-top-links navbar-right pull-right"></ul>
+        <nav class="navbar navbar-light bg-white navbar-static-top m-b-0" style="min-height: 60px; height: 60px; padding: 0 15px; display: flex; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+            <!-- Left: Logo + Toggle -->
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <!-- Compact Logo -->
+                <a href="<?= site_url('admin/index') ?>" style="display: flex; align-items: center; text-decoration: none;">
+                    <img src="<?= base_url()?>inverse/plugins/images/pixeladmin-logo.png" alt="PPID" style="height: 35px; width: auto;">
+                    <span style="margin-left: 8px; font-size: 14px; font-weight: 600; color: #333; display: none;" class="d-md-inline">
+                        PPID Kab. Sumedang
+                    </span>
+                </a>
+                <!-- Sidebar Toggle -->
+                <a href="javascript:void(0)" class="open-close waves-effect waves-light" style="padding: 8px 10px; color: #555; font-size: 18px; margin-left: 5px;">
+                    <i class="fa fa-bars"></i>
+                </a>
             </div>
-            <!-- /.navbar-header -->
-            <!-- /.navbar-top-links -->
-            <!-- /.navbar-static-side -->
         </nav>
         <!-- End Top Navigation -->
         <!-- Left navbar-header -->
@@ -32,16 +36,21 @@
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
-                <div class="row bg-title">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Notifications</h4>
+                <div class="row bg-title" style="padding: 10px 0; margin-bottom: 20px;">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-12">
+                        <h4 class="page-title" style="margin: 0;">Edit Permohonan</h4>
                     </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <a href="http://wrappixel.com/templates/pixeladmin/" target="_blank" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Buy Now</a>
-                        <ol class="breadcrumb">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Ui Elements</a></li>
-                            <li class="active">Notifications</li>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-12 text-right">
+                        <ol class="breadcrumb" style="background: transparent; padding: 0; margin: 0; display: inline-block;">
+                            <li style="display: inline; color: #666;">
+                                <a href="<?= site_url('admin/index') ?>" style="color: #5b9bd1;">Admin</a>
+                                <span style="margin: 0 8px; color: #999;">/</span>
+                            </li>
+                            <li style="display: inline; color: #666;">
+                                <a href="<?= site_url('admin/permohonan') ?>" style="color: #5b9bd1;">Permohonan</a>
+                                <span style="margin: 0 8px; color: #999;">/</span>
+                            </li>
+                            <li style="display: inline; color: #333; font-weight: 500;">Edit</li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->

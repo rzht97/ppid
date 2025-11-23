@@ -13,17 +13,21 @@
     </div>-->
     <div id="wrapper">
         <!-- Top Navigation -->
-        <nav class="navbar navbar-default navbar-static-top m-b-0">
-            <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
-                <div class="top-left-part"><a class="logo" href="index.html"><b><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-logo.png" alt="home" class="dark-logo" /><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-logo-dark.png" alt="home" class="light-logo" /></b><span class="hidden-xs"><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-text.png" alt="home" class="dark-logo" /><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-text-dark.png" alt="home" class="light-logo" /></span></a></div>
-                <ul class="nav navbar-top-links navbar-left hidden-xs">
-                    <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
-                </ul>
-                <ul class="nav navbar-top-links navbar-right pull-right"></ul>
+        <nav class="navbar navbar-light bg-white navbar-static-top m-b-0" style="min-height: 60px; height: 60px; padding: 0 15px; display: flex; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+            <!-- Left: Logo + Toggle -->
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <!-- Compact Logo -->
+                <a href="<?= site_url('admin/index') ?>" style="display: flex; align-items: center; text-decoration: none;">
+                    <img src="<?= base_url()?>inverse/plugins/images/pixeladmin-logo.png" alt="PPID" style="height: 35px; width: auto;">
+                    <span style="margin-left: 8px; font-size: 14px; font-weight: 600; color: #333; display: none;" class="d-md-inline">
+                        PPID Kab. Sumedang
+                    </span>
+                </a>
+                <!-- Sidebar Toggle -->
+                <a href="javascript:void(0)" class="open-close waves-effect waves-light" style="padding: 8px 10px; color: #555; font-size: 18px; margin-left: 5px;">
+                    <i class="fa fa-bars"></i>
+                </a>
             </div>
-            <!-- /.navbar-header -->
-            <!-- /.navbar-top-links -->
-            <!-- /.navbar-static-side -->
         </nav>
         <!-- End Top Navigation -->
         <!-- Left navbar-header -->
@@ -32,15 +36,21 @@
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
-                <div class="row bg-title">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Detail Keberatan</h4>
+                <div class="row bg-title" style="padding: 10px 0; margin-bottom: 20px;">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-12">
+                        <h4 class="page-title" style="margin: 0;">Detail Keberatan</h4>
                     </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <ol class="breadcrumb">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="<?php echo site_url('admin/keberatan') ?>">Keberatan</a></li>
-                            <li class="active">Detail</li>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-12 text-right">
+                        <ol class="breadcrumb" style="background: transparent; padding: 0; margin: 0; display: inline-block;">
+                            <li style="display: inline; color: #666;">
+                                <a href="<?= site_url('admin/index') ?>" style="color: #5b9bd1;">Admin</a>
+                                <span style="margin: 0 8px; color: #999;">/</span>
+                            </li>
+                            <li style="display: inline; color: #666;">
+                                <a href="<?= site_url('admin/keberatan') ?>" style="color: #5b9bd1;">Keberatan</a>
+                                <span style="margin: 0 8px; color: #999;">/</span>
+                            </li>
+                            <li style="display: inline; color: #333; font-weight: 500;">Detail</li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -53,13 +63,13 @@
                             <br>
 
                             <!-- Data Pemohon -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading" style="background-color: #f5f5f5;">
-                                    <h4 class="panel-title" style="margin: 0;">
+                            <div class="card border-secondary">
+                                <div class="card-header" style="background-color: #f5f5f5;">
+                                    <h4 class="card-title" style="margin: 0;">
                                         <i class="fa fa-user"></i> Data Pemohon
                                     </h4>
                                 </div>
-                                <div class="panel-body" style="padding: 20px;">
+                                <div class="card-body" style="padding: 20px;">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -92,13 +102,13 @@
                             </div>
 
                             <!-- Data Keberatan -->
-                            <div class="panel panel-info">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title" style="margin: 0;">
+                            <div class="card border-info">
+                                <div class="card-header">
+                                    <h4 class="card-title" style="margin: 0;">
                                         <i class="fa fa-file-text"></i> Data Keberatan
                                     </h4>
                                 </div>
-                                <div class="panel-body" style="padding: 20px;">
+                                <div class="card-body" style="padding: 20px;">
                                     <div class="form-group">
                                         <label><strong>Alasan Keberatan</strong></label>
                                         <p class="form-control-static" style="white-space: pre-wrap;"><?php echo html_escape($keberatan->alasan) ?></p>
@@ -111,23 +121,23 @@
                                         <label><strong>Status</strong></label>
                                         <div>
                                             <?php if ($keberatan->status == 'Menunggu Verifikasi' || $keberatan->status == 'Belum Diverifikasi'): ?>
-                                                <span class="label label-warning" style="font-size: 13px; padding: 8px 12px;">
+                                                <span class="badge badge-warning" style="font-size: 13px; padding: 8px 12px;">
                                                     <?php echo html_escape($keberatan->status) ?>
                                                 </span>
                                             <?php elseif ($keberatan->status == 'Sedang Diproses'): ?>
-                                                <span class="label label-info" style="font-size: 13px; padding: 8px 12px;">
+                                                <span class="badge badge-info" style="font-size: 13px; padding: 8px 12px;">
                                                     Sedang Diproses
                                                 </span>
                                             <?php elseif ($keberatan->status == 'Diterima' || $keberatan->status == 'Selesai'): ?>
-                                                <span class="label label-success" style="font-size: 13px; padding: 8px 12px;">
+                                                <span class="badge badge-success" style="font-size: 13px; padding: 8px 12px;">
                                                     <?php echo html_escape($keberatan->status) ?>
                                                 </span>
                                             <?php elseif ($keberatan->status == 'Ditolak'): ?>
-                                                <span class="label label-danger" style="font-size: 13px; padding: 8px 12px;">
+                                                <span class="badge badge-danger" style="font-size: 13px; padding: 8px 12px;">
                                                     Ditolak
                                                 </span>
                                             <?php else: ?>
-                                                <span class="label label-default" style="font-size: 13px; padding: 8px 12px;">
+                                                <span class="badge badge-secondary" style="font-size: 13px; padding: 8px 12px;">
                                                     <?php echo html_escape($keberatan->status) ?>
                                                 </span>
                                             <?php endif; ?>
@@ -138,13 +148,13 @@
 
                             <!-- Hasil Pemrosesan (jika sudah diproses) -->
                             <?php if (!empty($keberatan->tanggapan) || !empty($keberatan->putusan)): ?>
-                            <div class="panel panel-success">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title" style="margin: 0;">
+                            <div class="card border-success">
+                                <div class="card-header">
+                                    <h4 class="card-title" style="margin: 0;">
                                         <i class="fa fa-gavel"></i> Hasil Pemrosesan
                                     </h4>
                                 </div>
-                                <div class="panel-body" style="padding: 20px;">
+                                <div class="card-body" style="padding: 20px;">
                                     <?php if (!empty($keberatan->tanggapan)): ?>
                                     <div class="form-group">
                                         <label><strong>Tanggapan</strong></label>
@@ -164,7 +174,7 @@
 
                             <!-- Tombol Aksi -->
                             <div class="form-actions">
-                                <a href="<?php echo site_url('admin/keberatan') ?>" class="btn btn-default waves-effect waves-light">
+                                <a href="<?php echo site_url('admin/keberatan') ?>" class="btn btn-secondary waves-effect waves-light">
                                     <i class="fa fa-arrow-left"></i> Kembali
                                 </a>
 

@@ -9,80 +9,96 @@
 <body class="fix-sidebar">
     <div id="wrapper">
         <!-- Top Navigation -->
-        <nav class="navbar navbar-default navbar-static-top m-b-0">
-            <div class="navbar-header">
-                <a class="navbar-toggle hidden-sm hidden-md hidden-lg" href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
-                <div class="top-left-part">
-                    <a class="logo" href="<?= site_url('admin/index') ?>">
-                        <b><img src="<?= base_url()?>inverse/plugins/images/pixeladmin-logo.png" alt="home" class="dark-logo" /><img src="<?= base_url()?>inverse/plugins/images/pixeladmin-logo-dark.png" alt="home" class="light-logo" /></b>
-                        <span class="hidden-xs"><img src="<?= base_url()?>inverse/plugins/images/pixeladmin-text.png" alt="home" class="dark-logo" /><img src="<?= base_url()?>inverse/plugins/images/pixeladmin-text-dark.png" alt="home" class="light-logo" /></span>
-                    </a>
-                </div>
-                <ul class="nav navbar-top-links navbar-left hidden-xs">
-                    <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
-                </ul>
-                <ul class="nav navbar-top-links navbar-right pull-right"></ul>
+        <nav class="navbar navbar-light bg-white navbar-static-top m-b-0" style="min-height: 60px; height: 60px; padding: 0 15px; display: flex; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+            <!-- Left: Logo + Toggle -->
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <!-- Compact Logo -->
+                <a href="<?= site_url('admin/index') ?>" style="display: flex; align-items: center; text-decoration: none;">
+                    <img src="<?= base_url()?>inverse/plugins/images/pixeladmin-logo.png" alt="PPID" style="height: 35px; width: auto;">
+                    <span style="margin-left: 8px; font-size: 14px; font-weight: 600; color: #333; display: none;" class="d-md-inline">
+                        PPID Kab. Sumedang
+                    </span>
+                </a>
+                <!-- Sidebar Toggle -->
+                <a href="javascript:void(0)" class="open-close waves-effect waves-light" style="padding: 8px 10px; color: #555; font-size: 18px; margin-left: 5px;">
+                    <i class="fa fa-bars"></i>
+                </a>
             </div>
         </nav>
         <!-- End Top Navigation -->
         <?php $this->load->view('dev/admin/partials/sidebar.php')?>
 
-        <div id="page-wrapper">
+        <div id="page-wrapper" style="margin-top: 0;">
             <div class="container-fluid">
-                <div class="row bg-title">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Dashboard</h4>
+                <div class="row bg-title" style="padding: 10px 0; margin-bottom: 20px;">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-12">
+                        <h4 class="page-title" style="margin: 0;">Dashboard</h4>
                     </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <ol class="breadcrumb">
-                            <li><a href="#">Admin</a></li>
-                            <li class="active">Dashboard</li>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-12 text-right">
+                        <ol class="breadcrumb" style="background: transparent; padding: 0; margin: 0; display: inline-block;">
+                            <li style="display: inline; color: #666;">
+                                <a href="<?= site_url('admin/index') ?>" style="color: #5b9bd1;">Admin</a>
+                                <span style="margin: 0 8px; color: #999;">/</span>
+                            </li>
+                            <li style="display: inline; color: #333; font-weight: 500;">Dashboard</li>
                         </ol>
                     </div>
                 </div>
 
                 <!-- Info Boxes -->
                 <div class="row">
-                    <div class="col-lg-3 col-sm-6 col-xs-12">
+                    <!-- Total Permohonan -->
+                    <div class="col-lg-3 col-sm-6 col-12 mb-3">
                         <div class="white-box">
-                            <div class="row">
-                                <div class="col-xs-3"><i class="fa fa-file-text fa-3x text-info"></i></div>
-                                <div class="col-xs-9 text-right">
-                                    <span class="font-light">Total Permohonan</span>
-                                    <h2 class="font-bold"><?php echo $total_permohonan ?></h2>
+                            <div class="d-flex align-items-center">
+                                <div class="mr-3">
+                                    <i class="fa fa-file-text fa-3x text-info"></i>
+                                </div>
+                                <div class="ml-auto text-right">
+                                    <span class="font-light d-block">Total Permohonan</span>
+                                    <h2 class="font-bold mb-0"><?php echo $total_permohonan ?></h2>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6 col-xs-12">
+                    <!-- Selesai -->
+                    <div class="col-lg-3 col-sm-6 col-12 mb-3">
                         <div class="white-box">
-                            <div class="row">
-                                <div class="col-xs-3"><i class="fa fa-check-circle fa-3x text-success"></i></div>
-                                <div class="col-xs-9 text-right">
-                                    <span class="font-light">Selesai</span>
-                                    <h2 class="font-bold"><?php echo $permohonan_selesai ?></h2>
+                            <div class="d-flex align-items-center">
+                                <div class="mr-3">
+                                    <i class="fa fa-check-circle fa-3x text-success"></i>
+                                </div>
+                                <div class="ml-auto text-right">
+                                    <span class="font-light d-block">Selesai</span>
+                                    <h2 class="font-bold mb-0"><?php echo $permohonan_selesai ?></h2>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6 col-xs-12">
+                    <!-- Diproses -->
+                    <div class="col-lg-3 col-sm-6 col-12 mb-3">
                         <div class="white-box">
-                            <div class="row">
-                                <div class="col-xs-3"><i class="fa fa-clock-o fa-3x text-warning"></i></div>
-                                <div class="col-xs-9 text-right">
-                                    <span class="font-light">Diproses</span>
-                                    <h2 class="font-bold"><?php echo $permohonan_proses ?></h2>
+                            <div class="d-flex align-items-center">
+                                <div class="mr-3">
+                                    <i class="fa fa-clock-o fa-3x text-warning"></i>
+                                </div>
+                                <div class="ml-auto text-right">
+                                    <span class="font-light d-block">Diproses</span>
+                                    <h2 class="font-bold mb-0"><?php echo $permohonan_proses ?></h2>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6 col-xs-12">
+                    <!-- Keberatan -->
+                    <div class="col-lg-3 col-sm-6 col-12 mb-3">
                         <div class="white-box">
-                            <div class="row">
-                                <div class="col-xs-3"><i class="fa fa-exclamation-triangle fa-3x text-danger"></i></div>
-                                <div class="col-xs-9 text-right">
-                                    <span class="font-light">Keberatan</span>
-                                    <h2 class="font-bold"><?php echo $total_keberatan ?></h2>
+                            <div class="d-flex align-items-center">
+                                <div class="mr-3">
+                                    <i class="fa fa-exclamation-triangle fa-3x text-danger"></i>
+                                </div>
+                                <div class="ml-auto text-right">
+                                    <span class="font-light d-block">Keberatan</span>
+                                    <h2 class="font-bold mb-0"><?php echo $total_keberatan ?></h2>
                                 </div>
                             </div>
                         </div>
@@ -108,13 +124,13 @@
                                                 <td><?php echo date('d/m/Y', strtotime($data->tanggal)) ?></td>
                                                 <td>
                                                     <?php if ($data->status == 'Selesai'): ?>
-                                                        <span class="label label-success">Selesai</span>
+                                                        <span class="badge badge-success">Selesai</span>
                                                     <?php elseif ($data->status == 'Sedang Diproses'): ?>
-                                                        <span class="label label-info">Proses</span>
+                                                        <span class="badge badge-info">Proses</span>
                                                     <?php elseif ($data->status == 'Ditolak'): ?>
-                                                        <span class="label label-danger">Ditolak</span>
+                                                        <span class="badge badge-danger">Ditolak</span>
                                                     <?php else: ?>
-                                                        <span class="label label-warning">Verifikasi</span>
+                                                        <span class="badge badge-warning">Verifikasi</span>
                                                     <?php endif; ?>
                                                 </td>
                                             </tr>
@@ -145,13 +161,13 @@
                                                 <td><?php echo date('d/m/Y', strtotime($data->tanggal)) ?></td>
                                                 <td>
                                                     <?php if ($data->status == 'Diterima'): ?>
-                                                        <span class="label label-success">Diterima</span>
+                                                        <span class="badge badge-success">Diterima</span>
                                                     <?php elseif ($data->status == 'Sedang Diproses'): ?>
-                                                        <span class="label label-info">Proses</span>
+                                                        <span class="badge badge-info">Proses</span>
                                                     <?php elseif ($data->status == 'Ditolak'): ?>
-                                                        <span class="label label-danger">Ditolak</span>
+                                                        <span class="badge badge-danger">Ditolak</span>
                                                     <?php else: ?>
-                                                        <span class="label label-warning">Verifikasi</span>
+                                                        <span class="badge badge-warning">Verifikasi</span>
                                                     <?php endif; ?>
                                                 </td>
                                             </tr>
