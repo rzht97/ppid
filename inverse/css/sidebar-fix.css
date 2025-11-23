@@ -5,6 +5,13 @@
     top: 0;
     left: 0;
     z-index: 1030;
+    padding-left: 220px;
+}
+
+/* Adjust navbar padding when sidebar is minimized */
+.content-wrapper.fix-sidebar .navbar-static-top,
+.fix-sidebar.content-wrapper .navbar-static-top {
+    padding-left: 60px;
 }
 
 .fix-sidebar .sidebar {
