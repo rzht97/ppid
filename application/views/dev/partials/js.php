@@ -28,10 +28,10 @@
     <script src="<?= base_url() ?>newestassets/js/aivons.js"></script>
 
     <!-- color switcher language -->
-    <script src="../../cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js"></script>
     <script src="<?= base_url() ?>newestassets/js/jQuery.style.switcher.min.js"></script>
     <script src="<?= base_url() ?>newestassets/js/lang.js"></script>
-    <script src="../../translate.google.com/translate_a/elementa0d8.js?cb=googleTranslateElementInit"></script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="<?= base_url() ?>newestassets/js/color-switcher.js"></script>
 
 	<!-- REMOVED: Duplicate jQuery 3.2.1 slim (already loaded 3.7.1 above) -->
