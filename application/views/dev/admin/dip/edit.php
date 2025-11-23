@@ -13,13 +13,13 @@
     </div>-->
     <div id="wrapper">
         <!-- Top Navigation -->
-        <nav class="navbar navbar-default navbar-static-top m-b-0">
+        <nav class="navbar navbar-light bg-white navbar-static-top m-b-0">
             <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
-                <div class="top-left-part"><a class="logo" href="index.html"><b><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-logo.png" alt="home" class="dark-logo" /><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-logo-dark.png" alt="home" class="light-logo" /></b><span class="hidden-xs"><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-text.png" alt="home" class="dark-logo" /><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-text-dark.png" alt="home" class="light-logo" /></span></a></div>
-                <ul class="nav navbar-top-links navbar-left hidden-xs">
-                    <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
+                <div class="top-left-part"><a class="logo" href="index.html"><b><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-logo.png" alt="home" class="dark-logo" /><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-logo-dark.png" alt="home" class="light-logo" /></b><span class="d-none d-sm-inline"><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-text.png" alt="home" class="dark-logo" /><img src="<?= base_url()?>/inverse/plugins/images/pixeladmin-text-dark.png" alt="home" class="light-logo" /></span></a></div>
+                <ul class="nav navbar-top-links navbar-left d-none d-sm-inline">
+                    <li><a href="javascript:void(0)" class="open-close d-none d-sm-inline waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
                 </ul>
-                <ul class="nav navbar-top-links navbar-right pull-right"></ul>
+                <ul class="nav navbar-top-links navbar-right float-right"></ul>
             </div>
             <!-- /.navbar-header -->
             <!-- /.navbar-top-links -->
@@ -166,7 +166,7 @@
                                         <?php if($dokumen->image != "Belum Tersedia"): ?>
                                             <div class="alert alert-info">
                                                 <i class="fa fa-file"></i> Dokumen saat ini: <strong><?php echo html_escape($dokumen->image) ?></strong>
-                                                <a href="<?php echo base_url().'index.php/admin/dip/download/'.$dokumen->id; ?>" class="btn btn-xs btn-success pull-right">
+                                                <a href="<?php echo base_url().'index.php/admin/dip/download/'.$dokumen->id; ?>" class="btn btn-xs btn-success float-right">
                                                     <i class="fa fa-download"></i> Download
                                                 </a>
                                             </div>
