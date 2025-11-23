@@ -21,7 +21,7 @@
     </div>-->
     <div id="wrapper">
         <!-- Top Navigation -->
-        <nav class="navbar navbar-light bg-white navbar-static-top m-b-0" style="min-height: 60px; height: 60px; padding: 0 15px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+        <nav class="navbar navbar-light bg-white navbar-static-top m-b-0" style="min-height: 60px; height: 60px; padding: 0 15px; display: flex; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
             <!-- Left: Logo + Toggle -->
             <div style="display: flex; align-items: center; gap: 12px;">
                 <!-- Compact Logo -->
@@ -34,18 +34,6 @@
                 <!-- Sidebar Toggle -->
                 <a href="javascript:void(0)" class="open-close waves-effect waves-light" style="padding: 8px 10px; color: #555; font-size: 18px; margin-left: 5px;">
                     <i class="fa fa-bars"></i>
-                </a>
-            </div>
-
-            <!-- Right: User Actions -->
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <a href="<?= site_url('admin/index') ?>" class="waves-effect" style="padding: 6px 12px; color: #666; font-size: 14px; text-decoration: none; border-radius: 4px;" title="Dashboard">
-                    <i class="fa fa-home"></i>
-                    <span class="d-none d-lg-inline" style="margin-left: 5px;">Dashboard</span>
-                </a>
-                <a href="<?= base_url('index.php/login/logout') ?>" class="waves-effect" style="padding: 6px 12px; color: #fff; background: #d9534f; font-size: 14px; text-decoration: none; border-radius: 4px;" title="Logout">
-                    <i class="fa fa-power-off"></i>
-                    <span class="d-none d-lg-inline" style="margin-left: 5px;">Logout</span>
                 </a>
             </div>
         </nav>
