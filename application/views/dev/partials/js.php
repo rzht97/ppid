@@ -21,14 +21,14 @@
     <script src="<?= base_url() ?>newestassets/vendors/bxslider/js/jquery.bxslider.min.js"></script>
 
 
-    <script src="http://maps.google.com/maps/api/js?key=AIzaSyATY4Rxc8jNvDpsK8ZetC7JyN4PFVYGCGM"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATY4Rxc8jNvDpsK8ZetC7JyN4PFVYGCGM"></script>
 
 
     <!-- template js -->
     <script src="<?= base_url() ?>newestassets/js/aivons.js"></script>
 
     <!-- color switcher language -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2.1.2/src/js.cookie.min.js"></script>
     <script src="<?= base_url() ?>newestassets/js/jQuery.style.switcher.min.js"></script>
     <script src="<?= base_url() ?>newestassets/js/lang.js"></script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
