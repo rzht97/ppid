@@ -43,46 +43,58 @@
 
                 <!-- Info Boxes -->
                 <div class="row">
-                    <div class="col-lg-3 col-sm-6 col-xs-12">
+                    <!-- Total Permohonan -->
+                    <div class="col-lg-3 col-sm-6 col-12 mb-3">
                         <div class="white-box">
-                            <div class="row">
-                                <div class="col-xs-3"><i class="fa fa-file-text fa-3x text-info"></i></div>
-                                <div class="col-xs-9 text-right">
-                                    <span class="font-light">Total Permohonan</span>
-                                    <h2 class="font-bold"><?php echo $total_permohonan ?></h2>
+                            <div class="d-flex align-items-center">
+                                <div class="mr-3">
+                                    <i class="fa fa-file-text fa-3x text-info"></i>
+                                </div>
+                                <div class="ml-auto text-right">
+                                    <span class="font-light d-block">Total Permohonan</span>
+                                    <h2 class="font-bold mb-0"><?php echo $total_permohonan ?></h2>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6 col-xs-12">
+                    <!-- Selesai -->
+                    <div class="col-lg-3 col-sm-6 col-12 mb-3">
                         <div class="white-box">
-                            <div class="row">
-                                <div class="col-xs-3"><i class="fa fa-check-circle fa-3x text-success"></i></div>
-                                <div class="col-xs-9 text-right">
-                                    <span class="font-light">Selesai</span>
-                                    <h2 class="font-bold"><?php echo $permohonan_selesai ?></h2>
+                            <div class="d-flex align-items-center">
+                                <div class="mr-3">
+                                    <i class="fa fa-check-circle fa-3x text-success"></i>
+                                </div>
+                                <div class="ml-auto text-right">
+                                    <span class="font-light d-block">Selesai</span>
+                                    <h2 class="font-bold mb-0"><?php echo $permohonan_selesai ?></h2>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6 col-xs-12">
+                    <!-- Diproses -->
+                    <div class="col-lg-3 col-sm-6 col-12 mb-3">
                         <div class="white-box">
-                            <div class="row">
-                                <div class="col-xs-3"><i class="fa fa-clock-o fa-3x text-warning"></i></div>
-                                <div class="col-xs-9 text-right">
-                                    <span class="font-light">Diproses</span>
-                                    <h2 class="font-bold"><?php echo $permohonan_proses ?></h2>
+                            <div class="d-flex align-items-center">
+                                <div class="mr-3">
+                                    <i class="fa fa-clock-o fa-3x text-warning"></i>
+                                </div>
+                                <div class="ml-auto text-right">
+                                    <span class="font-light d-block">Diproses</span>
+                                    <h2 class="font-bold mb-0"><?php echo $permohonan_proses ?></h2>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6 col-xs-12">
+                    <!-- Keberatan -->
+                    <div class="col-lg-3 col-sm-6 col-12 mb-3">
                         <div class="white-box">
-                            <div class="row">
-                                <div class="col-xs-3"><i class="fa fa-exclamation-triangle fa-3x text-danger"></i></div>
-                                <div class="col-xs-9 text-right">
-                                    <span class="font-light">Keberatan</span>
-                                    <h2 class="font-bold"><?php echo $total_keberatan ?></h2>
+                            <div class="d-flex align-items-center">
+                                <div class="mr-3">
+                                    <i class="fa fa-exclamation-triangle fa-3x text-danger"></i>
+                                </div>
+                                <div class="ml-auto text-right">
+                                    <span class="font-light d-block">Keberatan</span>
+                                    <h2 class="font-bold mb-0"><?php echo $total_keberatan ?></h2>
                                 </div>
                             </div>
                         </div>
