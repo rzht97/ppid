@@ -1,9 +1,13 @@
 /* Fix for sidebar minimize hover menu display */
+/* Override default width expansion - keep icon in place */
 .content-wrapper .sidebar #side-menu > li:hover {
+    width: 60px !important;
     position: relative;
     z-index: 1000;
+    background: transparent;
 }
 
+/* Display menu text as absolute positioned overlay */
 .content-wrapper .sidebar li:hover .hide-menu {
     display: block !important;
     position: absolute;
@@ -14,13 +18,20 @@
     white-space: nowrap;
     box-shadow: 2px 0 5px rgba(0,0,0,0.1);
     border-radius: 0 4px 4px 0;
+    min-width: 180px;
 }
 
-/* Ensure the menu item expands properly on hover */
+/* Keep icon container fixed width on hover */
 .content-wrapper .sidebar #side-menu > li:hover > a {
     position: relative;
-    background: #f7fafc;
+    background: transparent;
     z-index: 999;
+    width: 60px;
+}
+
+/* Highlight icon area on hover */
+.content-wrapper .sidebar #side-menu > li:hover > a > i {
+    color: #4099ff;
 }
 
 /* Fix for user profile dropdown in minimized sidebar */
