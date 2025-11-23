@@ -1,0 +1,40 @@
+# ============================================
+# SECURITY: Prevent PHP Execution in Upload Folder
+# ============================================
+# This prevents attackers from uploading and executing malicious PHP files
+
+# Disable PHP execution
+php_flag engine off
+
+# Deny access to PHP files
+<FilesMatch "\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Deny access to executable files
+<FilesMatch "\.(php|phtml|php3|php4|php5|php7|phps|cgi|pl|exe|sh|bat)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Only allow safe file types (images, documents, PDFs)
+<FilesMatch "\.(jpg|jpeg|png|gif|pdf|doc|docx|xls|xlsx|zip|rar)$">
+    Order Deny,Allow
+    Allow from all
+</FilesMatch>
+
+# Prevent directory listing
+Options -Indexes
+
+# Disable server-side includes
+Options -Includes
+
+# Set default content type
+AddType application/octet-stream .php .phtml
+
+# Protect .htaccess itself
+<Files ".htaccess">
+    Order Allow,Deny
+    Deny from all
+</Files>

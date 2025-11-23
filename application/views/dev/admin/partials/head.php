@@ -5,10 +5,11 @@
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url()?>inverse/plugins/images/favicon.png">
     
-    <!-- Bootstrap Core CSS -->
-    <link href="<?= base_url()?>inverse/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= base_url()?>inverse/plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap 4.6.2 CSS (SECURITY UPDATE: Compatible with jQuery 3.x, Fixed XSS vulnerabilities) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- DataTables 1.13.8 CSS (SECURITY UPDATE) -->
+    <link href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
     <!-- animation CSS -->
     <link href="<?= base_url()?>inverse/css/animate.css" rel="stylesheet">
     <!-- Menu CSS -->

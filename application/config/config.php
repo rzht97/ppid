@@ -330,8 +330,11 @@ $config['cache_query_string'] = FALSE;
 |
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
+| SECURITY: Generated using: openssl rand -base64 32
+| DO NOT SHARE THIS KEY PUBLICLY!
+|
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = '5BVqy4k9QGL28o2SgbZQqLRVuIRqMAXvPj8K6Ex1qC0=';
 
 /*
 |--------------------------------------------------------------------------

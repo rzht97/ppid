@@ -60,6 +60,21 @@ AddDefaultCharset UTF-8
 
     # Referrer policy
     Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Content Security Policy (CSP)
+    # Allows content from same origin, CDN, and inline styles/scripts (needed for legacy code)
+    # TODO: Remove 'unsafe-inline' when migrating to external scripts
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdn.datatables.net cdnjs.cloudflare.com code.jquery.com maxcdn.bootstrapcdn.com cdn.jsdelivr.net *.sumedangkab.go.id; style-src 'self' 'unsafe-inline' cdn.datatables.net cdnjs.cloudflare.com maxcdn.bootstrapcdn.com fonts.googleapis.com cdn.jsdelivr.net; font-src 'self' fonts.gstatic.com maxcdn.bootstrapcdn.com cdn.jsdelivr.net data:; img-src 'self' data: https:; connect-src 'self' *.sumedangkab.go.id cdn.jsdelivr.net; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';"
+
+    # Strict Transport Security (HSTS) - Uncomment when using HTTPS
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+    # Permissions Policy (formerly Feature Policy)
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+
+    # Remove server signature
+    Header unset Server
+    Header unset X-Powered-By
 </IfModule>
 
 # Protect sensitive files
