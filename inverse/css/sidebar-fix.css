@@ -1,0 +1,38 @@
+/* Fix for sidebar minimize hover menu display */
+.content-wrapper .sidebar #side-menu > li:hover {
+    position: relative;
+    z-index: 1000;
+}
+
+.content-wrapper .sidebar li:hover .hide-menu {
+    display: block !important;
+    position: absolute;
+    left: 60px;
+    top: 0;
+    background: #f7fafc;
+    padding: 15px 20px;
+    white-space: nowrap;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    border-radius: 0 4px 4px 0;
+}
+
+/* Ensure the menu item expands properly on hover */
+.content-wrapper .sidebar #side-menu > li:hover > a {
+    position: relative;
+    background: #f7fafc;
+    z-index: 999;
+}
+
+/* Fix for user profile dropdown in minimized sidebar */
+.content-wrapper .sidebar .user-profile {
+    position: relative;
+}
+
+.content-wrapper .sidebar .user-profile:hover .dropdown-menu {
+    display: block;
+    position: absolute;
+    left: 60px;
+    top: 0;
+    background: #fff;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
