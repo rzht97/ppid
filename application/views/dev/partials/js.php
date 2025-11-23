@@ -21,7 +21,7 @@
     <script src="<?= base_url() ?>newestassets/vendors/bxslider/js/jquery.bxslider.min.js"></script>
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATY4Rxc8jNvDpsK8ZetC7JyN4PFVYGCGM"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATY4Rxc8jNvDpsK8ZetC7JyN4PFVYGCGM&loading=async" async defer></script>
 
 
     <!-- template js -->
