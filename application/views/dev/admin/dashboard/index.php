@@ -9,17 +9,18 @@
 <body class="fix-sidebar">
     <div id="wrapper">
         <!-- Top Navigation -->
-        <nav class="navbar navbar-light bg-white navbar-static-top m-b-0" style="min-height: 60px; height: 60px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 4px rgba(0,0,0,0.08); border-bottom: 1px solid #e9ecef;">
-            <!-- Left: Logo + Hamburger -->
-            <div style="display: flex; align-items: center; gap: 20px;">
-                <!-- Logo -->
+        <nav class="navbar navbar-light bg-white navbar-static-top m-b-0" style="min-height: 60px; height: 60px; padding: 0 15px; display: flex; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+            <!-- Left: Logo + Toggle -->
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <!-- Compact Logo -->
                 <a href="<?= site_url('admin/index') ?>" style="display: flex; align-items: center; text-decoration: none;">
-                    <div style="width: 40px; height: 40px; background: #5b9bd1; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-                        <span style="color: white; font-size: 20px; font-weight: 700;">P</span>
-                    </div>
+                    <img src="<?= base_url()?>inverse/plugins/images/pixeladmin-logo.png" alt="PPID" style="height: 35px; width: auto;">
+                    <span style="margin-left: 8px; font-size: 14px; font-weight: 600; color: #333; display: none;" class="d-md-inline">
+                        PPID Kab. Sumedang
+                    </span>
                 </a>
-                <!-- Hamburger Menu -->
-                <a href="javascript:void(0)" class="open-close waves-effect waves-light" style="padding: 8px; color: #333; font-size: 20px; line-height: 1;">
+                <!-- Sidebar Toggle -->
+                <a href="javascript:void(0)" class="open-close waves-effect waves-light" style="padding: 8px 10px; color: #555; font-size: 18px; margin-left: 5px;">
                     <i class="fa fa-bars"></i>
                 </a>
             </div>
@@ -29,16 +30,18 @@
 
         <div id="page-wrapper">
             <div class="container-fluid">
-                <!-- User Profile Header -->
-                <div class="row" style="padding: 20px 0 15px 0; border-bottom: 1px solid #e9ecef; margin-bottom: 20px;">
-                    <div class="col-12">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <img src="<?= base_url()?>inverse/plugins/images/users/varun.jpg" alt="User" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid #e9ecef;">
-                            <div>
-                                <h4 style="margin: 0; font-size: 20px; font-weight: 600; color: #333;">Dashboard</h4>
-                                <p style="margin: 0; font-size: 13px; color: #6c757d;">PPID Utama</p>
-                            </div>
-                        </div>
+                <div class="row bg-title" style="padding: 10px 0; margin-bottom: 20px;">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-12">
+                        <h4 class="page-title" style="margin: 0;">Dashboard</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-12 text-right">
+                        <ol class="breadcrumb" style="background: transparent; padding: 0; margin: 0; display: inline-block;">
+                            <li style="display: inline; color: #666;">
+                                <a href="<?= site_url('admin/index') ?>" style="color: #5b9bd1;">Admin</a>
+                                <span style="margin: 0 8px; color: #999;">/</span>
+                            </li>
+                            <li style="display: inline; color: #333; font-weight: 500;">Dashboard</li>
+                        </ol>
                     </div>
                 </div>
 
