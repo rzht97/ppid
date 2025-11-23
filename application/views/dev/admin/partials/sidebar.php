@@ -3,15 +3,15 @@
                 <div class="user-profile">
                     <div class="dropdown user-pro-body">
                         <div><img src="<?= base_url()?>/inverse/plugins/images/users/varun.jpg" alt="user-img" class="img-circle"></div>
-                        <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PPID Utama <span class="caret"></span></a>
-                        <ul class="dropdown-menu animated flipInY">
-                            <!--<li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-                            <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-                            <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-                            <li role="separator" class="divider"></li>-->
-                            <li><a href="<?php echo base_url('index.php/login/logout'); ?>"><i class="fa fa-power-off"></i> Logout</a></li>
+                        <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            PPID Utama <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu animated flipInY" style="min-width: 200px; background-color: #fff; border: 1px solid #ddd;">
+                            <li>
+                                <a href="<?php echo base_url('index.php/login/logout'); ?>" style="color: #333; padding: 10px 20px; display: block; text-decoration: none; font-size: 14px;">
+                                    <i class="fa fa-power-off" style="margin-right: 8px;"></i> Logout
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
