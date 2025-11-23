@@ -16,16 +16,6 @@
                     </div>
                 </div>
                 <ul class="nav" id="side-menu">
-                    <li class="sidebar-search hidden-sm hidden-md hidden-lg">
-                        <!-- input-group -->
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-secondary" type="button"> <i class="fa fa-search"></i> </button>
-                            </span>
-                        </div>
-                        <!-- /input-group -->
-                    </li>
                     <li class="nav-small-cap m-t-10">--- MAIN MENU</li>
                     <li>
                         <a href="<?php echo site_url('admin/index')?>" class="waves-effect">
