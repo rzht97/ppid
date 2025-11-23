@@ -1,3 +1,21 @@
+/* Fix navbar positioning when sidebar is fixed */
+.fix-sidebar .navbar-static-top {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.fix-sidebar .sidebar {
+    z-index: 1020;
+    top: 60px;
+}
+
+.fix-sidebar #page-wrapper {
+    margin-top: 60px;
+}
+
 /* Fix for sidebar minimize hover menu display */
 /* Override default width expansion - keep icon in place */
 .content-wrapper .sidebar #side-menu > li:hover {
