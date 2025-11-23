@@ -33,17 +33,19 @@
 
         <div id="page-wrapper">
             <div class="container-fluid">
-                <div class="row bg-title">
+                <div class="row bg-title" style="padding: 10px 0; margin-bottom: 20px;">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-12">
-                        <h4 class="page-title">Dashboard</h4>
+                        <h4 class="page-title" style="margin: 0;">Dashboard</h4>
                     </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-12">
-                        <ol class="breadcrumb">
-                            <li><a href="#">Admin</a></li>
-                            <li class="active">Dashboard</li>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-12 text-right">
+                        <ol class="breadcrumb" style="background: transparent; padding: 0; margin: 0; display: inline-block;">
+                            <li style="display: inline; color: #666;">
+                                <a href="<?= site_url('admin/index') ?>" style="color: #5b9bd1;">Admin</a>
+                                <span style="margin: 0 8px; color: #999;">/</span>
+                            </li>
+                            <li style="display: inline; color: #333; font-weight: 500;">Dashboard</li>
                         </ol>
                     </div>
-                    <!-- /.col-lg-12 -->
                 </div>
 
                 <!-- Info Boxes -->
