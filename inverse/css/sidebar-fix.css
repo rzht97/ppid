@@ -6,17 +6,14 @@
     left: 0 !important;
     z-index: 1030 !important;
     background: #fff !important;
+    padding-left: 235px !important; /* 220px sidebar + 15px padding */
+    padding-right: 15px !important;
 }
 
-/* Push navbar content to the right of sidebar */
-.fix-sidebar .navbar-static-top > div {
-    margin-left: 220px;
-}
-
-/* Adjust navbar content margin when sidebar is minimized */
-.content-wrapper.fix-sidebar .navbar-static-top > div,
-.fix-sidebar.content-wrapper .navbar-static-top > div {
-    margin-left: 60px;
+/* Adjust navbar padding when sidebar is minimized */
+.content-wrapper .navbar-static-top,
+.fix-sidebar.content-wrapper .navbar-static-top {
+    padding-left: 75px !important; /* 60px sidebar + 15px padding */
 }
 
 .fix-sidebar .sidebar {
