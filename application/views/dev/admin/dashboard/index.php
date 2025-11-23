@@ -28,7 +28,7 @@
         <!-- End Top Navigation -->
         <?php $this->load->view('dev/admin/partials/sidebar.php')?>
 
-        <div id="page-wrapper" style="margin-top: 0;">
+        <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row bg-title" style="padding: 10px 0; margin-bottom: 20px;">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-12">

@@ -21,36 +21,19 @@
     <script src="<?= base_url() ?>newestassets/vendors/bxslider/js/jquery.bxslider.min.js"></script>
 
 
-    <script src="http://maps.google.com/maps/api/js?key=AIzaSyATY4Rxc8jNvDpsK8ZetC7JyN4PFVYGCGM"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATY4Rxc8jNvDpsK8ZetC7JyN4PFVYGCGM&loading=async" async defer></script>
 
 
     <!-- template js -->
     <script src="<?= base_url() ?>newestassets/js/aivons.js"></script>
 
     <!-- color switcher language -->
-    <script src="../../cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2.1.2/src/js.cookie.min.js"></script>
     <script src="<?= base_url() ?>newestassets/js/jQuery.style.switcher.min.js"></script>
     <script src="<?= base_url() ?>newestassets/js/lang.js"></script>
-    <script src="../../translate.google.com/translate_a/elementa0d8.js?cb=googleTranslateElementInit"></script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="<?= base_url() ?>newestassets/js/color-switcher.js"></script>
 
 	<!-- REMOVED: Duplicate jQuery 3.2.1 slim (already loaded 3.7.1 above) -->
 	<!-- REMOVED: Duplicate Bootstrap (already loaded bootstrap.bundle.min.js above) -->
-
-
-
-
-    <!-- Core plugin JavaScript-->
-    <script src="<?= base_url();?>newassets/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="<?= base_url();?>newassets/vendor/chart.js/Chart.min.js"></script>
-
-	<!-- Page level plugins -->
-    <script src="<?= base_url();?>newassets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="<?= base_url();?>newassets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="<?= base_url();?>newassets/js/demo/chart-area-demo.js"></script>
-    <script src="<?= base_url();?>newassets/js/demo/chart-pie-demo.js"></script>
-    <script src="<?= base_url();?>newassets/js/demo/datatables-demo.js"></script>
+	<!-- REMOVED: Admin-only scripts (charts, datatables) - not needed for public pages -->

@@ -50,11 +50,11 @@ class Security_headers
         // IMPORTANT: Ini adalah pertahanan utama terhadap XSS
         $csp = [
             "default-src 'self'",                    // Default: hanya dari domain sendiri
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://code.jquery.com https://maxcdn.bootstrapcdn.com", // Allow inline scripts (untuk compatibility)
-            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://maxcdn.bootstrapcdn.com", // Allow inline styles
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://code.jquery.com https://maxcdn.bootstrapcdn.com https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://maps.googleapis.com", // Allow inline scripts (untuk compatibility)
+            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://maxcdn.bootstrapcdn.com https://www.gstatic.com", // Allow inline styles + Google Translate styles
             "img-src 'self' data: https:",           // Images dari self, data:, dan HTTPS
             "font-src 'self' data: https://fonts.gstatic.com https://maxcdn.bootstrapcdn.com", // Fonts
-            "connect-src 'self'",                    // AJAX requests hanya ke self
+            "connect-src 'self' https://cdn.jsdelivr.net https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://maps.googleapis.com *.sumedangkab.go.id", // AJAX requests
             "frame-ancestors 'self'",                // Sama dengan X-Frame-Options
             "base-uri 'self'",                       // Prevent base tag injection
             "form-action 'self'",                    // Form hanya bisa submit ke self
