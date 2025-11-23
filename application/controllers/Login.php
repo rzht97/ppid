@@ -5,7 +5,8 @@ class Login extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('M_login', 'm_login');
-
+		// SECURITY: Load file-based rate limiter (track by IP, cannot bypass)
+		$this->load->library('rate_limiter_file');
 	}
 
 	function index(){
@@ -18,23 +19,28 @@ class Login extends CI_Controller{
 	 * Fixed: Removed password from session
 	 * Added: Session regeneration for security
 	 * Added: Auto-migration from MD5 to bcrypt on successful login
-	 * Added: Rate limiting to prevent brute force attacks
+	 * Added: File-based rate limiting (track by IP, brute-force protection)
 	 */
 	function aksi_login(){
-		// RATE LIMITING: Check if user is blocked due to too many failed attempts
-		$blocked_until = $this->session->userdata('login_blocked_until');
-		if($blocked_until && time() < $blocked_until){
-			$remaining = ceil(($blocked_until - time()) / 60);
-			$this->session->set_flashdata('error', 'Terlalu banyak percobaan login gagal. Coba lagi dalam ' . $remaining . ' menit.');
-			log_message('warning', 'Blocked login attempt - still in timeout period');
+		// SECURITY: Check rate limit BEFORE processing login (track by IP)
+		if (!$this->rate_limiter_file->enforce('login', 5, 900)) {
+			// Rate limit exceeded - redirect with error
+			$check = $this->rate_limiter_file->check('login', 5, 900);
+			$remaining = ceil($check['wait_time'] / 60);
+
+			$this->session->set_flashdata('error',
+				'Terlalu banyak percobaan login gagal dari IP Anda. ' .
+				'Silakan coba lagi dalam ' . $remaining . ' menit.'
+			);
+
+			log_message('warning', sprintf(
+				'SECURITY: Login blocked - IP %s exceeded rate limit (%d attempts)',
+				$this->input->ip_address(),
+				$check['attempts']
+			));
+
 			redirect(base_url("login"));
 			return;
-		}
-
-		// Clear block if timeout has passed
-		if($blocked_until && time() >= $blocked_until){
-			$this->session->unset_userdata('login_blocked_until');
-			$this->session->unset_userdata('login_attempts');
 		}
 
 		// TEMPORARY FIX: Bypass CI input class and use raw $_POST
@@ -65,9 +71,8 @@ class Login extends CI_Controller{
 			}
 
 			if($password_valid){
-				// RATE LIMITING: Reset failed attempts on successful login
-				$this->session->unset_userdata('login_attempts');
-				$this->session->unset_userdata('login_blocked_until');
+				// SECURITY: Reset rate limit on successful login
+				$this->rate_limiter_file->reset('login');
 
 				// Regenerate session ID to prevent fixation
 				$this->session->sess_regenerate(TRUE);
@@ -82,43 +87,67 @@ class Login extends CI_Controller{
 				$this->session->set_userdata($data_session);
 
 				// Log successful login
-				log_message('info', 'User ' . $username . ' logged in successfully');
+				log_message('info', sprintf(
+					'SECURITY: Login success - User %s from IP %s',
+					$username,
+					$this->input->ip_address()
+				));
 
 				redirect(base_url("admin"));
 			}else{
-				// RATE LIMITING: Increment failed attempts
-				$this->increment_failed_attempts($username);
+				// SECURITY: Increment failed attempts (track by IP)
+				$this->handle_failed_login($username);
 			}
 		}else{
-			// RATE LIMITING: Increment failed attempts for non-existent user
-			$this->increment_failed_attempts($username);
+			// SECURITY: Increment failed attempts for non-existent user
+			$this->handle_failed_login($username);
 		}
 	}
 
 	/**
-	 * Rate limiting helper: Increment failed login attempts
-	 * Block user after 5 failed attempts for 15 minutes
+	 * Handle failed login attempt
+	 * Increment counter and show appropriate message
+	 * Uses file-based rate limiter (track by IP, not session)
+	 *
+	 * @param string $username Username yang dicoba
 	 */
-	private function increment_failed_attempts($username){
-		$attempts = $this->session->userdata('login_attempts') ?: 0;
-		$attempts++;
+	private function handle_failed_login($username){
+		// Increment rate limit counter (by IP)
+		$attempts = $this->rate_limiter_file->increment('login', 900); // 15 minutes
 
-		$this->session->set_userdata('login_attempts', $attempts);
+		// Log security event
+		log_message('warning', sprintf(
+			'SECURITY: Failed login attempt #%d - Username: %s, IP: %s',
+			$attempts,
+			$username,
+			$this->input->ip_address()
+		));
 
-		// Log failed login attempt
-		log_message('warning', 'Failed login attempt #' . $attempts . ' for username: ' . $username);
+		// Get current rate limit status
+		$check = $this->rate_limiter_file->check('login', 5, 900);
 
-		// Block after 5 attempts
-		if($attempts >= 5){
-			$block_until = time() + (15 * 60); // Block for 15 minutes
-			$this->session->set_userdata('login_blocked_until', $block_until);
+		if (!$check['allowed']) {
+			// Blocked - exceeded max attempts
+			$wait_minutes = ceil($check['wait_time'] / 60);
 
-			log_message('warning', 'User blocked after ' . $attempts . ' failed attempts. Blocked until: ' . date('Y-m-d H:i:s', $block_until));
+			log_message('error', sprintf(
+				'SECURITY: Login blocked - IP %s exceeded %d attempts. Blocked until: %s',
+				$this->input->ip_address(),
+				$attempts,
+				date('Y-m-d H:i:s', $check['reset_at'])
+			));
 
-			$this->session->set_flashdata('error', 'Terlalu banyak percobaan login gagal. Akun diblokir selama 15 menit untuk keamanan.');
-		}else{
-			$remaining = 5 - $attempts;
-			$this->session->set_flashdata('error', 'Username atau password salah! (' . $remaining . ' percobaan tersisa)');
+			$this->session->set_flashdata('error',
+				'Terlalu banyak percobaan login gagal. ' .
+				'IP Anda diblokir selama ' . $wait_minutes . ' menit untuk keamanan.'
+			);
+		} else {
+			// Still allowed - show remaining attempts
+			$remaining = $check['remaining'];
+
+			$this->session->set_flashdata('error',
+				'Username atau password salah! (' . $remaining . ' percobaan tersisa)'
+			);
 		}
 
 		redirect(base_url("login"));
