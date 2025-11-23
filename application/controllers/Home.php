@@ -70,7 +70,8 @@ class Home extends CI_Controller {
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'GET',
 			CURLOPT_HTTPHEADER => array('X-API-KEY: Sumedang#3211'),
-			CURLOPT_SSL_VERIFYPEER => false,
+			// SECURITY FIX: SSL verification enabled (removed CURLOPT_SSL_VERIFYPEER => false)
+			// This prevents Man-in-the-Middle attacks on API calls
 		));
 
 		$response = curl_exec($curl);
@@ -222,12 +223,51 @@ class Home extends CI_Controller {
         $this->load->view("dev/regulasi");
     }
 
+    /**
+     * Download file dokumen dengan validasi keamanan
+     * SECURITY FIX: Added path traversal protection
+     */
     public function download($id){
-    $this->load->helper('download');
-    $fileinfo = $this->dokumen_model->download($id);
-    $file = 'upload/dokumen/'.$fileinfo['image'];
-    force_download($file, NULL);
-}
+        $this->load->helper('download');
+
+        // Validate ID is numeric
+        if (!is_numeric($id)) {
+            show_404();
+            return;
+        }
+
+        // Get file info from database
+        $fileinfo = $this->dokumen_model->download($id);
+
+        // Check if file info exists
+        if (!$fileinfo || !isset($fileinfo['image'])) {
+            show_404();
+            return;
+        }
+
+        // Sanitize filename (prevent directory traversal)
+        $filename = basename($fileinfo['image']);
+        $file_path = 'upload/dokumen/' . $filename;
+
+        // Validate file exists
+        if (!file_exists($file_path)) {
+            show_404();
+            return;
+        }
+
+        // Validate file is within allowed directory (prevent path traversal)
+        $real_path = realpath($file_path);
+        $allowed_dir = realpath('upload/dokumen/');
+
+        if ($real_path === false || strpos($real_path, $allowed_dir) !== 0) {
+            log_message('error', 'Path traversal attempt detected: ' . $file_path);
+            show_404();
+            return;
+        }
+
+        // All checks passed, download file
+        force_download($file_path, NULL);
+    }
     
 
 // golongan informasi
