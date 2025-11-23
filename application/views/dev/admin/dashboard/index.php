@@ -9,29 +9,33 @@
 <body class="fix-sidebar">
     <div id="wrapper">
         <!-- Top Navigation -->
-        <nav class="navbar navbar-light bg-white navbar-static-top m-b-0" style="min-height: 60px; height: 60px;">
-            <a class="navbar-toggle d-lg-none" href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse">
-                <i class="ti-menu"></i>
-            </a>
-            <div class="top-left-part">
-                <a class="logo" href="<?= site_url('admin/index') ?>">
-                    <b><img src="<?= base_url()?>inverse/plugins/images/pixeladmin-logo.png" alt="home" class="dark-logo" /><img src="<?= base_url()?>inverse/plugins/images/pixeladmin-logo-dark.png" alt="home" class="light-logo" /></b>
-                    <span class="d-none d-sm-inline"><img src="<?= base_url()?>inverse/plugins/images/pixeladmin-text.png" alt="home" class="dark-logo" /><img src="<?= base_url()?>inverse/plugins/images/pixeladmin-text-dark.png" alt="home" class="light-logo" /></span>
+        <nav class="navbar navbar-light bg-white navbar-static-top m-b-0" style="min-height: 50px; height: 50px; padding: 0 15px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+            <!-- Left: Toggle Sidebar -->
+            <div style="display: flex; align-items: center;">
+                <a href="javascript:void(0)" class="open-close waves-effect waves-light" style="padding: 8px 12px; color: #333; font-size: 20px;">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <span style="margin-left: 15px; font-size: 16px; font-weight: 500; color: #333; display: none;" class="d-sm-inline">
+                    PPID Admin Panel
+                </span>
+            </div>
+
+            <!-- Right: User Info & Utilities -->
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <a href="<?= site_url('admin/index') ?>" class="waves-effect" style="padding: 6px 12px; color: #666; font-size: 14px; text-decoration: none;" title="Dashboard">
+                    <i class="fa fa-home"></i>
+                    <span class="d-none d-sm-inline" style="margin-left: 5px;">Dashboard</span>
+                </a>
+                <a href="<?= base_url('index.php/login/logout') ?>" class="waves-effect" style="padding: 6px 12px; color: #d9534f; font-size: 14px; text-decoration: none;" title="Logout">
+                    <i class="fa fa-power-off"></i>
+                    <span class="d-none d-sm-inline" style="margin-left: 5px;">Logout</span>
                 </a>
             </div>
-            <ul class="nav navbar-top-links navbar-left d-none d-sm-inline">
-                <li>
-                    <a href="javascript:void(0)" class="open-close d-none d-sm-inline waves-effect waves-light">
-                        <i class="fa fa-bars"></i>
-                    </a>
-                </li>
-            </ul>
-            <ul class="nav navbar-top-links navbar-right float-right"></ul>
         </nav>
         <!-- End Top Navigation -->
         <?php $this->load->view('dev/admin/partials/sidebar.php')?>
 
-        <div id="page-wrapper">
+        <div id="page-wrapper" style="margin-top: 50px;">
             <div class="container-fluid">
                 <div class="row bg-title" style="padding: 10px 0; margin-bottom: 20px;">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-12">
