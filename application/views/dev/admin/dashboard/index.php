@@ -10,25 +10,23 @@
     <div id="wrapper">
         <!-- Top Navigation -->
         <nav class="navbar navbar-light bg-white navbar-static-top m-b-0">
-            <div class="navbar-header">
-                <a class="navbar-toggle d-lg-none" href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse">
-                    <i class="ti-menu"></i>
+            <a class="navbar-toggle d-lg-none" href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse">
+                <i class="ti-menu"></i>
+            </a>
+            <div class="top-left-part">
+                <a class="logo" href="<?= site_url('admin/index') ?>">
+                    <b><img src="<?= base_url()?>inverse/plugins/images/pixeladmin-logo.png" alt="home" class="dark-logo" /><img src="<?= base_url()?>inverse/plugins/images/pixeladmin-logo-dark.png" alt="home" class="light-logo" /></b>
+                    <span class="d-none d-sm-inline"><img src="<?= base_url()?>inverse/plugins/images/pixeladmin-text.png" alt="home" class="dark-logo" /><img src="<?= base_url()?>inverse/plugins/images/pixeladmin-text-dark.png" alt="home" class="light-logo" /></span>
                 </a>
-                <div class="top-left-part">
-                    <a class="logo" href="<?= site_url('admin/index') ?>">
-                        <b><img src="<?= base_url()?>inverse/plugins/images/pixeladmin-logo.png" alt="home" class="dark-logo" /><img src="<?= base_url()?>inverse/plugins/images/pixeladmin-logo-dark.png" alt="home" class="light-logo" /></b>
-                        <span class="d-none d-sm-inline"><img src="<?= base_url()?>inverse/plugins/images/pixeladmin-text.png" alt="home" class="dark-logo" /><img src="<?= base_url()?>inverse/plugins/images/pixeladmin-text-dark.png" alt="home" class="light-logo" /></span>
-                    </a>
-                </div>
-                <ul class="nav navbar-top-links navbar-left d-none d-sm-inline">
-                    <li>
-                        <a href="javascript:void(0)" class="open-close d-none d-sm-inline waves-effect waves-light">
-                            <i class="fa fa-bars"></i>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-top-links navbar-right float-right"></ul>
             </div>
+            <ul class="nav navbar-top-links navbar-left d-none d-sm-inline">
+                <li>
+                    <a href="javascript:void(0)" class="open-close d-none d-sm-inline waves-effect waves-light">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-top-links navbar-right float-right"></ul>
         </nav>
         <!-- End Top Navigation -->
         <?php $this->load->view('dev/admin/partials/sidebar.php')?>
