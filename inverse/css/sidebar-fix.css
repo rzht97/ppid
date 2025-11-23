@@ -8,8 +8,11 @@
 }
 
 .fix-sidebar .sidebar {
+    position: fixed;
     z-index: 1020;
-    top: 60px;
+    top: 60px !important;
+    height: calc(100% - 60px) !important;
+    overflow-y: auto;
 }
 
 .fix-sidebar #page-wrapper {
