@@ -36,21 +36,4 @@
 
 	<!-- REMOVED: Duplicate jQuery 3.2.1 slim (already loaded 3.7.1 above) -->
 	<!-- REMOVED: Duplicate Bootstrap (already loaded bootstrap.bundle.min.js above) -->
-
-
-
-
-    <!-- Core plugin JavaScript-->
-    <script src="<?= base_url();?>newassets/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="<?= base_url();?>newassets/vendor/chart.js/Chart.min.js"></script>
-
-	<!-- Page level plugins -->
-    <script src="<?= base_url();?>newassets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="<?= base_url();?>newassets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="<?= base_url();?>newassets/js/demo/chart-area-demo.js"></script>
-    <script src="<?= base_url();?>newassets/js/demo/chart-pie-demo.js"></script>
-    <script src="<?= base_url();?>newassets/js/demo/datatables-demo.js"></script>
+	<!-- REMOVED: Admin-only scripts (charts, datatables) - not needed for public pages -->
