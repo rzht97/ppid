@@ -7,8 +7,9 @@
     
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url()?>inverse/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= base_url()?>inverse/plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <!-- DataTables 1.13.8 CSS (SECURITY UPDATE) -->
+    <link href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
     <!-- animation CSS -->
     <link href="<?= base_url()?>inverse/css/animate.css" rel="stylesheet">
     <!-- Menu CSS -->
