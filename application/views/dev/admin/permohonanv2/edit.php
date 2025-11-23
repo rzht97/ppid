@@ -9,13 +9,32 @@
 <body class="fix-sidebar">
     <div id="wrapper">
         <!-- Top Navigation -->
-        <nav class="navbar navbar-light bg-white navbar-static-top m-b-0" style="min-height: 60px; height: 60px;">
-            <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
-                <div class="top-left-part"><a class="logo" href="index.html"><b><img src="<?= base_url() ?>/inverse/plugins/images/pixeladmin-logo.png" alt="home" class="dark-logo" /><img src="<?= base_url() ?>/inverse/plugins/images/pixeladmin-logo-dark.png" alt="home" class="light-logo" /></b><span class="d-none d-sm-inline"><img src="<?= base_url() ?>/inverse/plugins/images/pixeladmin-text.png" alt="home" class="dark-logo" /><img src="<?= base_url() ?>/inverse/plugins/images/pixeladmin-text-dark.png" alt="home" class="light-logo" /></span></a></div>
-                <ul class="nav navbar-top-links navbar-left d-none d-sm-inline">
-                    <li><a href="javascript:void(0)" class="open-close d-none d-sm-inline waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
-                </ul>
-                <ul class="nav navbar-top-links navbar-right float-right"></ul>
+        <nav class="navbar navbar-light bg-white navbar-static-top m-b-0" style="min-height: 60px; height: 60px; padding: 0 15px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+            <!-- Left: Logo + Toggle -->
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <!-- Compact Logo -->
+                <a href="<?= site_url('admin/index') ?>" style="display: flex; align-items: center; text-decoration: none;">
+                    <img src="<?= base_url()?>inverse/plugins/images/pixeladmin-logo.png" alt="PPID" style="height: 35px; width: auto;">
+                    <span style="margin-left: 8px; font-size: 14px; font-weight: 600; color: #333; display: none;" class="d-md-inline">
+                        PPID Kab. Sumedang
+                    </span>
+                </a>
+                <!-- Sidebar Toggle -->
+                <a href="javascript:void(0)" class="open-close waves-effect waves-light" style="padding: 8px 10px; color: #555; font-size: 18px; margin-left: 5px;">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+
+            <!-- Right: User Actions -->
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <a href="<?= site_url('admin/index') ?>" class="waves-effect" style="padding: 6px 12px; color: #666; font-size: 14px; text-decoration: none; border-radius: 4px;" title="Dashboard">
+                    <i class="fa fa-home"></i>
+                    <span class="d-none d-lg-inline" style="margin-left: 5px;">Dashboard</span>
+                </a>
+                <a href="<?= base_url('index.php/login/logout') ?>" class="waves-effect" style="padding: 6px 12px; color: #fff; background: #d9534f; font-size: 14px; text-decoration: none; border-radius: 4px;" title="Logout">
+                    <i class="fa fa-power-off"></i>
+                    <span class="d-none d-lg-inline" style="margin-left: 5px;">Logout</span>
+                </a>
             </div>
         </nav>
         <!-- End Top Navigation -->

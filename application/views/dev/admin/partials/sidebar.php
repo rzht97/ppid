@@ -1,13 +1,5 @@
 <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
-                <!-- Logo Section -->
-                <div class="sidebar-logo" style="padding: 15px; text-align: center; background: #fff; border-bottom: 1px solid #eee;">
-                    <a href="<?= site_url('admin/index') ?>" style="display: inline-block;">
-                        <img src="<?= base_url()?>inverse/plugins/images/pixeladmin-logo.png" alt="PPID Logo" style="height: 40px; width: auto;">
-                        <div style="margin-top: 5px; font-size: 12px; color: #333; font-weight: 600;">PPID Kab. Sumedang</div>
-                    </a>
-                </div>
-
                 <div class="user-profile">
                     <div class="dropdown user-pro-body">
                         <div><img src="<?= base_url()?>/inverse/plugins/images/users/varun.jpg" alt="user-img" class="img-circle"></div>
