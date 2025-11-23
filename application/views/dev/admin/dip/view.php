@@ -117,7 +117,7 @@
 											<small><?php echo html_escape($dok_kec->tanggal) ?></small>
 										</td>
 										<td style="vertical-align: middle;">
-											<span class="label label-primary" style="font-size: 11px; padding: 5px 10px;">
+											<span class="badge badge-primary" style="font-size: 11px; padding: 5px 10px;">
 												<?php echo html_escape($dok_kec->kategori) ?>
 											</span>
 										</td>
@@ -133,7 +133,7 @@
 													<i class="fa fa-download"></i> Download
 												</a>
 											<?php } else { ?>
-												<span class="label label-default" style="font-size: 10px;">
+												<span class="badge badge-secondary" style="font-size: 10px;">
 													<?php echo html_escape($dok_kec->sumberdata); ?>
 												</span>
 											<?php } ?>

@@ -166,12 +166,12 @@
                                                 <i class="glyphicon glyphicon-file fileinput-exists"></i>
                                                 <span class="fileinput-filename"></span>
                                             </div>
-                                            <span class="input-group-addon btn btn-default btn-file">
+                                            <span class="input-group-addon btn btn-secondary btn-file">
                                                 <span class="fileinput-new">Pilih File</span>
                                                 <span class="fileinput-exists">Ganti</span>
                                                 <input class="form-control-file <?php echo form_error('image') ? 'is-invalid' : '' ?>" type="file" name="image">
                                             </span>
-                                            <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Hapus</a>
+                                            <a href="#" class="input-group-addon btn btn-secondary fileinput-exists" data-dismiss="fileinput">Hapus</a>
                                         </div>
                                         <?php if(form_error('image')): ?>
                                             <div class="text-danger"><?php echo form_error('image'); ?></div>
@@ -198,7 +198,7 @@
                                             <button type="submit" name="btn" class="btn btn-success waves-effect waves-light">
                                                 <i class="fa fa-save"></i> Simpan Informasi
                                             </button>
-                                            <a href="<?php echo site_url('admin/dip') ?>" class="btn btn-default waves-effect waves-light">
+                                            <a href="<?php echo site_url('admin/dip') ?>" class="btn btn-secondary waves-effect waves-light">
                                                 <i class="fa fa-times"></i> Batal
                                             </a>
                                         </div>

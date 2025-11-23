@@ -260,7 +260,7 @@
                                             <button type="submit" class="btn btn-success waves-effect waves-light">
                                                 <i class="fa fa-save"></i> Simpan Permohonan
                                             </button>
-                                            <a href="<?php echo site_url('admin/permohonan') ?>" class="btn btn-default waves-effect waves-light">
+                                            <a href="<?php echo site_url('admin/permohonan') ?>" class="btn btn-secondary waves-effect waves-light">
                                                 <i class="fa fa-times"></i> Batal
                                             </a>
                                         </div>

@@ -123,23 +123,23 @@
                                             <td class="text-center"><?php echo html_escape($data->ktp) ?></td>
                                             <td class="text-center">
                                                 <?php if($data->status == "Menunggu Verifikasi"): ?>
-                                                    <span class="label label-warning">
+                                                    <span class="badge badge-warning">
                                                         <i class="fa fa-clock-o"></i> <?php echo html_escape($data->status) ?>
                                                     </span>
                                                 <?php elseif($data->status == "Sedang Diproses"): ?>
-                                                    <span class="label label-info">
+                                                    <span class="badge badge-info">
                                                         <i class="fa fa-spinner"></i> <?php echo html_escape($data->status) ?>
                                                     </span>
                                                 <?php elseif($data->status == "Selesai"): ?>
-                                                    <span class="label label-success">
+                                                    <span class="badge badge-success">
                                                         <i class="fa fa-check-circle"></i> <?php echo html_escape($data->status) ?>
                                                     </span>
                                                 <?php elseif($data->status == "Ditolak"): ?>
-                                                    <span class="label label-danger">
+                                                    <span class="badge badge-danger">
                                                         <i class="fa fa-times-circle"></i> <?php echo html_escape($data->status) ?>
                                                     </span>
                                                 <?php else: ?>
-                                                    <span class="label label-default"><?php echo html_escape($data->status) ?></span>
+                                                    <span class="badge badge-secondary"><?php echo html_escape($data->status) ?></span>
                                                 <?php endif; ?>
                                             </td>
                                             <td class="text-center">

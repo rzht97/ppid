@@ -125,13 +125,13 @@
                                                 <td><?php echo date('d/m/Y', strtotime($data->tanggal)) ?></td>
                                                 <td>
                                                     <?php if ($data->status == 'Selesai'): ?>
-                                                        <span class="label label-success">Selesai</span>
+                                                        <span class="badge badge-success">Selesai</span>
                                                     <?php elseif ($data->status == 'Sedang Diproses'): ?>
-                                                        <span class="label label-info">Proses</span>
+                                                        <span class="badge badge-info">Proses</span>
                                                     <?php elseif ($data->status == 'Ditolak'): ?>
-                                                        <span class="label label-danger">Ditolak</span>
+                                                        <span class="badge badge-danger">Ditolak</span>
                                                     <?php else: ?>
-                                                        <span class="label label-warning">Verifikasi</span>
+                                                        <span class="badge badge-warning">Verifikasi</span>
                                                     <?php endif; ?>
                                                 </td>
                                             </tr>
@@ -162,13 +162,13 @@
                                                 <td><?php echo date('d/m/Y', strtotime($data->tanggal)) ?></td>
                                                 <td>
                                                     <?php if ($data->status == 'Diterima'): ?>
-                                                        <span class="label label-success">Diterima</span>
+                                                        <span class="badge badge-success">Diterima</span>
                                                     <?php elseif ($data->status == 'Sedang Diproses'): ?>
-                                                        <span class="label label-info">Proses</span>
+                                                        <span class="badge badge-info">Proses</span>
                                                     <?php elseif ($data->status == 'Ditolak'): ?>
-                                                        <span class="label label-danger">Ditolak</span>
+                                                        <span class="badge badge-danger">Ditolak</span>
                                                     <?php else: ?>
-                                                        <span class="label label-warning">Verifikasi</span>
+                                                        <span class="badge badge-warning">Verifikasi</span>
                                                     <?php endif; ?>
                                                 </td>
                                             </tr>

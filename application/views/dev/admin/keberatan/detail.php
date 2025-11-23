@@ -53,13 +53,13 @@
                             <br>
 
                             <!-- Data Pemohon -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading" style="background-color: #f5f5f5;">
-                                    <h4 class="panel-title" style="margin: 0;">
+                            <div class="card border-secondary">
+                                <div class="card-header" style="background-color: #f5f5f5;">
+                                    <h4 class="card-title" style="margin: 0;">
                                         <i class="fa fa-user"></i> Data Pemohon
                                     </h4>
                                 </div>
-                                <div class="panel-body" style="padding: 20px;">
+                                <div class="card-body" style="padding: 20px;">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -92,13 +92,13 @@
                             </div>
 
                             <!-- Data Keberatan -->
-                            <div class="panel panel-info">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title" style="margin: 0;">
+                            <div class="card border-info">
+                                <div class="card-header">
+                                    <h4 class="card-title" style="margin: 0;">
                                         <i class="fa fa-file-text"></i> Data Keberatan
                                     </h4>
                                 </div>
-                                <div class="panel-body" style="padding: 20px;">
+                                <div class="card-body" style="padding: 20px;">
                                     <div class="form-group">
                                         <label><strong>Alasan Keberatan</strong></label>
                                         <p class="form-control-static" style="white-space: pre-wrap;"><?php echo html_escape($keberatan->alasan) ?></p>
@@ -111,23 +111,23 @@
                                         <label><strong>Status</strong></label>
                                         <div>
                                             <?php if ($keberatan->status == 'Menunggu Verifikasi' || $keberatan->status == 'Belum Diverifikasi'): ?>
-                                                <span class="label label-warning" style="font-size: 13px; padding: 8px 12px;">
+                                                <span class="badge badge-warning" style="font-size: 13px; padding: 8px 12px;">
                                                     <?php echo html_escape($keberatan->status) ?>
                                                 </span>
                                             <?php elseif ($keberatan->status == 'Sedang Diproses'): ?>
-                                                <span class="label label-info" style="font-size: 13px; padding: 8px 12px;">
+                                                <span class="badge badge-info" style="font-size: 13px; padding: 8px 12px;">
                                                     Sedang Diproses
                                                 </span>
                                             <?php elseif ($keberatan->status == 'Diterima' || $keberatan->status == 'Selesai'): ?>
-                                                <span class="label label-success" style="font-size: 13px; padding: 8px 12px;">
+                                                <span class="badge badge-success" style="font-size: 13px; padding: 8px 12px;">
                                                     <?php echo html_escape($keberatan->status) ?>
                                                 </span>
                                             <?php elseif ($keberatan->status == 'Ditolak'): ?>
-                                                <span class="label label-danger" style="font-size: 13px; padding: 8px 12px;">
+                                                <span class="badge badge-danger" style="font-size: 13px; padding: 8px 12px;">
                                                     Ditolak
                                                 </span>
                                             <?php else: ?>
-                                                <span class="label label-default" style="font-size: 13px; padding: 8px 12px;">
+                                                <span class="badge badge-secondary" style="font-size: 13px; padding: 8px 12px;">
                                                     <?php echo html_escape($keberatan->status) ?>
                                                 </span>
                                             <?php endif; ?>
@@ -138,13 +138,13 @@
 
                             <!-- Hasil Pemrosesan (jika sudah diproses) -->
                             <?php if (!empty($keberatan->tanggapan) || !empty($keberatan->putusan)): ?>
-                            <div class="panel panel-success">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title" style="margin: 0;">
+                            <div class="card border-success">
+                                <div class="card-header">
+                                    <h4 class="card-title" style="margin: 0;">
                                         <i class="fa fa-gavel"></i> Hasil Pemrosesan
                                     </h4>
                                 </div>
-                                <div class="panel-body" style="padding: 20px;">
+                                <div class="card-body" style="padding: 20px;">
                                     <?php if (!empty($keberatan->tanggapan)): ?>
                                     <div class="form-group">
                                         <label><strong>Tanggapan</strong></label>
@@ -164,7 +164,7 @@
 
                             <!-- Tombol Aksi -->
                             <div class="form-actions">
-                                <a href="<?php echo site_url('admin/keberatan') ?>" class="btn btn-default waves-effect waves-light">
+                                <a href="<?php echo site_url('admin/keberatan') ?>" class="btn btn-secondary waves-effect waves-light">
                                     <i class="fa fa-arrow-left"></i> Kembali
                                 </a>
 

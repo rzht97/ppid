@@ -121,23 +121,23 @@
 										</td>
 										<td class="text-center" style="vertical-align: middle;">
 											<?php if ($item->status == 'Belum Diverifikasi'): ?>
-												<span class="label label-warning" style="font-size: 11px; padding: 5px 10px;">
+												<span class="badge badge-warning" style="font-size: 11px; padding: 5px 10px;">
 													Belum Diverifikasi
 												</span>
 											<?php elseif ($item->status == 'Sedang Diproses'): ?>
-												<span class="label label-info" style="font-size: 11px; padding: 5px 10px;">
+												<span class="badge badge-info" style="font-size: 11px; padding: 5px 10px;">
 													Sedang Diproses
 												</span>
 											<?php elseif ($item->status == 'Diterima'): ?>
-												<span class="label label-success" style="font-size: 11px; padding: 5px 10px;">
+												<span class="badge badge-success" style="font-size: 11px; padding: 5px 10px;">
 													Diterima
 												</span>
 											<?php elseif ($item->status == 'Ditolak'): ?>
-												<span class="label label-danger" style="font-size: 11px; padding: 5px 10px;">
+												<span class="badge badge-danger" style="font-size: 11px; padding: 5px 10px;">
 													Ditolak
 												</span>
 											<?php else: ?>
-												<span class="label label-default" style="font-size: 11px; padding: 5px 10px;">
+												<span class="badge badge-secondary" style="font-size: 11px; padding: 5px 10px;">
 													<?php echo html_escape($item->status) ?>
 												</span>
 											<?php endif; ?>

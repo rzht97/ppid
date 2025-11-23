@@ -139,19 +139,19 @@
                                 <div class="col-md-12">
                                     <div class="p-t-10 p-b-10">
                                         <?php if($permohonan->status == "Selesai"): ?>
-                                            <span class="label label-success" style="font-size: 14px; padding: 10px 15px;">
+                                            <span class="badge badge-success" style="font-size: 14px; padding: 10px 15px;">
                                                 <i class="fa fa-check-circle"></i> <?php echo html_escape($permohonan->status) ?>
                                             </span>
                                         <?php elseif($permohonan->status == "Ditolak"): ?>
-                                            <span class="label label-danger" style="font-size: 14px; padding: 10px 15px;">
+                                            <span class="badge badge-danger" style="font-size: 14px; padding: 10px 15px;">
                                                 <i class="fa fa-times-circle"></i> <?php echo html_escape($permohonan->status) ?>
                                             </span>
                                         <?php elseif($permohonan->status == "Sedang Diproses"): ?>
-                                            <span class="label label-warning" style="font-size: 14px; padding: 10px 15px;">
+                                            <span class="badge badge-warning" style="font-size: 14px; padding: 10px 15px;">
                                                 <i class="fa fa-spinner"></i> <?php echo html_escape($permohonan->status) ?>
                                             </span>
                                         <?php else: ?>
-                                            <span class="label label-info" style="font-size: 14px; padding: 10px 15px;">
+                                            <span class="badge badge-info" style="font-size: 14px; padding: 10px 15px;">
                                                 <i class="fa fa-clock-o"></i> <?php echo html_escape($permohonan->status) ?>
                                             </span>
                                         <?php endif; ?>
@@ -189,7 +189,7 @@
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <a href="<?php echo site_url('admin/permohonan') ?>" class="btn btn-default waves-effect waves-light">
+                                        <a href="<?php echo site_url('admin/permohonan') ?>" class="btn btn-secondary waves-effect waves-light">
                                             <i class="fa fa-arrow-left"></i> Kembali ke Daftar
                                         </a>
                                         <?php if($permohonan->status == "Sedang Diproses"): ?>

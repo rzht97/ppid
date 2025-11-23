@@ -99,13 +99,13 @@
                             <?php endif; ?>
 
                             <!-- Data Pemohon -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading" style="background-color: #f5f5f5;">
-                                    <h4 class="panel-title" style="margin: 0;">
+                            <div class="card border-secondary">
+                                <div class="card-header" style="background-color: #f5f5f5;">
+                                    <h4 class="card-title" style="margin: 0;">
                                         <i class="fa fa-user"></i> Data Pemohon
                                     </h4>
                                 </div>
-                                <div class="panel-body" style="padding: 20px;">
+                                <div class="card-body" style="padding: 20px;">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
@@ -147,12 +147,12 @@
 
                             <!-- Form Pemrosesan -->
                             <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title" style="margin: 0;">
+                                <div class="card-header">
+                                    <h4 class="card-title" style="margin: 0;">
                                         <i class="fa fa-gavel"></i> Form Pemrosesan Keberatan
                                     </h4>
                                 </div>
-                                <div class="panel-body" style="padding: 20px;">
+                                <div class="card-body" style="padding: 20px;">
                                     <form class="form-horizontal" action="<?php echo site_url('admin/keberatan/proses/'.$keberatan->id_keberatan) ?>" method="post">
                                         <!-- FIX HIGH: Add CSRF token -->
                                         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
@@ -200,7 +200,7 @@
                                                     <button type="submit" name="btn" class="btn btn-success waves-effect waves-light">
                                                         <i class="fa fa-check"></i> Simpan Hasil Pemrosesan
                                                     </button>
-                                                    <a href="<?php echo site_url('admin/keberatan') ?>" class="btn btn-default waves-effect waves-light">
+                                                    <a href="<?php echo site_url('admin/keberatan') ?>" class="btn btn-secondary waves-effect waves-light">
                                                         <i class="fa fa-times"></i> Batal
                                                     </a>
                                                 </div>
