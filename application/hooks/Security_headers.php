@@ -51,7 +51,7 @@ class Security_headers
         $csp = [
             "default-src 'self'",                    // Default: hanya dari domain sendiri
             "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://code.jquery.com https://maxcdn.bootstrapcdn.com https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://maps.googleapis.com", // Allow inline scripts (untuk compatibility)
-            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://maxcdn.bootstrapcdn.com", // Allow inline styles
+            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://maxcdn.bootstrapcdn.com https://www.gstatic.com", // Allow inline styles + Google Translate styles
             "img-src 'self' data: https:",           // Images dari self, data:, dan HTTPS
             "font-src 'self' data: https://fonts.gstatic.com https://maxcdn.bootstrapcdn.com", // Fonts
             "connect-src 'self' https://cdn.jsdelivr.net https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://maps.googleapis.com *.sumedangkab.go.id", // AJAX requests
