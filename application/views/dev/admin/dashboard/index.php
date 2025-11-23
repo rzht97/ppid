@@ -9,7 +9,7 @@
 <body class="fix-sidebar">
     <div id="wrapper">
         <!-- Top Navigation -->
-        <nav class="navbar navbar-light bg-white navbar-static-top m-b-0" style="min-height: 60px; height: 60px; display: none;">
+        <nav class="navbar navbar-light bg-white navbar-static-top m-b-0" style="min-height: 60px; height: 60px;">
             <a class="navbar-toggle d-lg-none" href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse">
                 <i class="ti-menu"></i>
             </a>
