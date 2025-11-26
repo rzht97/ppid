@@ -9,13 +9,13 @@
         /* Modern Profile Card Styling */
         .profile-section {
             padding: 80px 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #fafbfc 0%, #e8f0f7 100%);
         }
 
         .profile-card {
             background: #fff;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
             overflow: hidden;
             margin-bottom: 60px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -23,11 +23,11 @@
 
         .profile-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
         }
 
         .profile-header {
-            background: linear-gradient(135deg, var(--thm-primary, #0d6efd) 0%, #0056b3 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 40px;
             text-align: center;
             position: relative;
@@ -104,7 +104,7 @@
 
         .profile-social a:hover {
             background: #fff;
-            color: var(--thm-primary, #0d6efd);
+            color: #667eea;
             transform: translateY(-3px);
         }
 
@@ -126,13 +126,13 @@
             color: #2c3e50;
             margin-bottom: 20px;
             padding-bottom: 12px;
-            border-bottom: 3px solid var(--thm-primary, #0d6efd);
+            border-bottom: 3px solid #667eea;
             display: inline-block;
         }
 
         .section-title i {
             margin-right: 10px;
-            color: var(--thm-primary, #0d6efd);
+            color: #667eea;
         }
 
         .info-grid {
@@ -143,7 +143,7 @@
         .info-item {
             display: flex;
             padding: 12px 0;
-            border-bottom: 1px solid #ecf0f1;
+            border-bottom: 1px solid #f0f3f7;
         }
 
         .info-item:last-child {
@@ -153,11 +153,11 @@
         .info-label {
             min-width: 200px;
             font-weight: 600;
-            color: #34495e;
+            color: #5a6c7d;
         }
 
         .info-value {
-            color: #555;
+            color: #6c757d;
             flex: 1;
         }
 
@@ -173,7 +173,7 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: linear-gradient(to bottom, var(--thm-primary, #0d6efd), rgba(13, 110, 253, 0.3));
+            background: linear-gradient(to bottom, #667eea, rgba(102, 126, 234, 0.2));
         }
 
         .timeline-item {
@@ -190,9 +190,9 @@
             width: 15px;
             height: 15px;
             border-radius: 50%;
-            background: var(--thm-primary, #0d6efd);
+            background: #667eea;
             border: 3px solid #fff;
-            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
         }
 
         .timeline-item:last-child {
@@ -200,21 +200,21 @@
         }
 
         .timeline-content {
-            background: #f8f9fa;
+            background: #f8f9fb;
             padding: 15px 20px;
             border-radius: 10px;
-            border-left: 3px solid var(--thm-primary, #0d6efd);
+            border-left: 3px solid #667eea;
         }
 
         .timeline-year {
             font-size: 14px;
             font-weight: 600;
-            color: var(--thm-primary, #0d6efd);
+            color: #667eea;
             margin-bottom: 5px;
         }
 
         .timeline-text {
-            color: #555;
+            color: #6c757d;
             line-height: 1.6;
             margin: 0;
         }
@@ -225,10 +225,10 @@
         }
 
         .award-item {
-            background: linear-gradient(135deg, #fff9e6 0%, #fff 100%);
+            background: linear-gradient(135deg, #fff5f0 0%, #fff 100%);
             padding: 18px 22px;
             border-radius: 10px;
-            border-left: 4px solid #ffc107;
+            border-left: 4px solid #ff9a76;
             display: flex;
             align-items: start;
             gap: 15px;
@@ -237,17 +237,17 @@
 
         .award-item:hover {
             transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.2);
+            box-shadow: 0 5px 15px rgba(255, 154, 118, 0.15);
         }
 
         .award-icon {
             font-size: 24px;
-            color: #ffc107;
+            color: #ff9a76;
             flex-shrink: 0;
         }
 
         .award-text {
-            color: #555;
+            color: #6c757d;
             line-height: 1.6;
             margin: 0;
         }
