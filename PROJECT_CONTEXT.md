@@ -128,6 +128,11 @@ PPID (Pejabat Pengelola Informasi dan Dokumentasi) Kabupaten Sumedang adalah apl
 - ✅ Menambahkan 2 halaman profil baru: `pejabat.php` dan `tentang.php`
 - ✅ Menambahkan submenu "Profil Pejabat Struktural" dan "Tentang PPID" di header
 - ✅ Menambahkan method `pejabat()` dan `tentang()` di `Profil.php` controller
+- ✅ Restructure menu: Mengubah "Berita" menjadi dropdown "Pengumuman"
+- ✅ Menambahkan submenu di Pengumuman: Berita, LHKPN, Pengumuman Barang dan Jasa
+- ✅ Menambahkan halaman pengumuman: `barjas.php` dan `lhkpn.php`
+- ✅ Menambahkan method `barjas()` di `Home.php` controller
+- ✅ Update path `lhkpn()` method ke folder pengumuman
 
 ### **3 Days Ago (2025-11-23):**
 **MASSIVE ADMIN PANEL UI FIXES:**
@@ -182,7 +187,8 @@ PPID (Pejabat Pengelola Informasi dan Dokumentasi) Kabupaten Sumedang adalah apl
 - `skdip()` - SK DIP
 - `pejabat()` - Profil pejabat (old)
 - `laporan()` - Laporan pelayanan
-- `lhkpn()` - LHKPN
+- `lhkpn()` - **UPDATED** LHKPN (moved to pengumuman folder)
+- `barjas()` - **NEW** Pengumuman Barang dan Jasa
 - `lapor()` - LAPOR!
 - `cc()` - Command Center
 
@@ -272,7 +278,10 @@ PPID (Pejabat Pengelola Informasi dan Dokumentasi) Kabupaten Sumedang adalah apl
 │   ├── SOP Pelayanan Informasi
 │   ├── Standar Biaya Pelayanan
 │   └── WA KEPO (WhatsApp)
-├── Berita
+├── Pengumuman                       ← UPDATED (2025-11-26)
+│   ├── Berita                       ← Moved to submenu
+│   ├── LHKPN                        ← NEW
+│   └── Pengumuman Barang dan Jasa   ← NEW
 ├── Cek Status
 └── LAPOR!
 
@@ -423,7 +432,12 @@ Key Tables:
 ### 2025-11-26:
 - Add Profil Pejabat Struktural submenu (pejabat.php)
 - Add Tentang PPID submenu (tentang.php)
-- Update Profil controller with new methods
+- Update Profil controller with new methods (pejabat, tentang)
+- Restructure menu: Berita → Pengumuman (dropdown)
+- Add LHKPN submenu (lhkpn.php in pengumuman folder)
+- Add Pengumuman Barang dan Jasa submenu (barjas.php)
+- Update Home controller with barjas() method
+- Move lhkpn view to pengumuman folder
 
 ### 2025-11-23:
 - Massive admin panel UI/UX fixes (navbar, sidebar, responsive)
