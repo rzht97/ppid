@@ -38,9 +38,9 @@
             <div class="container">
                 <div class="page-header__inner">
                     <ul class="thm-breadcrumb list-unstyled">
-                        <li><a href="index-2.html">Beranda</a></li>
+                        <li><a href="<?php echo base_url(); ?>">Beranda</a></li>
                         <li><span>/</span></li>
-                        <li><a>Berita</a></li>
+                        <li>Pengumuman</li>
                     </ul>
                     <h2>PENGUMUMAN</h2>
                 </div>
@@ -82,7 +82,7 @@
                         <!--Services One Single-->
                         <div class="services-one__single">
                             <div class="services-one__img">
-                                <img src="assets/images/services/services-page-img-3.jpg" alt="">
+                                <img src="<?= base_url()?>newestassets/images/services/services-page-img-3.jpg" alt="">
                             </div>
                             <div class="services-one__content">
                                 <h3 class="services-one__title"><a>Proyek Strategis Pemerintah Daerah Kab. Sumedang</a>
@@ -107,7 +107,7 @@
                         <!--Services One Single-->
                         <div class="services-one__single">
                             <div class="services-one__img">
-                                <img src="assets/images/services/services-page-img-5.jpg" alt="">
+                                <img src="<?= base_url()?>newestassets/images/services/services-page-img-5.jpg" alt="">
                             </div>
                             <div class="services-one__content">
                                 <h3 class="services-one__title"><a href="financial-advice.html">LPPD</a>

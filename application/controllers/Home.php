@@ -327,8 +327,14 @@ class Home extends CI_Controller {
 	
 	public function lhkpn()
 	{
-		$this->load->view("dev/lhkpn");
+		$this->load->view("dev/pengumuman/lhkpn");
 	}
+
+	public function barjas()
+	{
+		$this->load->view("dev/pengumuman/barjas");
+	}
+
 	public function lapor()
 	{
 		$this->load->view("dev/lapor");

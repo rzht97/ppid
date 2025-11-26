@@ -67,6 +67,10 @@ $route['laporan'] = 'home/laporan';
 $route['regulasi'] = 'home/regulasi';
 $route['skdip'] = 'home/skdip';
 
+// Pengumuman routes
+$route['lhkpn'] = 'home/lhkpn';
+$route['barjas'] = 'home/barjas';
+
 // Information classification routes
 $route['infoberkala'] = 'home/infoberkala';
 $route['infosertamerta'] = 'home/infosertamerta';

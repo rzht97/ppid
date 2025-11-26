@@ -51,4 +51,20 @@ class Profil extends CI_Controller {
     {
         $this->load->view("dev/profil/visimisippid");
     }
+
+    /**
+     * Halaman Profil Pejabat Struktural
+     */
+    public function pejabat()
+    {
+        $this->load->view("dev/profil/pejabat");
+    }
+
+    /**
+     * Halaman Tentang PPID
+     */
+    public function tentang()
+    {
+        $this->load->view("dev/profil/tentang");
+    }
 }

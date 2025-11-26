@@ -119,7 +119,8 @@
                                         </li>
 										<li><a href = "<?php echo site_url('profil/strukturorg')?>">Struktur Organisasi</a></li>
                                         <li><a href="<?php echo site_url('profil/urtug')?>">Tugas dan Wewenang</a></li>
-										<!--<li><a href="<?php echo site_url('home/pejabat')?>">Profil Pejabat Struktural</a></li>-->
+										<li><a href="<?php echo site_url('profil/pejabat')?>">Profil Pejabat Struktural</a></li>
+										<li><a href="<?php echo site_url('profil/tentang')?>">Tentang PPID</a></li>
                                         <li><a href="<?php echo site_url('profil/maklumat')?>">Maklumat Pelayanan</a></li>
                                     </ul>
                                 </li>
@@ -157,8 +158,13 @@
 										
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="<?php echo site_url('berita')?>">Berita</a>
+                                <li class="dropdown">
+                                    <a href="#">Pengumuman</a>
+                                    <ul>
+                                        <li><a href="<?php echo site_url('berita')?>">Berita</a></li>
+                                        <li><a href="<?php echo site_url('lhkpn')?>">LHKPN</a></li>
+                                        <li><a href="<?php echo site_url('barjas')?>">Pengumuman Barang dan Jasa</a></li>
+                                    </ul>
                                 </li>
 								<li>
                                     <a href="<?php echo site_url('cekstatus')?>">Cek Status</a>
