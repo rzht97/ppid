@@ -1,5 +1,5 @@
-	<!-- jQuery 3.7.1 (SECURITY UPDATE: Fixed CVE-2015-9251, CVE-2019-11358, CVE-2020-11022, CVE-2020-11023) -->
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<!-- jQuery 3.7.1 (LOCAL - SECURITY UPDATE: Fixed CVE-2015-9251, CVE-2019-11358, CVE-2020-11022, CVE-2020-11023) -->
+	<script src="<?= base_url()?>assets/vendor/jquery/js/jquery-3.7.1.min.js"></script>
     <script src="<?= base_url() ?>newestassets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="<?= base_url() ?>newestassets/vendors/jarallax/jarallax.min.js"></script>
     <script src="<?= base_url() ?>newestassets/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js"></script>
@@ -28,7 +28,7 @@
     <script src="<?= base_url() ?>newestassets/js/aivons.js"></script>
 
     <!-- color switcher language -->
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2.1.2/src/js.cookie.min.js"></script>
+    <script src="<?= base_url()?>assets/vendor/js-cookie/js/js.cookie.min.js"></script>
     <script src="<?= base_url() ?>newestassets/js/jQuery.style.switcher.min.js"></script>
     <script src="<?= base_url() ?>newestassets/js/lang.js"></script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
