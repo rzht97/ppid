@@ -5,13 +5,13 @@
 	<title>Permohonan Informasi - Admin PPID Kab. Sumedang</title>
     <?php $this->load->view('dev/admin/partials/head.php')?>
     <!-- DataTables CSS -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="<?= base_url() ?>assets/vendor/datatables/css/jquery.dataTables.min.css">
 
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="<?= base_url() ?>assets/vendor/jquery/js/jquery-3.7.1.min.js"></script>
 
 <!-- DataTables JS -->
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="<?= base_url() ?>assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
 </head>
 
 <body class="fix-sidebar">

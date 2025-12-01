@@ -6,7 +6,7 @@
     <title>Tentang PPID Kab. Sumedang</title>
     <?php $this->load->view('dev/partials/head.php') ?>
     <link href="<?= base_url() ?>inverse/plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url() ?>assets/vendor/datatables/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -125,13 +125,13 @@
     <script src="<?= base_url() ?>inverse/js/custom.min.js"></script>
     <script src="<?= base_url() ?>inverse/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
     <!-- start - This is for export functionality only -->
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <script src="<?= base_url() ?>assets/vendor/datatables/js/dataTables.buttons.min.js"></script>
+    <script src="<?= base_url() ?>assets/vendor/datatables/js/buttons.flash.min.js"></script>
+    <script src="<?= base_url() ?>assets/vendor/jszip/js/jszip.min.js"></script>
+    <script src="<?= base_url() ?>assets/vendor/pdfmake/js/pdfmake.min.js"></script>
+    <script src="<?= base_url() ?>assets/vendor/pdfmake/js/vfs_fonts.js"></script>
+    <script src="<?= base_url() ?>assets/vendor/datatables/js/buttons.html5.min.js"></script>
+    <script src="<?= base_url() ?>assets/vendor/datatables/js/buttons.print.min.js"></script>
     <!-- end - This is for export functionality only -->
     
     <!--Style Switcher -->
