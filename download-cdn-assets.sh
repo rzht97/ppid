@@ -65,8 +65,10 @@ curl -sL "https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js" \
      -o assets/vendor/datatables/js/jquery.dataTables.min.js
 curl -sL "https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js" \
      -o assets/vendor/datatables/js/dataTables.buttons.min.js
-curl -sL "https://cdn.datatables.net/buttons/2.4.2/js/buttons.flash.min.js" \
-     -o assets/vendor/datatables/js/buttons.flash.min.js
+# buttons.flash (Flash-based export) is deprecated and removed.
+# If you still need it, uncomment and provide a working URL.
+# curl -sL "https://cdn.datatables.net/buttons/2.4.2/js/buttons.flash.min.js" \
+#     -o assets/vendor/datatables/js/buttons.flash.min.js
 curl -sL "https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js" \
      -o assets/vendor/datatables/js/buttons.html5.min.js
 curl -sL "https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js" \

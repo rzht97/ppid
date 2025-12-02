@@ -162,7 +162,7 @@
     <script src="<?= base_url() ?>inverse/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
     <!-- start - This is for export functionality only -->
     <script src="<?= base_url() ?>assets/vendor/datatables/js/dataTables.buttons.min.js"></script>
-    <script src="<?= base_url() ?>assets/vendor/datatables/js/buttons.flash.min.js"></script>
+    <!-- Removed deprecated Flash-based export: buttons.flash.min.js -->
     <script src="<?= base_url() ?>assets/vendor/jszip/js/jszip.min.js"></script>
     <script src="<?= base_url() ?>assets/vendor/pdfmake/js/pdfmake.min.js"></script>
     <script src="<?= base_url() ?>assets/vendor/pdfmake/js/vfs_fonts.js"></script>
