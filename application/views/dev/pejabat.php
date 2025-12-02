@@ -8,6 +8,33 @@
     <link href="<?= base_url() ?>inverse/plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url() ?>assets/vendor/datatables/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
 
+    <style>
+        /* Ensure accordion content is hidden by default for better UX and a jump-free loading (if JS is slow) */
+        .faq-one-accrodion .accrodion .accrodion-content { display: none; }
+        .faq-one-accrodion .accrodion.active .accrodion-content { display: block; }
+
+        /* Add chevron arrow to indicate clickable dropdown behavior */
+        .faq-one-accrodion .accrodion-title h4 {
+            position: relative;
+            padding-right: 28px; /* room for chevron */
+        }
+        .faq-one-accrodion .accrodion-title h4::after {
+            content: "\f078"; /* Font Awesome chevron-down */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.25s ease;
+            color: var(--thm-primary);
+        }
+        /* Rotate chevron when active / open */
+        .faq-one-accrodion .accrodion.active .accrodion-title h4::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+    </style>
+
 </head>
 
 <body>
