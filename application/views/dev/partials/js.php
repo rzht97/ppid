@@ -26,6 +26,33 @@
 
     <!-- template js -->
     <script src="<?= base_url() ?>newestassets/js/aivons.js"></script>
+    <script>
+        // Accessibility and ARIA enhancements for accrodion
+        (function($){
+            $(document).ready(function(){
+                // Set button roles and default aria-expanded according to current state
+                $('.accrodion-grp .accrodion-title').attr({role: 'button', tabindex: 0});
+                $('.accrodion-grp .accrodion').each(function(){
+                    var btn = $(this).find('.accrodion-title');
+                    var expanded = $(this).hasClass('active') ? 'true' : 'false';
+                    btn.attr('aria-expanded', expanded);
+                });
+
+                // Update aria-expanded on click/keypress (space/enter)
+                $('.accrodion-grp .accrodion-title').on('click keypress', function(e){
+                    if (e.type === 'keypress' && e.key !== ' ' && e.key !== 'Enter') return;
+                    var parent = $(this).parent();
+                    var isActive = parent.hasClass('active');
+                    // If not active, it will be activated by existing aivons.js handler
+                    // We toggle the aria-expanded based on the expected state
+                    var willBeExpanded = !isActive;
+                    // mark this as true, others false
+                    parent.siblings('.accrodion').find('.accrodion-title').attr('aria-expanded','false');
+                    $(this).attr('aria-expanded', willBeExpanded ? 'true' : 'false');
+                });
+            });
+        })(jQuery);
+    </script>
 
     <!-- color switcher language -->
     <script src="<?= base_url()?>assets/vendor/js-cookie/js/js.cookie.min.js"></script>
