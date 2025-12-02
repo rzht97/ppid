@@ -44,7 +44,7 @@
                         <li><span>/</span></li>
                         <li>Informasi Publik</li>
                     </ul>
-                    <h2>CONTENT CREATOR</h2>
+                    <h2>COMMAND CENTER</h2>
                 </div>
             </div>
         </section>
