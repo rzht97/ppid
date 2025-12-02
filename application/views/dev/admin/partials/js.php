@@ -21,7 +21,7 @@
     <script src="<?= base_url()?>assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <!-- DataTables Buttons Extension (LOCAL - Updated to 2.4.2) -->
     <script src="<?= base_url()?>assets/vendor/datatables/js/dataTables.buttons.min.js"></script>
-    <script src="<?= base_url()?>assets/vendor/datatables/js/buttons.flash.min.js"></script>
+    <!-- Removed deprecated Flash-based export: buttons.flash.min.js caused 404/HTML response -->
     <!-- Export dependencies (LOCAL - Updated versions) -->
     <script src="<?= base_url()?>assets/vendor/jszip/js/jszip.min.js"></script>
     <script src="<?= base_url()?>assets/vendor/pdfmake/js/pdfmake.min.js"></script>
