@@ -19,9 +19,9 @@ class Index extends CI_Controller {
 
         $data['nama_user'] = $this->session->userdata("nama");
 
-        // Ambil semua data
-        $all_permohonan = $this->permohonan_model->getAll();
-        $all_keberatan = $this->keberatan_model->getAll();
+        // Ambil semua data (urut berdasarkan tanggal terbaru terlebih dahulu)
+        $all_permohonan = $this->permohonan_model->getAll('tanggal', 'DESC');
+        $all_keberatan = $this->keberatan_model->getAll('tanggal', 'DESC');
 
         // Statistik Permohonan
         $data['total_permohonan'] = count($all_permohonan);
@@ -37,9 +37,9 @@ class Index extends CI_Controller {
         $data['keberatan_diterima'] = count(array_filter($all_keberatan, function($k) { return $k->status == 'Diterima'; }));
         $data['keberatan_ditolak'] = count(array_filter($all_keberatan, function($k) { return $k->status == 'Ditolak'; }));
 
-        // Data terbaru (5 item terakhir dari masing-masing)
-        $data['permohonan_terbaru'] = array_slice(array_reverse($all_permohonan), 0, 5);
-        $data['keberatan_terbaru'] = array_slice(array_reverse($all_keberatan), 0, 5);
+        // Data terbaru (5 item pertama karena sudah urut dari terbaru ke terlama)
+        $data['permohonan_terbaru'] = array_slice($all_permohonan, 0, 5);
+        $data['keberatan_terbaru'] = array_slice($all_keberatan, 0, 5);
 
         // Load view dashboard
         $this->load->view("dev/admin/dashboard/index",$data);

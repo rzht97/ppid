@@ -27,12 +27,8 @@ class Permohonan extends CI_Controller
     public function index()
     {
 		$data['nama_user'] = $this->session->userdata("nama");
-        // Fixed: Gunakan query builder, select specific columns (including ktp)
-        $data["permohonan"] = $this->db->select('mohon_id, nama, alamat, pekerjaan, nohp, email, rincian, ktp, status, tanggal, tanggaljawab')
-            ->from('permohonan')
-            ->order_by('mohon_id', 'DESC')
-            ->get()
-            ->result();
+        // Use model and getAll with ordering by 'tanggal' DESC to return newest first
+        $data["permohonan"] = $this->permohonan_model->getAll('tanggal', 'DESC');
         $this->load->view("dev/admin/permohonanv2/view2", $data);
     }
 

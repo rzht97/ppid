@@ -33,12 +33,26 @@ class Dokumen_model extends CI_Model
     }
 
 
-    public function getAll()
+    public function getAll($order_by = null, $direction = null)
     {
+        // Default ordering to tanggal DESC (newest first) and handle string date format d-m-Y
+        if ($order_by === null) {
+            $order_by = 'tanggal';
+        }
+        if ($direction === null) {
+            $direction = 'DESC';
+        }
+        // Dokumen tanggal is stored as d-m-Y; convert for correct chronological ordering
+        if ($order_by === 'tanggal') {
+            // Use STR_TO_DATE for correct ordering of d-m-Y formatted tanggal
+            $this->db->order_by("STR_TO_DATE(tanggal, '%d-%m-%Y')", $direction, false);
+        } else {
+            $this->db->order_by($order_by, $direction);
+        }
         return $this->db->get($this->_table)->result();
+    }
 
         // return $this->db->get_where($this->_table, ["judul" => "tes"])->result();
-    }
 
 
   public function getberkala()
