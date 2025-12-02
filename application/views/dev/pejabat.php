@@ -9,9 +9,10 @@
     <link href="<?= base_url() ?>assets/vendor/datatables/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
 
     <style>
-        /* Ensure accordion content is hidden by default for better UX and a jump-free loading (if JS is slow) */
-        .faq-one-accrodion .accrodion .accrodion-content { display: none; }
-        .faq-one-accrodion .accrodion.active .accrodion-content { display: block; }
+        /* Ensure accordion content is hidden by default for better UX and a jump-free loading (if JS is slow).
+           Use general selector so content is hidden even before the JS adds the 'faq-one-accrodion' class. */
+        .accrodion .accrodion-content { display: none !important; }
+        .accrodion.active .accrodion-content { display: block !important; }
 
         /* Add chevron arrow to indicate clickable dropdown behavior */
         .faq-one-accrodion .accrodion-title h4 {

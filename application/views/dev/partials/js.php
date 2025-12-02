@@ -32,10 +32,19 @@
             $(document).ready(function(){
                 // Set button roles and default aria-expanded according to current state
                 $('.accrodion-grp .accrodion-title').attr({role: 'button', tabindex: 0});
-                $('.accrodion-grp .accrodion').each(function(){
-                    var btn = $(this).find('.accrodion-title');
-                    var expanded = $(this).hasClass('active') ? 'true' : 'false';
+                $('.accrodion-grp .accrodion').each(function(i){
+                    var $that = $(this);
+                    var btn = $that.find('.accrodion-title');
+                    var content = $that.find('.accrodion-content');
+                    // Ensure content has an id for aria-controls (unique per accordion)
+                    if (!content.attr('id')) {
+                        content.attr('id', 'accrodion-content-' + i + '-' + Math.floor(Math.random()*10000));
+                    }
+                    var expanded = $that.hasClass('active') ? 'true' : 'false';
                     btn.attr('aria-expanded', expanded);
+                    btn.attr('aria-controls', content.attr('id'));
+                    // aria-hidden on content
+                    content.attr('aria-hidden', expanded === 'true' ? 'false' : 'true');
                 });
 
                 // Update aria-expanded on click/keypress (space/enter)
@@ -49,6 +58,9 @@
                     // mark this as true, others false
                     parent.siblings('.accrodion').find('.accrodion-title').attr('aria-expanded','false');
                     $(this).attr('aria-expanded', willBeExpanded ? 'true' : 'false');
+                    // Update aria-hidden for content panels
+                    parent.siblings('.accrodion').find('.accrodion-content').attr('aria-hidden','true');
+                    parent.find('.accrodion-content').attr('aria-hidden', willBeExpanded ? 'false' : 'true');
                 });
             });
         })(jQuery);
