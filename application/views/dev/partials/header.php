@@ -154,7 +154,7 @@
                                         <li><a href="<?php echo site_url('carasengketa')?>">Prosedur Penanganan Sengketa Informasi</a></li>
 										<li><a href="<?php echo site_url('sop')?>">SOP Pelayanan Informasi</a></li>
 										<li><a href="<?php echo site_url('standarbiaya')?>">Standar Biaya Pelayanan</a></li>
-										<li><a target = "__blank" href="https://wa.me/6281122202220?text=#Simpati">WA KEPO</a></li>
+										<li><a target = "__blank" href="https://wa.me/6281122202220?text=#Sampurason">WA KEPO</a></li>
 										
                                     </ul>
                                 </li>
