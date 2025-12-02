@@ -52,7 +52,7 @@
         <section class = "blog-single">
 			<div>
             <!---->
-						<iframe src="https://cc.sumedangkab.go.id/home" width="100%" height="4500px" align = "center"></iframe>
+						<iframe src="https://cc.sumedangkab.go.id/admin" width="100%" height="4500px" align = "center"></iframe>
         	</div>
 		</section>
 
