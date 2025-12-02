@@ -33,12 +33,19 @@ class Keberatan_model extends CI_Model
     }
 
 
-    public function getAll()
+    public function getAll($order_by = null, $direction = null)
     {
+        // Default ordering to tanggal DESC (newest first)
+        if ($order_by === null) {
+            $order_by = 'tanggal';
+        }
+        if ($direction === null) {
+            $direction = 'DESC';
+        }
+        $this->db->order_by($order_by, $direction);
         return $this->db->get($this->_table)->result();
-
-        // return $this->db->get_where($this->_table, ["judul" => "tes"])->result();
     }
+        // return $this->db->get_where($this->_table, ["judul" => "tes"])->result();
 
 public function getById($id_keberatan)
     {
