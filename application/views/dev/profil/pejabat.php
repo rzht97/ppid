@@ -15,7 +15,7 @@
         .profile-card {
             background: #fff;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
             overflow: hidden;
             margin-bottom: 60px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -23,7 +23,7 @@
 
         .profile-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
         }
 
         .profile-header {
@@ -41,13 +41,20 @@
             right: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
             animation: pulse 15s ease-in-out infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
         }
 
         .profile-photo {
@@ -55,7 +62,7 @@
             height: 180px;
             border-radius: 50%;
             border: 6px solid #fff;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             object-fit: cover;
             margin: 0 auto 20px;
             position: relative;
@@ -72,7 +79,7 @@
         }
 
         .profile-position {
-            color: rgba(255,255,255,0.9);
+            color: rgba(255, 255, 255, 0.9);
             font-size: 18px;
             font-weight: 500;
             margin-bottom: 20px;
@@ -91,7 +98,7 @@
         .profile-social a {
             width: 45px;
             height: 45px;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -296,6 +303,31 @@
                 font-size: 18px;
             }
         }
+
+        /* Accordion Styles */
+        .section-title {
+            cursor: pointer;
+            position: relative;
+            padding-right: 30px;
+            user-select: none;
+        }
+
+        .section-title::after {
+            content: '\f078';
+            /* FontAwesome chevron-down */
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease;
+            font-size: 16px;
+        }
+
+        .section-title.active::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
     </style>
 </head>
 
@@ -337,7 +369,8 @@
                 <!-- Bupati -->
                 <div class="profile-card">
                     <div class="profile-header">
-                        <img src="<?= base_url();?>upload/pejabat/Foto Bupati.png" alt="Bupati Sumedang" class="profile-photo">
+                        <img src="<?= base_url(); ?>upload/pejabat/Foto Bupati.png" alt="Bupati Sumedang"
+                            class="profile-photo">
                         <h3 class="profile-name">Dr. H. DONY AHMAD MUNIR, ST., MM.</h3>
                         <p class="profile-position">Bupati Sumedang</p>
                         <div class="profile-social">
@@ -408,7 +441,8 @@
                                 <div class="timeline-item">
                                     <div class="timeline-content">
                                         <div class="timeline-year">1998</div>
-                                        <p class="timeline-text">S1 Fakultas Teknik Industri - Teknik dan Manajemen Industri, STTG</p>
+                                        <p class="timeline-text">S1 Fakultas Teknik Industri - Teknik dan Manajemen
+                                            Industri, STTG</p>
                                     </div>
                                 </div>
                                 <div class="timeline-item">
@@ -439,13 +473,15 @@
                                 <div class="timeline-item">
                                     <div class="timeline-content">
                                         <div class="timeline-year">1997 - 1998</div>
-                                        <p class="timeline-text">Anggota DPRD Termuda Kab. Sumedang (Sekretaris Fraksi PPP)</p>
+                                        <p class="timeline-text">Anggota DPRD Termuda Kab. Sumedang (Sekretaris Fraksi
+                                            PPP)</p>
                                     </div>
                                 </div>
                                 <div class="timeline-item">
                                     <div class="timeline-content">
                                         <div class="timeline-year">1999 - 2004</div>
-                                        <p class="timeline-text">Anggota DPRD Termuda Kab. Sumedang (Sekretaris Fraksi PPP)</p>
+                                        <p class="timeline-text">Anggota DPRD Termuda Kab. Sumedang (Sekretaris Fraksi
+                                            PPP)</p>
                                     </div>
                                 </div>
                                 <div class="timeline-item">
@@ -463,7 +499,8 @@
                                 <div class="timeline-item">
                                     <div class="timeline-content">
                                         <div class="timeline-year">2014 - 2019</div>
-                                        <p class="timeline-text">Anggota DPR RI (Komisi X, Wakil Sekretaris F-PPP, Anggota Banggar)</p>
+                                        <p class="timeline-text">Anggota DPR RI (Komisi X, Wakil Sekretaris F-PPP,
+                                            Anggota Banggar)</p>
                                     </div>
                                 </div>
                                 <div class="timeline-item">
@@ -487,15 +524,18 @@
                             <div class="awards-grid">
                                 <div class="award-item">
                                     <i class="fas fa-trophy award-icon"></i>
-                                    <p class="award-text"><strong>Honorary Police</strong> dari Kapolwil Priangan (2008)</p>
+                                    <p class="award-text"><strong>Honorary Police</strong> dari Kapolwil Priangan (2008)
+                                    </p>
                                 </div>
                                 <div class="award-item">
                                     <i class="fas fa-trophy award-icon"></i>
-                                    <p class="award-text"><strong>Tokoh Uswatun Hasanah</strong> dari BKPRMI Jawa Barat</p>
+                                    <p class="award-text"><strong>Tokoh Uswatun Hasanah</strong> dari BKPRMI Jawa Barat
+                                    </p>
                                 </div>
                                 <div class="award-item">
                                     <i class="fas fa-trophy award-icon"></i>
-                                    <p class="award-text"><strong>BMT Sinergi Award</strong> dari PINBUK Kabupaten Sumedang (2010)</p>
+                                    <p class="award-text"><strong>BMT Sinergi Award</strong> dari PINBUK Kabupaten
+                                        Sumedang (2010)</p>
                                 </div>
                             </div>
                         </div>
@@ -505,7 +545,8 @@
                 <!-- Wakil Bupati -->
                 <div class="profile-card">
                     <div class="profile-header">
-                        <img src="<?= base_url();?>upload/pejabat/Foto Wakil Bupati - .png" alt="Wakil Bupati Sumedang" class="profile-photo">
+                        <img src="<?= base_url(); ?>upload/pejabat/Foto Wakil Bupati - .png" alt="Wakil Bupati Sumedang"
+                            class="profile-photo">
                         <h3 class="profile-name">M. FAJAR ALDILA, S.H., M.Kn.</h3>
                         <p class="profile-position">Wakil Bupati Sumedang</p>
                         <div class="profile-social">
@@ -597,7 +638,8 @@
                 <!-- Sekretaris Daerah -->
                 <div class="profile-card">
                     <div class="profile-header">
-                        <img src="<?= base_url();?>upload/pejabat/Foto Sekda.jpeg" alt="Sekretaris Daerah" class="profile-photo">
+                        <img src="<?= base_url(); ?>upload/pejabat/Foto Sekda.jpeg" alt="Sekretaris Daerah"
+                            class="profile-photo">
                         <h3 class="profile-name">Dr. Hj. TUTI RUSWATI, S.Sos., M.Si.</h3>
                         <p class="profile-position">Sekretaris Daerah Kabupaten Sumedang</p>
                         <div class="profile-social">
@@ -702,7 +744,8 @@
                                 <div class="timeline-item">
                                     <div class="timeline-content">
                                         <div class="timeline-year">2023</div>
-                                        <p class="timeline-text">Asisten Perekonomian dan Pembangunan Setda Kab. Sumedang</p>
+                                        <p class="timeline-text">Asisten Perekonomian dan Pembangunan Setda Kab.
+                                            Sumedang</p>
                                     </div>
                                 </div>
                                 <div class="timeline-item">
@@ -725,9 +768,11 @@
                 <!-- Kepala Dinas Kominfo -->
                 <div class="profile-card">
                     <div class="profile-header">
-                        <img src="<?= base_url();?>upload/pejabat/kadisonson.jpg" alt="Kepala Dinas Kominfo" class="profile-photo">
+                        <img src="<?= base_url(); ?>upload/pejabat/kadisonson.jpg" alt="Kepala Dinas Kominfo"
+                            class="profile-photo">
                         <h3 class="profile-name">Drs. H. SONSON MUKHAMAD NURISAN, M.Si.</h3>
-                        <p class="profile-position">Kepala Dinas Komunikasi dan Informatika, Persandian dan Statistik</p>
+                        <p class="profile-position">Kepala Dinas Komunikasi dan Informatika, Persandian dan Statistik
+                        </p>
                         <div class="profile-social">
                             <a href="https://www.instagram.com/" target="_blank" title="Instagram">
                                 <i class="fab fa-instagram"></i>
@@ -757,7 +802,8 @@
                                 </div>
                                 <div class="info-item">
                                     <span class="info-label">Jabatan</span>
-                                    <span class="info-value">Kepala Dinas Komunikasi dan Informatika, Persandian dan Statistik Kab. Sumedang</span>
+                                    <span class="info-value">Kepala Dinas Komunikasi dan Informatika, Persandian dan
+                                        Statistik Kab. Sumedang</span>
                                 </div>
                             </div>
                         </div>
@@ -787,13 +833,15 @@
                                 <div class="timeline-item">
                                     <div class="timeline-content">
                                         <div class="timeline-year">1988</div>
-                                        <p class="timeline-text">D-III APDN - Akademi Pemerintahan Dalam Negeri Bandung</p>
+                                        <p class="timeline-text">D-III APDN - Akademi Pemerintahan Dalam Negeri Bandung
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="timeline-item">
                                     <div class="timeline-content">
                                         <div class="timeline-year">1991</div>
-                                        <p class="timeline-text">S1 Ilmu Pemerintahan - Universitas Langlangbuana Bandung</p>
+                                        <p class="timeline-text">S1 Ilmu Pemerintahan - Universitas Langlangbuana
+                                            Bandung</p>
                                     </div>
                                 </div>
                                 <div class="timeline-item">
@@ -812,13 +860,15 @@
                                 <div class="timeline-item">
                                     <div class="timeline-content">
                                         <div class="timeline-year">2015</div>
-                                        <p class="timeline-text">Kepala Badan Kesatuan Bangsa dan Politik Kab. Sumedang</p>
+                                        <p class="timeline-text">Kepala Badan Kesatuan Bangsa dan Politik Kab. Sumedang
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="timeline-item">
                                     <div class="timeline-content">
                                         <div class="timeline-year">2015</div>
-                                        <p class="timeline-text">Staf Ahli Bidang Pemerintahan, Hukum dan Politik pada Setda Kab. Sumedang</p>
+                                        <p class="timeline-text">Staf Ahli Bidang Pemerintahan, Hukum dan Politik pada
+                                            Setda Kab. Sumedang</p>
                                     </div>
                                 </div>
                                 <div class="timeline-item">
@@ -836,7 +886,8 @@
                                 <div class="timeline-item">
                                     <div class="timeline-content">
                                         <div class="timeline-year">2025 - Sekarang</div>
-                                        <p class="timeline-text">Kepala Dinas Komunikasi dan Informatika, Persandian dan Statistik Kab. Sumedang</p>
+                                        <p class="timeline-text">Kepala Dinas Komunikasi dan Informatika, Persandian dan
+                                            Statistik Kab. Sumedang</p>
                                     </div>
                                 </div>
                             </div>
@@ -876,6 +927,39 @@
 
     <?php $this->load->view('dev/partials/js.php') ?>
 
+</body>
+
+<!-- Custom Accordion Script -->
+<script>
+    $(document).ready(function () {
+        // Initialize: Hide timelines and awards, show info-grid (Data Pribadi)
+        $('.timeline, .awards-grid').hide();
+        $('.info-grid').show();
+
+        // Add active class to titles of open sections (Data Pribadi)
+        $('.info-grid').prev('.section-title').addClass('active');
+
+        // Handle click on section title
+        $('.section-title').on('click', function () {
+            var $this = $(this);
+            var $content = $this.next(); // The content div (info-grid, timeline, or awards-grid)
+
+            // Toggle the content
+            $content.slideToggle(300);
+
+            // Toggle active class on title (for chevron rotation)
+            $this.toggleClass('active');
+
+            // Optional: Close other sections in the same card? 
+            // Uncomment below to enable "one open at a time" behavior per card
+            /*
+            var $card = $this.closest('.profile-card');
+            $card.find('.section-title').not($this).removeClass('active');
+            $card.find('.section-title').not($this).next().slideUp(300);
+            */
+        });
+    });
+</script>
 </body>
 
 </html>
