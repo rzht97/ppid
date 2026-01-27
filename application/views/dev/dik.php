@@ -5,14 +5,16 @@
 <head>
     <title>DIK KAB. SUMEDANG - PPID Kab. Sumedang</title>
     <?php $this->load->view('dev/partials/head.php') ?>
-    <link href="<?= base_url() ?>inverse/plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?= base_url() ?>assets/vendor/datatables/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url() ?>inverse/plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="<?= base_url() ?>assets/vendor/datatables/css/buttons.dataTables.min.css" rel="stylesheet"
+        type="text/css" />
 
 </head>
 
 <body>
 
-    
+
 
     <div class="preloader">
         <div class="preloader__image"></div>
@@ -49,12 +51,359 @@
             </div>
         </section>
         <!--Page Header End-->
-        <section class = "blog-single">
-			<div class="container">
-            <!---->
-						<iframe src="<?= base_url();?>/upload/product/DIK FIX 2024.pdf" width="100%" height="700px" align = "center"></iframe>
-        	</div>
-		</section>
+        <section class="blog-single">
+            <div class="container">
+                <!-- PDF Viewer Container -->
+                <div id="pdf-viewer"
+                    style="width: 100%; background: #525659; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: relative;">
+                    <!-- Controls Bar -->
+                    <div id="pdf-controls"
+                        style="background: #323639; padding: 15px; text-align: center; border-bottom: 1px solid #000; flex-wrap: wrap; display: flex; justify-content: center; align-items: center; gap: 5px;">
+                        <div style="display: inline-block; margin: 5px;">
+                            <button id="prev-page" class="btn btn-sm btn-light" style="margin: 0 5px;">
+                                <i class="fa fa-chevron-left"></i> <span class="d-none d-sm-inline">Previous</span>
+                            </button>
+                            <span style="color: white; margin: 0 10px; font-weight: 500; font-size: 14px;">
+                                <span id="page-num"></span> / <span id="page-count"></span>
+                            </span>
+                            <button id="next-page" class="btn btn-sm btn-light" style="margin: 0 5px;">
+                                <span class="d-none d-sm-inline">Next</span> <i class="fa fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <span style="color: #666; margin: 0 5px;">|</span>
+                        <div style="display: inline-block; margin: 5px;">
+                            <button id="zoom-out" class="btn btn-sm btn-light" style="margin: 0 3px;" title="Zoom Out">
+                                <i class="fa fa-search-minus"></i>
+                            </button>
+                            <button id="fit-width" class="btn btn-sm btn-info" style="margin: 0 3px;"
+                                title="Fit to Width">
+                                <i class="fa fa-arrows-h"></i>
+                            </button>
+                            <button id="zoom-in" class="btn btn-sm btn-light" style="margin: 0 3px;" title="Zoom In">
+                                <i class="fa fa-search-plus"></i>
+                            </button>
+                            <span style="color: white; margin: 0 10px; font-size: 13px;" id="zoom-level">100%</span>
+                        </div>
+                        <span style="color: #666; margin: 0 5px;">|</span>
+                        <div style="display: inline-block; margin: 5px;">
+                            <button id="fullscreen-btn" class="btn btn-sm btn-warning" style="margin: 0 3px;"
+                                title="Fullscreen">
+                                <i class="fa fa-expand"></i> <span class="d-none d-lg-inline">Fullscreen</span>
+                            </button>
+                            <a href="<?= base_url(); ?>upload/product/DIK%20FIX%202024.pdf"
+                                download="DIK_Daftar_Informasi_Dikecualikan_2024.pdf" class="btn btn-sm btn-success"
+                                style="margin: 0 5px;">
+                                <i class="fa fa-download"></i> <span class="d-none d-sm-inline">Download</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PDF Canvas Container -->
+                    <div id="pdf-container" class="pdf-container-responsive"
+                        style="overflow: auto; text-align: center; padding: 20px; background: #525659; scroll-behavior: smooth;">
+                        <!-- PDF pages will render here as canvas -->
+                    </div>
+                </div>
+
+                <!-- Loading indicator -->
+                <div id="loading" style="text-align: center; padding: 60px; background: #f8f9fa; border-radius: 8px;">
+                    <i class="fa fa-spinner fa-spin fa-3x" style="color: #007bff;"></i>
+                    <p style="margin-top: 20px; color: #666; font-size: 16px;">Memuat dokumen PDF...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Responsive CSS -->
+        <style>
+            /* Mobile: smaller container */
+            .pdf-container-responsive {
+                max-height: 800px;
+            }
+
+            /* Tablet and up: larger container */
+            @media (min-width: 768px) {
+                .pdf-container-responsive {
+                    max-height: 1000px;
+                }
+            }
+
+            /* Desktop: even larger container */
+            @media (min-width: 1200px) {
+                .pdf-container-responsive {
+                    max-height: 1200px;
+                }
+            }
+
+            /* Fullscreen mode */
+            #pdf-viewer.fullscreen {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: 9999;
+                border-radius: 0;
+                max-width: 100%;
+            }
+
+            #pdf-viewer.fullscreen .pdf-container-responsive {
+                max-height: calc(100vh - 60px);
+                height: calc(100vh - 60px);
+            }
+
+            /* Better canvas rendering on high DPI screens */
+            canvas {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+        </style>
+
+        <!-- Load PDF.js from CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+        <script>
+            // PDF.js configuration
+            var pdfjsLib = window['pdfjs-dist/build/pdf'];
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+            var pdfDoc = null,
+                pageNum = 1,
+                pageRendering = false,
+                pageNumPending = null,
+                scale = window.innerWidth >= 1200 ? 1.5 : (window.innerWidth >= 768 ? 1.3 : 1.2), // Responsive scale
+                canvas = document.createElement('canvas'),
+                ctx = canvas.getContext('2d'),
+                containerWidth = 0,
+                isFullscreen = false;
+
+            var url = '<?= base_url(); ?>upload/product/DIK%20FIX%202024.pdf';
+
+            // Show loading initially
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('pdf-viewer').style.display = 'none';
+
+            // Update zoom level display
+            function updateZoomDisplay() {
+                var percentage = Math.round(scale * 100);
+                document.getElementById('zoom-level').textContent = percentage + '%';
+            }
+
+            // Load PDF document
+            pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
+                pdfDoc = pdfDoc_;
+                document.getElementById('page-count').textContent = pdfDoc.numPages;
+
+                // Hide loading, show viewer
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('pdf-viewer').style.display = 'block';
+
+                // Get container width for fit-to-width calculation
+                containerWidth = document.getElementById('pdf-container').offsetWidth - 40; // minus padding
+
+                // Update zoom display
+                updateZoomDisplay();
+
+                // Render first page
+                renderPage(pageNum);
+            }).catch(function (error) {
+                console.error('Error loading PDF:', error);
+                document.getElementById('loading').innerHTML =
+                    '<i class="fa fa-exclamation-triangle fa-3x" style="color: #dc3545;"></i>' +
+                    '<p style="color: #dc3545; margin-top: 20px; font-size: 16px;">Gagal memuat PDF.</p>' +
+                    '<a href="<?= base_url(); ?>upload/product/DIK%20FIX%202024.pdf" download class="btn btn-primary" style="margin-top: 15px;">' +
+                    '<i class="fa fa-download"></i> Download Dokumen</a>';
+            });
+
+            // Render specific page
+            function renderPage(num) {
+                pageRendering = true;
+                pdfDoc.getPage(num).then(function (page) {
+                    var viewport = page.getViewport({ scale: scale });
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+                    canvas.style.maxWidth = '100%';
+                    canvas.style.height = 'auto';
+                    canvas.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
+
+                    var renderContext = {
+                        canvasContext: ctx,
+                        viewport: viewport
+                    };
+
+                    var renderTask = page.render(renderContext);
+                    renderTask.promise.then(function () {
+                        pageRendering = false;
+                        if (pageNumPending !== null) {
+                            renderPage(pageNumPending);
+                            pageNumPending = null;
+                        }
+                    });
+                });
+
+                document.getElementById('page-num').textContent = num;
+
+                // Update canvas in container
+                var container = document.getElementById('pdf-container');
+                container.innerHTML = '';
+                container.appendChild(canvas);
+
+                // Update zoom display
+                updateZoomDisplay();
+            }
+
+            // Queue render if another render in progress
+            function queueRenderPage(num) {
+                if (pageRendering) {
+                    pageNumPending = num;
+                } else {
+                    renderPage(num);
+                }
+            }
+
+            // Previous page button
+            document.getElementById('prev-page').addEventListener('click', function () {
+                if (pageNum <= 1) return;
+                pageNum--;
+                queueRenderPage(pageNum);
+            });
+
+            // Next page button
+            document.getElementById('next-page').addEventListener('click', function () {
+                if (pageNum >= pdfDoc.numPages) return;
+                pageNum++;
+                queueRenderPage(pageNum);
+            });
+
+            // Zoom in button
+            document.getElementById('zoom-in').addEventListener('click', function () {
+                if (scale >= 3.0) return; // Max zoom limit
+                scale += 0.2;
+                queueRenderPage(pageNum);
+            });
+
+            // Zoom out button
+            document.getElementById('zoom-out').addEventListener('click', function () {
+                if (scale <= 0.5) return;
+                scale -= 0.2;
+                queueRenderPage(pageNum);
+            });
+
+            // Fit to width button
+            document.getElementById('fit-width').addEventListener('click', function () {
+                if (!pdfDoc) return;
+
+                pdfDoc.getPage(pageNum).then(function (page) {
+                    // Get the page dimensions at scale 1.0
+                    var viewport = page.getViewport({ scale: 1.0 });
+
+                    // Calculate scale to fit container width
+                    var containerWidth = document.getElementById('pdf-container').offsetWidth - 40;
+                    scale = containerWidth / viewport.width;
+
+                    // Limit scale between 0.5 and 3.0
+                    scale = Math.max(0.5, Math.min(3.0, scale));
+
+                    queueRenderPage(pageNum);
+                });
+            });
+
+            // Fullscreen toggle using native Fullscreen API
+            document.getElementById('fullscreen-btn').addEventListener('click', function () {
+                var viewer = document.getElementById('pdf-viewer');
+                
+                if (!isFullscreen) {
+                    // Enter fullscreen using native API
+                    if (viewer.requestFullscreen) {
+                        viewer.requestFullscreen();
+                    } else if (viewer.webkitRequestFullscreen) { // Safari
+                        viewer.webkitRequestFullscreen();
+                    } else if (viewer.msRequestFullscreen) { // IE11
+                        viewer.msRequestFullscreen();
+                    } else if (viewer.mozRequestFullScreen) { // Firefox
+                        viewer.mozRequestFullScreen();
+                    }
+                } else {
+                    // Exit fullscreen
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    } else if (document.mozCancelFullScreen) {
+                        document.mozCancelFullScreen();
+                    }
+                }
+            });
+
+            // Listen for fullscreen changes (when user exits with ESC or F11)
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+            document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+            document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+            document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+
+            function handleFullscreenChange() {
+                var btn = document.getElementById('fullscreen-btn');
+                var viewer = document.getElementById('pdf-viewer');
+                
+                if (document.fullscreenElement || document.webkitFullscreenElement || 
+                    document.mozFullScreenElement || document.msFullscreenElement) {
+                    // Entered fullscreen
+                    viewer.classList.add('fullscreen');
+                    btn.innerHTML = '<i class="fa fa-compress"></i> <span class="d-none d-lg-inline">Exit Fullscreen</span>';
+                    btn.classList.remove('btn-warning');
+                    btn.classList.add('btn-danger');
+                    isFullscreen = true;
+                    
+                    // Re-render to adjust to fullscreen size
+                    setTimeout(function() {
+                        queueRenderPage(pageNum);
+                    }, 200);
+                } else {
+                    // Exited fullscreen
+                    viewer.classList.remove('fullscreen');
+                    btn.innerHTML = '<i class="fa fa-expand"></i> <span class="d-none d-lg-inline">Fullscreen</span>';
+                    btn.classList.remove('btn-danger');
+                    btn.classList.add('btn-warning');
+                    isFullscreen = false;
+                    
+                    // Re-render to adjust to normal size
+                    setTimeout(function() {
+                        queueRenderPage(pageNum);
+                    }, 200);
+                }
+            }
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function (e) {
+                // ESC to exit fullscreen
+                if (e.key === 'Escape' && isFullscreen) {
+                    document.getElementById('fullscreen-btn').click();
+                    return;
+                }
+                
+                if (e.key === 'ArrowLeft' && pageNum > 1) {
+                    pageNum--;
+                    queueRenderPage(pageNum);
+                } else if (e.key === 'ArrowRight' && pageNum < pdfDoc.numPages) {
+                    pageNum++;
+                    queueRenderPage(pageNum);
+                } else if (e.key === '+' || e.key === '=') {
+                    if (scale < 3.0) {
+                        scale += 0.2;
+                        queueRenderPage(pageNum);
+                    }
+                } else if (e.key === '-') {
+                    if (scale > 0.5) {
+                        scale -= 0.2;
+                        queueRenderPage(pageNum);
+                    }
+                } else if (e.key === 'f' || e.key === 'F') {
+                    // F key to toggle fullscreen
+                    document.getElementById('fullscreen-btn').click();
+                }
+            });
+        </script>
 
         <?php $this->load->view("dev/partials/sectionapp.php") ?>
 
@@ -113,7 +462,7 @@
     <script src="<?= base_url() ?>assets/vendor/datatables/js/buttons.html5.min.js"></script>
     <script src="<?= base_url() ?>assets/vendor/datatables/js/buttons.print.min.js"></script>
     <!-- end - This is for export functionality only -->
-    
+
     <!--Style Switcher -->
     <script src="<?= base_url() ?>inverse/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
 </body>
