@@ -46,20 +46,30 @@ class Security_headers
         // Matikan akses ke geolocation, microphone, camera kecuali dibutuhkan
         header("Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=()");
 
-        // 6. Content-Security-Policy (CSP): Kontrol resource yang boleh dimuat
-        // IMPORTANT: Ini adalah pertahanan utama terhadap XSS
+        // 6. Content-Security-Policy (CSP): DISABLED - sudah di-handle oleh .htaccess
+        // IMPORTANT: CSP sudah diset di .htaccess dengan konfigurasi lengkap
+        // Jika diset di sini juga akan menyebabkan duplikasi dan konflik!
+        // CSP di .htaccess sudah include: object-src 'self' untuk PDF viewer
+
+        // NOTE: Jika mau pindah CSP ke PHP, uncomment code di bawah dan comment CSP di .htaccess
+        /*
         $csp = [
-            "default-src 'self'",                    // Default: hanya dari domain sendiri
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://code.jquery.com https://maxcdn.bootstrapcdn.com https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://maps.googleapis.com", // Allow inline scripts (untuk compatibility)
-            "style-src 'self' 'unsafe-inline' https://maxcdn.bootstrapcdn.com", // Allow inline styles + external CSS only from maxcdn
-            "img-src 'self' data: https:",           // Images dari self, data:, dan HTTPS
-            "font-src 'self' data:", // Fonts served locally or data: only
-            "connect-src 'self' https://cdn.jsdelivr.net https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://maps.googleapis.com *.sumedangkab.go.id", // AJAX requests
-            "frame-ancestors 'self'",                // Sama dengan X-Frame-Options
-            "base-uri 'self'",                       // Prevent base tag injection
-            "form-action 'self'",                    // Form hanya bisa submit ke self
+            "default-src 'self'",
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.datatables.net https://cdnjs.cloudflare.com https://code.jquery.com https://maxcdn.bootstrapcdn.com https://cdn.jsdelivr.net https://static.cloudflareinsights.com https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://maps.googleapis.com https://www.gstatic.com *.sumedangkab.go.id",
+            "script-src-elem 'self' 'unsafe-inline' https://cdn.datatables.net https://cdnjs.cloudflare.com https://code.jquery.com https://maxcdn.bootstrapcdn.com https://cdn.jsdelivr.net https://static.cloudflareinsights.com https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://maps.googleapis.com https://www.gstatic.com",
+            "style-src 'self' 'unsafe-inline' https://cdn.datatables.net https://cdnjs.cloudflare.com https://maxcdn.bootstrapcdn.com https://fonts.googleapis.com https://cdn.jsdelivr.net https://www.gstatic.com",
+            "style-src-elem 'self' 'unsafe-inline' https://cdn.datatables.net https://cdnjs.cloudflare.com https://maxcdn.bootstrapcdn.com https://fonts.googleapis.com https://cdn.jsdelivr.net https://www.gstatic.com",
+            "font-src 'self' https://fonts.gstatic.com https://maxcdn.bootstrapcdn.com https://cdn.jsdelivr.net data:",
+            "img-src 'self' data: https:",
+            "connect-src 'self' *.sumedangkab.go.id https://cdn.jsdelivr.net https://static.cloudflareinsights.com https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://maps.googleapis.com https://www.gstatic.com",
+            "frame-src 'self' https://cc.sumedangkab.go.id",
+            "frame-ancestors 'self'",
+            "object-src 'self'",  // CRITICAL: Allows PDF viewer to work on mobile!
+            "base-uri 'self'",
+            "form-action 'self'",
         ];
         header("Content-Security-Policy: " . implode('; ', $csp));
+        */
 
         // 7. OPTIONAL: Strict-Transport-Security (HSTS)
         // HANYA aktifkan jika sudah punya SSL/HTTPS!
