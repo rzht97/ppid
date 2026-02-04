@@ -176,7 +176,7 @@
                 containerWidth = 0,
                 isFullscreen = false;
 
-            var url = '<?= base_url(); ?>upload/product/DIK%20FIX%202024.pdf';
+            var url = '<?= base_url(); ?>upload/product/DIK%202025.pdf';
 
             // Show loading initially
             document.getElementById('loading').style.display = 'block';
