@@ -81,7 +81,7 @@
                                     class="fa fa-expand"></i> <span
                                     class="d-none d-lg-inline">Fullscreen</span></button><a
                                 href="<?= base_url(); ?>upload/product/DIP%202025.pdf"
-                                download="DIP_Tahun_2024.pdf" class="btn btn-sm btn-success" style="margin: 0 5px;"><i
+                                download="DIP_2025.pdf" class="btn btn-sm btn-success" style="margin: 0 5px;"><i
                                     class="fa fa-download"></i> <span class="d-none d-sm-inline">Download</span></a>
                         </div>
                     </div>
