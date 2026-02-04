@@ -210,7 +210,7 @@
                 document.getElementById('loading').innerHTML =
                     '<i class="fa fa-exclamation-triangle fa-3x" style="color: #dc3545;"></i>' +
                     '<p style="color: #dc3545; margin-top: 20px; font-size: 16px;">Gagal memuat PDF.</p>' +
-                    '<a href="<?= base_url(); ?>upload/product/DIK%20FIX%202024.pdf" download class="btn btn-primary" style="margin-top: 15px;">' +
+                    '<a href="<?= base_url(); ?>upload/product/DIK%202025.pdf" download class="btn btn-primary" style="margin-top: 15px;">' +
                     '<i class="fa fa-download"></i> Download Dokumen</a>';
             });
 
